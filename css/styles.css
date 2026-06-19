@@ -1,0 +1,575 @@
+/* ====== Aventura del Saber — Estilos ====== */
+:root {
+  --azul: #2e6cf6;
+  --azul-osc: #1b3a8a;
+  --verde: #25c281;
+  --rojo: #ef5350;
+  --amarillo: #ffc934;
+  --morado: #8a5cf6;
+  --fondo-tarjeta: rgba(255, 255, 255, 0.92);
+  --sombra: 0 10px 30px rgba(0, 0, 0, 0.18);
+  --radio: 22px;
+  --fuente: "Comic Sans MS", "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: var(--fuente);
+  overflow: hidden;
+  color: #1d2440;
+}
+
+#lienzo3d {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  display: block;
+}
+
+#interfaz {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Barra superior ---------- */
+#barra-superior {
+  display: flex;
+  align-items: center;
+  padding: 12px 18px;
+  gap: 12px;
+}
+.grupo-barra {
+  flex: 1;                 /* lados de igual ancho => marcador centrado */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.grupo-der { justify-content: flex-end; }
+
+.boton-icono {
+  font-size: 1.6rem;
+  width: 54px;
+  height: 54px;
+  border: none;
+  border-radius: 50%;
+  background: var(--fondo-tarjeta);
+  box-shadow: var(--sombra);
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+.boton-icono:hover { transform: scale(1.1) rotate(-5deg); }
+.boton-icono:active { transform: scale(0.95); }
+
+#marcador {
+  display: flex;
+  gap: 14px;
+  background: var(--fondo-tarjeta);
+  padding: 10px 20px;
+  border-radius: 40px;
+  box-shadow: var(--sombra);
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+#marcador span { white-space: nowrap; }
+
+/* ---------- Pantallas ---------- */
+.pantalla {
+  flex: 1;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 16px 30px;
+  overflow-y: auto;
+}
+.pantalla.activa { display: flex; }
+.oculto { display: none !important; }
+
+/* ---------- Menú ---------- */
+.titulo-juego {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  color: white;
+  text-shadow: 0 4px 0 var(--azul-osc), 0 8px 20px rgba(0,0,0,0.4);
+  margin: 10px 0 0;
+  text-align: center;
+}
+.subtitulo {
+  color: white;
+  font-size: 1.2rem;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  margin: 6px 0 22px;
+}
+
+.tarjetas-menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 760px;
+}
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 26px 16px;
+  border: none;
+  border-radius: var(--radio);
+  background: var(--fondo-tarjeta);
+  box-shadow: var(--sombra);
+  cursor: pointer;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.tarjeta:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 18px 40px rgba(0,0,0,0.28); }
+.emoji-grande { font-size: 3.4rem; }
+.titulo-tarjeta { font-size: 1.4rem; font-weight: bold; color: var(--azul-osc); }
+.desc-tarjeta { font-size: 0.95rem; color: #4a5270; text-align: center; }
+
+/* ---------- Selector de categorías ---------- */
+.selector-categorias {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  width: 100%;
+  max-width: 800px;
+  margin-top: 8px;
+}
+.chip-categoria {
+  padding: 18px 14px;
+  border: none;
+  border-radius: 18px;
+  background: var(--fondo-tarjeta);
+  box-shadow: var(--sombra);
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--azul-osc);
+  transition: transform 0.15s;
+  text-align: center;
+}
+.chip-categoria small { display:block; font-weight: normal; color:#555; font-size:0.8rem; margin-top:4px; }
+.chip-categoria:hover { transform: scale(1.05); }
+
+/* ---------- Caja de juego ---------- */
+.caja-juego {
+  width: 100%;
+  max-width: 720px;
+  background: var(--fondo-tarjeta);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 26px 28px 32px;
+  margin-top: 6px;
+  text-align: center;
+}
+.titulo-seccion { color: white; text-shadow: 0 3px 8px rgba(0,0,0,0.5); font-size: 2rem; }
+.aviso-adulto, .regla-ayuda {
+  color: #4a5270;
+  font-size: 0.95rem;
+  margin: 4px 0 16px;
+}
+.aviso-adulto { color:white; text-shadow:0 2px 6px rgba(0,0,0,0.5); }
+.regla-ayuda {
+  background: #eef3ff;
+  border-radius: 12px;
+  padding: 8px 12px;
+  display: inline-block;
+}
+
+.fila-timer { display: flex; justify-content: flex-end; min-height: 0; }
+.timer {
+  display: inline-block;
+  background: var(--azul);
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 4px 14px;
+  border-radius: 16px;
+  margin-bottom: 8px;
+  font-variant-numeric: tabular-nums;
+}
+.timer.urgente { background: var(--rojo); animation: latido 0.5s infinite; }
+
+.progreso { width: 100%; height: 12px; background: #e3e8f5; border-radius: 10px; overflow: hidden; margin-bottom: 14px; }
+.progreso-barra { height: 100%; width: 0; background: linear-gradient(90deg, var(--verde), #7ef0bb); transition: width 0.4s; }
+
+.pregunta {
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  color: var(--azul-osc);
+  margin: 12px 0;
+  letter-spacing: 1px;
+}
+.secuencia-numeros { letter-spacing: 4px; font-variant-numeric: tabular-nums; }
+.pista { color: var(--morado); font-style: italic; min-height: 1.2em; }
+
+.opciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  margin: 18px 0;
+}
+.opcion {
+  min-width: 90px;
+  padding: 16px 24px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: 3px solid var(--azul);
+  border-radius: 16px;
+  background: white;
+  color: var(--azul);
+  cursor: pointer;
+  transition: transform 0.12s, background 0.2s;
+}
+.opcion:hover { transform: scale(1.08); background: #eef3ff; }
+.opcion.correcta { background: var(--verde); border-color: var(--verde); color: white; animation: latido 0.4s; }
+.opcion.incorrecta { background: var(--rojo); border-color: var(--rojo); color: white; animation: temblor 0.4s; }
+
+.zona-respuesta-libre {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+.entrada-texto {
+  font-size: 1.5rem;
+  padding: 12px 18px;
+  border: 3px solid var(--azul);
+  border-radius: 14px;
+  text-align: center;
+  width: min(280px, 70vw);
+  font-family: var(--fuente);
+}
+.entrada-texto:focus { outline: none; border-color: var(--morado); box-shadow: 0 0 0 4px rgba(138,92,246,0.25); }
+.entrada-area {
+  width: 100%;
+  min-height: 130px;
+  font-size: 1.2rem;
+  padding: 14px;
+  border: 3px solid var(--azul);
+  border-radius: 14px;
+  font-family: var(--fuente);
+  resize: vertical;
+}
+
+.boton-grande {
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 16px;
+  background: var(--azul);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 6px 0 var(--azul-osc);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.boton-grande:hover { transform: translateY(-2px); }
+.boton-grande:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--azul-osc); }
+.boton-secundario {
+  font-size: 1rem;
+  padding: 10px 18px;
+  border: 3px solid var(--morado);
+  border-radius: 14px;
+  background: white;
+  color: var(--morado);
+  cursor: pointer;
+  font-weight: bold;
+}
+.boton-secundario:hover { background: #f3eeff; }
+
+.retro { font-size: 1.4rem; font-weight: bold; min-height: 1.6em; margin-top: 10px; }
+.retro.bien { color: var(--verde); }
+.retro.mal { color: var(--rojo); }
+
+/* ---------- Copia ---------- */
+.texto-modelo {
+  background: #fffbe7;
+  border: 3px dashed var(--amarillo);
+  border-radius: 14px;
+  padding: 16px 18px;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  text-align: left;
+}
+.resultado-copia { margin-top: 16px; font-size: 1.1rem; text-align: left; line-height: 1.7; }
+.resultado-copia .ok { background: #d7f8e8; }
+.resultado-copia .err { background: #ffd9d9; color: var(--rojo); font-weight: bold; text-decoration: underline wavy var(--rojo); }
+
+/* Interruptor de sub-modo (copiar / corregir) */
+.toggle-modo {
+  display: inline-flex;
+  background: #e3e8f5;
+  border-radius: 30px;
+  padding: 4px;
+  margin-bottom: 14px;
+  gap: 4px;
+}
+.opcion-modo {
+  border: none;
+  background: transparent;
+  padding: 10px 18px;
+  border-radius: 26px;
+  font-family: var(--fuente);
+  font-size: 1rem;
+  font-weight: bold;
+  color: #4a5270;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.opcion-modo.activa { background: var(--azul); color: white; box-shadow: var(--sombra); }
+
+.texto-modelo.con-errores { background: #fff0f0; border-color: var(--rojo); }
+.texto-modelo .err-mark {
+  color: var(--rojo);
+  font-weight: bold;
+  text-decoration: underline wavy var(--rojo);
+  background: #ffe0e0;
+  border-radius: 4px;
+  padding: 0 2px;
+}
+#copia-pista { display: block; margin: 0 auto 14px; }
+
+/* Botón Volver dentro de un ejercicio */
+.btn-volver {
+  float: left;
+  border: 2px solid var(--azul);
+  background: white;
+  color: var(--azul);
+  font-family: var(--fuente);
+  font-weight: bold;
+  font-size: 0.95rem;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+.btn-volver:hover { background: #eef3ff; }
+
+/* ---------- Luna: mascota 3D arrastrable ---------- */
+#luna {
+  position: fixed;
+  left: 24px;
+  top: 40%;
+  z-index: 4;
+  width: 150px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: grab;
+  touch-action: none;          /* permite arrastrar con el dedo */
+  user-select: none;
+}
+#luna.agarrando { cursor: grabbing; }
+#luna-canvas {
+  width: 150px;
+  height: 165px;
+  display: block;
+  filter: drop-shadow(0 8px 12px rgba(0,0,0,0.35));
+}
+#luna-emoji {
+  font-size: 4.5rem;
+  line-height: 1.2;
+  animation: flotar 2.4s ease-in-out infinite;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,0.4));
+}
+.luna-nombre {
+  background: var(--amarillo);
+  color: #6b4e00;
+  font-weight: bold;
+  font-size: 0.78rem;
+  padding: 3px 12px;
+  border-radius: 12px;
+  box-shadow: var(--sombra);
+  white-space: nowrap;
+}
+.luna-globo {
+  position: absolute;
+  bottom: 100%;
+  background: white;
+  color: var(--azul-osc);
+  font-weight: bold;
+  font-size: 0.9rem;
+  padding: 8px 14px;
+  border-radius: 16px;
+  box-shadow: var(--sombra);
+  margin-bottom: 4px;
+  width: max-content;
+  max-width: 190px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(8px) scale(0.85);
+  transition: all 0.25s;
+  pointer-events: none;
+}
+.luna-globo.ver { opacity: 1; transform: translateY(0) scale(1); }
+
+@keyframes flotar { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+@media (max-width: 520px) {
+  #luna { width: 110px; height: 150px; }
+  #luna-canvas { width: 110px; height: 120px; }
+  .luna-globo { font-size: 0.78rem; max-width: 150px; }
+}
+
+/* ---------- Editor ---------- */
+.acordeon {
+  width: 100%;
+  max-width: 760px;
+  background: var(--fondo-tarjeta);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 20px 24px;
+  margin-bottom: 22px;
+}
+.acordeon h3 { margin: 0 0 14px; color: var(--azul-osc); }
+.campos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px;
+}
+.campos-grid label, .bloque {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: bold;
+  color: #3a4266;
+  font-size: 0.95rem;
+}
+.bloque { margin-bottom: 14px; }
+.campos-grid input, .campos-grid select, .bloque input {
+  font-size: 1.1rem;
+  padding: 10px;
+  border: 2px solid #c7d2f0;
+  border-radius: 10px;
+  font-family: var(--fuente);
+}
+.vista-previa {
+  background: #eef3ff;
+  border-radius: 12px;
+  padding: 14px;
+  margin: 16px 0;
+  font-size: 1.3rem;
+  letter-spacing: 3px;
+  min-height: 1.4em;
+  text-align: center;
+  color: var(--azul-osc);
+}
+.fila-botones { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.lista-guardados { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
+.item-guardado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: #f4f7ff;
+  border-radius: 12px;
+  padding: 10px 14px;
+}
+.item-guardado .nombre { font-weight: bold; color: var(--azul-osc); }
+.item-guardado .desc { font-size: 0.85rem; color: #555; }
+.borrar { background: var(--rojo); color: white; border: none; border-radius: 10px; padding: 8px 12px; cursor: pointer; font-weight: bold; }
+
+/* ---------- Mapa del Ecuador (Sociales) ---------- */
+.mapa-svg-cont {
+  width: 100%;
+  max-width: 680px;
+  margin: 6px auto 0;
+  display: flex;
+  justify-content: center;
+}
+.mapa-ec { width: 100%; height: auto; max-height: 60vh; display: block; }
+.mapa-ec .prov {
+  stroke: #ffffff;
+  stroke-width: 0.6;
+  transition: filter 0.15s, fill 0.15s;
+}
+.mapa-ec .prov:hover { filter: brightness(1.12); }
+.mapa-ec .prov:focus { outline: none; filter: brightness(1.15); }
+.mapa-ec .prov.sel { stroke: #2b2b2b; stroke-width: 1.6; filter: brightness(1.16); }
+
+.mapa-leyenda {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 8px 0 4px;
+}
+.mapa-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--fondo-tarjeta);
+  border-radius: 14px;
+  padding: 6px 12px;
+  font-weight: bold;
+  color: var(--azul-osc);
+  box-shadow: var(--sombra);
+  font-size: 0.95rem;
+}
+.mapa-chip .pin { width: 16px; height: 16px; border-radius: 5px; display: inline-block; }
+
+.mapa-info {
+  background: var(--fondo-tarjeta);
+  border-radius: 18px;
+  box-shadow: var(--sombra);
+  padding: 14px 22px;
+  margin-top: 12px;
+  min-height: 60px;
+  text-align: center;
+  max-width: 520px;
+  color: #3a4266;
+}
+.mapa-info h3 { margin: 0.1rem 0; color: var(--azul-osc); }
+.mapa-info .mapa-region { font-weight: bold; }
+.mapa-falta {
+  background: var(--fondo-tarjeta);
+  border-radius: 18px;
+  padding: 22px 24px;
+  max-width: 560px;
+  text-align: center;
+  color: #3a4266;
+  box-shadow: var(--sombra);
+  line-height: 1.5;
+}
+.mapa-falta code { background: #eef3ff; padding: 2px 7px; border-radius: 7px; font-weight: bold; }
+
+/* ---------- Celebración ---------- */
+#celebracion {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}
+.confeti {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  top: -20px;
+  border-radius: 3px;
+  animation: caer linear forwards;
+}
+
+/* ---------- Animaciones ---------- */
+@keyframes latido { 0%,100% { transform: scale(1); } 50% { transform: scale(1.25); } }
+@keyframes temblor { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
+@keyframes caer { to { transform: translateY(110vh) rotate(720deg); opacity: 0.9; } }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 520px) {
+  #marcador { font-size: 0.9rem; gap: 8px; padding: 8px 12px; }
+  .caja-juego { padding: 18px 16px 24px; }
+  .boton-icono { width: 46px; height: 46px; font-size: 1.3rem; }
+}

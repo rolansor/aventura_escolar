@@ -490,6 +490,9 @@ html, body {
   justify-content: center;
 }
 .mapa-ec { width: 100%; height: auto; max-height: 60vh; display: block; }
+/* El SVG de simplemaps trae puntos de capitales y anclas de etiquetas:
+   los ocultamos (las capitales se muestran en el panel al tocar). */
+.mapa-ec #points, .mapa-ec #label_points { display: none; }
 .mapa-ec .prov {
   stroke: #ffffff;
   stroke-width: 0.6;

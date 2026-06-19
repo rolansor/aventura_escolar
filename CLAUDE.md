@@ -164,7 +164,9 @@ están en `editor.js` y **deben permanecer alineadas** con las claves que lee `o
 - Al cambiar categorías/contenido, recordar que `Ortografia.pintarSelector()` y `Editor` re-leen `DATOS`.
 
 ## Git
-- **El directorio NO es un repositorio git** (no hay `.git`). No hay historial ni remoto.
+- Repositorio git activo. Remoto `origin`: https://github.com/rolansor/aventura_escolar.git
+- Rama principal: `main`. Identidad local: rolansor / rolansor@hotmail.com.
+- El archivo fuente `ec.svg` (mapa de simplemaps) está versionado; `js/mapadata.js` se genera de él.
 
 ## Estado / próximos pasos posibles
 - Hecho recientemente:

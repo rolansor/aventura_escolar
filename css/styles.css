@@ -488,6 +488,10 @@ html, body {
   margin: 6px auto 0;
   display: flex;
   justify-content: center;
+  background: #ffffff;
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 14px;
 }
 .mapa-ec { width: 100%; height: auto; max-height: 60vh; display: block; }
 /* El SVG de simplemaps trae puntos de capitales y anclas de etiquetas:

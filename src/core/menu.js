@@ -19,7 +19,10 @@ const Menu = (function () {
 
   function init() {
     pintarMenu();
-    mostrar("pantalla-menu");
+    // Si volvemos desde una actividad (?materia=lengua), abre ese submenú directamente.
+    const mat = new URLSearchParams(location.search).get("materia");
+    if (mat && (DATOS.materias || []).some(function (m) { return m.id === mat; })) irAMateria(mat);
+    else mostrar("pantalla-menu");
     // El botón "Volver" del menú regresa del submenú de materia al menú.
     const bv = document.getElementById("btn-volver-global");
     if (bv) bv.onclick = function () { mostrar("pantalla-menu"); };

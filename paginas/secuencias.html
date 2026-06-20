@@ -65,7 +65,7 @@
     window.MODO_VOLVER = function () {
       const juego = document.getElementById("secuencias-juego");
       if (juego && !juego.classList.contains("oculto")) Secuencias.volverSelector();
-      else location.href = window.RUTA_INICIO;
+      else location.href = "index.html?materia=matematicas";
     };
     Datos.cargar(["secuencias"]).then(function () {
       Juego.iniciarBase();

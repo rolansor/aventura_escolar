@@ -66,7 +66,7 @@
     window.RUTA_INICIO = "index.html";
     window.MODO_VOLVER = function () {
       if (window.MapaCantones && MapaCantones.enFoco && MapaCantones.enFoco()) MapaCantones.cerrarFoco();
-      else location.href = window.RUTA_INICIO;
+      else location.href = "index.html?materia=sociales";
     };
     Datos.cargar(["cantones"]).then(function () {
       Juego.iniciarBase();

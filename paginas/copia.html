@@ -65,7 +65,7 @@
     window.MODO_VOLVER = function () {
       const juego = document.getElementById("copia-juego");
       if (juego && !juego.classList.contains("oculto")) Copia.volverSelector();
-      else location.href = window.RUTA_INICIO;
+      else location.href = "index.html?materia=lengua";
     };
     Datos.cargar(["parrafos"]).then(function () {
       Juego.iniciarBase();

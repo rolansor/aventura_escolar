@@ -65,7 +65,7 @@
     window.MODO_VOLVER = function () {
       const juego = document.getElementById("ortografia-juego");
       if (juego && !juego.classList.contains("oculto")) Ortografia.volverSelector();
-      else location.href = window.RUTA_INICIO;
+      else location.href = "index.html?materia=lengua";
     };
     Datos.cargar(["ortografia"]).then(function () {
       Juego.iniciarBase();

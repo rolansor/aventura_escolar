@@ -58,7 +58,7 @@
   <script src="src/modos/mapas.js"></script>
   <script>
     window.RUTA_INICIO = "index.html";
-    window.MODO_VOLVER = function () { location.href = window.RUTA_INICIO; };
+    window.MODO_VOLVER = function () { location.href = "index.html?materia=sociales"; };
     Datos.cargar(["mapa-ec"]).then(function () {
       Juego.iniciarBase();
       Mapas.init();

@@ -1,0 +1,201 @@
+/* ====== Aventura del Saber — mapas.css ====== */
+/* Mapa SVG de provincias del Ecuador (Sociales): contenedor, SVG y
+   provincias, layout en dos columnas, panel de detalle/slider, tooltip,
+   leyenda/chips de región, panel de info y aviso de SVG faltante. */
+
+/* ---------- Mapa del Ecuador (Sociales) ---------- */
+.mapa-svg-cont {
+  width: 100%;
+  max-width: 820px;
+  margin: 6px auto 0;
+  display: flex;
+  justify-content: center;
+  background: #ffffff;
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 16px;
+}
+.mapa-ec { width: 100%; height: auto; max-height: 72vh; display: block; }
+/* El SVG de simplemaps trae puntos de capitales y anclas de etiquetas:
+   los ocultamos (las capitales se muestran en el panel al tocar). */
+.mapa-ec #points, .mapa-ec #label_points { display: none; }
+.mapa-ec .prov {
+  stroke: #ffffff;
+  stroke-width: 0.6;
+  transform-box: fill-box;       /* escalar respecto al centro de la propia provincia */
+  transform-origin: center;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.2s, fill 0.15s, opacity 0.2s;
+}
+.mapa-ec .prov:hover { filter: brightness(1.12); }
+.mapa-ec .prov:focus { outline: none; filter: brightness(1.15); }
+.mapa-ec .prov.sel { stroke: #2b2b2b; stroke-width: 1.6; filter: brightness(1.16); }
+/* Clic simple: la provincia "salta" en 3D (crece más + sombra, sale del plano). */
+.mapa-ec .prov.pop {
+  transform: scale(1.16);
+  filter: drop-shadow(0 9px 9px rgba(0, 0, 0, 0.5)) brightness(1.06);
+}
+/* Hover sobre un chip de región: se resalta esa región y se atenúan las demás. */
+.mapa-ec .prov.atenuada { opacity: 0.28; }
+.mapa-ec .prov.region-on {
+  stroke: #2b2b2b;
+  stroke-width: 1.2;
+  filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.4)) brightness(1.06);
+}
+
+/* ---- Layout en dos columnas: mapa + detalle ---- */
+.mapa-zona {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  -webkit-user-select: none;   /* el doble clic no debe seleccionar texto */
+  user-select: none;
+}
+.mapa-col-mapa {
+  flex: 1 1 420px;
+  max-width: 860px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.mapa-col-mapa .mapa-svg-cont { margin-top: 0; }
+
+/* Panel lateral de detalle (se abre con doble clic) */
+.mapa-detalle {
+  flex: 1 1 300px;
+  max-width: 380px;
+  background: #ffffff;
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 16px 18px 18px;
+  color: #3a4266;
+  animation: detalleEntra 0.35s ease;
+}
+@keyframes detalleEntra { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+.mapa-det-cab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 4px solid #ddd;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+}
+.mapa-det-cab h3 { margin: 0; color: var(--azul-osc); }
+.mapa-cerrar {
+  border: none;
+  background: #eef3ff;
+  color: var(--azul-osc);
+  border-radius: 10px;
+  width: 34px; height: 34px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+.mapa-cerrar:hover { background: #dde7ff; }
+.mapa-slide { min-height: 150px; text-align: center; }
+.mapa-slide h4 { margin: 4px 0 10px; color: var(--morado); }
+.mapa-slide p { margin: 6px 0; line-height: 1.45; }
+.mapa-slide .mapa-num { font-size: 2.6rem; font-weight: bold; color: var(--azul); margin: 6px 0 0; }
+.mapa-slide .mapa-cantones { font-size: 0.86rem; line-height: 1.55; color: #3a4266; text-align: center; }
+.mapa-slider-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 10px;
+}
+.mapa-nav-btn {
+  border: none;
+  background: var(--azul);
+  color: #fff;
+  border-radius: 50%;
+  width: 40px; height: 40px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: var(--sombra);
+}
+.mapa-nav-btn:hover { filter: brightness(1.08); }
+.mapa-dots { display: inline-flex; gap: 6px; }
+.mapa-dots .dot { width: 9px; height: 9px; border-radius: 50%; background: #cdd6ee; display: inline-block; }
+.mapa-dots .dot.on { background: var(--azul); }
+
+/* Tooltip flotante en hover (tarjetita blanca, como el cuadro de antes) */
+.mapa-tooltip {
+  position: fixed;
+  z-index: 60;
+  pointer-events: none;
+  background: #ffffff;
+  color: #3a4266;
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 2px solid #eef3ff;
+  line-height: 1.4;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.28);
+  max-width: 240px;
+  text-align: center;
+}
+.mapa-tooltip .tt-bandera {
+  width: 88px;
+  height: auto;
+  display: block;
+  margin: 0 auto 8px;
+  border-radius: 6px;
+  border: 1px solid #e3e9f7;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);
+}
+.mapa-tooltip .tt-nombre { font-weight: bold; color: var(--azul-osc); font-size: 1.05rem; margin-bottom: 3px; }
+.mapa-tooltip .tt-linea { font-size: 0.9rem; }
+
+.mapa-leyenda {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px 0 22px;     /* más aire entre la leyenda (regiones) y el recuadro del mapa */
+}
+.mapa-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--fondo-tarjeta);
+  border-radius: 14px;
+  padding: 6px 12px;
+  font-weight: bold;
+  color: var(--azul-osc);
+  box-shadow: var(--sombra);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.mapa-chip:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 10px 22px rgba(0,0,0,0.22); }
+.mapa-chip .pin { width: 16px; height: 16px; border-radius: 5px; display: inline-block; }
+
+.mapa-info {
+  background: var(--fondo-tarjeta);
+  border-radius: 18px;
+  box-shadow: var(--sombra);
+  padding: 14px 22px;
+  margin-top: 12px;
+  min-height: 60px;
+  text-align: center;
+  max-width: 520px;
+  color: #3a4266;
+}
+.mapa-info h3 { margin: 0.1rem 0; color: var(--azul-osc); }
+.mapa-info .mapa-region { font-weight: bold; }
+.mapa-falta {
+  background: var(--fondo-tarjeta);
+  border-radius: 18px;
+  padding: 22px 24px;
+  max-width: 560px;
+  text-align: center;
+  color: #3a4266;
+  box-shadow: var(--sombra);
+  line-height: 1.5;
+}
+.mapa-falta code { background: #eef3ff; padding: 2px 7px; border-radius: 7px; font-weight: bold; }

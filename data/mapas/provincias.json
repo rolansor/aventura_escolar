@@ -1,0 +1,169 @@
+[
+  {
+    "n": "Azuay",
+    "iso": "EC-A",
+    "reg": "sierra",
+    "cap": "Cuenca"
+  },
+  {
+    "n": "Bolívar",
+    "iso": "EC-B",
+    "reg": "sierra",
+    "cap": "Guaranda"
+  },
+  {
+    "n": "Cañar",
+    "iso": "EC-F",
+    "reg": "sierra",
+    "cap": "Azogues"
+  },
+  {
+    "n": "Carchi",
+    "iso": "EC-C",
+    "reg": "sierra",
+    "cap": "Tulcán"
+  },
+  {
+    "n": "Chimborazo",
+    "iso": "EC-H",
+    "reg": "sierra",
+    "cap": "Riobamba"
+  },
+  {
+    "n": "Cotopaxi",
+    "iso": "EC-X",
+    "reg": "sierra",
+    "cap": "Latacunga"
+  },
+  {
+    "n": "El Oro",
+    "iso": "EC-O",
+    "reg": "costa",
+    "cap": "Machala"
+  },
+  {
+    "n": "Esmeraldas",
+    "iso": "EC-E",
+    "reg": "costa",
+    "cap": "Esmeraldas"
+  },
+  {
+    "n": "Galápagos",
+    "iso": "EC-W",
+    "reg": "insular",
+    "cap": "Puerto Baquerizo Moreno",
+    "alias": [
+      "galapagos"
+    ]
+  },
+  {
+    "n": "Guayas",
+    "iso": "EC-G",
+    "reg": "costa",
+    "cap": "Guayaquil"
+  },
+  {
+    "n": "Imbabura",
+    "iso": "EC-I",
+    "reg": "sierra",
+    "cap": "Ibarra"
+  },
+  {
+    "n": "Loja",
+    "iso": "EC-L",
+    "reg": "sierra",
+    "cap": "Loja"
+  },
+  {
+    "n": "Los Ríos",
+    "iso": "EC-R",
+    "reg": "costa",
+    "cap": "Babahoyo",
+    "alias": [
+      "losrios"
+    ]
+  },
+  {
+    "n": "Manabí",
+    "iso": "EC-M",
+    "reg": "costa",
+    "cap": "Portoviejo"
+  },
+  {
+    "n": "Morona Santiago",
+    "iso": "EC-S",
+    "reg": "oriente",
+    "cap": "Macas",
+    "alias": [
+      "moronasantiago"
+    ]
+  },
+  {
+    "n": "Napo",
+    "iso": "EC-N",
+    "reg": "oriente",
+    "cap": "Tena"
+  },
+  {
+    "n": "Orellana",
+    "iso": "EC-D",
+    "reg": "oriente",
+    "cap": "Puerto Francisco de Orellana"
+  },
+  {
+    "n": "Pastaza",
+    "iso": "EC-Y",
+    "reg": "oriente",
+    "cap": "Puyo"
+  },
+  {
+    "n": "Pichincha",
+    "iso": "EC-P",
+    "reg": "sierra",
+    "cap": "Quito"
+  },
+  {
+    "n": "Santa Elena",
+    "iso": "EC-SE",
+    "reg": "costa",
+    "cap": "Santa Elena",
+    "alias": [
+      "santaelena"
+    ]
+  },
+  {
+    "n": "Santo Domingo de los Tsáchilas",
+    "iso": "EC-SD",
+    "reg": "costa",
+    "cap": "Santo Domingo",
+    "alias": [
+      "santodomingo",
+      "santodomingodelostsachilas",
+      "santodomingodelostsachila"
+    ]
+  },
+  {
+    "n": "Sucumbíos",
+    "iso": "EC-U",
+    "reg": "oriente",
+    "cap": "Nueva Loja",
+    "alias": [
+      "sucumbios"
+    ]
+  },
+  {
+    "n": "Tungurahua",
+    "iso": "EC-T",
+    "reg": "sierra",
+    "cap": "Ambato"
+  },
+  {
+    "n": "Zamora Chinchipe",
+    "iso": "EC-Z",
+    "reg": "oriente",
+    "cap": "Zamora",
+    "alias": [
+      "zamorachinchipe"
+    ]
+  }
+]

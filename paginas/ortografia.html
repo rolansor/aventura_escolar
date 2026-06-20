@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>La Aventura de Nelson 🚀</title>
+  <base href="../" />
+  <title>Ortografía — La Aventura de Nelson</title>
   <link rel="stylesheet" href="css/modulos/base.css" />
-  <link rel="stylesheet" href="css/modulos/menu.css" />
+  <link rel="stylesheet" href="css/modulos/ejercicios.css" />
   <link rel="stylesheet" href="css/modulos/efectos.css" />
 </head>
 <body>
@@ -14,7 +15,7 @@
     <header id="barra-superior">
       <div class="grupo-barra grupo-izq">
         <button id="btn-inicio" class="boton-icono" title="Ir al menú principal">🏠</button>
-        <button id="btn-volver-global" class="boton-icono oculto" title="Volver atrás">↩️</button>
+        <button id="btn-volver-global" class="boton-icono" title="Volver atrás">↩️</button>
       </div>
       <div id="marcador">
         <span class="estrellas">⭐ <b id="puntaje-estrellas">0</b></span>
@@ -26,23 +27,26 @@
       </div>
     </header>
 
-    <!-- Menú de materias -->
-    <section id="pantalla-menu" class="pantalla activa">
-      <h1 class="titulo-juego" id="titulo-juego">La Aventura de Nelson</h1>
-      <p class="subtitulo" id="subtitulo">¡Hola, Nelson! Elige una materia para empezar 🇪🇨</p>
-      <div class="tarjetas-menu" id="tarjetas-menu"></div>
-    </section>
-
-    <!-- Submenú de una materia -->
-    <section id="pantalla-materia" class="pantalla">
-      <h2 class="titulo-seccion" id="materia-titulo"></h2>
-      <p class="subtitulo" id="materia-sub">Elige una actividad</p>
-      <div class="tarjetas-menu" id="materia-actividades"></div>
+    <section id="pantalla-ortografia" class="pantalla activa">
+      <div id="ortografia-selector" class="selector-categorias"></div>
+      <div id="ortografia-juego" class="caja-juego oculto">
+        <div class="fila-timer"><span class="timer oculto" id="orto-timer"></span></div>
+        <div class="progreso"><div class="progreso-barra" id="orto-progreso"></div></div>
+        <p class="regla-ayuda" id="orto-regla"></p>
+        <h2 class="pregunta" id="orto-pregunta"></h2>
+        <p class="pista" id="orto-pista"></p>
+        <div class="opciones" id="orto-opciones"></div>
+        <div class="zona-respuesta-libre oculto" id="orto-libre-zona">
+          <input type="text" id="orto-libre-input" class="entrada-texto" autocomplete="off" placeholder="Escribe aquí…" />
+          <button class="boton-grande" id="orto-libre-enviar">Comprobar</button>
+        </div>
+        <p class="retro" id="orto-retro"></p>
+      </div>
     </section>
   </div>
 
   <div id="luna" title="Luna — ¡arrástrame a donde quieras!">
-    <div class="luna-globo" id="luna-globo">¡Hola, Nelson! Soy Luna 🌙</div>
+    <div class="luna-globo" id="luna-globo">¡Hola! Soy Luna 🌙</div>
     <canvas id="luna-canvas"></canvas>
     <div class="luna-nombre">🌙 Luna ✋</div>
   </div>
@@ -52,17 +56,20 @@
   <script>window.THREE || document.write('<scr'+'ipt src="lib/three.min.js"></scr'+'ipt>');</script>
   <script src="src/efectos/escena3d.js"></script>
   <script src="src/efectos/luna.js"></script>
-  <script src="data/materias.js"></script>
-  <script src="data/nino.js"></script>
+  <script src="data/ortografia.js"></script>
   <script src="src/core/datos.js"></script>
   <script src="src/core/juego.js"></script>
-  <script src="src/core/menu.js"></script>
+  <script src="src/modos/ortografia.js"></script>
   <script>
-    window.ES_MENU = true;
     window.RUTA_INICIO = "index.html";
-    Datos.cargar(["materias", "nino"]).then(function () {
+    window.MODO_VOLVER = function () {
+      const juego = document.getElementById("ortografia-juego");
+      if (juego && !juego.classList.contains("oculto")) Ortografia.volverSelector();
+      else location.href = window.RUTA_INICIO;
+    };
+    Datos.cargar(["ortografia"]).then(function () {
       Juego.iniciarBase();
-      Menu.init();
+      Ortografia.init();
     }).catch(function (e) { console.error("Error cargando datos:", e); });
   </script>
 </body>

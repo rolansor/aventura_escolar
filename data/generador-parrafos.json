@@ -1,0 +1,60 @@
+{
+  "sujetos": [
+    "Nelson",
+    "Nelson y su perro",
+    "La familia de Nelson",
+    "El niño",
+    "La niña",
+    "Mi hermano",
+    "La maestra",
+    "Un perro juguetón",
+    "El abuelo",
+    "La gallina",
+    "Un cóndor enorme",
+    "La tortuga",
+    "El pequeño Nelson",
+    "Su mejor amigo",
+    "La vecina"
+  ],
+  "verbos": [
+    "camina",
+    "corre",
+    "salta",
+    "observa",
+    "dibuja",
+    "canta",
+    "descansa",
+    "juega",
+    "sonríe",
+    "explora",
+    "construye",
+    "imagina",
+    "pasea",
+    "estudia"
+  ],
+  "lugares": [
+    "en el parque",
+    "junto al volcán Cotopaxi",
+    "cerca del río",
+    "en el patio de la escuela",
+    "bajo un árbol grande",
+    "en la playa de Esmeraldas",
+    "en las islas Galápagos",
+    "en el mercado de Quito",
+    "por las calles de Cuenca",
+    "en la montaña",
+    "en su jardín"
+  ],
+  "finales": [
+    "mientras brilla el sol.",
+    "porque el día está hermoso.",
+    "y todos se ponen felices.",
+    "con mucha alegría.",
+    "antes de que llueva.",
+    "y aprende algo nuevo.",
+    "muy contento.",
+    "hasta que cae la tarde.",
+    "junto a sus amigos.",
+    "sin parar de reír."
+  ]
+}

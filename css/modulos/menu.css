@@ -1,0 +1,42 @@
+/* ====== Aventura del Saber — menu.css ====== */
+/* Título/subtítulo del juego, menú de materias y submenú (tarjetas). */
+
+/* ---------- Menú ---------- */
+.titulo-juego {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  color: white;
+  text-shadow: 0 4px 0 var(--azul-osc), 0 8px 20px rgba(0,0,0,0.4);
+  margin: 10px 0 0;
+  text-align: center;
+}
+.subtitulo {
+  color: white;
+  font-size: 1.2rem;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  margin: 6px 0 22px;
+}
+
+.tarjetas-menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 760px;
+}
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 26px 16px;
+  border: none;
+  border-radius: var(--radio);
+  background: var(--fondo-tarjeta);
+  box-shadow: var(--sombra);
+  cursor: pointer;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.tarjeta:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 18px 40px rgba(0,0,0,0.28); }
+.emoji-grande { font-size: 3.4rem; }
+.titulo-tarjeta { font-size: 1.4rem; font-weight: bold; color: var(--azul-osc); }
+.desc-tarjeta { font-size: 0.95rem; color: #4a5270; text-align: center; }

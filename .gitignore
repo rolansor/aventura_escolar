@@ -7,3 +7,20 @@ Desktop.ini
 .vscode/
 .idea/
 *~
+
+# Archivos temporales / de trabajo
+_*.html
+_*.tsv
+*.tmp
+*.bak
+*.log
+
+# Python (scripts de herramientas/build)
+__pycache__/
+*.pyc
+
+# Versión empaquetada (generada por el build).
+# Descomenta si NO quieres versionar la salida de doble clic:
+# dist/
+
+# NOTA: no ignorar data/, src/ ni recursos/ — son parte del proyecto.

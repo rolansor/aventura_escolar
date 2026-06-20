@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>La Aventura de Nelson 🚀</title>
+  <base href="../" />
+  <title>Ecuador por cantones — La Aventura de Nelson</title>
   <link rel="stylesheet" href="css/modulos/base.css" />
-  <link rel="stylesheet" href="css/modulos/menu.css" />
+  <link rel="stylesheet" href="css/modulos/mapas.css" />
+  <link rel="stylesheet" href="css/modulos/cantones.css" />
   <link rel="stylesheet" href="css/modulos/efectos.css" />
 </head>
 <body>
@@ -14,7 +16,7 @@
     <header id="barra-superior">
       <div class="grupo-barra grupo-izq">
         <button id="btn-inicio" class="boton-icono" title="Ir al menú principal">🏠</button>
-        <button id="btn-volver-global" class="boton-icono oculto" title="Volver atrás">↩️</button>
+        <button id="btn-volver-global" class="boton-icono" title="Volver atrás">↩️</button>
       </div>
       <div id="marcador">
         <span class="estrellas">⭐ <b id="puntaje-estrellas">0</b></span>
@@ -26,23 +28,27 @@
       </div>
     </header>
 
-    <!-- Menú de materias -->
-    <section id="pantalla-menu" class="pantalla activa">
-      <h1 class="titulo-juego" id="titulo-juego">La Aventura de Nelson</h1>
-      <p class="subtitulo" id="subtitulo">¡Hola, Nelson! Elige una materia para empezar 🇪🇨</p>
-      <div class="tarjetas-menu" id="tarjetas-menu"></div>
-    </section>
-
-    <!-- Submenú de una materia -->
-    <section id="pantalla-materia" class="pantalla">
-      <h2 class="titulo-seccion" id="materia-titulo"></h2>
-      <p class="subtitulo" id="materia-sub">Elige una actividad</p>
-      <div class="tarjetas-menu" id="materia-actividades"></div>
+    <section id="pantalla-cantones" class="pantalla activa">
+      <h2 class="titulo-seccion">🗺️ Ecuador por cantones</h2>
+      <p class="subtitulo">Pasa el cursor para resaltar una provincia · clic para verla en 3D 🔄</p>
+      <div class="mapa-zona" id="mapac-zona">
+        <div class="mapa-col-mapa">
+          <div id="mapac-svg-cont" class="mapa-svg-cont"></div>
+        </div>
+      </div>
+      <div id="mapac-foco" class="mapac-foco oculto">
+        <div class="foco-3d">
+          <canvas id="mapac-canvas"></canvas>
+          <div class="foco-canton oculto" id="mapac-canton-label"></div>
+          <p class="foco-hint">🔄 Arrastra para girar · pasa el cursor por un cantón</p>
+        </div>
+        <aside class="mapa-detalle" id="mapac-datos"></aside>
+      </div>
     </section>
   </div>
 
   <div id="luna" title="Luna — ¡arrástrame a donde quieras!">
-    <div class="luna-globo" id="luna-globo">¡Hola, Nelson! Soy Luna 🌙</div>
+    <div class="luna-globo" id="luna-globo">¡Hola! Soy Luna 🌙</div>
     <canvas id="luna-canvas"></canvas>
     <div class="luna-nombre">🌙 Luna ✋</div>
   </div>
@@ -52,17 +58,20 @@
   <script>window.THREE || document.write('<scr'+'ipt src="lib/three.min.js"></scr'+'ipt>');</script>
   <script src="src/efectos/escena3d.js"></script>
   <script src="src/efectos/luna.js"></script>
-  <script src="data/materias.js"></script>
-  <script src="data/nino.js"></script>
+  <script src="data/cantones.js"></script>
   <script src="src/core/datos.js"></script>
   <script src="src/core/juego.js"></script>
-  <script src="src/core/menu.js"></script>
+  <script src="src/modos/mapacantones.js"></script>
   <script>
-    window.ES_MENU = true;
     window.RUTA_INICIO = "index.html";
-    Datos.cargar(["materias", "nino"]).then(function () {
+    window.MODO_VOLVER = function () {
+      if (window.MapaCantones && MapaCantones.enFoco && MapaCantones.enFoco()) MapaCantones.cerrarFoco();
+      else location.href = window.RUTA_INICIO;
+    };
+    Datos.cargar(["cantones"]).then(function () {
       Juego.iniciarBase();
-      Menu.init();
+      MapaCantones.init();
+      MapaCantones.mostrar();
     }).catch(function (e) { console.error("Error cargando datos:", e); });
   </script>
 </body>

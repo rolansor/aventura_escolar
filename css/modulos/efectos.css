@@ -1,0 +1,88 @@
+/* ====== Aventura del Saber — efectos.css ====== */
+/* Mascota Luna (3D arrastrable) y celebración/confeti.
+   Nota: el lienzo 3D de fondo (#lienzo3d) vive en base.css por ser layout
+   raíz; aquí van solo la mascota y los efectos festivos. */
+
+/* ---------- Luna: mascota 3D arrastrable ---------- */
+#luna {
+  position: fixed;
+  left: 24px;
+  top: 40%;
+  z-index: 4;
+  width: 150px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: grab;
+  touch-action: none;          /* permite arrastrar con el dedo */
+  user-select: none;
+}
+#luna.agarrando { cursor: grabbing; }
+#luna-canvas {
+  width: 150px;
+  height: 165px;
+  display: block;
+  filter: drop-shadow(0 8px 12px rgba(0,0,0,0.35));
+}
+#luna-emoji {
+  font-size: 4.5rem;
+  line-height: 1.2;
+  animation: flotar 2.4s ease-in-out infinite;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,0.4));
+}
+.luna-nombre {
+  background: var(--amarillo);
+  color: #6b4e00;
+  font-weight: bold;
+  font-size: 0.78rem;
+  padding: 3px 12px;
+  border-radius: 12px;
+  box-shadow: var(--sombra);
+  white-space: nowrap;
+}
+.luna-globo {
+  position: absolute;
+  bottom: 100%;
+  background: white;
+  color: var(--azul-osc);
+  font-weight: bold;
+  font-size: 0.9rem;
+  padding: 8px 14px;
+  border-radius: 16px;
+  box-shadow: var(--sombra);
+  margin-bottom: 4px;
+  width: max-content;
+  max-width: 190px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(8px) scale(0.85);
+  transition: all 0.25s;
+  pointer-events: none;
+}
+.luna-globo.ver { opacity: 1; transform: translateY(0) scale(1); }
+
+@keyframes flotar { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+@media (max-width: 520px) {
+  #luna { width: 110px; height: 150px; }
+  #luna-canvas { width: 110px; height: 120px; }
+  .luna-globo { font-size: 0.78rem; max-width: 150px; }
+}
+
+/* ---------- Celebración ---------- */
+#celebracion {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}
+.confeti {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  top: -20px;
+  border-radius: 3px;
+  animation: caer linear forwards;
+}

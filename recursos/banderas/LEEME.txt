@@ -1,0 +1,41 @@
+BANDERAS DE LAS PROVINCIAS
+================================================================
+Coloca aquí la bandera de cada provincia como imagen. El mapa la
+muestra centrada en la provincia al hacer 1 clic. Mientras una
+provincia no tenga su archivo, se muestra la bandera del Ecuador
+como placeholder (y se reemplaza sola al añadir la real).
+
+FORMATO
+- SVG (recomendado, mejor calidad) o PNG (fondo transparente o blanco).
+- El nombre del archivo debe ser el CÓDIGO ISO de la provincia.
+  Se prueba primero <ISO>.svg y luego <ISO>.png.
+- Dónde conseguirlas: Wikipedia / Wikimedia Commons, buscando
+  "Bandera de la Provincia de <nombre>".
+
+NOMBRES DE ARCHIVO (uno por provincia):
+  EC-A.svg   -> Azuay
+  EC-B.svg   -> Bolívar
+  EC-C.svg   -> Carchi
+  EC-D.svg   -> Orellana
+  EC-E.svg   -> Esmeraldas
+  EC-F.svg   -> Cañar
+  EC-G.svg   -> Guayas
+  EC-H.svg   -> Chimborazo
+  EC-I.svg   -> Imbabura
+  EC-L.svg   -> Loja
+  EC-M.svg   -> Manabí
+  EC-N.svg   -> Napo
+  EC-O.svg   -> El Oro
+  EC-P.svg   -> Pichincha
+  EC-R.svg   -> Los Ríos
+  EC-S.svg   -> Morona Santiago
+  EC-SD.svg  -> Santo Domingo de los Tsáchilas
+  EC-SE.svg  -> Santa Elena
+  EC-T.svg   -> Tungurahua
+  EC-U.svg   -> Sucumbíos
+  EC-W.svg   -> Galápagos
+  EC-X.svg   -> Cotopaxi
+  EC-Y.svg   -> Pastaza
+  EC-Z.svg   -> Zamora Chinchipe
+
+(Si usas PNG, cambia .svg por .png en el nombre; ej. EC-G.png)

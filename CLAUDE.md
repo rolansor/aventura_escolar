@@ -1,38 +1,45 @@
 # CLAUDE.md — La Aventura de Nelson
 
-Juego educativo (ortografía + matemáticas) en **HTML/CSS/JavaScript vanilla + three.js**.
-Pensado para un niño de ~9 años, en **español de Ecuador**. Sin framework, sin build, sin
-servidor: se abre con **doble clic en `index.html`** (protocolo `file://`).
+Juego educativo (Lengua, Matemáticas, Estudios Sociales) en **HTML/CSS/JavaScript vanilla + three.js**.
+Para un niño de ~9 años, en **español de Ecuador**. Sin framework ni npm. **Estructura modular**
+(ver `docs/ARQUITECTURA.md`): un HTML por módulo en `paginas/`, lógica en `src/`, datos en `data/`,
+CSS en `css/modulos/`. Funciona **con doble clic** (`index.html`) **y servido**.
 
 ## Cómo ejecutar / probar
-- Abrir `index.html` en el navegador (Chrome/Edge/Firefox). No hay `npm`, ni bundler, ni tests.
-- Tras editar JS/CSS, recargar con **Ctrl + Shift + R** (recarga forzada; el navegador cachea fuerte).
-- **No hay Node instalado** en este equipo: no se puede usar `node --check` ni linters. Validar a ojo.
-- three.js se carga por **CDN (r128)**. Sin internet el juego sigue funcionando con fondo plano y
-  Luna en modo emoji (degradación elegante en `escena3d.js` / `luna.js`).
-- Persistencia: **todo se guarda en `localStorage`** del navegador (progreso, config, contenido del editor).
+- **Doble clic**: abrir `index.html` (los datos están precompilados en `data/*.js`).
+- **Servido**: `python -m http.server` y abrir http://localhost:8000.
+- Tras editar JS/CSS recargar con **Ctrl + Shift + R**. Tras editar un `data/*.json`, ejecutar
+  `python herramientas/build.py` para regenerar los `data/*.js`.
+- **No hay Node** (no `node --check`). Sí hay **Python** (con `shapely` y `json5` instalados, usados
+  para generar los datos de mapas). Validar a ojo o con un servidor local.
+- three.js r128 con copia local en `lib/three.min.js` (el 3D funciona offline).
+- Persistencia: **todo en `localStorage`** (progreso, config, contenido del editor).
 
 ## Arquitectura
-Cada archivo es un **módulo IIFE** que expone un objeto global (`window.X`). Se cargan en orden en
-`index.html` y se inicializan desde `app.js`. No hay imports/exports ES modules.
+Módulos **IIFE** que exponen globales (`window.X`). **Sin** imports/exports ES, **sin** `fetch`. Los
+datos llegan como `<script src="data/<n>.js">` (rellenan `window.__DATOS__`) y `src/core/datos.js`
+los coloca en los globales que la lógica espera. Navegación **multipágina**: cada actividad es una
+página en `paginas/` que el menú enlaza. Las páginas de `paginas/` usan `<base href="../">`.
 
 | Archivo | Global | Rol |
 |---|---|---|
-| `js/datos.js` | `DATOS`, `NINO` | **Datos puros**: `DATOS.materias` (navegación), bancos de palabras y definiciones de actividades. Sin lógica. |
-| `js/app.js` | `Juego` | Núcleo: navegación entre pantallas, marcador (estrellas/racha/nivel), sonido, `localStorage`, temporizador, utilidades (`azar`, `azarEl`, `mezclar`, `cargar`, `guardar`, `frasePositiva`, `construirSecuencia`). Llama a `*.init()`. |
-| `js/ortografia.js` | `Ortografia` | Modo Ortografía: genera ejercicios al azar desde `DATOS.ortografia`. |
-| `js/secuencias.js` | `Secuencias` | Modo Secuencias numéricas (patrones infinitos). |
-| `js/copia.js` | `Copia` | Modo Copia y Dictado (corregir errores / copiar igual). |
-| `js/editor.js` | `Editor` | Zona de adultos (clave **24861793**): crear secuencias, párrafos, pares de palabras, config jugador/timer. |
-| `js/mapas.js` | `Mapas` | Modo Mapas (Sociales): mapa interactivo del Ecuador por provincias. |
-| `js/mapadata.js` | `window.ECUADOR_SVG` | El SVG del mapa como texto. Hoy es `"PLACEHOLDER"` hasta integrar el real. |
-| `js/escena3d.js` | — | Fondo 3D con three.js. |
-| `js/luna.js` | `Luna` | Mascota 3D arrastrable que reacciona a aciertos/fallos. |
-| `css/styles.css` | — | Todos los estilos. |
+| `data/*.json` (+ `*.js` generados por `build.py`) | `DATOS.*`, `NINO`, `ECUADOR_SVG`, `ECUADOR_CANTONES` | **Datos puros**: ortografia, secuencias, parrafos, generador-parrafos, materias, nino, mapa-ec, cantones, mapas/*. Editar el `.json` y correr `herramientas/build.py`. |
+| `src/core/juego.js` | `Juego` | Núcleo: marcador, sonido, `localStorage`, temporizador, utilidades (`azar/azarEl/mezclar/cargar/guardar/frasePositiva/construirSecuencia`, `acierto/error/granPremio`, `cron*`, `jugador`, `aplicarIdentidad`) e `iniciarBase()` (arranque común + barra superior). |
+| `src/core/datos.js` | `Datos` | `Datos.cargar([...])` lee `window.__DATOS__` y rellena los globales. |
+| `src/core/menu.js` | `Menu` | Menú de materias (tarjetas desde `DATOS.materias`, enlaza a `paginas/<modo>.html`). |
+| `src/modos/ortografia.js` | `Ortografia` | Ejercicios desde `DATOS.ortografia`. |
+| `src/modos/secuencias.js` | `Secuencias` | Secuencias numéricas. |
+| `src/modos/copia.js` | `Copia` | Copia y Dictado. |
+| `src/modos/editor.js` | `Editor` | Zona de adultos (clave **24861793**). |
+| `src/modos/mapas.js` | `Mapas` | Mapa SVG por provincias (usa `ECUADOR_SVG`). |
+| `src/modos/mapacantones.js` | `MapaCantones` | Mapa GeoJSON por cantones + provincia en 3D (usa `ECUADOR_CANTONES`). |
+| `src/efectos/escena3d.js` / `luna.js` | `ESCENA` / `Luna` | Fondo 3D y mascota. |
+| `css/modulos/*.css` | — | Estilos modulares (orden en `css/modulos/_orden.md`). |
+| `recursos/ecuador_1.0/2.0.svg`, `recursos/banderas/EC-*.svg` | — | SVG original/horneado + banderas provinciales. |
+| `paginas/*.html` | — | Una por módulo; incluye sus `data/*.js`, core, su modo, y arranca con `Datos.cargar(...).then(() => { Juego.iniciarBase(); Modo.init(); })`. |
 
-`Juego` (en `app.js`) es la API compartida. Utilidades clave usadas por los modos:
-`Juego.azarEl(arr)`, `Juego.mezclar(arr)`, `Juego.cargar(clave, defecto)`, `Juego.guardar(clave, valor)`,
-`Juego.acierto()`, `Juego.error()`, `Juego.granPremio()`, `Juego.cronIniciar/cronDetener`, `Juego.jugador()`.
+`Juego` (en `src/core/juego.js`) es la API compartida. **Las secciones de abajo describen la LÓGICA de
+cada modo** (sigue igual; solo cambió la ubicación: `js/X.js` → `src/modos/X.js`, y los datos a `data/`).
 
 ## Navegación por materias
 El menú está organizado en **materias** (asignaturas). Definidas en `DATOS.materias` (`datos.js`):
@@ -42,8 +49,8 @@ El menú está organizado en **materias** (asignaturas). Definidas en `DATOS.mat
   proximamente: "texto" }                                 // solo si actividades está vacío
 ```
 Materias actuales: **Lengua** (ortografia, copia), **Matemáticas** (secuencias),
-**Estudios Sociales** (placeholder — futuro: mapas del Ecuador), **Ciencias Naturales**
-(placeholder — futuro: partes de plantas, cuerpo humano).
+**Estudios Sociales** (`mapas` = mapa SVG por provincias, `cantones` = mapa GeoJSON por cantones),
+**Ciencias Naturales** (placeholder — futuro: partes de plantas, cuerpo humano).
 
 Flujo de pantallas (todo en `app.js`):
 `pantalla-menu` (materias, render dinámico con `pintarMenu`) → `irAMateria(id)` →
@@ -59,8 +66,23 @@ materia en `DATOS.materias`. El menú y el submenú se pintan solos desde los da
 
 ## Modo Mapas — mapa del Ecuador (Estudios Sociales)
 Mapa interactivo SVG de las 24 provincias, coloreadas por las 4 regiones naturales
-(Costa, Sierra, Amazonía, Región Insular/Galápagos). Al tocar una provincia se muestra su
-región y su capital. Es **explorable** (sin puntaje todavía); el quiz vendría después.
+(Costa, Sierra, Amazonía, Región Insular/Galápagos). Es **explorable** (sin puntaje aún).
+- **Hover** sobre una provincia → tooltip flotante (tarjeta blanca) con la **bandera** de la provincia
+  (`<img src="recursos/banderas/<ISO>.svg">`, clase `.tt-bandera`) + nombre/región/capital.
+  Hover sobre un chip de la leyenda → resalta esa región y atenúa las demás (`elemReg`).
+- **Clic simple** → la provincia "salta" en 3D (CSS `.pop`: scale 1.16 + drop-shadow).
+- **Banderas**: las 24 SVG están en `recursos/banderas/<ISO>.svg`, descargadas de Wikimedia
+  (List of Ecuadorian flags) con `Invoke-WebRequest`. Guayas usa la de Guayaquil. Para re-bajar:
+  parsear los `upload.wikimedia.org/...Bandera_Provincia_*.svg` de la página y quitar `/thumb/`.
+  Nombres en `recursos/banderas/LEEME.txt`.
+- **Doble clic** → zoom animado del `viewBox` (tween rAF, `easeInOut`) a esa provincia y panel
+  lateral `#mapa-detalle` con un **slider** de info estructurada IGUAL para todas (Identidad:
+  capital/región/provincialización/gentilicio · Cantones · Dato curioso). Datos en `DET` (clave ISO).
+- **Galápagos junto al continente + viewBox recortado**: están **horneados en el SVG**
+  (`recursos/ecuador_2.0.svg`), no en runtime. Se generó con un script Python que parsea los `path`
+  (solo usan `M`/`m`/`l`/`z`, sin curvas), calcula bbox exactas, mueve Galápagos cambiando **solo su
+  `M` inicial** (el resto es relativo, así se traslada toda la isla) y fija el `viewBox` al contenido.
+  Por eso `mapas.js` ya no ajusta nada al mostrar y el zoom usa `getBBox()` directo.
 
 - **Geometría intercambiable**: `mapas.js` NO contiene coordenadas. Inyecta `window.ECUADOR_SVG`
   (de `mapadata.js`) y, sobre el SVG resultante, recorre `path/polygon`, identifica cada provincia
@@ -69,20 +91,48 @@ región y su capital. Es **explorable** (sin puntaje todavía); el quiz vendría
   la colorea por región y le agrega el clic.
 - **Metadatos** (las 24 provincias con ISO `EC-*`, región y capital) viven en `PROVINCIAS` dentro de
   `mapas.js`. Galápagos = `EC-W`, región `insular`.
-- **Integración del SVG real (PENDIENTE)**: el usuario descarga un SVG de provincias (p. ej.
-  simplemaps.com/svg/country/ec) como `ecuador.svg` en la raíz. Para embeberlo SIN romper el offline
-  (`file://` no permite `fetch`), se envuelve su contenido como texto en `mapadata.js`. Forma rápida en
-  PowerShell, escapando `` ` ``, `\` y `${`:
+- **Origen del SVG (ya integrado)**: descargado de simplemaps.com/svg/country/ec, guardado como
+  `recursos/ecuador_1.0.svg` (original). La versión horneada es `recursos/ecuador_2.0.svg`. Para
+  embeberlo SIN romper el offline (`file://` no permite `fetch`), se envuelve como texto en
+  `mapadata.js` con `ConvertTo-Json` (escapa comillas/saltos/backslashes):
   ```pwsh
-  $svg = Get-Content -Raw ecuador.svg
-  $svg = $svg -replace '\\','\\' -replace '`','``' -replace '\$','`$'
-  Set-Content js/mapadata.js ('window.ECUADOR_SVG = `' + $svg + '`;') -Encoding utf8
+  $svg = Get-Content -Raw .\recursos\ecuador_2.0.svg
+  Set-Content .\js\mapadata.js ("window.ECUADOR_SVG = " + ($svg | ConvertTo-Json) + ";") -Encoding utf8
   ```
-  Luego conviene **leer un fragmento** del SVG para confirmar con qué atributo nombra las provincias y,
-  si hace falta, ajustar `provinciaDe`/`indice` (alias) en `mapas.js`. Si simplemaps NO incluye
-  Galápagos, habrá que añadir esa isla/recuadro aparte.
+  Para re-posicionar Galápagos / re-recortar: hay un script Python (en el historial del chat) que
+  parsea `recursos/ecuador_1.0.svg`, mueve Galápagos y reescribe `recursos/ecuador_2.0.svg`.
 - Navegación: modo `mapas` → `pantalla-mapas`; registrado en `irAModo`, en `PANTALLAS_MODO` (Volver
   regresa al submenú de Sociales) y arrancado en `iniciar()` con `Mapas.init()`.
+
+### Mapa nuevo (en construcción): base GeoJSON de cantones
+Decisión con el usuario: el mapa SVG actual **se queda como está** (extra que funciona), y el mapa
+"bueno" se rehace sobre **GeoJSON de cantones** (GADM nivel 2, `gadm41_ECU_2.json`: `NAME_1`=provincia,
+`NAME_2`=cantón). Plan: procesar en Python (simplificar geometría, agrupar cantón→provincia→región),
+generar `js/cantonesdata.js` compacto, y un módulo nuevo que proyecte a SVG (equirectangular) con
+capas regiones/provincias/cantones. Provincias = fusión de cantones por `NAME_1`. Interacciones
+deseadas: hover = tarjeta de info, clic = provincia "salta" en 3D, doble clic = panel a la derecha
+con slider, mapa más grande. Reutiliza la lógica de `mapas.js`.
+
+## Modo Cantones — mapa GeoJSON (Estudios Sociales, 2ª versión)
+Mapa interactivo construido desde **GADM nivel 2** (`gadm41_ECU_2.json`, 223 cantones, 24 provincias).
+- **Preproceso (Python + shapely)**: proyecta lng/lat a SVG (equirectangular, `cos(midlat)`), mueve
+  Galápagos junto al continente, **disuelve** los cantones de cada provincia (`unary_union`) para el
+  borde provincial, simplifica (`simplify`, ~0.4–0.5) y escribe `js/cantonesdata.js`
+  (`window.ECUADOR_CANTONES = { viewBox, provincias:[{iso,nombre,region,capital,nCantones,borde,
+  cantones:[{nombre,d}]}] }`, ~340 KB). El script vive en el historial del chat (re-ejecutable).
+- **Render 2D (`js/mapacantones.js`, global `MapaCantones`)**: cada provincia es **UN** `<path class="prov">`
+  (su contorno disuelto `borde`, color por región). SIN cantones ni leyenda (evita líneas raras/slivers).
+  **Hover** resalta la provincia (CSS `.mapac .prov:hover`). **Clic** abre el "foco".
+- **Foco (vista provincia en 3D)**: oculta el mapa y muestra `#mapac-foco` = canvas 3D (izq) + panel de
+  datos (der: bandera, capital, región, provincialización, gentilicio y **lista de cantones**). El 3D usa
+  **three.js**: extruye **cada cantón** por separado (`THREE.Shape`→`ExtrudeGeometry`) con su línea de
+  borde, agrupados en un `THREE.Group`; color por región, **autogiro + arrastrar para rotar**. **Hover sobre
+  un cantón** → raycasting (`R3.ray`/`R3.meshes`, `userData.nombre`) muestra su nombre (`#mapac-canton-label`);
+  el autogiro se pausa con el cursor encima. Sin `THREE` (offline), degrada a SVG plano (`fallback2D`).
+  `cerrarFoco`/`enFoco` se exponen; el botón Volver global cierra el foco antes de salir.
+- Navegación: modo `cantones` → `pantalla-cantones` (IDs `mapac-*`, reutiliza clases `.mapa-*`).
+  Registrado en `irAModo`, `PANTALLAS_MODO`, `iniciar()` (`MapaCantones.init()`).
+- `gadm41_ECU_2.json` se mantiene en la raíz como fuente (regenerar el data file desde ahí).
 
 ## Modo Ortografía — cómo se generan los ejercicios
 `DATOS.ortografia` es un array de **categorías**. Cada categoría tiene un campo `estrategia` que

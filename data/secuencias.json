@@ -1,0 +1,50 @@
+[
+  {
+    "id": "suma",
+    "icono": "➕",
+    "nombre": "Sumas",
+    "regla": "Cada número crece sumando siempre la misma cantidad."
+  },
+  {
+    "id": "resta",
+    "icono": "➖",
+    "nombre": "Restas",
+    "regla": "Cada número baja restando siempre la misma cantidad."
+  },
+  {
+    "id": "multiplicacion",
+    "icono": "✖️",
+    "nombre": "Multiplicación",
+    "regla": "Cada número se multiplica por el mismo número (¡como las tablas!)."
+  },
+  {
+    "id": "tabla",
+    "icono": "📊",
+    "nombre": "Tablas",
+    "regla": "Es la tabla de multiplicar: 7, 14, 21, 28…"
+  },
+  {
+    "id": "cuadrados",
+    "icono": "🟦",
+    "nombre": "Cuadrados",
+    "regla": "Son 1, 4, 9, 16… cada número multiplicado por sí mismo."
+  },
+  {
+    "id": "fibonacci",
+    "icono": "🐚",
+    "nombre": "Fibonacci",
+    "regla": "Cada número es la suma de los dos anteriores: 1, 1, 2, 3, 5…"
+  },
+  {
+    "id": "alternada",
+    "icono": "🔄",
+    "nombre": "Mezcla lógica",
+    "regla": "El patrón cambia: a veces suma, a veces resta. ¡Observa bien!"
+  },
+  {
+    "id": "dobles",
+    "icono": "✌️",
+    "nombre": "Dobles y mitades",
+    "regla": "Cada número es el doble (o la mitad) del anterior."
+  }
+]

@@ -1,0 +1,58 @@
+/* ====== Aventura del Saber — cantones.css ====== */
+/* Mapa por cantones (GeoJSON, provincias = grupos de cantones) y vista
+   "foco": provincia en 3D + datos (canvas, banderas, etiquetas, hint). */
+
+/* ---- Mapa por cantones (versión GeoJSON, provincias = grupos de cantones) ---- */
+.mapac { width: 100%; height: auto; max-height: 72vh; display: block; }
+/* Cada provincia es UNA forma (contorno disuelto); sin líneas de cantones en el 2D. */
+.mapac .prov {
+  stroke: #3a3f55;
+  stroke-width: 1.1;
+  stroke-linejoin: round;
+  cursor: pointer;
+  transition: filter 0.15s, stroke-width 0.15s, stroke 0.15s;
+}
+.mapac .prov:hover { filter: brightness(1.13); stroke: #2b2b2b; stroke-width: 2.3; }
+
+/* ---- Vista "foco": provincia en 3D + datos ---- */
+.mapac-foco {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+.foco-3d {
+  position: relative;
+  width: min(460px, 84vw);
+  height: 400px;
+  background: #ffffff;
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  overflow: hidden;
+}
+#mapac-canvas { width: 100%; height: 100%; display: block; cursor: grab; touch-action: none; }
+#mapac-canvas:active { cursor: grabbing; }
+.foco-svg { width: 100%; height: 100%; display: block; }
+.foco-hint { position: absolute; bottom: 8px; left: 0; right: 0; text-align: center; color: #7a85a8; font-size: 0.85rem; pointer-events: none; margin: 0; }
+.foco-canton {
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+  background: rgba(20, 24, 48, 0.92);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 9px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+}
+.foco-bandera {
+  width: 120px; height: auto; display: block; margin: 4px auto 12px;
+  border-radius: 6px; border: 1px solid #e3e9f7; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);
+}
+#mapac-datos h4 { margin: 0.7rem 0 0.2rem; color: var(--morado); }

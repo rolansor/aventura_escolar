@@ -1,0 +1,146 @@
+{
+  "EC-A": {
+    "provincializacion": "1824",
+    "cantones": 15,
+    "gentilicio": "azuayo/a",
+    "dato": "Su capital, Cuenca, es Patrimonio Cultural de la Humanidad por su hermoso centro histórico."
+  },
+  "EC-B": {
+    "provincializacion": "1884",
+    "cantones": 7,
+    "gentilicio": "bolivarense",
+    "dato": "Guaranda es famosa por su Carnaval, uno de los más alegres del Ecuador."
+  },
+  "EC-F": {
+    "provincializacion": "1880",
+    "cantones": 7,
+    "gentilicio": "cañari",
+    "dato": "En Cañar está Ingapirca, las ruinas incas más importantes del Ecuador."
+  },
+  "EC-C": {
+    "provincializacion": "1880",
+    "cantones": 6,
+    "gentilicio": "carchense",
+    "dato": "Limita con Colombia; en Tulcán hay un cementerio con figuras talladas en arbustos."
+  },
+  "EC-H": {
+    "provincializacion": "1824",
+    "cantones": 10,
+    "gentilicio": "chimboracense",
+    "dato": "Aquí está el Chimborazo, la montaña más alta del Ecuador y el punto más cercano al Sol."
+  },
+  "EC-X": {
+    "provincializacion": "1851",
+    "cantones": 7,
+    "gentilicio": "cotopaxense",
+    "dato": "El volcán Cotopaxi, uno de los más altos y activos del mundo, lleva su nombre."
+  },
+  "EC-O": {
+    "provincializacion": "1884",
+    "cantones": 14,
+    "gentilicio": "orense",
+    "dato": "Es la 'capital bananera'; en Machala se celebra la Feria Mundial del Banano."
+  },
+  "EC-E": {
+    "provincializacion": "1847",
+    "cantones": 7,
+    "gentilicio": "esmeraldeño/a",
+    "dato": "Tierra de playas, marimba y cultura afroecuatoriana."
+  },
+  "EC-W": {
+    "provincializacion": "1973",
+    "cantones": 3,
+    "gentilicio": "galapagueño/a",
+    "dato": "Sus tortugas gigantes e iguanas inspiraron a Charles Darwin; es Patrimonio Natural de la Humanidad."
+  },
+  "EC-G": {
+    "provincializacion": "1824",
+    "cantones": 25,
+    "gentilicio": "guayasense",
+    "dato": "Guayaquil es el puerto principal y la ciudad más poblada del Ecuador."
+  },
+  "EC-I": {
+    "provincializacion": "1824",
+    "cantones": 6,
+    "gentilicio": "imbabureño/a",
+    "dato": "Llamada 'provincia de los lagos'; Otavalo tiene un famoso mercado indígena."
+  },
+  "EC-L": {
+    "provincializacion": "1824",
+    "cantones": 16,
+    "gentilicio": "lojano/a",
+    "dato": "Loja es conocida como la 'capital musical del Ecuador'."
+  },
+  "EC-R": {
+    "provincializacion": "1860",
+    "cantones": 13,
+    "gentilicio": "riosense",
+    "dato": "Tierra agrícola de banano, arroz y cacao, junto a grandes ríos."
+  },
+  "EC-M": {
+    "provincializacion": "1824",
+    "cantones": 22,
+    "gentilicio": "manabita",
+    "dato": "Famosa por sus playas y su comida; el ceviche y el encebollado son típicos."
+  },
+  "EC-S": {
+    "provincializacion": "1953",
+    "cantones": 12,
+    "gentilicio": "morona-santiagués",
+    "dato": "Provincia amazónica con selva, cascadas y cultura shuar."
+  },
+  "EC-N": {
+    "provincializacion": "1959",
+    "cantones": 5,
+    "gentilicio": "napense",
+    "dato": "En la Amazonía; el río Napo y la biodiversidad de la selva son su tesoro."
+  },
+  "EC-D": {
+    "provincializacion": "1998",
+    "cantones": 4,
+    "gentilicio": "orellanense",
+    "dato": "Una de las provincias más jóvenes; es la puerta al Parque Nacional Yasuní."
+  },
+  "EC-Y": {
+    "provincializacion": "1959",
+    "cantones": 4,
+    "gentilicio": "pastacense",
+    "dato": "La provincia más extensa del Ecuador, llena de selva amazónica."
+  },
+  "EC-P": {
+    "provincializacion": "1824",
+    "cantones": 8,
+    "gentilicio": "pichinchano/a",
+    "dato": "Su capital, Quito, fue la primera ciudad declarada Patrimonio Cultural de la Humanidad."
+  },
+  "EC-SE": {
+    "provincializacion": "2007",
+    "cantones": 3,
+    "gentilicio": "santaelenense",
+    "dato": "Provincia joven con playas turísticas como Salinas y Montañita."
+  },
+  "EC-SD": {
+    "provincializacion": "2007",
+    "cantones": 2,
+    "gentilicio": "santodomingueño/a",
+    "dato": "Hogar del pueblo Tsáchila, conocido por su cultura y tradición."
+  },
+  "EC-U": {
+    "provincializacion": "1989",
+    "cantones": 7,
+    "gentilicio": "sucumbieño/a",
+    "dato": "Provincia amazónica del nororiente, con gran riqueza natural y petrolera."
+  },
+  "EC-T": {
+    "provincializacion": "1860",
+    "cantones": 9,
+    "gentilicio": "tungurahuense",
+    "dato": "Ambato es la 'ciudad de las flores y las frutas'; cerca está Baños y su volcán."
+  },
+  "EC-Z": {
+    "provincializacion": "1953",
+    "cantones": 9,
+    "gentilicio": "zamorano/a",
+    "dato": "Donde la Amazonía se une a la montaña; famosa por sus cascadas y orquídeas."
+  }
+}

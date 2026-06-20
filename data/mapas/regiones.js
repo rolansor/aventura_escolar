@@ -1,0 +1,1 @@
+(window.__DATOS__=window.__DATOS__||{})["mapas/regiones"]={"costa":{"nombre":"Costa","emoji":"🌴","color":"#ffce54"},"sierra":{"nombre":"Sierra","emoji":"⛰️","color":"#a0d468"},"oriente":{"nombre":"Amazonía","emoji":"🌳","color":"#37bc9b"},"insular":{"nombre":"Región Insular","emoji":"🐢","color":"#4fc1e9"}};

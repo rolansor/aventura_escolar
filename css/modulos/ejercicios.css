@@ -1,0 +1,184 @@
+/* ====== Aventura del Saber — ejercicios.css ====== */
+/* Estilos compartidos de ortografía, secuencias y copia/dictado:
+   selector de categorías, caja de juego, progreso, opciones, entradas,
+   retroalimentación y modo Copia. */
+
+/* ---------- Selector de categorías ---------- */
+.selector-categorias {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  width: 100%;
+  max-width: 800px;
+  margin-top: 8px;
+}
+.chip-categoria {
+  padding: 18px 14px;
+  border: none;
+  border-radius: 18px;
+  background: var(--fondo-tarjeta);
+  box-shadow: var(--sombra);
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--azul-osc);
+  transition: transform 0.15s;
+  text-align: center;
+}
+.chip-categoria small { display:block; font-weight: normal; color:#555; font-size:0.8rem; margin-top:4px; }
+.chip-categoria:hover { transform: scale(1.05); }
+
+/* ---------- Caja de juego ---------- */
+.caja-juego {
+  width: 100%;
+  max-width: 720px;
+  background: var(--fondo-tarjeta);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 26px 28px 32px;
+  margin-top: 6px;
+  text-align: center;
+}
+.titulo-seccion { color: white; text-shadow: 0 3px 8px rgba(0,0,0,0.5); font-size: 2rem; }
+.aviso-adulto, .regla-ayuda {
+  color: #4a5270;
+  font-size: 0.95rem;
+  margin: 4px 0 16px;
+}
+.aviso-adulto { color:white; text-shadow:0 2px 6px rgba(0,0,0,0.5); }
+.regla-ayuda {
+  background: #eef3ff;
+  border-radius: 12px;
+  padding: 8px 12px;
+  display: inline-block;
+}
+
+.fila-timer { display: flex; justify-content: flex-end; min-height: 0; }
+.timer {
+  display: inline-block;
+  background: var(--azul);
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 4px 14px;
+  border-radius: 16px;
+  margin-bottom: 8px;
+  font-variant-numeric: tabular-nums;
+}
+.timer.urgente { background: var(--rojo); animation: latido 0.5s infinite; }
+
+.progreso { width: 100%; height: 12px; background: #e3e8f5; border-radius: 10px; overflow: hidden; margin-bottom: 14px; }
+.progreso-barra { height: 100%; width: 0; background: linear-gradient(90deg, var(--verde), #7ef0bb); transition: width 0.4s; }
+
+.pregunta {
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  color: var(--azul-osc);
+  margin: 12px 0;
+  letter-spacing: 1px;
+}
+.secuencia-numeros { letter-spacing: 4px; font-variant-numeric: tabular-nums; }
+.pista { color: var(--morado); font-style: italic; min-height: 1.2em; }
+
+.opciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  margin: 18px 0;
+}
+.opcion {
+  min-width: 90px;
+  padding: 16px 24px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: 3px solid var(--azul);
+  border-radius: 16px;
+  background: white;
+  color: var(--azul);
+  cursor: pointer;
+  transition: transform 0.12s, background 0.2s;
+}
+.opcion:hover { transform: scale(1.08); background: #eef3ff; }
+.opcion.correcta { background: var(--verde); border-color: var(--verde); color: white; animation: latido 0.4s; }
+.opcion.incorrecta { background: var(--rojo); border-color: var(--rojo); color: white; animation: temblor 0.4s; }
+
+.zona-respuesta-libre {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+.entrada-texto {
+  font-size: 1.5rem;
+  padding: 12px 18px;
+  border: 3px solid var(--azul);
+  border-radius: 14px;
+  text-align: center;
+  width: min(280px, 70vw);
+  font-family: var(--fuente);
+}
+.entrada-texto:focus { outline: none; border-color: var(--morado); box-shadow: 0 0 0 4px rgba(138,92,246,0.25); }
+.entrada-area {
+  width: 100%;
+  min-height: 130px;
+  font-size: 1.2rem;
+  padding: 14px;
+  border: 3px solid var(--azul);
+  border-radius: 14px;
+  font-family: var(--fuente);
+  resize: vertical;
+}
+
+.retro { font-size: 1.4rem; font-weight: bold; min-height: 1.6em; margin-top: 10px; }
+.retro.bien { color: var(--verde); }
+.retro.mal { color: var(--rojo); }
+
+/* ---------- Copia ---------- */
+.texto-modelo {
+  background: #fffbe7;
+  border: 3px dashed var(--amarillo);
+  border-radius: 14px;
+  padding: 16px 18px;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  text-align: left;
+}
+.resultado-copia { margin-top: 16px; font-size: 1.1rem; text-align: left; line-height: 1.7; }
+.resultado-copia .ok { background: #d7f8e8; }
+.resultado-copia .err { background: #ffd9d9; color: var(--rojo); font-weight: bold; text-decoration: underline wavy var(--rojo); }
+
+/* Interruptor de sub-modo (copiar / corregir) */
+.toggle-modo {
+  display: inline-flex;
+  background: #e3e8f5;
+  border-radius: 30px;
+  padding: 4px;
+  margin-bottom: 14px;
+  gap: 4px;
+}
+.opcion-modo {
+  border: none;
+  background: transparent;
+  padding: 10px 18px;
+  border-radius: 26px;
+  font-family: var(--fuente);
+  font-size: 1rem;
+  font-weight: bold;
+  color: #4a5270;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.opcion-modo.activa { background: var(--azul); color: white; box-shadow: var(--sombra); }
+
+.texto-modelo.con-errores { background: #fff0f0; border-color: var(--rojo); }
+.texto-modelo .err-mark {
+  color: var(--rojo);
+  font-weight: bold;
+  text-decoration: underline wavy var(--rojo);
+  background: #ffe0e0;
+  border-radius: 4px;
+  padding: 0 2px;
+}
+#copia-pista { display: block; margin: 0 auto 14px; }

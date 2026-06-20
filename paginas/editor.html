@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es-EC">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="../" />
+  <title>Crear y Configurar — La Aventura de Nelson</title>
+  <link rel="stylesheet" href="css/modulos/base.css" />
+  <link rel="stylesheet" href="css/modulos/ejercicios.css" />
+  <link rel="stylesheet" href="css/modulos/editor.css" />
+  <link rel="stylesheet" href="css/modulos/efectos.css" />
+</head>
+<body>
+  <canvas id="lienzo3d"></canvas>
+  <div id="interfaz">
+    <header id="barra-superior">
+      <div class="grupo-barra grupo-izq">
+        <button id="btn-inicio" class="boton-icono" title="Ir al menú principal">🏠</button>
+        <button id="btn-volver-global" class="boton-icono" title="Volver atrás">↩️</button>
+      </div>
+      <div id="marcador">
+        <span class="estrellas">⭐ <b id="puntaje-estrellas">0</b></span>
+        <span class="racha">🔥 <b id="puntaje-racha">0</b></span>
+        <span class="nivel">Nivel <b id="puntaje-nivel">1</b></span>
+      </div>
+      <div class="grupo-barra grupo-der">
+        <button id="btn-sonido" class="boton-icono" title="Activar/silenciar sonido">🔊</button>
+      </div>
+    </header>
+
+    <section id="pantalla-editor" class="pantalla activa">
+      <h2 class="titulo-seccion">⚙️ Crear y Configurar</h2>
+      <p class="aviso-adulto">Pensado para un adulto: aquí puedes crear secuencias y párrafos a la medida.</p>
+
+      <div class="acordeon">
+        <h3>👤 Jugador y avatar</h3>
+        <div class="campos-grid">
+          <label>Nombre del jugador <input type="text" id="cfg-jugador" placeholder="Nelson" autocomplete="off" /></label>
+          <label>Nombre del avatar <input type="text" id="cfg-avatar" placeholder="Luna" autocomplete="off" /></label>
+          <label>El avatar es
+            <select id="cfg-genero">
+              <option value="nina">Niña</option>
+              <option value="nino">Niño</option>
+            </select>
+          </label>
+        </div>
+        <div class="fila-botones">
+          <button class="boton-grande" id="cfg-identidad-guardar">💾 Guardar jugador y avatar</button>
+        </div>
+      </div>
+
+      <div class="acordeon">
+        <h3>⏱️ Temporizador</h3>
+        <label class="bloque"><input type="checkbox" id="cfg-timer-on" /> Usar temporizador en Ortografía y Secuencias</label>
+        <label class="bloque">Segundos por pregunta <input type="number" id="cfg-timer-seg" value="30" min="5" max="180" /></label>
+        <label class="bloque"><input type="checkbox" id="cfg-copia-on" /> Usar temporizador en Copia y Dictado</label>
+        <label class="bloque">Minutos en Copia y Dictado <input type="number" id="cfg-copia-min" value="5" min="1" max="30" /></label>
+        <div class="fila-botones">
+          <button class="boton-grande" id="cfg-timer-guardar">💾 Guardar temporizador</button>
+        </div>
+      </div>
+
+      <div class="acordeon">
+        <h3>📊 Progreso de Nelson</h3>
+        <p class="aviso-adulto" style="color:#3a4266;text-shadow:none;">Estrellas, racha y nivel acumulados. Puedes ponerlos en cero.</p>
+        <button class="boton-grande" id="btn-reset-stats">🔁 Reiniciar estrellas y nivel</button>
+      </div>
+
+      <div class="acordeon">
+        <h3>🔢 Crear una secuencia</h3>
+        <div class="campos-grid">
+          <label>Nombre <input type="text" id="ed-sec-nombre" placeholder="Ej: Tabla del 7" /></label>
+          <label>Empieza en <input type="number" id="ed-sec-inicio" value="2" /></label>
+          <label>Operación
+            <select id="ed-sec-operacion">
+              <option value="suma">Sumar (+)</option>
+              <option value="resta">Restar (−)</option>
+              <option value="multiplicacion">Multiplicar (×)</option>
+              <option value="division">Dividir (÷)</option>
+              <option value="cuadrados">Cuadrados (n²)</option>
+              <option value="fibonacci">Fibonacci</option>
+            </select>
+          </label>
+          <label>Cantidad <input type="number" id="ed-sec-paso" value="3" /></label>
+          <label>¿Cuántos términos? <input type="number" id="ed-sec-largo" value="6" min="4" max="12" /></label>
+        </div>
+        <div class="vista-previa" id="ed-sec-previa">Vista previa…</div>
+        <div class="fila-botones">
+          <button class="boton-secundario" id="ed-sec-previsualizar">👁️ Previsualizar</button>
+          <button class="boton-grande" id="ed-sec-guardar">💾 Guardar secuencia</button>
+        </div>
+        <div class="lista-guardados" id="ed-sec-lista"></div>
+      </div>
+
+      <div class="acordeon">
+        <h3>🔤 Palabras de ortografía (editor universal)</h3>
+        <p class="aviso-adulto" style="color:#3a4266;text-shadow:none;">Elige cualquier categoría y administra sus palabras: <b>agrega</b> las tuyas, <b>oculta</b> 🚫 las del juego que no quieras o <b>muéstralas</b> ↩️ de nuevo, y <b>borra</b> 🗑️ las que agregaste. En las categorías de escritura también puedes definir pares ✅/❌.</p>
+        <div class="campos-grid">
+          <label>Categoría
+            <select id="ed-orto-cat"></select>
+          </label>
+          <label id="ed-orto-grupo-lbl" class="oculto">Grupo
+            <select id="ed-orto-grupo"></select>
+          </label>
+        </div>
+        <div class="vista-previa" id="ed-orto-ayuda" style="font-size:1rem;letter-spacing:0;"></div>
+
+        <div class="fila-botones">
+          <input type="text" id="ed-orto-palabra" class="entrada-texto" placeholder="Escribe una palabra…" autocomplete="off" />
+          <button class="boton-grande" id="ed-orto-add-palabra">➕ Agregar palabra</button>
+        </div>
+        <div class="lista-guardados" id="ed-orto-banco"></div>
+
+        <div id="ed-orto-pares-zona">
+          <h4 style="margin:18px 0 6px;color:#3a4266;">Pares ✅ correcta / ❌ incorrecta</h4>
+          <div class="campos-grid">
+            <label>✅ Correcta <input type="text" id="ed-orto-bien" placeholder="Ej: caballo" autocomplete="off" /></label>
+            <label>❌ Incorrecta <input type="text" id="ed-orto-mal" placeholder="Ej: cabayo" autocomplete="off" /></label>
+          </div>
+          <div class="fila-botones">
+            <button class="boton-grande" id="ed-orto-guardar">💾 Agregar par</button>
+          </div>
+          <div class="lista-guardados" id="ed-orto-lista"></div>
+        </div>
+      </div>
+
+      <div class="acordeon">
+        <h3>✍️ Crear o pegar un párrafo</h3>
+        <label class="bloque">Nombre del párrafo
+          <input type="text" id="ed-par-nombre" placeholder="Ej: Sobre el Cotopaxi" />
+        </label>
+        <label class="bloque">✅ Texto correcto
+          <textarea id="ed-par-texto" class="entrada-area" placeholder="Pega aquí el texto bien escrito…"></textarea>
+        </label>
+        <label class="bloque">❌ Texto con errores (opcional, para "Corregir errores")
+          <textarea id="ed-par-mal" class="entrada-area" placeholder="Escribe la MISMA frase con los errores que quieras. Si lo dejas vacío, el juego inventa los errores solo."></textarea>
+        </label>
+        <div class="fila-botones">
+          <button class="boton-secundario" id="ed-par-generar">🎲 Generar texto automático</button>
+          <button class="boton-secundario" id="ed-par-generar-mal">🪄 Generar errores desde el correcto</button>
+          <button class="boton-grande" id="ed-par-guardar">💾 Guardar párrafo</button>
+        </div>
+        <div class="lista-guardados" id="ed-par-lista"></div>
+      </div>
+    </section>
+  </div>
+
+  <div id="luna" title="Luna — ¡arrástrame a donde quieras!">
+    <div class="luna-globo" id="luna-globo">¡Hola! Soy Luna 🌙</div>
+    <canvas id="luna-canvas"></canvas>
+    <div class="luna-nombre">🌙 Luna ✋</div>
+  </div>
+  <div id="celebracion"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>window.THREE || document.write('<scr'+'ipt src="lib/three.min.js"></scr'+'ipt>');</script>
+  <script src="src/efectos/escena3d.js"></script>
+  <script src="src/efectos/luna.js"></script>
+  <script src="data/ortografia.js"></script>
+  <script src="data/generador-parrafos.js"></script>
+  <script src="src/core/datos.js"></script>
+  <script src="src/core/juego.js"></script>
+  <script src="src/modos/copia.js"></script>
+  <script src="src/modos/editor.js"></script>
+  <script>
+    window.RUTA_INICIO = "index.html";
+    // Zona de adultos: pide clave al entrar.
+    (function () {
+      var CLAVE = "24861793";
+      if (sessionStorage.getItem("ads_editor_ok") !== "1") {
+        var intento = window.prompt("🔒 Esta sección es para adultos.\nEscribe la clave para entrar:");
+        if (intento === null || intento.trim() !== CLAVE) { location.href = "index.html"; return; }
+        sessionStorage.setItem("ads_editor_ok", "1");
+      }
+      Datos.cargar(["ortografia", "generador-parrafos"]).then(function () {
+        Juego.iniciarBase();
+        Editor.init();
+      }).catch(function (e) { console.error("Error cargando datos:", e); });
+    })();
+  </script>
+</body>
+</html>

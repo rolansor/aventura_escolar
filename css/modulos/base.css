@@ -1,0 +1,152 @@
+/* ====== Aventura del Saber — base.css ====== */
+/* Variables, reset, layout general, barra superior/marcador, pantallas,
+   botones genéricos, animaciones y responsive global. */
+:root {
+  --azul: #2e6cf6;
+  --azul-osc: #1b3a8a;
+  --verde: #25c281;
+  --rojo: #ef5350;
+  --amarillo: #ffc934;
+  --morado: #8a5cf6;
+  --fondo-tarjeta: rgba(255, 255, 255, 0.92);
+  --sombra: 0 10px 30px rgba(0, 0, 0, 0.18);
+  --radio: 22px;
+  --fuente: "Comic Sans MS", "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: var(--fuente);
+  overflow: hidden;
+  color: #1d2440;
+}
+
+#lienzo3d {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  display: block;
+}
+
+#interfaz {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Barra superior ---------- */
+#barra-superior {
+  display: flex;
+  align-items: center;
+  padding: 12px 18px;
+  gap: 12px;
+}
+.grupo-barra {
+  flex: 1;                 /* lados de igual ancho => marcador centrado */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.grupo-der { justify-content: flex-end; }
+
+.boton-icono {
+  font-size: 1.6rem;
+  width: 54px;
+  height: 54px;
+  border: none;
+  border-radius: 50%;
+  background: var(--fondo-tarjeta);
+  box-shadow: var(--sombra);
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+.boton-icono:hover { transform: scale(1.1) rotate(-5deg); }
+.boton-icono:active { transform: scale(0.95); }
+
+#marcador {
+  display: flex;
+  gap: 14px;
+  background: var(--fondo-tarjeta);
+  padding: 10px 20px;
+  border-radius: 40px;
+  box-shadow: var(--sombra);
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+#marcador span { white-space: nowrap; }
+
+/* ---------- Pantallas ---------- */
+.pantalla {
+  flex: 1;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 16px 30px;
+  overflow-y: auto;
+}
+.pantalla.activa { display: flex; }
+.oculto { display: none !important; }
+
+/* ---------- Botones genéricos ---------- */
+.boton-grande {
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 16px;
+  background: var(--azul);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 6px 0 var(--azul-osc);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.boton-grande:hover { transform: translateY(-2px); }
+.boton-grande:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--azul-osc); }
+.boton-secundario {
+  font-size: 1rem;
+  padding: 10px 18px;
+  border: 3px solid var(--morado);
+  border-radius: 14px;
+  background: white;
+  color: var(--morado);
+  cursor: pointer;
+  font-weight: bold;
+}
+.boton-secundario:hover { background: #f3eeff; }
+
+/* Botón Volver dentro de un ejercicio */
+.btn-volver {
+  float: left;
+  border: 2px solid var(--azul);
+  background: white;
+  color: var(--azul);
+  font-family: var(--fuente);
+  font-weight: bold;
+  font-size: 0.95rem;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+.btn-volver:hover { background: #eef3ff; }
+
+/* ---------- Animaciones ---------- */
+@keyframes latido { 0%,100% { transform: scale(1); } 50% { transform: scale(1.25); } }
+@keyframes temblor { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
+@keyframes caer { to { transform: translateY(110vh) rotate(720deg); opacity: 0.9; } }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 520px) {
+  #marcador { font-size: 0.9rem; gap: 8px; padding: 8px 12px; }
+  .caja-juego { padding: 18px 16px 24px; }
+  .boton-icono { width: 46px; height: 46px; font-size: 1.3rem; }
+}

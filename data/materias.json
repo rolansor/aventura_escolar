@@ -48,6 +48,60 @@
         "icono": "🔢",
         "nombre": "Valor posicional",
         "desc": "Unidades, decenas, centenas y más"
+      },
+      {
+        "modo": "multiplicacion",
+        "icono": "✖️",
+        "nombre": "Multiplicación",
+        "desc": "2–3 cifras × 1–2 cifras, con explicación"
+      },
+      {
+        "modo": "division",
+        "icono": "➗",
+        "nombre": "División",
+        "desc": "Con y sin residuo, con explicación"
+      },
+      {
+        "modo": "comparar",
+        "icono": "⚖️",
+        "nombre": "Comparar y ordenar",
+        "desc": "Mayor, menor, >, < y ="
+      },
+      {
+        "modo": "redondeo",
+        "icono": "🔵",
+        "nombre": "Redondeo",
+        "desc": "A la decena, centena y mil"
+      },
+      {
+        "modo": "numeros",
+        "icono": "🟰",
+        "nombre": "Números",
+        "desc": "Par/impar, anterior/siguiente, romanos"
+      },
+      {
+        "modo": "dinero",
+        "icono": "💵",
+        "nombre": "Dinero",
+        "desc": "Contar dólares y dar el cambio"
+      },
+      {
+        "modo": "medidas",
+        "icono": "📏",
+        "nombre": "Medidas",
+        "desc": "Unidades y conversiones"
+      },
+      {
+        "modo": "hora",
+        "icono": "🕐",
+        "nombre": "La hora",
+        "desc": "Leer el reloj"
+      },
+      {
+        "modo": "fracciones",
+        "icono": "🍕",
+        "nombre": "Fracciones",
+        "desc": "Leer fracciones con dibujos"
       }
     ]
   },

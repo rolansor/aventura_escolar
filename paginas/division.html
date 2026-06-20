@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es-EC">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="../" />
+  <title>División — La Aventura de Nelson</title>
+  <link rel="stylesheet" href="css/modulos/base.css" />
+  <link rel="stylesheet" href="css/modulos/ejercicios.css" />
+  <link rel="stylesheet" href="css/modulos/efectos.css" />
+</head>
+<body>
+  <canvas id="lienzo3d"></canvas>
+  <div id="interfaz">
+    <header id="barra-superior">
+      <div class="grupo-barra grupo-izq">
+        <button id="btn-inicio" class="boton-icono" title="Ir al menú principal">🏠</button>
+        <button id="btn-volver-global" class="boton-icono" title="Volver atrás">↩️</button>
+      </div>
+      <div id="marcador">
+        <span class="estrellas">⭐ <b id="puntaje-estrellas">0</b></span>
+        <span class="racha">🔥 <b id="puntaje-racha">0</b></span>
+        <span class="nivel">Nivel <b id="puntaje-nivel">1</b></span>
+      </div>
+      <div class="grupo-barra grupo-der">
+        <button id="btn-sonido" class="boton-icono" title="Activar/silenciar sonido">🔊</button>
+      </div>
+    </header>
+
+    <section id="pantalla-div" class="pantalla activa">
+      <div id="div-selector" class="selector-categorias"></div>
+      <div id="div-juego" class="caja-juego oculto">
+        <div class="fila-timer"><span class="timer oculto" id="div-timer"></span></div>
+        <div class="progreso"><div class="progreso-barra" id="div-progreso"></div></div>
+        <h2 class="pregunta secuencia-numeros" id="div-pregunta"></h2>
+        <div class="zona-respuesta-libre" id="div-resp" style="flex-wrap:wrap; gap:12px;">
+          <label class="campo-min">cociente<input type="number" id="div-coc" class="entrada-texto" autocomplete="off" placeholder="¿?" /></label>
+          <label class="campo-min">residuo<input type="number" id="div-res" class="entrada-texto" autocomplete="off" placeholder="¿?" /></label>
+          <button class="boton-grande" id="div-enviar">Comprobar</button>
+        </div>
+        <p class="retro" id="div-retro"></p>
+        <div class="explica oculto" id="div-explica"></div>
+        <div class="fila-botones">
+          <button class="boton-secundario oculto" id="div-reintentar">🔄 Volver a intentar</button>
+          <button class="boton-grande oculto" id="div-siguiente">Siguiente ▶</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="luna" title="Luna"><div class="luna-globo" id="luna-globo">Soy Luna 🌙</div><canvas id="luna-canvas"></canvas><div class="luna-nombre">🌙 Luna ✋</div></div>
+  <div id="celebracion"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>window.THREE || document.write('<scr'+'ipt src="lib/three.min.js"></scr'+'ipt>');</script>
+  <script src="src/efectos/escena3d.js"></script>
+  <script src="src/efectos/luna.js"></script>
+  <script src="src/core/juego.js"></script>
+  <script src="src/modos/division.js"></script>
+  <script>
+    window.RUTA_INICIO = "index.html";
+    window.MODO_VOLVER = function () {
+      if (!document.getElementById("div-juego").classList.contains("oculto")) Division.volverSelector();
+      else location.href = "index.html?materia=matematicas";
+    };
+    Juego.iniciarBase();
+    Division.init();
+    document.getElementById("div-enviar").onclick = function () { Division.comprobar(); };
+    document.getElementById("div-coc").addEventListener("keydown", function (e) { if (e.key === "Enter") document.getElementById("div-res").focus(); });
+    document.getElementById("div-res").addEventListener("keydown", function (e) { if (e.key === "Enter") Division.comprobar(); });
+    document.getElementById("div-reintentar").onclick = function () { Division.reintentar(); };
+    document.getElementById("div-siguiente").onclick = function () { Division.siguiente(); };
+  </script>
+</body>
+</html>

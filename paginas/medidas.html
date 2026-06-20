@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <base href="../" />
-  <title>Valor posicional — La Aventura de Nelson</title>
+  <title>Medidas — La Aventura de Nelson</title>
   <link rel="stylesheet" href="css/modulos/base.css" />
   <link rel="stylesheet" href="css/modulos/ejercicios.css" />
   <link rel="stylesheet" href="css/modulos/efectos.css" />
@@ -27,22 +27,22 @@
       </div>
     </header>
 
-    <section id="pantalla-vp" class="pantalla activa">
-      <div id="vp-selector" class="selector-categorias"></div>
-      <div id="vp-juego" class="caja-juego oculto">
-        <div class="fila-timer"><span class="timer oculto" id="vp-timer"></span></div>
-        <div class="progreso"><div class="progreso-barra" id="vp-progreso"></div></div>
-        <p class="regla-ayuda" id="vp-tema"></p>
-        <div id="vp-extra" class="mc-extra"></div>
-        <h2 class="pregunta" id="vp-pregunta"></h2>
-        <div class="opciones" id="vp-opciones"></div>
-        <p class="retro" id="vp-retro"></p>
+    <section id="pantalla-med" class="pantalla activa">
+      <div id="med-selector" class="selector-categorias"></div>
+      <div id="med-juego" class="caja-juego oculto">
+        <div class="fila-timer"><span class="timer oculto" id="med-timer"></span></div>
+        <div class="progreso"><div class="progreso-barra" id="med-progreso"></div></div>
+        <p class="regla-ayuda" id="med-tema"></p>
+        <div id="med-extra" class="mc-extra"></div>
+        <h2 class="pregunta" id="med-pregunta"></h2>
+        <div class="opciones" id="med-opciones"></div>
+        <p class="retro" id="med-retro"></p>
       </div>
     </section>
   </div>
 
-  <div id="luna" title="Luna — ¡arrástrame a donde quieras!">
-    <div class="luna-globo" id="luna-globo">¡Hola! Soy Luna 🌙</div>
+  <div id="luna" title="Luna">
+    <div class="luna-globo" id="luna-globo">Soy Luna 🌙</div>
     <canvas id="luna-canvas"></canvas>
     <div class="luna-nombre">🌙 Luna ✋</div>
   </div>
@@ -54,16 +54,15 @@
   <script src="src/efectos/luna.js"></script>
   <script src="src/core/juego.js"></script>
   <script src="src/core/mc.js"></script>
-  <script src="src/modos/valorposicional.js"></script>
+  <script src="src/modos/medidas.js"></script>
   <script>
     window.RUTA_INICIO = "index.html";
     window.MODO_VOLVER = function () {
-      const juego = document.getElementById("vp-juego");
-      if (juego && !juego.classList.contains("oculto")) ValorPosicional.volverSelector();
+      if (!document.getElementById("med-juego").classList.contains("oculto")) Medidas.volverSelector();
       else location.href = "index.html?materia=matematicas";
     };
     Juego.iniciarBase();
-    ValorPosicional.init();
+    Medidas.init();
   </script>
 </body>
 </html>

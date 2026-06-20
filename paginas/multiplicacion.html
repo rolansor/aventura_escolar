@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es-EC">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="../" />
+  <title>Multiplicación — La Aventura de Nelson</title>
+  <link rel="stylesheet" href="css/modulos/base.css" />
+  <link rel="stylesheet" href="css/modulos/ejercicios.css" />
+  <link rel="stylesheet" href="css/modulos/efectos.css" />
+</head>
+<body>
+  <canvas id="lienzo3d"></canvas>
+  <div id="interfaz">
+    <header id="barra-superior">
+      <div class="grupo-barra grupo-izq">
+        <button id="btn-inicio" class="boton-icono" title="Ir al menú principal">🏠</button>
+        <button id="btn-volver-global" class="boton-icono" title="Volver atrás">↩️</button>
+      </div>
+      <div id="marcador">
+        <span class="estrellas">⭐ <b id="puntaje-estrellas">0</b></span>
+        <span class="racha">🔥 <b id="puntaje-racha">0</b></span>
+        <span class="nivel">Nivel <b id="puntaje-nivel">1</b></span>
+      </div>
+      <div class="grupo-barra grupo-der">
+        <button id="btn-sonido" class="boton-icono" title="Activar/silenciar sonido">🔊</button>
+      </div>
+    </header>
+
+    <section id="pantalla-mul" class="pantalla activa">
+      <div id="mul-selector" class="selector-categorias"></div>
+      <div id="mul-juego" class="caja-juego oculto">
+        <div class="fila-timer"><span class="timer oculto" id="mul-timer"></span></div>
+        <div class="progreso"><div class="progreso-barra" id="mul-progreso"></div></div>
+        <h2 class="pregunta secuencia-numeros" id="mul-pregunta"></h2>
+        <div class="zona-respuesta-libre" id="mul-resp">
+          <input type="number" id="mul-input" class="entrada-texto" autocomplete="off" placeholder="¿?" />
+          <button class="boton-grande" id="mul-enviar">Comprobar</button>
+        </div>
+        <p class="retro" id="mul-retro"></p>
+        <div class="explica oculto" id="mul-explica"></div>
+        <div class="fila-botones">
+          <button class="boton-secundario oculto" id="mul-reintentar">🔄 Volver a intentar</button>
+          <button class="boton-grande oculto" id="mul-siguiente">Siguiente ▶</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="luna" title="Luna"><div class="luna-globo" id="luna-globo">Soy Luna 🌙</div><canvas id="luna-canvas"></canvas><div class="luna-nombre">🌙 Luna ✋</div></div>
+  <div id="celebracion"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>window.THREE || document.write('<scr'+'ipt src="lib/three.min.js"></scr'+'ipt>');</script>
+  <script src="src/efectos/escena3d.js"></script>
+  <script src="src/efectos/luna.js"></script>
+  <script src="src/core/juego.js"></script>
+  <script src="src/modos/multiplicacion.js"></script>
+  <script>
+    window.RUTA_INICIO = "index.html";
+    window.MODO_VOLVER = function () {
+      if (!document.getElementById("mul-juego").classList.contains("oculto")) Multiplicacion.volverSelector();
+      else location.href = "index.html?materia=matematicas";
+    };
+    Juego.iniciarBase();
+    Multiplicacion.init();
+    document.getElementById("mul-enviar").onclick = function () { Multiplicacion.comprobar(); };
+    document.getElementById("mul-input").addEventListener("keydown", function (e) { if (e.key === "Enter") Multiplicacion.comprobar(); });
+    document.getElementById("mul-reintentar").onclick = function () { Multiplicacion.reintentar(); };
+    document.getElementById("mul-siguiente").onclick = function () { Multiplicacion.siguiente(); };
+  </script>
+</body>
+</html>

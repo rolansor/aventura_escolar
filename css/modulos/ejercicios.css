@@ -195,3 +195,20 @@
 .explica ol { margin: 6px 0; padding-left: 1.4rem; }
 .explica li { margin: 4px 0; line-height: 1.4; }
 .explica .explica-res { font-size: 1.15rem; margin: 8px 0 0; }
+
+/* Cuadrícula vertical de sumas y restas (dígito por casilla) */
+.op-grid-wrap { display: flex; justify-content: center; margin: 10px 0; }
+.op-grid { display: grid; gap: 4px; font-weight: bold; }
+.op-grid .op-sign { display: flex; align-items: center; justify-content: center; font-size: 1.6rem; color: #2b2b2b; min-width: 1.4rem; }
+.op-grid .op-num { width: clamp(28px,9vw,48px); height: clamp(34px,11vw,54px); border: 2px solid #c7d2f0;
+  border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: clamp(1.2rem,5vw,2rem); background: #fff; }
+.op-grid .op-resp { width: clamp(28px,9vw,48px); height: clamp(34px,11vw,54px); border: 2px solid var(--azul);
+  border-radius: 8px; text-align: center; font-size: clamp(1.2rem,5vw,2rem); font-weight: bold; padding: 0; background: #fff; }
+.op-grid .op-resp:focus { outline: none; box-shadow: 0 0 0 3px rgba(46,108,246,.25); }
+.op-grid .op-llevada { width: clamp(20px,6vw,32px); height: clamp(20px,6vw,32px); border: 2px dashed #ef5ba1;
+  border-radius: 50%; text-align: center; font-size: .9rem; color: #ef5ba1; padding: 0; justify-self: center; }
+.op-grid .op-linea { grid-column: 1 / -1; height: 4px; background: #2b2b2b; border-radius: 2px; margin: 2px 0; }
+.op-grid .col-u { color: #2e6cf6; } .op-grid .col-d { color: #ef5350; } .op-grid .col-c { color: #25c281; }
+.op-grid .col-m { color: #8a5cf6; } .op-grid .col-dm { color: #ef5ba1; } .op-grid .col-cm { color: #e67e22; }
+.op-grid .op-resp.ok  { border-color: #25c281; background: #e9fbf3; color: #1c8f63; }
+.op-grid .op-resp.mal { border-color: #ef5350; background: #fdecea; color: #c0392b; }

@@ -32,11 +32,8 @@
       <div id="arit-juego" class="caja-juego oculto">
         <div class="fila-timer"><span class="timer oculto" id="arit-timer"></span></div>
         <div class="progreso"><div class="progreso-barra" id="arit-progreso"></div></div>
-        <h2 class="pregunta secuencia-numeros" id="arit-pregunta"></h2>
-        <div class="zona-respuesta-libre" id="arit-resp">
-          <input type="number" id="arit-input" class="entrada-texto" autocomplete="off" placeholder="¿?" />
-          <button class="boton-grande" id="arit-enviar">Comprobar</button>
-        </div>
+        <div id="arit-grid" class="op-grid-wrap"></div>
+        <button class="boton-grande" id="arit-enviar">Comprobar</button>
         <p class="retro" id="arit-retro"></p>
         <div class="explica oculto" id="arit-explica"></div>
         <button class="boton-grande oculto" id="arit-siguiente">Siguiente ▶</button>
@@ -67,7 +64,6 @@
     Juego.iniciarBase();
     Aritmetica.init();
     document.getElementById("arit-enviar").onclick = function () { Aritmetica.comprobar(); };
-    document.getElementById("arit-input").addEventListener("keydown", function (e) { if (e.key === "Enter") Aritmetica.comprobar(); });
     document.getElementById("arit-siguiente").onclick = function () { Aritmetica.siguiente(); };
   </script>
 </body>

@@ -1,9 +1,11 @@
 /* ============================================================
-   MODO SUMAS Y RESTAS — Matemáticas
-   Operaciones de 3 a 10 cifras (mezcla de sumas y restas), nunca
-   repetidas en la ronda. En las restas el minuendo es ≥ que el
-   sustraendo. Si el niño se equivoca, se EXPLICA paso a paso cómo
-   se suma "llevando" o se resta "prestando", columna por columna.
+   MODO SUMAS Y RESTAS — Matemáticas (en cuadrícula vertical)
+   Operaciones de 3 a 10 cifras, nunca repetidas en la ronda. Se
+   muestran en columna (un dígito por casilla, alineadas por
+   unidades/decenas/centenas…) y el niño escribe el resultado
+   casilla por casilla (de derecha a izquierda, como se calcula).
+   Hay casillas para anotar las "llevadas". Si falla, se explica
+   paso a paso (llevando / prestando).
    ============================================================ */
 const Aritmetica = (function () {
   let cola = [], indice = 0, aciertos = 0, actual = null, temporizador = null;
@@ -11,11 +13,13 @@ const Aritmetica = (function () {
   const CIFRAS = [3, 4, 5, 6, 7, 8, 9, 10];
   const ORDEN = ["unidades", "decenas", "centenas", "unidades de mil", "decenas de mil",
     "centenas de mil", "unidades de millón", "decenas de millón", "centenas de millón", "unidades de mil millones"];
+  const COLOR = ["col-u", "col-d", "col-c", "col-m", "col-dm", "col-cm"]; // por posición (unidades→)
   const elSel = () => document.getElementById("arit-selector");
   const elJuego = () => document.getElementById("arit-juego");
 
   function numDe(n) { return Juego.azar(Math.pow(10, n - 1), Math.pow(10, n) - 1); }
   function fmt(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
+  function colorCol(pos) { return COLOR[pos] || "col-u"; }
 
   function init() { pintarSelector(); }
   function pintarSelector() {
@@ -53,29 +57,73 @@ const Aritmetica = (function () {
   function mostrar() {
     actual = cola[indice];
     document.getElementById("arit-progreso").style.width = (indice / cola.length) * 100 + "%";
-    document.getElementById("arit-pregunta").textContent =
-      fmt(actual.a) + (actual.suma ? "  +  " : "  −  ") + fmt(actual.b) + "  =";
-    const inp = document.getElementById("arit-input");
-    inp.value = ""; inp.disabled = false;
-    document.getElementById("arit-resp").classList.remove("oculto");
+    construirGrid();
     document.getElementById("arit-explica").classList.add("oculto");
     document.getElementById("arit-siguiente").classList.add("oculto");
     const retro = document.getElementById("arit-retro");
     retro.textContent = ""; retro.className = "retro";
-    inp.focus();
     arrancarTimer();
+  }
+
+  // Construye la cuadrícula: fila de llevadas, número A, número B (con signo),
+  // línea y fila de respuesta (inputs).
+  function construirGrid() {
+    const A = String(actual.a), B = String(actual.b), R = String(actual.r);
+    const N = Math.max(A.length, B.length, R.length);
+    const da = A.padStart(N, " "), db = B.padStart(N, " ");
+    let h = '<div class="op-grid" style="grid-template-columns:auto repeat(' + N + ',1fr)">';
+    // llevadas (opcionales, no se corrigen)
+    h += '<div class="op-sign"></div>';
+    for (let i = 0; i < N; i++) h += '<input class="op-llevada" maxlength="1" inputmode="numeric" aria-label="llevada">';
+    // número A
+    h += '<div class="op-sign"></div>';
+    for (let i = 0; i < N; i++) h += '<div class="op-num ' + colorCol(N - 1 - i) + '">' + (da[i] === " " ? "" : da[i]) + "</div>";
+    // número B con signo
+    h += '<div class="op-sign">' + (actual.suma ? "+" : "−") + "</div>";
+    for (let i = 0; i < N; i++) h += '<div class="op-num ' + colorCol(N - 1 - i) + '">' + (db[i] === " " ? "" : db[i]) + "</div>";
+    // línea
+    h += '<div class="op-linea"></div>';
+    // respuesta
+    h += '<div class="op-sign"></div>';
+    for (let i = 0; i < N; i++) h += '<input class="op-resp ' + colorCol(N - 1 - i) + '" maxlength="1" inputmode="numeric" data-col="' + i + '">';
+    h += "</div>";
+    const cont = document.getElementById("arit-grid");
+    cont.innerHTML = h;
+    const resp = Array.prototype.slice.call(cont.querySelectorAll(".op-resp"));
+    resp.forEach((inp, idx) => {
+      inp.addEventListener("input", function () {
+        inp.value = inp.value.replace(/[^0-9]/g, "").slice(0, 1);
+        if (inp.value && idx > 0) resp[idx - 1].focus();   // se rellena de derecha a izquierda
+      });
+      inp.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") comprobar();
+        else if (e.key === "Backspace" && !inp.value && idx < resp.length - 1) resp[idx + 1].focus();
+      });
+    });
+    if (resp.length) resp[resp.length - 1].focus(); // empieza en las unidades (derecha)
   }
 
   function comprobar() {
     if (!actual) return;
-    const inp = document.getElementById("arit-input");
-    if (inp.value.trim() === "") return;
-    Juego.cronDetener(); inp.disabled = true;
+    const resp = Array.prototype.slice.call(document.querySelectorAll("#arit-grid .op-resp"));
+    if (!resp.some((i) => i.value !== "")) return;
+    Juego.cronDetener();
+    const R = String(actual.r);
+    const off = resp.length - R.length;   // casillas iniciales que deben quedar vacías
+    let todo = true;
+    resp.forEach((inp, i) => {
+      inp.disabled = true;
+      const exp = i < off ? "" : R[i - off];
+      const val = inp.value;
+      const bien = exp === "" ? (val === "" || val === "0") : val === exp;
+      inp.classList.add(bien ? "ok" : "mal");
+      if (!bien) todo = false;
+    });
     const retro = document.getElementById("arit-retro");
-    if (parseInt(inp.value, 10) === actual.r) {
+    if (todo) {
       aciertos++; retro.textContent = Juego.frasePositiva(); retro.className = "retro bien";
       Juego.acierto();
-      temporizador = setTimeout(siguiente, 950);
+      temporizador = setTimeout(siguiente, 1100);
     } else {
       retro.textContent = "¡Ups! Mira cómo se hace paso a paso 👇";
       retro.className = "retro mal";
@@ -96,19 +144,17 @@ const Aritmetica = (function () {
       const col = ORDEN[i] || ("posición " + (i + 1));
       if (suma) {
         const s = x + y + acarreo;
-        const escribe = s % 10, llevo = Math.floor(s / 10);
         pasos.push("<b>" + col + "</b>: " + x + " + " + y +
           (acarreo ? " + " + acarreo + " (que llevabas)" : "") + " = " + s +
-          " → escribes <b>" + escribe + "</b>" + (llevo ? " y llevas " + llevo : ""));
-        acarreo = llevo;
+          " → escribes <b>" + (s % 10) + "</b>" + (s >= 10 ? " y llevas " + Math.floor(s / 10) : ""));
+        acarreo = Math.floor(s / 10);
       } else {
         const arriba = x - acarreo;
         let res, presta;
         if (arriba < y) {
           res = arriba + 10 - y; presta = 1;
           pasos.push("<b>" + col + "</b>: " + (acarreo ? x + " − " + acarreo + " = " + arriba + "; " : "") +
-            "como " + arriba + " es menor que " + y + ", pides prestado → " + (arriba + 10) + " − " + y +
-            " = <b>" + res + "</b>");
+            "como " + arriba + " es menor que " + y + ", pides prestado → " + (arriba + 10) + " − " + y + " = <b>" + res + "</b>");
         } else {
           res = arriba - y; presta = 0;
           pasos.push("<b>" + col + "</b>: " + (acarreo ? x + " − " + acarreo + " = " + arriba + "; " : "") +
@@ -117,7 +163,7 @@ const Aritmetica = (function () {
         acarreo = presta;
       }
     }
-    if (suma && acarreo) pasos.push("Al final te queda " + acarreo + " que llevabas: lo escribes a la izquierda.");
+    if (suma && acarreo) pasos.push("Al final llevabas " + acarreo + ": lo escribes a la izquierda.");
     return pasos;
   }
 
@@ -130,7 +176,6 @@ const Aritmetica = (function () {
       pasos.map((p) => "<li>" + p + "</li>").join("") +
       "</ol><p class='explica-res'>Resultado: <b>" + fmt(actual.r) + "</b></p>";
     box.classList.remove("oculto");
-    document.getElementById("arit-resp").classList.add("oculto");
     document.getElementById("arit-siguiente").classList.remove("oculto");
     document.getElementById("arit-siguiente").focus();
   }
@@ -148,7 +193,7 @@ const Aritmetica = (function () {
     else { el.classList.add("oculto"); Juego.cronDetener(); }
   }
   function tiempoAgotado() {
-    document.getElementById("arit-input").disabled = true;
+    document.querySelectorAll("#arit-grid .op-resp").forEach((i) => (i.disabled = true));
     const retro = document.getElementById("arit-retro");
     retro.textContent = "⏰ ¡Se acabó el tiempo! Mira cómo se hace 👇";
     retro.className = "retro mal";
@@ -160,9 +205,8 @@ const Aritmetica = (function () {
     Juego.cronDetener();
     document.getElementById("arit-timer").classList.add("oculto");
     document.getElementById("arit-progreso").style.width = "100%";
-    document.getElementById("arit-pregunta").textContent =
-      "¡Terminaste, " + Juego.jugador() + "! " + aciertos + " de " + cola.length + " ⭐";
-    document.getElementById("arit-resp").classList.add("oculto");
+    document.getElementById("arit-grid").innerHTML =
+      '<h2 class="pregunta">¡Terminaste, ' + Juego.jugador() + "! " + aciertos + " de " + cola.length + " ⭐</h2>";
     document.getElementById("arit-explica").classList.add("oculto");
     document.getElementById("arit-siguiente").classList.add("oculto");
     const retro = document.getElementById("arit-retro");
@@ -174,7 +218,6 @@ const Aritmetica = (function () {
   function volverSelector() {
     if (temporizador) { clearTimeout(temporizador); temporizador = null; }
     Juego.cronDetener();
-    document.getElementById("arit-resp").classList.remove("oculto");
     document.getElementById("arit-explica").classList.add("oculto");
     document.getElementById("arit-siguiente").classList.add("oculto");
     elJuego().classList.add("oculto");

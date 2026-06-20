@@ -35,8 +35,12 @@
         <div id="arit-grid" class="op-grid-wrap"></div>
         <button class="boton-grande" id="arit-enviar">Comprobar</button>
         <p class="retro" id="arit-retro"></p>
+        <div id="arit-solucion" class="op-grid-wrap oculto"></div>
         <div class="explica oculto" id="arit-explica"></div>
-        <button class="boton-grande oculto" id="arit-siguiente">Siguiente ▶</button>
+        <div class="fila-botones">
+          <button class="boton-secundario oculto" id="arit-reintentar">🔄 Volver a intentar</button>
+          <button class="boton-grande oculto" id="arit-siguiente">Siguiente ▶</button>
+        </div>
       </div>
     </section>
   </div>
@@ -64,6 +68,7 @@
     Juego.iniciarBase();
     Aritmetica.init();
     document.getElementById("arit-enviar").onclick = function () { Aritmetica.comprobar(); };
+    document.getElementById("arit-reintentar").onclick = function () { Aritmetica.reintentar(); };
     document.getElementById("arit-siguiente").onclick = function () { Aritmetica.siguiente(); };
   </script>
 </body>

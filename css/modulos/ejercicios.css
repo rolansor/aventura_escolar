@@ -212,3 +212,5 @@
 .op-grid .col-m { color: #8a5cf6; } .op-grid .col-dm { color: #ef5ba1; } .op-grid .col-cm { color: #e67e22; }
 .op-grid .op-resp.ok  { border-color: #25c281; background: #e9fbf3; color: #1c8f63; }
 .op-grid .op-resp.mal { border-color: #ef5350; background: #fdecea; color: #c0392b; }
+
+.op-grid .op-num.op-sol { background: #e9fbf3; border-color: #25c281; }

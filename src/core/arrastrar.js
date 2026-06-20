@@ -75,7 +75,7 @@ window.Arrastrar = (function () {
     host.innerHTML =
       '<div class="cestas">' + opts.cestas.map((c) =>
         '<div class="cesta" data-id="' + c.id + '"><span class="cesta-ic">' + (c.emoji || "📦") + "</span>" +
-        '<span class="cesta-nom">' + c.nombre + "</span><div class="cesta-caidas"></div></div>").join("") + "</div>" +
+        '<span class="cesta-nom">' + c.nombre + '</span><div class="cesta-caidas"></div></div>').join("") + "</div>" +
       '<div class="fila-fichas"></div>';
     const fila = host.querySelector(".fila-fichas");
     const zonas = Array.prototype.slice.call(host.querySelectorAll(".cesta"));

@@ -41,8 +41,10 @@ volver manipulativo` explicando qué objeto faltaría. El motor `MC` (`src/core/
 - **Servido**: `python -m http.server` y abrir http://localhost:8000.
 - Tras editar JS/CSS recargar con **Ctrl + Shift + R**. Tras editar un `data/*.json`, ejecutar
   `python herramientas/build.py` para regenerar los `data/*.js`.
-- **No hay Node** (no `node --check`). Sí hay **Python** (con `shapely` y `json5` instalados, usados
-  para generar los datos de mapas). Validar a ojo o con un servidor local.
+- **No hay Node** (no `node --check`), pero **sí hay `bun`**: para parse-checkear un módulo sin
+  ejecutarlo usar `bun build --no-bundle <archivo.js>` (silencio = OK; imprime el error de sintaxis si
+  lo hay). Útil porque servir con 200 NO garantiza que el JS parsee (p. ej. comillas mal anidadas).
+- Sí hay **Python** (con `shapely` y `json5` instalados, usados para generar los datos de mapas).
 - three.js r128 con copia local en `lib/three.min.js` (el 3D funciona offline).
 - Persistencia: **todo en `localStorage`** (progreso, config, contenido del editor).
 

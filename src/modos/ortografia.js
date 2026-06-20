@@ -229,7 +229,8 @@ const Ortografia = (function () {
     }
     elSelector().classList.add("oculto");
     elJuego().classList.remove("oculto");
-    document.getElementById("orto-regla").textContent = "💡 " + cat.regla;
+    document.getElementById("orto-regla").textContent = "";   // la regla la sugiere la mascota
+    Juego.tip(cat.regla);
     mostrar();
   }
 
@@ -238,7 +239,8 @@ const Ortografia = (function () {
     document.getElementById("orto-progreso").style.width = (indice / cola.length) * 100 + "%";
     document.getElementById("orto-retro").textContent = "";
     document.getElementById("orto-retro").className = "retro";
-    document.getElementById("orto-pista").textContent = ej.pista || "";
+    document.getElementById("orto-pista").textContent = "";
+    if (ej.pista) Juego.tip(ej.pista);
     const opciones = document.getElementById("orto-opciones");
     opciones.innerHTML = "";
 

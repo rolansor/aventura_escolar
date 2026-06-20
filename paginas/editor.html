@@ -164,14 +164,11 @@
   <script src="src/modos/editor.js"></script>
   <script>
     window.RUTA_INICIO = "index.html";
-    // Zona de adultos: pide clave al entrar.
+    // Zona de adultos: la clave se pide en un modal DENTRO del menú (index.html).
+    // Aquí solo se entra con el permiso ya concedido; sin él, se rebota al menú
+    // sin mostrar nada (no se puede saltar abriendo la página directamente).
     (function () {
-      var CLAVE = "24861793";
-      if (sessionStorage.getItem("ads_editor_ok") !== "1") {
-        var intento = window.prompt("🔒 Esta sección es para adultos.\nEscribe la clave para entrar:");
-        if (intento === null || intento.trim() !== CLAVE) { location.href = "index.html"; return; }
-        sessionStorage.setItem("ads_editor_ok", "1");
-      }
+      if (sessionStorage.getItem("ads_editor_ok") !== "1") { location.href = "index.html"; return; }
       document.getElementById("pantalla-editor").classList.add("activa"); // mostrar solo con la clave
       Datos.cargar(["ortografia", "generador-parrafos"]).then(function () {
         Juego.iniciarBase();

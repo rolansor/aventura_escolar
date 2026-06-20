@@ -5,6 +5,37 @@ Para un niño de ~9 años, en **español de Ecuador**. Sin framework ni npm. **E
 (ver `docs/ARQUITECTURA.md`): un HTML por módulo en `paginas/`, lógica en `src/`, datos en `data/`,
 CSS en `css/modulos/`. Funciona **con doble clic** (`index.html`) **y servido**.
 
+## Filosofía de diseño (LEER ANTES DE CREAR CUALQUIER ACTIVIDAD)
+**Principio rector**: las actividades deben ser lo **más interactivas y manipulativas posible**, NO
+simples baterías de "pregunta y respuesta". Diseña como lo harían **Piaget** y **Montessori**: el niño
+de ~9 años está en la etapa de **operaciones concretas** — aprende **manipulando objetos**, no leyendo
+enunciados abstractos. Antes de elegir el tipo de actividad, pregúntate: *"¿qué objeto manipularía el
+niño en una clase Montessori para entender esto?"* y recréalo en pantalla.
+
+Reglas concretas (en orden de preferencia):
+1. **Manipular > elegir > teclear.** Prefiere **arrastrar, tocar, construir, ordenar, emparejar,
+   verter, dibujar** sobre seleccionar una opción; y seleccionar sobre teclear. El opción-múltiple es
+   el **último recurso**, no el primero. Ej.: para valor posicional, que **arme el número con bloques
+   base-10**; para fracciones, que **parta y pinte la pizza**; para la hora, que **mueva las agujas**.
+2. **Representación concreta siempre visible.** Toda idea abstracta necesita un **objeto en pantalla**:
+   SVG dibujado a mano, **bloques/fichas/regletas** (estilo material Montessori), emojis grandes,
+   diagramas clicables, o **three.js** cuando dé volumen/relieve real (no decoración vacía).
+3. **Retroalimentación inmediata y autocorrectiva.** El material debe "responder" al instante (se
+   ilumina verde/rojo, encaja o no, se anima). El error es información, no castigo — frases amables
+   (`Juego.frasePositiva`), nunca regaños. El "control del error" lo lleva el propio material (Montessori).
+4. **Manos primero, símbolo después.** Introduce la cantidad/idea con el objeto y **luego** conecta con
+   el número o la palabra. Aprender haciendo y descubriendo, no memorizando reglas.
+5. **Juego con propósito y contexto del Ecuador.** Enmarca con micro-narrativas, metas y celebración
+   (`Juego.acierto/granPremio`), y usa contextos locales reales (mercado, regiones, fauna, monedas USD).
+6. **Accesible para 9 años, sin lectura pesada.** Enunciados muy cortos, íconos que guían, objetivo
+   obvio de un vistazo. Si necesita un párrafo de instrucciones, rediséñalo.
+
+Patrón de referencia ya en el repo: el modo **"Señala la parte"** (`src/modos/senala.js`, SVG clicable)
+y **Valor posicional** (bloques base-10) encarnan esto. Al crear un modo nuevo, **parte de la
+interacción física**, no del cuestionario. Si caes en opción-múltiple, deja un comentario `// TODO:
+volver manipulativo` explicando qué objeto faltaría. El motor `MC` (`src/core/mc.js`) sirve para
+*cerrar* repasos rápidos, pero **no debe ser el molde por defecto** de las actividades nuevas.
+
 ## Cómo ejecutar / probar
 - **Doble clic**: abrir `index.html` (los datos están precompilados en `data/*.js`).
 - **Servido**: `python -m http.server` y abrir http://localhost:8000.
@@ -26,14 +57,17 @@ página en `paginas/` que el menú enlaza. Las páginas de `paginas/` usan `<bas
 | `data/*.json` (+ `*.js` generados por `build.py`) | `DATOS.*`, `NINO`, `ECUADOR_SVG`, `ECUADOR_CANTONES` | **Datos puros**: ortografia, secuencias, parrafos, generador-parrafos, materias, nino, mapa-ec, cantones, mapas/*. Editar el `.json` y correr `herramientas/build.py`. |
 | `src/core/juego.js` | `Juego` | Núcleo: marcador, sonido, `localStorage`, temporizador, utilidades (`azar/azarEl/mezclar/cargar/guardar/frasePositiva/construirSecuencia`, `acierto/error/granPremio`, `cron*`, `jugador`, `aplicarIdentidad`) e `iniciarBase()` (arranque común + barra superior). |
 | `src/core/datos.js` | `Datos` | `Datos.cargar([...])` lee `window.__DATOS__` y rellena los globales. |
-| `src/core/menu.js` | `Menu` | Menú de materias (tarjetas desde `DATOS.materias`, enlaza a `paginas/<modo>.html`). |
+| `src/core/menu.js` | `Menu` | Menú de materias (tarjetas desde `DATOS.materias`, enlaza a `paginas/<modo>.html`). **Modal de clave** (`pedirClave`) que se abre ANTES de ir al editor; sin clave válida no se navega. |
+| `src/core/mc.js` | `MC` | Motor de **opción múltiple** (repasos rápidos). Fábrica `MC(px, temas)`; ronda de 10. **No es el patrón por defecto** (ver Filosofía de diseño). |
+| `src/core/actividad.js` | `Actividad` | Motor de **actividades manipulativas** (hermano de `MC`). Fábrica `Actividad(px, temas, opts)`; cada tema tiene `ronda(host, ctrl)` que arma la interacción en `#<px>-extra` y resuelve con `ctrl.ganar()/fallar()/reintento()`. Sin temporizador (autocorrectivo). Reutiliza la misma estructura de página por prefijo que `MC`. |
+| `src/core/arrastrar.js` | `Arrastrar` | Arrastrar-y-soltar con eventos de **puntero** (mouse + dedo). `Arrastrar.hacer(item, zonas, alSoltar)`; marca `.zona-hover` y devuelve la zona destino (o null). |
 | `src/modos/ortografia.js` | `Ortografia` | Ejercicios desde `DATOS.ortografia`. |
 | `src/modos/secuencias.js` | `Secuencias` | Secuencias numéricas. |
 | `src/modos/copia.js` | `Copia` | Copia y Dictado. |
 | `src/modos/editor.js` | `Editor` | Zona de adultos (clave **24861793**). |
 | `src/modos/mapas.js` | `Mapas` | Mapa SVG por provincias (usa `ECUADOR_SVG`). |
 | `src/modos/mapacantones.js` | `MapaCantones` | Mapa GeoJSON por cantones + provincia en 3D (usa `ECUADOR_CANTONES`). |
-| `src/efectos/escena3d.js` / `luna.js` | `ESCENA` / `Luna` | Fondo 3D y mascota. |
+| `src/efectos/escena3d.js` / `luna.js` | `ESCENA` / `Luna` | Fondo 3D y mascota. `Luna` (niño/niña según `genero`) tiene gestos espontáneos (saludo/pensar), reacciones (feliz/triste/fiesta) y **`Luna.tip(texto)` / `Luna.decir(texto)`** para hablar por su globo. |
 | `css/modulos/*.css` | — | Estilos modulares (orden en `css/modulos/_orden.md`). |
 | `recursos/ecuador_1.0/2.0.svg`, `recursos/banderas/EC-*.svg` | — | SVG original/horneado + banderas provinciales. |
 | `paginas/*.html` | — | Una por módulo; incluye sus `data/*.js`, core, su modo, y arranca con `Datos.cargar(...).then(() => { Juego.iniciarBase(); Modo.init(); })`. |
@@ -197,6 +231,12 @@ están en `editor.js` y **deben permanecer alineadas** con las claves que lee `o
 
 ## Convenciones del proyecto
 - **Idioma**: todo en español (UI, comentarios, nombres de variables y funciones). Mantener tildes/ñ.
+- **Tips/pistas**: NO se muestran como banner sobre el ejercicio; se enrutan a la mascota con
+  `Juego.tip(texto)` (→ `Luna.tip`), que los "sugiere" en su globo. Los modos dejan vacíos los
+  elementos de regla/pista (`#…-tema`, `#orto-regla`, `#orto-pista`), que el CSS oculta con `:empty`.
+- **Zona de adultos**: la clave (**24861793**) se pide en un **modal del menú** (`Menu.pedirClave`);
+  `editor.html` solo entra con el permiso de sesión (`sessionStorage ads_editor_ok`) y, sin él, rebota
+  al menú sin mostrar nada. No usar `window.prompt`.
 - **Sin dependencias** salvo three.js por CDN. No introducir build tools ni paquetes npm.
 - **Compatibilidad `file://`**: nada de `fetch` a archivos locales, módulos ES, ni rutas absolutas.
 - **Bancos de palabras**: español de Ecuador, vocabulario apropiado para ~9 años. Nombre del niño: Nelson.

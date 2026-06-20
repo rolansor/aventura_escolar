@@ -126,6 +126,8 @@ const Juego = (function () {
     confetiHTML();
   }
   function reaccionMascota(tipo) { if (window.Luna && Luna.reaccion) Luna.reaccion(tipo); }
+  // La pista/tip la "sugiere" la mascota en su globo (no como banner sobre el ejercicio).
+  function tip(texto) { if (window.Luna && Luna.tip) Luna.tip(texto); }
 
   function reiniciarProgreso() {
     if (!window.confirm("¿Seguro que quieres reiniciar a CERO las estrellas, la racha y el nivel de " + jugador() + "?")) return;
@@ -234,7 +236,7 @@ const Juego = (function () {
   return {
     iniciarBase, guardar, cargar, azar, azarEl, mezclar, frasePositiva, construirSecuencia,
     acierto, error, granPremio, sumarEstrellas, reiniciarProgreso,
-    config, cronIniciar, cronDetener, jugador, avatarNombre, genero, aplicarIdentidad
+    config, cronIniciar, cronDetener, jugador, avatarNombre, genero, aplicarIdentidad, tip
   };
 })();
 window.Juego = Juego;

@@ -53,7 +53,7 @@
   box-shadow: var(--sombra);
   margin-bottom: 4px;
   width: max-content;
-  max-width: 190px;
+  max-width: 230px;
   text-align: center;
   opacity: 0;
   transform: translateY(8px) scale(0.85);

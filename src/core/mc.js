@@ -43,10 +43,11 @@ window.MC = function (px, temas) {
   function mostrar() {
     const q = cola[i];
     $("progreso").style.width = (i / cola.length * 100) + "%";
-    if ($("tema")) $("tema").textContent = q.tema ? ("💡 " + q.tema) : "";
+    if ($("tema")) $("tema").textContent = "";        // el tip ya no va como banner sobre el ejercicio
     if ($("extra")) $("extra").innerHTML = q.html || "";
     $("pregunta").innerHTML = q.pregunta || "";
-    if ($("pista")) $("pista").textContent = q.pista || "";
+    if ($("pista")) $("pista").textContent = "";
+    Juego.tip(q.pista || q.tema);                     // ...lo sugiere la mascota en su globo
     const op = $("opciones"); op.innerHTML = "";
     Juego.mezclar((q.opciones || []).slice()).forEach((o) => crearOp(o, String(o) === String(q.correcta)));
     const r = $("retro"); r.textContent = ""; r.className = "retro";

@@ -11,7 +11,7 @@
 const Luna = (function () {
   let renderer, scene, camera, reloj, grupo;
   let ojoIzq, ojoDer, brazoIzq, brazoDer, lunita;
-  let estado = "idle", tReaccion = 0;
+  let estado = "idle", tReaccion = 0, proxGesto = 5;
   let ok3d = false;
 
   const cont = () => document.getElementById("luna");
@@ -202,12 +202,30 @@ const Luna = (function () {
         grupo.rotation.z = Math.sin(k * 4) * 0.12;
         brazoIzq.rotation.z = 0.2; brazoDer.rotation.z = -0.2;
         ojoIzq.scale.set(1, 0.4, 1); ojoDer.scale.set(1, 0.4, 1);
+      } else if (estado === "saludo" || estado === "tip") {
+        // Saluda/da una idea: mueve un brazo y ladea la cabeza
+        baseY += Math.abs(Math.sin(k * 7)) * 0.12;
+        brazoDer.rotation.z = -0.5 - Math.abs(Math.sin(k * 15)) * 1.2;
+        brazoIzq.rotation.z = 0.5;
+        grupo.rotation.z = Math.sin(k * 6) * 0.07;
+      } else if (estado === "pensar") {
+        // Piensa: se inclina y mira hacia arriba
+        grupo.rotation.z = 0.12;
+        brazoDer.rotation.z = -1.3;
+        ojoIzq.position.y = 1.06; ojoDer.position.y = 1.06;
       }
     } else {
       estado = "idle";
       brazoIzq.rotation.z = 0.5; brazoDer.rotation.z = -0.5;
+      ojoIzq.position.y = 1.02; ojoDer.position.y = 1.02;
       const blink = Math.sin(t * 2.4) > 0.97 ? 0.15 : 1; // parpadeo
       ojoIzq.scale.set(1, blink, 1); ojoDer.scale.set(1, blink, 1);
+      // Gesto espontáneo cada cierto rato (saluda o piensa solita)
+      if (t > proxGesto) {
+        proxGesto = t + 7 + Math.random() * 7;
+        estado = Math.random() < 0.6 ? "saludo" : "pensar";
+        tReaccion = 1.2;
+      }
     }
     grupo.position.y = baseY;
 
@@ -228,13 +246,36 @@ const Luna = (function () {
   }
   function mostrarGlobo(tipo) {
     const n = Juego.jugador();
-    const feliz = ["¡Muy bien, " + n + "! 😄", "¡Genial! 🌟", "¡Sigue así! 💜", "¡Correcto! ✨", "¡Eres increíble! 🤩"];
-    const triste = ["¡Casi! 🙂", "¡Tú puedes, " + n + "! 💪", "¡Otra vez! 🌙", "¡No te rindas! 💜"];
+    const feliz = [
+      "¡Muy bien, " + n + "! 😄", "¡Genial! 🌟", "¡Sigue así! 💜", "¡Correcto! ✨", "¡Eres increíble! 🤩",
+      "¡Qué crack, " + n + "! 💪", "¡Brillante! 💡", "¡Lo clavaste! 🎯", "¡Súper! 🚀", "¡Bien pensado! 🧠",
+      "¡Esa es! 👏", "¡Vas volando! 🪁"
+    ];
+    const triste = [
+      "¡Casi! 🙂", "¡Tú puedes, " + n + "! 💪", "¡Otra vez! 🌙", "¡No te rindas! 💜",
+      "¡Casi casi! Respira y prueba 🌈", "¡Tranqui, " + n + ", inténtalo de nuevo! 🤗",
+      "¡Equivocarse también enseña! 🌱", "¡Estás cerquita! 🔎"
+    ];
+    const fiesta = ["¡Lo lograste! 🏆", "¡Campeón, " + n + "! 🥇", "¡Increíble ronda! 🎉", "¡Eres una estrella! 🌟"];
     let txt;
     if (tipo === "triste") txt = triste[Math.floor(Math.random() * triste.length)];
-    else if (tipo === "fiesta") txt = "¡Lo lograste! 🏆";
+    else if (tipo === "fiesta") txt = fiesta[Math.floor(Math.random() * fiesta.length)];
     else txt = feliz[Math.floor(Math.random() * feliz.length)];
-    mostrarGloboTexto(txt, 1800);
+    mostrarGloboTexto(txt, 1900);
+  }
+
+  /* Pista/tip: la mascota la "sugiere" en su globo (no sobre el ejercicio). */
+  function tip(texto) {
+    if (!texto) return;
+    estado = "tip"; tReaccion = 1.4;
+    if (!ok3d) animarRespaldo("feliz");
+    mostrarGloboTexto("💡 " + texto, 5200);
+  }
+  /* Decir algo arbitrario en el globo (saludos, avisos). */
+  function decir(texto, ms) {
+    if (!texto) return;
+    estado = "saludo"; tReaccion = 1.2;
+    mostrarGloboTexto(texto, ms || 2600);
   }
 
   /* Actualiza el nombre del avatar y lo reconstruye (niña/niño) en vivo. */
@@ -329,6 +370,6 @@ const Luna = (function () {
     el.addEventListener("pointercancel", soltar);
   }
 
-  return { init, reaccion, aplicarConfig };
+  return { init, reaccion, aplicarConfig, tip, decir };
 })();
 window.Luna = Luna;

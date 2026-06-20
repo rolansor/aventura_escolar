@@ -144,6 +144,12 @@
     "desc": "Plantas, animales, cuerpo y naturaleza",
     "actividades": [
       {
+        "modo": "senala",
+        "icono": "👆",
+        "nombre": "Señala la parte",
+        "desc": "Toca la parte de la planta o del cuerpo"
+      },
+      {
         "modo": "plantas",
         "icono": "🌿",
         "nombre": "Las plantas",

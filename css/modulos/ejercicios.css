@@ -237,3 +237,11 @@
 /* División: campos cociente / residuo */
 .campo-min { display: flex; flex-direction: column; align-items: center; font-size: .85rem; color: #3a4266; font-weight: bold; gap: 4px; }
 .campo-min .entrada-texto { width: min(160px,40vw); }
+
+/* "Señala la parte" — diagramas SVG interactivos */
+.sen-mapa { text-align: center; }
+.sen-svg { width: clamp(200px,70vw,330px); height: auto; display: block; margin: 8px auto; }
+.sen-svg .parte { cursor: pointer; transition: filter .15s ease; }
+.sen-svg .parte:hover { filter: brightness(1.08) drop-shadow(0 0 4px rgba(0,0,0,.3)); }
+.sen-svg .parte.ok { filter: drop-shadow(0 0 8px #25c281) brightness(1.06); }
+.sen-svg .parte.mal { filter: drop-shadow(0 0 8px #ef5350); }

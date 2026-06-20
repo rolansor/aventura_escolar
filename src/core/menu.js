@@ -24,6 +24,7 @@ const Menu = (function () {
     medidas:    "paginas/medidas.html",
     hora:       "paginas/hora.html",
     fracciones: "paginas/fracciones.html",
+    senala:     "paginas/senala.html",
     plantas:    "paginas/plantas.html",
     cuerpo:     "paginas/cuerpo.html",
     animales:   "paginas/animales.html",

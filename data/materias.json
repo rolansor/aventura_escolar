@@ -29,7 +29,25 @@
         "modo": "secuencias",
         "icono": "🔢",
         "nombre": "Secuencias",
-        "desc": "Suma, resta, multiplicación y más"
+        "desc": "Patrones: suma, resta, cuadrados, Fibonacci…"
+      },
+      {
+        "modo": "tablas",
+        "icono": "✖️",
+        "nombre": "Tablas",
+        "desc": "Tablas de multiplicar del 2 al 12"
+      },
+      {
+        "modo": "aritmetica",
+        "icono": "➕",
+        "nombre": "Sumas y restas",
+        "desc": "De 3 a 10 cifras, con explicación paso a paso"
+      },
+      {
+        "modo": "valor",
+        "icono": "🔢",
+        "nombre": "Valor posicional",
+        "desc": "Unidades, decenas, centenas y más"
       }
     ]
   },

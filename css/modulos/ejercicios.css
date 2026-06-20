@@ -187,3 +187,11 @@
 #quiz-imagen { text-align: center; }
 .quiz-bandera { width: 120px; height: auto; border-radius: 6px; border: 1px solid #e3e9f7;
   box-shadow: 0 3px 8px rgba(0,0,0,0.18); margin: 4px auto 6px; display: inline-block; }
+
+/* Sumas y restas: explicación paso a paso (llevando / prestando) */
+.explica { background: #eef3ff; border: 2px solid #d7e2ff; border-radius: 14px;
+  padding: 14px 18px; margin: 10px auto 0; max-width: 560px; text-align: left; color: #2c3358; }
+.explica .explica-titulo { font-weight: bold; margin: 0 0 6px; }
+.explica ol { margin: 6px 0; padding-left: 1.4rem; }
+.explica li { margin: 4px 0; line-height: 1.4; }
+.explica .explica-res { font-size: 1.15rem; margin: 8px 0 0; }

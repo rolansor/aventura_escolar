@@ -14,6 +14,8 @@ const Menu = (function () {
     secuencias: "paginas/secuencias.html",
     mapas:      "paginas/mapas.html",
     cantones:   "paginas/cantones.html",
+    quiz:       "paginas/quiz.html",
+    donde:      "paginas/donde.html",
     editor:     "paginas/editor.html"
   };
 

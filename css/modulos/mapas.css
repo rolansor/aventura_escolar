@@ -199,3 +199,12 @@
   line-height: 1.5;
 }
 .mapa-falta code { background: #eef3ff; padding: 2px 7px; border-radius: 7px; font-weight: bold; }
+
+/* ¿Dónde está? (quiz: tocar la provincia en el mapa) */
+.donde-mapa .prov { fill: #bcd3f5; stroke: #ffffff; stroke-width: 0.6; cursor: pointer;
+  transition: fill 0.15s, filter 0.15s; }
+.donde-mapa .prov:hover { filter: brightness(1.06); fill: #a9c7f2; }
+.donde-mapa .prov.ok  { fill: #37bc9b; }
+.donde-mapa .prov.mal { fill: #ef5350; }
+.donde-mapa .prov.obj { fill: #a0d468; stroke: #2b2b2b; stroke-width: 1.4; }
+#donde-progreso-cont { width: 100%; max-width: 680px; }

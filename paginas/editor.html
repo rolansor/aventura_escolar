@@ -28,7 +28,7 @@
       </div>
     </header>
 
-    <section id="pantalla-editor" class="pantalla activa">
+    <section id="pantalla-editor" class="pantalla">
       <h2 class="titulo-seccion">⚙️ Crear y Configurar</h2>
       <p class="aviso-adulto">Pensado para un adulto: aquí puedes crear secuencias y párrafos a la medida.</p>
 
@@ -172,6 +172,7 @@
         if (intento === null || intento.trim() !== CLAVE) { location.href = "index.html"; return; }
         sessionStorage.setItem("ads_editor_ok", "1");
       }
+      document.getElementById("pantalla-editor").classList.add("activa"); // mostrar solo con la clave
       Datos.cargar(["ortografia", "generador-parrafos"]).then(function () {
         Juego.iniciarBase();
         Editor.init();

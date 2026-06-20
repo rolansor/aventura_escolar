@@ -50,6 +50,18 @@
         "icono": "🧩",
         "nombre": "Ecuador por cantones",
         "desc": "Provincias, cantones y banderas"
+      },
+      {
+        "modo": "quiz",
+        "icono": "🧠",
+        "nombre": "Quiz del Ecuador",
+        "desc": "Capitales, regiones, cantones, gentilicios y banderas"
+      },
+      {
+        "modo": "donde",
+        "icono": "📍",
+        "nombre": "¿Dónde está?",
+        "desc": "Toca la provincia en el mapa"
       }
     ]
   },

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es-EC">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="../" />
+  <title>Quiz del Ecuador — La Aventura de Nelson</title>
+  <link rel="stylesheet" href="css/modulos/base.css" />
+  <link rel="stylesheet" href="css/modulos/ejercicios.css" />
+  <link rel="stylesheet" href="css/modulos/efectos.css" />
+</head>
+<body>
+  <canvas id="lienzo3d"></canvas>
+  <div id="interfaz">
+    <header id="barra-superior">
+      <div class="grupo-barra grupo-izq">
+        <button id="btn-inicio" class="boton-icono" title="Ir al menú principal">🏠</button>
+        <button id="btn-volver-global" class="boton-icono" title="Volver atrás">↩️</button>
+      </div>
+      <div id="marcador">
+        <span class="estrellas">⭐ <b id="puntaje-estrellas">0</b></span>
+        <span class="racha">🔥 <b id="puntaje-racha">0</b></span>
+        <span class="nivel">Nivel <b id="puntaje-nivel">1</b></span>
+      </div>
+      <div class="grupo-barra grupo-der">
+        <button id="btn-sonido" class="boton-icono" title="Activar/silenciar sonido">🔊</button>
+      </div>
+    </header>
+
+    <section id="pantalla-quiz" class="pantalla activa">
+      <div id="quiz-selector" class="selector-categorias"></div>
+      <div id="quiz-juego" class="caja-juego oculto">
+        <div class="fila-timer"><span class="timer oculto" id="quiz-timer"></span></div>
+        <div class="progreso"><div class="progreso-barra" id="quiz-progreso"></div></div>
+        <p class="regla-ayuda" id="quiz-tema"></p>
+        <div id="quiz-imagen"></div>
+        <h2 class="pregunta" id="quiz-pregunta"></h2>
+        <p class="pista" id="quiz-pista"></p>
+        <div class="opciones" id="quiz-opciones"></div>
+        <p class="retro" id="quiz-retro"></p>
+      </div>
+    </section>
+  </div>
+
+  <div id="luna" title="Luna — ¡arrástrame a donde quieras!">
+    <div class="luna-globo" id="luna-globo">¡Hola! Soy Luna 🌙</div>
+    <canvas id="luna-canvas"></canvas>
+    <div class="luna-nombre">🌙 Luna ✋</div>
+  </div>
+  <div id="celebracion"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>window.THREE || document.write('<scr'+'ipt src="lib/three.min.js"></scr'+'ipt>');</script>
+  <script src="src/efectos/escena3d.js"></script>
+  <script src="src/efectos/luna.js"></script>
+  <script src="data/mapas/provincias.js"></script>
+  <script src="data/mapas/detalle.js"></script>
+  <script src="data/mapas/regiones.js"></script>
+  <script src="data/cantones.js"></script>
+  <script src="src/core/datos.js"></script>
+  <script src="src/core/juego.js"></script>
+  <script src="src/modos/quiz.js"></script>
+  <script>
+    window.RUTA_INICIO = "index.html";
+    window.MODO_VOLVER = function () {
+      const juego = document.getElementById("quiz-juego");
+      if (juego && !juego.classList.contains("oculto")) Quiz.volverSelector();
+      else location.href = "index.html?materia=sociales";
+    };
+    Datos.cargar(["mapas/provincias", "mapas/detalle", "mapas/regiones", "cantones"]).then(function () {
+      Juego.iniciarBase();
+      Quiz.init();
+    }).catch(function (e) { console.error("Error cargando datos:", e); });
+  </script>
+</body>
+</html>

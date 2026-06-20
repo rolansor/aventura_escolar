@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es-EC">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="../" />
+  <title>¿Dónde está? — La Aventura de Nelson</title>
+  <link rel="stylesheet" href="css/modulos/base.css" />
+  <link rel="stylesheet" href="css/modulos/ejercicios.css" />
+  <link rel="stylesheet" href="css/modulos/mapas.css" />
+  <link rel="stylesheet" href="css/modulos/efectos.css" />
+</head>
+<body>
+  <canvas id="lienzo3d"></canvas>
+  <div id="interfaz">
+    <header id="barra-superior">
+      <div class="grupo-barra grupo-izq">
+        <button id="btn-inicio" class="boton-icono" title="Ir al menú principal">🏠</button>
+        <button id="btn-volver-global" class="boton-icono" title="Volver atrás">↩️</button>
+      </div>
+      <div id="marcador">
+        <span class="estrellas">⭐ <b id="puntaje-estrellas">0</b></span>
+        <span class="racha">🔥 <b id="puntaje-racha">0</b></span>
+        <span class="nivel">Nivel <b id="puntaje-nivel">1</b></span>
+      </div>
+      <div class="grupo-barra grupo-der">
+        <button id="btn-sonido" class="boton-icono" title="Activar/silenciar sonido">🔊</button>
+      </div>
+    </header>
+
+    <section id="pantalla-donde" class="pantalla activa">
+      <h2 class="titulo-seccion">📍 ¿Dónde está?</h2>
+      <div class="progreso" id="donde-progreso-cont"><div class="progreso-barra" id="donde-progreso"></div></div>
+      <h2 class="pregunta" id="donde-pregunta">Cargando…</h2>
+      <div id="donde-svg-cont" class="mapa-svg-cont"></div>
+      <p class="retro" id="donde-retro"></p>
+      <button class="boton-grande oculto" id="donde-otra">🔁 Otra ronda</button>
+    </section>
+  </div>
+
+  <div id="luna" title="Luna — ¡arrástrame a donde quieras!">
+    <div class="luna-globo" id="luna-globo">¡Hola! Soy Luna 🌙</div>
+    <canvas id="luna-canvas"></canvas>
+    <div class="luna-nombre">🌙 Luna ✋</div>
+  </div>
+  <div id="celebracion"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>window.THREE || document.write('<scr'+'ipt src="lib/three.min.js"></scr'+'ipt>');</script>
+  <script src="src/efectos/escena3d.js"></script>
+  <script src="src/efectos/luna.js"></script>
+  <script src="data/mapa-ec.js"></script>
+  <script src="data/mapas/provincias.js"></script>
+  <script src="src/core/datos.js"></script>
+  <script src="src/core/juego.js"></script>
+  <script src="src/modos/donde.js"></script>
+  <script>
+    window.RUTA_INICIO = "index.html";
+    window.MODO_VOLVER = function () { location.href = "index.html?materia=sociales"; };
+    Datos.cargar(["mapa-ec", "mapas/provincias"]).then(function () {
+      Juego.iniciarBase();
+      Donde.init();
+      document.getElementById("donde-otra").onclick = function () { Donde.otraRonda(); };
+    }).catch(function (e) { console.error("Error cargando datos:", e); });
+  </script>
+</body>
+</html>

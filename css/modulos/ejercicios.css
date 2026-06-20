@@ -334,3 +334,74 @@
 /* Los tips ya no aparecen como banner sobre el ejercicio (los sugiere la mascota) */
 .regla-ayuda:empty { display: none; }
 #orto-regla:empty, #orto-pista:empty { display: none; }
+
+/* ---------- Redondeo: recta numérica ---------- */
+.recta { position: relative; width: min(440px,94%); margin: 28px auto 6px; height: 72px; }
+.recta-linea { position: absolute; top: 38px; left: 0; right: 0; height: 6px; background: #c7d2f0; border-radius: 4px; }
+.recta-medio { position: absolute; top: 22px; left: 50%; transform: translateX(-50%); width: 3px; height: 36px; background: var(--morado); }
+.recta-medio span { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: .8rem; color: var(--morado); font-weight: bold; }
+.recta-bola { position: absolute; top: 22px; transform: translateX(-50%); background: var(--amarillo); border: 3px solid #e0a800;
+  color: #5a4500; font-weight: bold; border-radius: 50%; min-width: 38px; height: 38px; display: flex; align-items: center;
+  justify-content: center; font-size: .9rem; padding: 0 4px; box-shadow: var(--sombra); transition: left .6s cubic-bezier(.4,1.2,.5,1); }
+.recta-bola.ok { background: var(--verde); border-color: var(--verde); color: #fff; }
+.recta-tope { position: absolute; top: 50px; font-weight: bold; color: #3a4266; }
+.recta-tope.izq { left: 0; transform: translateX(-50%); }
+.recta-tope.der { right: 0; transform: translateX(50%); }
+.recta-targets { display: flex; justify-content: space-between; width: min(440px,94%); margin: 0 auto; }
+.recta-btn { cursor: pointer; border: 3px solid var(--azul); background: #fff; color: #1d2440; border-radius: 14px;
+  font-family: var(--fuente); font-weight: bold; font-size: clamp(1.1rem,4.5vw,1.6rem); padding: 10px 18px; min-width: 72px; box-shadow: var(--sombra); }
+.recta-btn:hover { background: #eef3ff; transform: translateY(-2px); }
+.recta-btn.ok { background: var(--verde); border-color: var(--verde); color: #fff; }
+.recta-btn.mal { background: var(--rojo); border-color: var(--rojo); color: #fff; animation: temblor .4s; }
+
+/* ---------- Números: par/impar, tira numérica, parejas ---------- */
+.puntos-par { display: grid; grid-template-columns: repeat(2, 40px); gap: 8px; justify-content: center; margin: 12px auto; }
+.ficha-pt { width: 34px; height: 34px; border-radius: 50%; background: var(--azul); box-shadow: inset 0 -3px 0 rgba(0,0,0,.15); }
+.ficha-pt.sobra { background: var(--rojo); animation: latido .9s infinite; }
+.tira-num { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin: 10px 0; }
+.celda-num { cursor: pointer; border: 2px solid #c7d2f0; background: #fff; color: #1d2440; border-radius: 10px;
+  font-family: var(--fuente); font-weight: bold; font-size: clamp(1rem,4vw,1.5rem); padding: 12px 10px; min-width: 60px; transition: transform .15s; }
+.celda-num:hover { background: #eef3ff; }
+.celda-num.centro { background: var(--amarillo); border-color: #e0a800; cursor: default; }
+.celda-num.ok { background: var(--verde); border-color: var(--verde); color: #fff; }
+.celda-num.crece { transform: scale(1.14); }
+.celda-num.tiembla { animation: temblor .4s; }
+.match-cols { display: flex; gap: clamp(28px,12vw,56px); justify-content: center; margin: 10px 0; }
+.match-col { display: flex; flex-direction: column; gap: 10px; }
+.match-chip { cursor: pointer; border: 3px solid var(--azul); background: #fff; color: #1d2440; border-radius: 12px;
+  font-family: var(--fuente); font-weight: bold; font-size: 1.2rem; padding: 10px 18px; min-width: 84px; transition: transform .12s; }
+.match-chip:hover { background: #eef3ff; }
+.match-chip.sel { background: var(--amarillo); border-color: #e0a800; transform: scale(1.07); }
+.match-chip.hecha { background: var(--verde); border-color: var(--verde); color: #fff; cursor: default; }
+.match-chip.mal { background: var(--rojo); border-color: var(--rojo); color: #fff; animation: temblor .4s; }
+
+/* ---------- Medidas: cubos (zonas de medida) ---------- */
+.cubos { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 8px 0; }
+.cubo { min-width: 92px; min-height: 72px; border: 3px dashed #6aa9e0; border-radius: 14px; background: rgba(255,255,255,.85);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 8px; font-weight: bold; color: #2a4a6a; }
+.cubo .cubo-ic { font-size: 1.6rem; }
+.cubo small { font-size: .8rem; }
+.cubo.zona-hover { border-color: var(--amarillo); background: #fff7df; transform: scale(1.05); }
+.cubo.ok { border-style: solid; border-color: var(--verde); background: #e9fbf3; }
+.cubo.rojo { border-color: var(--rojo); background: #fdecea; }
+.objeto-arr { font-size: 1.05rem; }
+
+/* ---------- Fracciones: pinta la pizza / la barra ---------- */
+.frac-zona { text-align: center; }
+.frac-set { width: clamp(180px,56vw,260px); height: auto; }
+.frac-set.frac-barra { width: clamp(240px,80vw,320px); }
+.frac-set .porcion { fill: #eef3ff; stroke: #3a4266; stroke-width: 1.5; cursor: pointer; transition: fill .15s; }
+.frac-set .porcion:hover { fill: #dbe6ff; }
+.frac-set .porcion.pintada { fill: #37bc9b; }
+.frac-cuenta { font-weight: bold; font-size: 1.1rem; color: #3a4266; margin-top: 8px; }
+
+/* ---------- Clasificar en cestas (quizzes de Ciencias) ---------- */
+.cestas { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 6px 0 4px; }
+.cesta { min-width: 104px; min-height: 84px; border: 3px dashed #6aa9e0; border-radius: 16px; background: rgba(255,255,255,.85);
+  display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 8px 10px; font-weight: bold; color: #2a4a6a; }
+.cesta-ic { font-size: 1.7rem; }
+.cesta-nom { font-size: .9rem; text-align: center; }
+.cesta-caidas { display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; margin-top: 4px; }
+.cesta.zona-hover { border-color: var(--amarillo); background: #fff7df; transform: scale(1.04); }
+.cesta.ok { border-style: solid; border-color: var(--verde); background: #e9fbf3; }
+.cesta.rojo { border-color: var(--rojo); background: #fdecea; }

@@ -1,33 +1,33 @@
-/* El cuerpo humano: órganos, sistemas y sentidos — Ciencias Naturales (motor MC) */
+/* El cuerpo humano — Ciencias Naturales (motor manipulativo: clasificar en cestas) */
 (function () {
-  const azEl = (a) => Juego.azarEl(a);
-  const T = [
-    { icono: "🫀", nombre: "Órganos y sistemas", desc: "corazón, pulmones…", banco: [
-      { p: "🫀 ¿Qué órgano bombea la sangre por todo el cuerpo?", c: "El corazón", o: ["El corazón", "El estómago", "Los pulmones", "El hígado"] },
-      { p: "🫁 ¿Con qué órganos entra el aire cuando respiramos?", c: "Los pulmones", o: ["Los pulmones", "El corazón", "Los riñones", "El cerebro"] },
-      { p: "🧠 ¿Qué órgano nos permite pensar y controla el cuerpo?", c: "El cerebro", o: ["El cerebro", "El corazón", "El estómago", "La piel"] },
-      { p: "¿En qué órgano se digieren los alimentos con jugos gástricos?", c: "El estómago", o: ["El estómago", "Los pulmones", "El corazón", "El cerebro"] },
-      { p: "¿Qué sistema lleva la sangre por todo el cuerpo?", c: "El sistema circulatorio", o: ["El sistema circulatorio", "El sistema digestivo", "El sistema respiratorio", "El sistema óseo"] },
-      { p: "¿Qué sistema se encarga de respirar?", c: "El sistema respiratorio", o: ["El sistema respiratorio", "El sistema circulatorio", "El sistema digestivo", "El sistema nervioso"] },
-      { p: "¿Qué sistema digiere los alimentos que comemos?", c: "El sistema digestivo", o: ["El sistema digestivo", "El sistema respiratorio", "El sistema circulatorio", "El sistema óseo"] },
-      { p: "🦴 ¿Qué da soporte al cuerpo y protege los órganos?", c: "Los huesos (esqueleto)", o: ["Los huesos (esqueleto)", "La sangre", "El aire", "La piel"] },
-      { p: "💪 ¿Qué nos permite movernos al estirarse y encogerse?", c: "Los músculos", o: ["Los músculos", "Los pulmones", "El cabello", "Las uñas"] },
-      { p: "El órgano más grande del cuerpo, que nos cubre y protege, es:", c: "La piel", o: ["La piel", "El corazón", "El hígado", "El cerebro"] },
-      { p: "🩸 ¿Qué líquido rojo transporta el oxígeno por el cuerpo?", c: "La sangre", o: ["La sangre", "El agua", "La saliva", "El sudor"] }
-    ]},
-    { icono: "👀", nombre: "Los sentidos", desc: "ver, oír, oler…", banco: [
-      { p: "👀 ¿Con qué órgano vemos?", c: "Los ojos", o: ["Los ojos", "Los oídos", "La nariz", "La lengua"] },
-      { p: "👂 ¿Con qué órgano oímos los sonidos?", c: "Los oídos", o: ["Los oídos", "Los ojos", "La lengua", "La piel"] },
-      { p: "👃 ¿Con qué órgano olemos?", c: "La nariz", o: ["La nariz", "Los ojos", "Los oídos", "La piel"] },
-      { p: "👅 ¿Con qué parte saboreamos la comida?", c: "La lengua", o: ["La lengua", "La nariz", "Los dientes", "Los ojos"] },
-      { p: "✋ El sentido del tacto está sobre todo en:", c: "La piel", o: ["La piel", "Los ojos", "La lengua", "Los oídos"] },
-      { p: "¿Cuántos sentidos tenemos?", c: "5", o: ["5", "3", "4", "7"] },
-      { p: "Ver, oír, oler, saborear y tocar son los cinco:", c: "Sentidos", o: ["Sentidos", "Órganos", "Sistemas", "Músculos"] }
-    ]}
+  const TEMAS = [
+    { icono: "❤️", nombre: "¿Para qué sirve?", desc: "el trabajo de cada órgano",
+      pregunta: "Arrastra cada trabajo a su órgano 👇",
+      cestas: [{ id: "pulmones", nombre: "Pulmones", emoji: "🫁" }, { id: "corazon", nombre: "Corazón", emoji: "❤️" },
+        { id: "estomago", nombre: "Estómago", emoji: "🍽️" }, { id: "cerebro", nombre: "Cerebro", emoji: "🧠" }],
+      banco: {
+        pulmones: ["Respira el aire", "Toma el oxígeno", "Bota el dióxido de carbono"],
+        corazon: ["Bombea la sangre", "Late todo el día", "Manda sangre al cuerpo"],
+        estomago: ["Digiere la comida", "Recibe lo que tragas", "Deshace los alimentos"],
+        cerebro: ["Piensa y aprende", "Manda órdenes al cuerpo", "Controla los sentidos"]
+      } },
+    { icono: "✋", nombre: "Los 5 sentidos", desc: "¿con qué lo sientes?",
+      pregunta: "Arrastra cada cosa al sentido con que se percibe 👇",
+      cestas: [{ id: "vista", nombre: "Vista", emoji: "👁️" }, { id: "oido", nombre: "Oído", emoji: "👂" },
+        { id: "olfato", nombre: "Olfato", emoji: "👃" }, { id: "gusto", nombre: "Gusto", emoji: "👅" },
+        { id: "tacto", nombre: "Tacto", emoji: "🤚" }],
+      banco: {
+        vista: ["los colores", "la luz", "un dibujo"],
+        oido: ["la música", "un ruido", "una voz"],
+        olfato: ["el olor de una flor", "el perfume", "la comida rica"],
+        gusto: ["lo dulce", "lo salado", "un jugo"],
+        tacto: ["lo suave", "lo caliente", "lo áspero"]
+      } }
   ];
-  const gen = (t) => () => { const q = azEl(t.banco); return { tema: t.nombre, pregunta: q.p, opciones: q.o.slice(), correcta: q.c }; };
-  const temas = T.map((t) => ({ icono: t.icono, nombre: t.nombre, desc: t.desc, gens: [gen(t)] }));
-  temas.push({ icono: "🎲", nombre: "Mixto", desc: "todo sobre el cuerpo",
-    gens: [() => { const t = azEl(T); const q = azEl(t.banco); return { tema: t.nombre, pregunta: q.p, opciones: q.o.slice(), correcta: q.c }; }] });
-  window.Cuerpo = MC("cue", temas);
+  const ronda = (t) => (host, ctrl) => {
+    const items = t.cestas.map((c) => ({ txt: ctrl.azarEl(t.banco[c.id]), cesta: c.id }));
+    Arrastrar.clasificar(host, ctrl, { pregunta: t.pregunta, cestas: t.cestas, items: ctrl.mezclar(items) });
+  };
+  window.Cuerpo = Actividad("cue", TEMAS.map((t) =>
+    ({ icono: t.icono, nombre: t.nombre, desc: t.desc, total: 6, ronda: ronda(t) })));
 })();

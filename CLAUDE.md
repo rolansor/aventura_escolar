@@ -60,7 +60,7 @@ página en `paginas/` que el menú enlaza. Las páginas de `paginas/` usan `<bas
 | `src/core/menu.js` | `Menu` | Menú de materias (tarjetas desde `DATOS.materias`, enlaza a `paginas/<modo>.html`). **Modal de clave** (`pedirClave`) que se abre ANTES de ir al editor; sin clave válida no se navega. |
 | `src/core/mc.js` | `MC` | Motor de **opción múltiple** (repasos rápidos). Fábrica `MC(px, temas)`; ronda de 10. **No es el patrón por defecto** (ver Filosofía de diseño). |
 | `src/core/actividad.js` | `Actividad` | Motor de **actividades manipulativas** (hermano de `MC`). Fábrica `Actividad(px, temas, opts)`; cada tema tiene `ronda(host, ctrl)` que arma la interacción en `#<px>-extra` y resuelve con `ctrl.ganar()/fallar()/reintento()`. Sin temporizador (autocorrectivo). Reutiliza la misma estructura de página por prefijo que `MC`. |
-| `src/core/arrastrar.js` | `Arrastrar` | Arrastrar-y-soltar con eventos de **puntero** (mouse + dedo). `Arrastrar.hacer(item, zonas, alSoltar)`; marca `.zona-hover` y devuelve la zona destino (o null). |
+| `src/core/arrastrar.js` | `Arrastrar` | Arrastrar-y-soltar con eventos de **puntero** (mouse + dedo). `Arrastrar.hacer(item, zonas, alSoltar)` (marca `.zona-hover`, devuelve la zona destino o null) y `Arrastrar.clasificar(host, ctrl, {pregunta, cestas, items})` (actividad "clasifica en cestas", usada por las quizzes de Ciencias dentro de una `ronda()` de `Actividad`). |
 | `src/modos/ortografia.js` | `Ortografia` | Ejercicios desde `DATOS.ortografia`. |
 | `src/modos/secuencias.js` | `Secuencias` | Secuencias numéricas. |
 | `src/modos/copia.js` | `Copia` | Copia y Dictado. |
@@ -108,7 +108,7 @@ Mapa interactivo SVG de las 24 provincias, coloreadas por las 4 regiones natural
 - **Banderas**: las 24 SVG están en `recursos/banderas/<ISO>.svg`, descargadas de Wikimedia
   (List of Ecuadorian flags) con `Invoke-WebRequest`. Guayas usa la de Guayaquil. Para re-bajar:
   parsear los `upload.wikimedia.org/...Bandera_Provincia_*.svg` de la página y quitar `/thumb/`.
-  Nombres en `recursos/banderas/LEEME.txt`.
+  Nombres en `recursos/banderas/README.md`.
 - **Doble clic** → zoom animado del `viewBox` (tween rAF, `easeInOut`) a esa provincia y panel
   lateral `#mapa-detalle` con un **slider** de info estructurada IGUAL para todas (Identidad:
   capital/región/provincialización/gentilicio · Cantones · Dato curioso). Datos en `DET` (clave ISO).

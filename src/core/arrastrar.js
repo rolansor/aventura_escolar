@@ -67,5 +67,38 @@ window.Arrastrar = (function () {
     });
   }
 
-  return { hacer };
+  // Actividad "clasifica en cestas": arrastra cada ficha a su grupo correcto.
+  // opts = { pregunta, cestas:[{id,nombre,emoji?}], items:[{txt,cesta}] }
+  // Pensada para usarse dentro de una ronda() del motor Actividad (ctrl).
+  function clasificar(host, ctrl, opts) {
+    ctrl.pregunta(opts.pregunta || "Arrastra cada uno a su grupo 👇");
+    host.innerHTML =
+      '<div class="cestas">' + opts.cestas.map((c) =>
+        '<div class="cesta" data-id="' + c.id + '"><span class="cesta-ic">' + (c.emoji || "📦") + "</span>" +
+        '<span class="cesta-nom">' + c.nombre + "</span><div class="cesta-caidas"></div></div>").join("") + "</div>" +
+      '<div class="fila-fichas"></div>';
+    const fila = host.querySelector(".fila-fichas");
+    const zonas = Array.prototype.slice.call(host.querySelectorAll(".cesta"));
+    let faltan = opts.items.length;
+    opts.items.forEach((it) => {
+      const chip = document.createElement("button");
+      chip.className = "ficha-arr"; chip.textContent = it.txt; chip.dataset.cesta = it.cesta;
+      fila.appendChild(chip);
+      hacer(chip, zonas, (item, zona) => {
+        if (!zona) return;
+        if (zona.dataset.id === item.dataset.cesta) {
+          item.dataset.fijo = "1"; item.classList.add("colocada");
+          zona.querySelector(".cesta-caidas").appendChild(item);
+          zona.classList.add("ok"); setTimeout(() => zona.classList.remove("ok"), 600);
+          faltan--;
+          if (faltan === 0) ctrl.ganar(); else ctrl.retro("¡Bien! Faltan " + faltan + " 👇", "bien");
+        } else {
+          zona.classList.add("rojo"); setTimeout(() => zona.classList.remove("rojo"), 450);
+          ctrl.reintento("Ahí no va, prueba en otra 👀");
+        }
+      });
+    });
+  }
+
+  return { hacer, clasificar };
 })();

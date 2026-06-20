@@ -17,8 +17,10 @@ y un toque de **three.js** para el 3D. No usa frameworks, ni bundlers, ni servid
 puede jugar abriendo un archivo con doble clic o sirviéndolo desde GitHub Pages.
 
 Está pensado con cariño para acompañar el aprendizaje de un niño de unos 9 años, con vocabulario y
-ejemplos en **español de Ecuador**. Lo acompaña **Luna**, una mascota 3D arrastrable que salta cuando
-acierta y se entristece cuando falla.
+ejemplos en **español de Ecuador**. Las actividades buscan ser **manipulativas** (arrastrar, tocar,
+construir) más que de "pregunta y respuesta", inspiradas en **Piaget y Montessori**: aprender haciendo,
+con material concreto y control del error inmediato. Lo acompaña **Luna**, una mascota 3D arrastrable
+que salta cuando acierta, se entristece cuando falla y **sugiere las pistas** desde su globo.
 
 El progreso (estrellas, racha y nivel), la configuración y el contenido creado por los adultos se
 guardan automáticamente en el navegador (`localStorage`).
@@ -45,17 +47,25 @@ guardan automáticamente en el navegador (`localStorage`).
   tildes y mayúsculas.
 
 ### 🔢 Matemáticas
-- **Secuencias numéricas**: patrones infinitos generados al azar (sumas, restas,
-  multiplicaciones, tablas, cuadrados, Fibonacci, dobles/mitades y mezclas), con botón de pista 💡.
+- **Secuencias numéricas**, **Tablas**, **Sumas y restas** y **Multiplicación / División** con
+  explicación paso a paso.
+- **Valor posicional** con tabla de colores y **bloques base-10**.
+- Actividades **manipulativas**: **Dinero** (arma el monto con billetes/monedas), **Comparar**
+  (balanza que se inclina, cartas que crecen, ordenar), **La hora** (reloj con manecillas que se
+  arrastran), y más (redondeo, números, medidas, fracciones).
 
 ### 🗺️ Estudios Sociales
 - **Mapa del Ecuador por provincias**: SVG interactivo, coloreado por las 4 regiones naturales
   (Costa, Sierra, Amazonía e Insular). Al tocar una provincia se muestra su región y su capital.
 - **Ecuador por cantones**: mapa GeoJSON donde, al hacer clic en una provincia, se ve en **3D
   rotable con three.js** junto a sus cantones y la bandera provincial.
+- **Quiz del Ecuador** y **¿Dónde está?** (toca la provincia en el mapa).
 
 ### 🌱 Ciencias Naturales
-- ¡Próximamente! (partes de las plantas, animales, cuerpo humano…).
+- **Señala la parte**: diagramas SVG interactivos donde el niño toca la parte pedida (la planta,
+  la flor por dentro, el cuerpo, la cara y los órganos).
+- Temas: **las plantas**, **el cuerpo humano**, **los animales**, **el ciclo del agua** (arrastrar
+  las etapas sobre el dibujo), **la materia** y **ecosistemas y ambiente**.
 
 ### ⚙️ Zona de adultos / Editor (protegida con clave)
 - Crear secuencias y párrafos, administrar las palabras de ortografía por regla, y configurar

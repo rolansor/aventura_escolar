@@ -141,8 +141,44 @@
     "id": "ciencias",
     "icono": "🌱",
     "nombre": "Ciencias Naturales",
-    "desc": "Plantas, animales y el cuerpo",
-    "actividades": [],
-    "proximamente": "¡Muy pronto! Las partes de las plantas, los animales y el cuerpo humano. 🌿"
+    "desc": "Plantas, animales, cuerpo y naturaleza",
+    "actividades": [
+      {
+        "modo": "plantas",
+        "icono": "🌿",
+        "nombre": "Las plantas",
+        "desc": "Partes, función y fotosíntesis"
+      },
+      {
+        "modo": "cuerpo",
+        "icono": "🧍",
+        "nombre": "El cuerpo humano",
+        "desc": "Órganos, sistemas y los sentidos"
+      },
+      {
+        "modo": "animales",
+        "icono": "🐾",
+        "nombre": "Los animales",
+        "desc": "Grupos y alimentación"
+      },
+      {
+        "modo": "cicloagua",
+        "icono": "💧",
+        "nombre": "El ciclo del agua",
+        "desc": "Evaporación, nubes y lluvia"
+      },
+      {
+        "modo": "materia",
+        "icono": "🧪",
+        "nombre": "La materia",
+        "desc": "Estados sólido, líquido y gaseoso"
+      },
+      {
+        "modo": "ambiente",
+        "icono": "♻️",
+        "nombre": "Ecosistemas y ambiente",
+        "desc": "Regiones del Ecuador y cuidar el planeta"
+      }
+    ]
   }
 ]

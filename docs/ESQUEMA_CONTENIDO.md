@@ -56,6 +56,13 @@ Cada tema lleva `tipo`, `icono`, `nombre`, `desc`, `total?` (rondas, def. 6) y s
 | `sujeto` | `pregunta?`, `items:[ [ {palabras:[…],corte} ], [i], [a] ]` | toca dónde empieza el predicado |
 | `signos` | `pregunta?`, `items:[ [ {antes,despues,correcto,opciones:[…]} ], [i], [a] ]` | toca el signo del hueco ▢ |
 | `formas` | `items:[ [ {base,instr,correcto,opciones:[…]} ], [i], [a] ]` | elige la forma correcta |
+| `escena` | `escena?(svg)`, `slots:[{id,txt?,left?,top?}]`, `fichas:[{id,txt?,ficha?}]` | arrastrar fichas a zonas (sobre un SVG o en fila) |
+| `senala` | `svg`, `partes:[{id,nombre}]` | tocar la región correcta sobre un SVG |
+| `problema` | `ops:[…]` (filtra el `banco` del archivo, ítems `{t,op,a,b,u}`) | problema verbal: elige operación y escribe la respuesta |
+| `terminos` | `suma:bool`, `rangos:[[b],[i],[a]]` | paramétrico: genera a±b y arrastra los nombres |
+
+> `escena`/`senala`: el SVG va embebido como **una cadena JSON** (escapar las comillas). `problema` lee un
+> campo **`banco`** a nivel de archivo (no por tema); cada tema `problema` lo filtra por sus `ops`.
 
 ## Tipos de tema — motor "mc"
 | `tipo` | Campos | Notas |

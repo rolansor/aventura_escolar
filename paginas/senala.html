@@ -32,30 +32,43 @@
       <div id="sen-juego" class="caja-juego oculto">
         <div class="fila-timer"><span class="timer oculto" id="sen-timer"></span></div>
         <div class="progreso"><div class="progreso-barra" id="sen-progreso"></div></div>
+        <p class="regla-ayuda" id="sen-tema"></p>
         <h2 class="pregunta" id="sen-pregunta"></h2>
-        <div id="sen-mapa" class="sen-mapa"></div>
+        <div id="sen-extra" class="mc-extra"></div>
+        <div class="opciones" id="sen-opciones"></div>
         <p class="retro" id="sen-retro"></p>
       </div>
     </section>
   </div>
 
-  <div id="luna" title="Luna"><div class="luna-globo" id="luna-globo">Soy Luna 🌙</div><canvas id="luna-canvas"></canvas><div class="luna-nombre">🌙 Luna ✋</div></div>
+  <div id="luna" title="Luna">
+    <div class="luna-globo" id="luna-globo">Soy Luna 🌙</div>
+    <canvas id="luna-canvas"></canvas>
+    <div class="luna-nombre">🌙 Luna ✋</div>
+  </div>
   <div id="celebracion"></div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>window.THREE || document.write('<scr'+'ipt src="lib/three.min.js"></scr'+'ipt>');</script>
   <script src="src/efectos/escena3d.js"></script>
   <script src="src/efectos/luna.js"></script>
+  <script src="data/contenido/senala.js"></script>
+  <script src="src/core/datos.js"></script>
   <script src="src/core/juego.js"></script>
-  <script src="src/modos/senala.js"></script>
+  <script src="src/core/actividad.js"></script>
+  <script src="src/core/arrastrar.js"></script>
+  <script src="src/core/contenido.js"></script>
   <script>
     window.RUTA_INICIO = "index.html";
-    window.MODO_VOLVER = function () {
-      if (!document.getElementById("sen-juego").classList.contains("oculto")) Senala.volverSelector();
-      else location.href = "index.html?materia=ciencias";
-    };
-    Juego.iniciarBase();
-    Senala.init();
+    Datos.cargar(["contenido/senala"]).then(function () {
+      Juego.iniciarBase();
+      var MODO = Contenido.montar("senala");
+      window.MODO_VOLVER = function () {
+        if (!document.getElementById("sen-juego").classList.contains("oculto")) MODO.volverSelector();
+        else location.href = "index.html?materia=ciencias";
+      };
+      MODO.init();
+    });
   </script>
 </body>
 </html>

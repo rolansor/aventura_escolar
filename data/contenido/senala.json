@@ -1,0 +1,192 @@
+{
+  "modo": "senala",
+  "materia": "ciencias",
+  "px": "sen",
+  "titulo": "Señala la parte",
+  "icono": "👆",
+  "motor": "actividad",
+  "temas": [
+    {
+      "tipo": "senala",
+      "icono": "🌳",
+      "nombre": "La planta",
+      "desc": "raíz, tallo, hoja, flor, fruto",
+      "total": 8,
+      "svg": "<svg viewBox=\"0 0 220 330\" class=\"sen-svg\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"0\" y=\"244\" width=\"220\" height=\"86\" fill=\"#e7d3b3\"/><line x1=\"0\" y1=\"244\" x2=\"220\" y2=\"244\" stroke=\"#c9a978\" stroke-width=\"3\"/><g data-parte=\"raiz\"><path d=\"M110 244 L110 300 M110 274 L82 308 M110 274 L138 308 M110 258 L76 286 M110 258 L144 286\" stroke=\"#a9743b\" stroke-width=\"7\" fill=\"none\" stroke-linecap=\"round\"/></g><g data-parte=\"tallo\"><rect x=\"103\" y=\"92\" width=\"14\" height=\"154\" rx=\"6\" fill=\"#3fa34d\"/></g><g data-parte=\"hoja\"><ellipse cx=\"70\" cy=\"172\" rx=\"32\" ry=\"15\" fill=\"#5cc26a\" transform=\"rotate(-22 70 172)\"/><ellipse cx=\"150\" cy=\"150\" rx=\"32\" ry=\"15\" fill=\"#5cc26a\" transform=\"rotate(22 150 150)\"/><path d=\"M70 172 l30 -6 M150 150 l-30 -4\" stroke=\"#3a8f48\" stroke-width=\"2\" fill=\"none\"/></g><g data-parte=\"fruto\"><line x1=\"112\" y1=\"138\" x2=\"160\" y2=\"150\" stroke=\"#2f7d3a\" stroke-width=\"3\"/><circle cx=\"170\" cy=\"162\" r=\"17\" fill=\"#e7402e\"/><path d=\"M170 147 l-5 -8 m5 8 l6 -7\" stroke=\"#2f7d3a\" stroke-width=\"3\" fill=\"none\"/></g><g data-parte=\"flor\"><circle cx=\"110\" cy=\"28\" r=\"14\" fill=\"#ff6b9d\"/><circle cx=\"136\" cy=\"40\" r=\"14\" fill=\"#ff6b9d\"/><circle cx=\"136\" cy=\"66\" r=\"14\" fill=\"#ff6b9d\"/><circle cx=\"110\" cy=\"78\" r=\"14\" fill=\"#ff6b9d\"/><circle cx=\"84\" cy=\"66\" r=\"14\" fill=\"#ff6b9d\"/><circle cx=\"84\" cy=\"40\" r=\"14\" fill=\"#ff6b9d\"/><circle cx=\"110\" cy=\"53\" r=\"15\" fill=\"#ffd23f\"/></g></svg>",
+      "partes": [
+        {
+          "id": "raiz",
+          "nombre": "la raíz"
+        },
+        {
+          "id": "tallo",
+          "nombre": "el tallo"
+        },
+        {
+          "id": "hoja",
+          "nombre": "las hojas"
+        },
+        {
+          "id": "flor",
+          "nombre": "la flor"
+        },
+        {
+          "id": "fruto",
+          "nombre": "el fruto"
+        }
+      ]
+    },
+    {
+      "tipo": "senala",
+      "icono": "🌸",
+      "nombre": "La flor por dentro",
+      "desc": "pétalos, pistilo, estambres…",
+      "total": 8,
+      "svg": "<svg viewBox=\"0 0 220 240\" class=\"sen-svg\" xmlns=\"http://www.w3.org/2000/svg\"><g data-parte=\"tallo\"><rect x=\"104\" y=\"118\" width=\"12\" height=\"112\" rx=\"5\" fill=\"#3fa34d\"/></g><g data-parte=\"hoja\"><ellipse cx=\"150\" cy=\"184\" rx=\"28\" ry=\"13\" fill=\"#5cc26a\" transform=\"rotate(24 150 184)\"/></g><g data-parte=\"petalo\"><ellipse cx=\"110\" cy=\"58\" rx=\"16\" ry=\"28\" fill=\"#c479f0\"/><ellipse cx=\"139\" cy=\"74\" rx=\"16\" ry=\"28\" fill=\"#c479f0\" transform=\"rotate(60 139 74)\"/><ellipse cx=\"139\" cy=\"106\" rx=\"16\" ry=\"28\" fill=\"#c479f0\" transform=\"rotate(120 139 106)\"/><ellipse cx=\"110\" cy=\"122\" rx=\"16\" ry=\"28\" fill=\"#c479f0\"/><ellipse cx=\"81\" cy=\"106\" rx=\"16\" ry=\"28\" fill=\"#c479f0\" transform=\"rotate(60 81 106)\"/><ellipse cx=\"81\" cy=\"74\" rx=\"16\" ry=\"28\" fill=\"#c479f0\" transform=\"rotate(120 81 74)\"/></g><g data-parte=\"estambre\"><line x1=\"110\" y1=\"90\" x2=\"119\" y2=\"74\" stroke=\"#caa400\" stroke-width=\"3\"/><circle cx=\"120\" cy=\"72\" r=\"5\" fill=\"#8a5cf6\"/><line x1=\"110\" y1=\"90\" x2=\"127\" y2=\"96\" stroke=\"#caa400\" stroke-width=\"3\"/><circle cx=\"129\" cy=\"97\" r=\"5\" fill=\"#8a5cf6\"/><line x1=\"110\" y1=\"90\" x2=\"100\" y2=\"106\" stroke=\"#caa400\" stroke-width=\"3\"/><circle cx=\"98\" cy=\"108\" r=\"5\" fill=\"#8a5cf6\"/><line x1=\"110\" y1=\"90\" x2=\"93\" y2=\"96\" stroke=\"#caa400\" stroke-width=\"3\"/><circle cx=\"91\" cy=\"97\" r=\"5\" fill=\"#8a5cf6\"/><line x1=\"110\" y1=\"90\" x2=\"101\" y2=\"74\" stroke=\"#caa400\" stroke-width=\"3\"/><circle cx=\"99\" cy=\"72\" r=\"5\" fill=\"#8a5cf6\"/></g><g data-parte=\"pistilo\"><circle cx=\"110\" cy=\"90\" r=\"12\" fill=\"#ffd23f\"/><circle cx=\"110\" cy=\"90\" r=\"5\" fill=\"#e0a800\"/></g><g data-parte=\"sepalo\"><path d=\"M110 120 l-20 8 l4 -20 z\" fill=\"#3fa34d\"/><path d=\"M110 120 l20 8 l-4 -20 z\" fill=\"#3fa34d\"/></g></svg>",
+      "partes": [
+        {
+          "id": "petalo",
+          "nombre": "los pétalos"
+        },
+        {
+          "id": "pistilo",
+          "nombre": "el pistilo"
+        },
+        {
+          "id": "estambre",
+          "nombre": "los estambres"
+        },
+        {
+          "id": "sepalo",
+          "nombre": "los sépalos"
+        },
+        {
+          "id": "tallo",
+          "nombre": "el tallo"
+        },
+        {
+          "id": "hoja",
+          "nombre": "la hoja"
+        }
+      ]
+    },
+    {
+      "tipo": "senala",
+      "icono": "🧍",
+      "nombre": "El cuerpo",
+      "desc": "cabeza, brazos, codos, piernas…",
+      "total": 8,
+      "svg": "<svg viewBox=\"0 0 180 350\" class=\"sen-svg\" xmlns=\"http://www.w3.org/2000/svg\"><g data-parte=\"tronco\"><rect x=\"60\" y=\"84\" width=\"60\" height=\"100\" rx=\"18\" fill=\"#4a90d9\"/></g><g data-parte=\"brazo\"><path d=\"M66 98 L44 140\" stroke=\"#f0c39b\" stroke-width=\"16\" stroke-linecap=\"round\" fill=\"none\"/><path d=\"M44 140 L52 184\" stroke=\"#f0c39b\" stroke-width=\"14\" stroke-linecap=\"round\" fill=\"none\"/><path d=\"M114 98 L136 140\" stroke=\"#f0c39b\" stroke-width=\"16\" stroke-linecap=\"round\" fill=\"none\"/><path d=\"M136 140 L128 184\" stroke=\"#f0c39b\" stroke-width=\"14\" stroke-linecap=\"round\" fill=\"none\"/></g><g data-parte=\"pierna\"><path d=\"M76 182 L70 258\" stroke=\"#3a4266\" stroke-width=\"20\" stroke-linecap=\"round\" fill=\"none\"/><path d=\"M70 258 L66 314\" stroke=\"#3a4266\" stroke-width=\"18\" stroke-linecap=\"round\" fill=\"none\"/><path d=\"M104 182 L110 258\" stroke=\"#3a4266\" stroke-width=\"20\" stroke-linecap=\"round\" fill=\"none\"/><path d=\"M110 258 L114 314\" stroke=\"#3a4266\" stroke-width=\"18\" stroke-linecap=\"round\" fill=\"none\"/></g><g data-parte=\"codo\"><circle cx=\"44\" cy=\"140\" r=\"9\" fill=\"#e0a86f\"/><circle cx=\"136\" cy=\"140\" r=\"9\" fill=\"#e0a86f\"/></g><g data-parte=\"rodilla\"><circle cx=\"70\" cy=\"258\" r=\"10\" fill=\"#2c3354\"/><circle cx=\"110\" cy=\"258\" r=\"10\" fill=\"#2c3354\"/></g><g data-parte=\"mano\"><circle cx=\"54\" cy=\"190\" r=\"11\" fill=\"#f0c39b\"/><circle cx=\"126\" cy=\"190\" r=\"11\" fill=\"#f0c39b\"/></g><g data-parte=\"pie\"><ellipse cx=\"58\" cy=\"320\" rx=\"17\" ry=\"9\" fill=\"#6b4a2a\"/><ellipse cx=\"122\" cy=\"320\" rx=\"17\" ry=\"9\" fill=\"#6b4a2a\"/></g><g data-parte=\"hombro\"><circle cx=\"64\" cy=\"92\" r=\"11\" fill=\"#3f7cbf\"/><circle cx=\"116\" cy=\"92\" r=\"11\" fill=\"#3f7cbf\"/></g><g data-parte=\"cuello\"><rect x=\"80\" y=\"62\" width=\"20\" height=\"18\" fill=\"#e0a86f\"/></g><g data-parte=\"cabeza\"><circle cx=\"90\" cy=\"40\" r=\"28\" fill=\"#f0c39b\"/></g></svg>",
+      "partes": [
+        {
+          "id": "cabeza",
+          "nombre": "la cabeza"
+        },
+        {
+          "id": "cuello",
+          "nombre": "el cuello"
+        },
+        {
+          "id": "hombro",
+          "nombre": "los hombros"
+        },
+        {
+          "id": "tronco",
+          "nombre": "el tronco (pecho)"
+        },
+        {
+          "id": "brazo",
+          "nombre": "los brazos"
+        },
+        {
+          "id": "codo",
+          "nombre": "los codos"
+        },
+        {
+          "id": "mano",
+          "nombre": "las manos"
+        },
+        {
+          "id": "pierna",
+          "nombre": "las piernas"
+        },
+        {
+          "id": "rodilla",
+          "nombre": "las rodillas"
+        },
+        {
+          "id": "pie",
+          "nombre": "los pies"
+        }
+      ]
+    },
+    {
+      "tipo": "senala",
+      "icono": "😀",
+      "nombre": "La cara",
+      "desc": "ojos, nariz, boca, orejas…",
+      "total": 8,
+      "svg": "<svg viewBox=\"0 0 220 240\" class=\"sen-svg\" xmlns=\"http://www.w3.org/2000/svg\"><g data-parte=\"orejas\"><ellipse cx=\"30\" cy=\"124\" rx=\"13\" ry=\"22\" fill=\"#f0c39b\"/><ellipse cx=\"190\" cy=\"124\" rx=\"13\" ry=\"22\" fill=\"#f0c39b\"/></g><ellipse cx=\"110\" cy=\"122\" rx=\"80\" ry=\"92\" fill=\"#f7cfa3\"/><g data-parte=\"pelo\"><path d=\"M30 110 Q110 -6 190 110 Q170 58 110 54 Q50 58 30 110 Z\" fill=\"#5a3a22\"/></g><g data-parte=\"cejas\"><path d=\"M62 100 q20 -14 42 0\" stroke=\"#5a3a22\" stroke-width=\"6\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M116 100 q22 -14 42 0\" stroke=\"#5a3a22\" stroke-width=\"6\" fill=\"none\" stroke-linecap=\"round\"/></g><g data-parte=\"ojos\"><ellipse cx=\"83\" cy=\"120\" rx=\"17\" ry=\"13\" fill=\"#fff\" stroke=\"#3a2a1a\" stroke-width=\"2\"/><circle cx=\"83\" cy=\"120\" r=\"7\" fill=\"#3a2a1a\"/><ellipse cx=\"137\" cy=\"120\" rx=\"17\" ry=\"13\" fill=\"#fff\" stroke=\"#3a2a1a\" stroke-width=\"2\"/><circle cx=\"137\" cy=\"120\" r=\"7\" fill=\"#3a2a1a\"/></g><g data-parte=\"nariz\"><path d=\"M110 124 l-9 28 q9 8 18 0 z\" fill=\"#e8b88c\"/></g><g data-parte=\"mejillas\"><circle cx=\"62\" cy=\"156\" r=\"14\" fill=\"#ff9aa9\" opacity=\"0.7\"/><circle cx=\"158\" cy=\"156\" r=\"14\" fill=\"#ff9aa9\" opacity=\"0.7\"/></g><g data-parte=\"boca\"><path d=\"M80 176 q30 30 60 0\" stroke=\"#c0392b\" stroke-width=\"7\" fill=\"none\" stroke-linecap=\"round\"/></g></svg>",
+      "partes": [
+        {
+          "id": "pelo",
+          "nombre": "el pelo"
+        },
+        {
+          "id": "cejas",
+          "nombre": "las cejas"
+        },
+        {
+          "id": "ojos",
+          "nombre": "los ojos"
+        },
+        {
+          "id": "orejas",
+          "nombre": "las orejas"
+        },
+        {
+          "id": "nariz",
+          "nombre": "la nariz"
+        },
+        {
+          "id": "mejillas",
+          "nombre": "las mejillas"
+        },
+        {
+          "id": "boca",
+          "nombre": "la boca"
+        }
+      ]
+    },
+    {
+      "tipo": "senala",
+      "icono": "❤️",
+      "nombre": "Los órganos",
+      "desc": "cerebro, corazón, pulmones…",
+      "total": 8,
+      "svg": "<svg viewBox=\"0 0 180 330\" class=\"sen-svg\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"90\" cy=\"42\" r=\"30\" fill=\"#ffe0c0\"/><rect x=\"46\" y=\"68\" width=\"88\" height=\"186\" rx=\"30\" fill=\"#ffe0c0\"/><g data-parte=\"cerebro\"><ellipse cx=\"90\" cy=\"40\" rx=\"22\" ry=\"17\" fill=\"#f5a7c0\"/><path d=\"M78 36 q12 -8 24 0 M76 44 q14 6 28 0 M90 27 l0 26\" stroke=\"#e07ba0\" stroke-width=\"2\" fill=\"none\"/></g><g data-parte=\"pulmones\"><path d=\"M84 96 q-30 6 -28 52 q2 22 22 20 q8 -42 6 -72 z\" fill=\"#ff9aa9\"/><path d=\"M96 96 q30 6 28 52 q-2 22 -22 20 q-8 -42 -6 -72 z\" fill=\"#ff9aa9\"/></g><g data-parte=\"corazon\"><path d=\"M90 134 C82 122 68 126 73 139 C77 149 90 154 90 154 C90 154 103 149 107 139 C112 126 98 122 90 134 Z\" fill=\"#e7402e\"/></g><g data-parte=\"estomago\"><path d=\"M74 156 q-16 6 -10 28 q8 18 28 12 q14 -6 8 -24 q-8 -22 -26 -16 z\" fill=\"#c479f0\"/></g><g data-parte=\"intestinos\"><path d=\"M64 204 q-8 16 10 20 q26 6 8 22 q-22 10 6 18 q28 8 38 -4\" fill=\"none\" stroke=\"#f0a35e\" stroke-width=\"15\" stroke-linecap=\"round\"/></g></svg>",
+      "partes": [
+        {
+          "id": "cerebro",
+          "nombre": "el cerebro"
+        },
+        {
+          "id": "pulmones",
+          "nombre": "los pulmones"
+        },
+        {
+          "id": "corazon",
+          "nombre": "el corazón"
+        },
+        {
+          "id": "estomago",
+          "nombre": "el estómago"
+        },
+        {
+          "id": "intestinos",
+          "nombre": "los intestinos"
+        }
+      ]
+    }
+  ]
+}

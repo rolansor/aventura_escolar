@@ -128,6 +128,53 @@ window.Contenido = (function () {
       ctrl.pregunta((q.instr || "Cambia la palabra") + ": <b>" + esc(q.base) + "</b>");
       const ops = ctrl.mezclar(q.opciones.slice()).map((o) => ({ txt: o, ok: o === q.correcto }));
       pintarBotones(host, ops, (et) => { if (et.ok) ctrl.ganar(); else ctrl.reintento("Casi; fíjate en la terminación 👀"); });
+    },
+    // Escena: arrastrar fichas a sus zonas (sobre un SVG con posiciones, o en fila).
+    // { escena?, slots:[{id,txt?,left?,top?}], fichas:[{id,txt?,ficha?}] }
+    escena: (t) => (host, ctrl) => {
+      ctrl.pregunta(t.pregunta || "Arrastra cada ficha a su lugar 👇");
+      const slots = t.slots || [], fichas = t.fichas || [];
+      const abs = slots.some((s) => s.left != null);
+      host.innerHTML =
+        '<div class="zona-arrastre ' + (abs ? "con-escena" : "en-fila") + '">' +
+          (t.escena ? '<div class="escena">' + t.escena + "</div>" : "") +
+          '<div class="slots">' +
+            slots.map((s) => '<div class="slot" data-id="' + s.id + '"' + (abs ? ' style="left:' + s.left + "%;top:" + s.top + '%"' : "") + ">" +
+              (s.txt ? '<span class="slot-etq">' + esc(s.txt) + "</span>" : '<span class="slot-q">?</span>') + "</div>").join("") +
+          "</div>" +
+        "</div>" +
+        '<div class="fila-fichas"></div>';
+      const elFichas = host.querySelector(".fila-fichas");
+      const zonas = Array.prototype.slice.call(host.querySelectorAll(".slot"));
+      let faltan = slots.length;
+      ctrl.mezclar(fichas.slice()).forEach((f) => {
+        const chip = document.createElement("button");
+        chip.className = "ficha-arr"; chip.textContent = f.ficha || f.txt; chip.dataset.id = f.id;
+        elFichas.appendChild(chip);
+        Arrastrar.hacer(chip, zonas, (item, zona) => {
+          if (!zona || zona.dataset.lleno === "1") return;
+          if (zona.dataset.id === item.dataset.id) {
+            zona.dataset.lleno = "1"; zona.classList.add("ok"); zona.innerHTML = "";
+            item.dataset.fijo = "1"; item.classList.add("colocada"); zona.appendChild(item);
+            faltan--; if (faltan === 0) ctrl.ganar(); else ctrl.retro("¡Bien! Faltan " + faltan + " 👇", "bien");
+          } else { zona.classList.add("rojo"); setTimeout(() => zona.classList.remove("rojo"), 450); ctrl.reintento("Ahí no va. Prueba en otro lugar 👀"); }
+        });
+      });
+    },
+    // Señala la parte: toca la región correcta sobre un SVG. { svg, partes:[{id,nombre}] }
+    senala: (t) => (host, ctrl) => {
+      const parte = ctrl.azarEl(t.partes);
+      ctrl.pregunta("¿Dónde está <b>" + esc(parte.nombre) + "</b>? 👆");
+      host.innerHTML = t.svg;
+      host.querySelectorAll("[data-parte]").forEach((el) => {
+        el.classList.add("parte");
+        el.addEventListener("click", () => {
+          if (el.getAttribute("data-parte") === parte.id) {
+            host.querySelectorAll('[data-parte="' + parte.id + '"]').forEach((e) => e.classList.add("ok"));
+            ctrl.ganar();
+          } else { el.classList.add("mal"); setTimeout(() => el.classList.remove("mal"), 700); ctrl.reintento("¡Casi! Esa es otra parte, inténtalo 👇"); }
+        });
+      });
     }
   };
 

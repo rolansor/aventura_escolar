@@ -28,7 +28,11 @@
           { "antes": "Hoy comimos encebollado", "despues": "", "correcto": ".", "opciones": [".", "!", "?"] },
           { "antes": "Quieres un poco de jugo", "despues": "", "correcto": "?", "opciones": ["?", "!", "."] },
           { "antes": "Qué grande es ese árbol", "despues": "", "correcto": "!", "opciones": ["!", "?", "."] },
-          { "antes": "La maestra revisó la tarea", "despues": "", "correcto": ".", "opciones": [".", "?", "!"] }
+          { "antes": "La maestra revisó la tarea", "despues": "", "correcto": ".", "opciones": [".", "?", "!"] },
+          { "antes": "Vamos al parque a jugar", "despues": "", "correcto": ".", "opciones": [".", "?", "!"] },
+          { "antes": "Te gustó la película", "despues": "", "correcto": "?", "opciones": ["?", ".", "!"] },
+          { "antes": "Qué frío hace hoy", "despues": "", "correcto": "!", "opciones": ["!", "?", "."] },
+          { "antes": "Mi hermana toca la guitarra", "despues": "", "correcto": ".", "opciones": [".", "?", "!"] }
         ],
         [
           { "antes": "", "despues": "Cómo estás?", "correcto": "¿", "opciones": ["¿", "¡", "-"] },
@@ -44,7 +48,11 @@
           { "antes": "", "despues": "Qué susto me diste!", "correcto": "¡", "opciones": ["¡", "¿", "-"] },
           { "antes": "", "despues": "Has visto a mi gato?", "correcto": "¿", "opciones": ["¿", "¡", "-"] },
           { "antes": "", "despues": "Vamos a la cancha!", "correcto": "¡", "opciones": ["¡", "¿", "-"] },
-          { "antes": "", "despues": "Por qué lloras?", "correcto": "¿", "opciones": ["¿", "¡", "-"] }
+          { "antes": "", "despues": "Por qué lloras?", "correcto": "¿", "opciones": ["¿", "¡", "-"] },
+          { "antes": "", "despues": "Qué bonito día!", "correcto": "¡", "opciones": ["¡", "¿", "-"] },
+          { "antes": "", "despues": "Cuántos años tienes?", "correcto": "¿", "opciones": ["¿", "¡", "-"] },
+          { "antes": "", "despues": "Cuidado, viene un carro!", "correcto": "¡", "opciones": ["¡", "¿", "-"] },
+          { "antes": "", "despues": "Quién apagó la luz?", "correcto": "¿", "opciones": ["¿", "¡", "-"] }
         ],
         [
           { "antes": "Compré manzanas", "despues": "peras y uvas", "correcto": ",", "opciones": [",", ".", ";"] },
@@ -60,7 +68,11 @@
           { "antes": "Carlos", "despues": "trae la pelota", "correcto": ",", "opciones": [",", ".", "?"] },
           { "antes": "Vi gallinas", "despues": "patos y chanchos", "correcto": ",", "opciones": [",", ".", ";"] },
           { "antes": "Doctor", "despues": "me duele la cabeza", "correcto": ",", "opciones": [",", ".", "?"] },
-          { "antes": "Comimos arroz", "despues": "menestra y carne", "correcto": ",", "opciones": [",", ".", ";"] }
+          { "antes": "Comimos arroz", "despues": "menestra y carne", "correcto": ",", "opciones": [",", ".", ";"] },
+          { "antes": "Mariana", "despues": "ven a almorzar", "correcto": ",", "opciones": [",", ".", "!"] },
+          { "antes": "Llevé pan", "despues": "queso y mermelada", "correcto": ",", "opciones": [",", ".", ";"] },
+          { "antes": "Abuelo", "despues": "cuéntame un cuento", "correcto": ",", "opciones": [",", ".", "?"] },
+          { "antes": "Vi loros", "despues": "guacamayos y tucanes", "correcto": ",", "opciones": [",", ".", ";"] }
         ]
       ]
     }

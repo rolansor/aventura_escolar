@@ -19,10 +19,26 @@
         { "id": "vidrio", "nombre": "Vidrio", "emoji": "🍶" }
       ],
       "items": {
-        "papel": [["un periódico", "una caja de cartón", "un cuaderno viejo"], [], []],
-        "plastico": [["una botella de agua", "una funda", "un envase de yogur"], [], []],
-        "organico": [["una cáscara de plátano", "restos de comida", "una hoja seca"], [], []],
-        "vidrio": [["un frasco", "una botella de vidrio", "un vaso roto"], [], []]
+        "papel": [
+          ["un periódico", "una caja de cartón", "un cuaderno viejo", "una hoja usada", "una revista"],
+          ["un sobre", "un rollo de papel higiénico vacío", "una servilleta limpia", "un afiche viejo", "una caja de cereal"],
+          ["un cartón de huevos", "una factura del super", "una bolsa de papel", "un calendario viejo", "un folleto de publicidad"]
+        ],
+        "plastico": [
+          ["una botella de agua", "una funda", "un envase de yogur", "un balde roto", "un juguete viejo"],
+          ["una tapa de botella", "una pajilla", "un envase de champú", "una funda de pan", "una tarrina de helado"],
+          ["un cepillo de dientes viejo", "un esfero sin tinta", "una regla rota", "un cubierto de plástico", "el plástico que envuelve las galletas"]
+        ],
+        "organico": [
+          ["una cáscara de plátano", "restos de comida", "una hoja seca", "una cáscara de huevo", "un pedazo de pan duro"],
+          ["cáscaras de naranja", "el cuncho del café", "ramas y hojas del jardín", "una cáscara de papa", "restos de ensalada"],
+          ["una bolsita de té usada", "huesos de pollo", "cáscaras de maní", "restos de fruta dañada", "flores marchitas"]
+        ],
+        "vidrio": [
+          ["un frasco", "una botella de vidrio", "un vaso roto", "un envase de mermelada", "una botella de cola"],
+          ["un frasco de café vacío", "una copa rota", "un envase de perfume", "una botella de jugo de vidrio", "un frasco de medicina"],
+          ["un frasco de conservas vacío", "una botella de aceite de vidrio", "un envase de perfume vacío", "un vaso de cristal quebrado", "un frasco de mermelada con etiqueta"]
+        ]
       }
     },
     {
@@ -36,8 +52,16 @@
         { "id": "dana", "nombre": "Daña 💔", "emoji": "🏭" }
       ],
       "items": {
-        "cuida": [["sembrar árboles", "reciclar", "cerrar el grifo", "apagar la luz", "ir en bici"], [], []],
-        "dana": [["botar basura al río", "talar bosques", "desperdiciar agua", "contaminar el aire"], [], []]
+        "cuida": [
+          ["sembrar árboles", "reciclar", "cerrar el grifo", "apagar la luz", "ir en bici"],
+          ["separar la basura", "usar una funda de tela", "recoger la basura del parque", "ahorrar agua al bañarse", "cuidar a los animales"],
+          ["reutilizar las botellas", "caminar en vez de usar el carro", "regar las plantas con agua de lluvia", "donar la ropa que ya no usas", "apagar los aparatos que no uso"]
+        ],
+        "dana": [
+          ["botar basura al río", "talar bosques", "desperdiciar agua", "contaminar el aire", "dejar la luz prendida"],
+          ["quemar la basura", "cazar animales silvestres", "dejar el grifo abierto", "botar plástico al mar", "usar muchas fundas plásticas"],
+          ["dejar el cargador enchufado sin usar", "comprar cosas con mucho empaque", "botar pilas a la basura común", "manejar distancias cortas en carro", "tirar aceite usado por el desagüe"]
+        ]
       }
     },
     {
@@ -50,15 +74,31 @@
           { "t": "Reciclar cuida el planeta.", "c": true, "exp": "" },
           { "t": "Sembrar árboles ayuda al ambiente.", "c": true, "exp": "" },
           { "t": "Ahorrar agua cuida el planeta.", "c": true, "exp": "" },
-          { "t": "Talar todos los bosques es bueno.", "c": false, "exp": "" }
+          { "t": "Talar todos los bosques es bueno.", "c": false, "exp": "Los bosques nos dan oxígeno." },
+          { "t": "Botar basura al río ensucia el agua.", "c": true, "exp": "" },
+          { "t": "Apagar la luz ahorra energía.", "c": true, "exp": "" },
+          { "t": "Los árboles nos dan oxígeno.", "c": true, "exp": "" },
+          { "t": "Botar basura en la calle cuida la ciudad.", "c": false, "exp": "La ensucia." }
         ],
         [
           { "t": "Botar basura al río daña a los animales.", "c": true, "exp": "" },
           { "t": "La cáscara de fruta es basura orgánica.", "c": true, "exp": "" },
-          { "t": "Las botellas de plástico van al tacho de papel.", "c": false, "exp": "Van al tacho de plástico." }
+          { "t": "Las botellas de plástico van al tacho de papel.", "c": false, "exp": "Van al tacho de plástico." },
+          { "t": "El vidrio se puede reciclar.", "c": true, "exp": "" },
+          { "t": "Reutilizar una botella es mejor que botarla.", "c": true, "exp": "" },
+          { "t": "El humo de las fábricas contamina el aire.", "c": true, "exp": "" },
+          { "t": "Toda la basura va en un solo tacho.", "c": false, "exp": "Se debe separar." },
+          { "t": "Usar una funda de tela ahorra plástico.", "c": true, "exp": "" }
         ],
         [
-          { "t": "La cáscara de fruta es basura orgánica.", "c": true, "exp": "" }
+          { "t": "La cáscara de fruta es basura orgánica.", "c": true, "exp": "" },
+          { "t": "Las pilas usadas van en la basura común.", "c": false, "exp": "Son peligrosas; van a un punto especial." },
+          { "t": "El papel se puede reciclar varias veces.", "c": true, "exp": "" },
+          { "t": "Reciclar ahorra energía y recursos naturales.", "c": true, "exp": "" },
+          { "t": "El aceite usado se puede botar por el lavabo.", "c": false, "exp": "Contamina el agua." },
+          { "t": "Un ecosistema incluye seres vivos y su entorno.", "c": true, "exp": "" },
+          { "t": "Plantar árboles ayuda a limpiar el aire.", "c": true, "exp": "" },
+          { "t": "El plástico tarda muchos años en desaparecer.", "c": true, "exp": "" }
         ]
       ]
     },
@@ -71,14 +111,32 @@
         [
           { "q": "¿Qué es reciclar?", "c": "Volver a usar la basura para algo nuevo", "d": ["Botar toda la basura junta", "Quemar la basura"] },
           { "q": "¿Dónde va una botella de plástico?", "c": "Al contenedor de plástico", "d": ["Al contenedor de papel", "Al contenedor orgánico"] },
-          { "q": "¿Qué acción cuida el planeta?", "c": "Sembrar árboles", "d": ["Talar bosques", "Botar basura al río"] }
+          { "q": "¿Qué acción cuida el planeta?", "c": "Sembrar árboles", "d": ["Talar bosques", "Botar basura al río"] },
+          { "q": "¿Qué nos dan los árboles?", "c": "Oxígeno", "d": ["Humo", "Basura"] },
+          { "q": "¿Dónde va un periódico viejo?", "c": "Al contenedor de papel", "d": ["Al contenedor de vidrio", "Al contenedor orgánico"] },
+          { "q": "¿Qué acción ahorra agua?", "c": "Cerrar el grifo al cepillarse", "d": ["Dejar la manguera abierta", "Llenar la tina cada día"] },
+          { "q": "¿Dónde va una cáscara de fruta?", "c": "Al contenedor orgánico", "d": ["Al de plástico", "Al de vidrio"] },
+          { "q": "¿Qué pasa si botamos basura en la calle?", "c": "Se ensucia la ciudad", "d": ["Se limpia sola", "Crece un árbol"] }
         ],
         [
           { "q": "¿Dónde va la cáscara de plátano?", "c": "Al contenedor orgánico", "d": ["Al contenedor de vidrio", "Al contenedor de plástico"] },
-          { "q": "¿Qué pasa si botamos basura en la naturaleza?", "c": "Daña a los animales y plantas", "d": ["Ayuda a los animales", "No pasa nada"] }
+          { "q": "¿Qué pasa si botamos basura en la naturaleza?", "c": "Daña a los animales y plantas", "d": ["Ayuda a los animales", "No pasa nada"] },
+          { "q": "¿Qué significa reutilizar?", "c": "Volver a usar algo en vez de botarlo", "d": ["Botarlo de una vez", "Quemarlo"] },
+          { "q": "¿Dónde va un frasco de vidrio?", "c": "Al contenedor de vidrio", "d": ["Al de papel", "Al orgánico"] },
+          { "q": "¿Qué contamina el aire?", "c": "El humo de las fábricas y los carros", "d": ["Sembrar plantas", "El viento limpio"] },
+          { "q": "¿Por qué separamos la basura?", "c": "Para poder reciclarla mejor", "d": ["Para ensuciar más", "Porque es obligatorio botarla"] },
+          { "q": "¿Qué es un material reciclable?", "c": "Uno que se puede volver a usar", "d": ["Uno que no sirve para nada", "Uno que solo se quema"] },
+          { "q": "¿Qué acción ahorra energía?", "c": "Apagar luces y aparatos que no usamos", "d": ["Dejar todo prendido", "Usar más focos"] }
         ],
         [
-          { "q": "¿Qué es un ecosistema?", "c": "Un lugar con seres vivos y su entorno", "d": ["Una ciudad sin animales", "Una fábrica de carros"] }
+          { "q": "¿Qué es un ecosistema?", "c": "Un lugar con seres vivos y su entorno", "d": ["Una ciudad sin animales", "Una fábrica de carros"] },
+          { "q": "¿Dónde van las pilas usadas?", "c": "A un punto de reciclaje especial", "d": ["Al tacho orgánico", "Al desagüe"] },
+          { "q": "¿Qué es la basura orgánica?", "c": "Restos de plantas y comida que se descomponen", "d": ["Botellas y fundas", "Vidrio y metal"] },
+          { "q": "¿Por qué es malo botar aceite por el lavabo?", "c": "Porque contamina el agua", "d": ["Porque limpia las tuberías", "Porque ahorra agua"] },
+          { "q": "¿Qué es la contaminación?", "c": "Ensuciar el aire, el agua o el suelo", "d": ["Limpiar la naturaleza", "Sembrar árboles"] },
+          { "q": "¿Qué beneficio tiene reciclar?", "c": "Ahorra recursos y energía", "d": ["Gasta más árboles", "Ensucia los ríos"] },
+          { "q": "¿Qué es un recurso natural?", "c": "Algo que nos da la naturaleza, como el agua", "d": ["Algo que fabrica una máquina", "La basura de la ciudad"] },
+          { "q": "¿Qué hace el exceso de efecto invernadero?", "c": "Calienta demasiado el planeta", "d": ["Enfría el planeta", "Limpia el aire"] }
         ]
       ]
     }

@@ -82,6 +82,34 @@
               { "q": "¿Cómo es el cuy?", "opciones": ["Un animal pequeño", "Un animal gigante", "Un ave"], "correcta": "Un animal pequeño" },
               { "q": "¿Dónde se cría el cuy?", "opciones": ["En la Sierra", "En el mar", "En la ciudad"], "correcta": "En la Sierra" }
             ]
+          },
+          {
+            "texto": "La tortuga marina pone sus huevos en la arena de la playa.",
+            "preguntas": [
+              { "q": "¿Dónde pone los huevos la tortuga marina?", "opciones": ["En la arena de la playa", "En el río", "En un árbol"], "correcta": "En la arena de la playa" },
+              { "q": "¿Qué animal pone los huevos?", "opciones": ["La tortuga marina", "El cóndor", "El cuy"], "correcta": "La tortuga marina" }
+            ]
+          },
+          {
+            "texto": "El cacao se usa para hacer chocolate y crece en la Costa.",
+            "preguntas": [
+              { "q": "¿Para qué se usa el cacao?", "opciones": ["Para hacer chocolate", "Para hacer pan", "Para hacer queso"], "correcta": "Para hacer chocolate" },
+              { "q": "¿Dónde crece el cacao?", "opciones": ["En la Costa", "En la nieve", "En la Luna"], "correcta": "En la Costa" }
+            ]
+          },
+          {
+            "texto": "La llama vive en la Sierra y carga cosas por la montaña.",
+            "preguntas": [
+              { "q": "¿Dónde vive la llama?", "opciones": ["En la Sierra", "En el mar", "En la selva"], "correcta": "En la Sierra" },
+              { "q": "¿Qué hace la llama?", "opciones": ["Carga cosas por la montaña", "Vuela", "Nada"], "correcta": "Carga cosas por la montaña" }
+            ]
+          },
+          {
+            "texto": "En Ambato se celebra la Fiesta de las Flores y las Frutas.",
+            "preguntas": [
+              { "q": "¿Qué fiesta hay en Ambato?", "opciones": ["La Fiesta de las Flores y las Frutas", "La fiesta del mar", "La fiesta de la nieve"], "correcta": "La Fiesta de las Flores y las Frutas" },
+              { "q": "¿En qué ciudad es esa fiesta?", "opciones": ["En Ambato", "En Manta", "En Tena"], "correcta": "En Ambato" }
+            ]
           }
         ],
         [
@@ -154,6 +182,34 @@
               { "q": "¿Dónde vive el delfín rosado?", "opciones": ["En los ríos de la Amazonía", "En la nieve", "En el desierto"], "correcta": "En los ríos de la Amazonía" },
               { "q": "¿Cómo es el delfín rosado?", "opciones": ["Rosado y juguetón", "Negro y enojado", "Verde y lento"], "correcta": "Rosado y juguetón" }
             ]
+          },
+          {
+            "texto": "El piquero de patas azules vive en Galápagos. Levanta sus patas azules para bailar y atraer a su pareja.",
+            "preguntas": [
+              { "q": "¿De qué color tiene las patas el piquero?", "opciones": ["Azules", "Rojas", "Verdes"], "correcta": "Azules" },
+              { "q": "¿Para qué levanta las patas?", "opciones": ["Para bailar y atraer a su pareja", "Para volar más rápido", "Para nadar"], "correcta": "Para bailar y atraer a su pareja" }
+            ]
+          },
+          {
+            "texto": "El Yasuní es un parque de la Amazonía con muchísimas plantas y animales. Allí viven jaguares, monos y guacamayos.",
+            "preguntas": [
+              { "q": "¿Dónde está el parque Yasuní?", "opciones": ["En la Amazonía", "En la Sierra", "En Galápagos"], "correcta": "En la Amazonía" },
+              { "q": "¿Qué animales viven en el Yasuní?", "opciones": ["Jaguares, monos y guacamayos", "Pingüinos y focas", "Camellos"], "correcta": "Jaguares, monos y guacamayos" }
+            ]
+          },
+          {
+            "texto": "En la Mitad del Mundo, cerca de Quito, pasa la línea ecuatorial. Muchos turistas se toman fotos con un pie en cada lado.",
+            "preguntas": [
+              { "q": "¿Qué línea pasa por la Mitad del Mundo?", "opciones": ["La línea ecuatorial", "La línea del tren", "La línea de la costa"], "correcta": "La línea ecuatorial" },
+              { "q": "¿Qué hacen los turistas allí?", "opciones": ["Se toman fotos con un pie en cada lado", "Nadan en el mar", "Esquían"], "correcta": "Se toman fotos con un pie en cada lado" }
+            ]
+          },
+          {
+            "texto": "La guayaba es una fruta dulce de la Costa. Con ella se prepara un dulce muy rico que se come con queso.",
+            "preguntas": [
+              { "q": "¿De qué región es la guayaba?", "opciones": ["De la Costa", "De la Sierra", "De Galápagos"], "correcta": "De la Costa" },
+              { "q": "¿Con qué se come el dulce de guayaba?", "opciones": ["Con queso", "Con sal", "Con hielo"], "correcta": "Con queso" }
+            ]
           }
         ],
         [
@@ -225,6 +281,34 @@
             "preguntas": [
               { "q": "¿Por qué quedaban pocas frutas al mediodía?", "opciones": ["Porque la gente compró mucho", "Porque las frutas se escondieron", "Porque el mercado cerró"], "correcta": "Porque la gente compró mucho" },
               { "q": "¿A qué hora ya casi no había frutas?", "opciones": ["Al mediodía", "En la noche", "A la madrugada"], "correcta": "Al mediodía" }
+            ]
+          },
+          {
+            "texto": "Cuando Nelson llegó a la escuela, sus compañeros tenían los uniformes mojados y cerraban los paraguas. Él, en cambio, venía completamente seco.",
+            "preguntas": [
+              { "q": "¿Por qué Nelson venía seco?", "opciones": ["Porque vino protegido de la lluvia", "Porque hacía mucho sol", "Porque no fue a la escuela"], "correcta": "Porque vino protegido de la lluvia" },
+              { "q": "¿Qué tiempo había afuera?", "opciones": ["Estaba lloviendo", "Había un sol fuerte", "Estaba nevando"], "correcta": "Estaba lloviendo" }
+            ]
+          },
+          {
+            "texto": "La abuela puso una olla con leche al fuego y se fue a contestar el teléfono. Al volver, la cocina olía a quemado y el piso estaba blanco.",
+            "preguntas": [
+              { "q": "¿Qué crees que pasó con la leche?", "opciones": ["Se derramó al hervir", "Se congeló", "Desapareció"], "correcta": "Se derramó al hervir" },
+              { "q": "¿Por qué la cocina olía a quemado?", "opciones": ["Porque la leche se derramó y quemó", "Porque hubo una fiesta", "Porque limpiaron el piso"], "correcta": "Porque la leche se derramó y quemó" }
+            ]
+          },
+          {
+            "texto": "Los manglares de la Costa son árboles que crecen con las raíces dentro del agua salada. Entre sus raíces se esconden cangrejos y peces pequeños que sirven de alimento a muchas aves.",
+            "preguntas": [
+              { "q": "¿Por qué los manglares son importantes para las aves?", "opciones": ["Porque allí encuentran alimento", "Porque dan sombra al sol", "Porque son muy altos"], "correcta": "Porque allí encuentran alimento" },
+              { "q": "¿Dónde crecen las raíces del manglar?", "opciones": ["Dentro del agua salada", "En la nieve", "En el desierto"], "correcta": "Dentro del agua salada" }
+            ]
+          },
+          {
+            "texto": "Aunque vive en la línea ecuatorial, el Chimborazo siempre está cubierto de nieve. Esto sorprende a quienes creen que en el Ecuador solo hace calor.",
+            "preguntas": [
+              { "q": "¿Por qué el Chimborazo tiene nieve si está en el Ecuador?", "opciones": ["Porque es muy alto y allí hace frío", "Porque está en el Polo Norte", "Porque le echan hielo"], "correcta": "Porque es muy alto y allí hace frío" },
+              { "q": "¿Qué creen algunas personas sobre el Ecuador?", "opciones": ["Que solo hace calor", "Que siempre nieva", "Que no tiene montañas"], "correcta": "Que solo hace calor" }
             ]
           }
         ]

@@ -50,11 +50,31 @@
         ["mamif", "ave", "pez", "reptil", "anfibio"]
       ],
       "items": {
-        "mamif": [["el perro", "la vaca", "el gato"], ["el caballo", "la llama", "el oso"], ["la ballena", "el delfín", "el murciélago"]],
-        "ave": [["la gallina", "el pato", "el loro"], ["el cóndor", "el colibrí", "la garza"], ["el pingüino", "el búho", "la fragata"]],
-        "pez": [["el pez", "la trucha", "el atún"], ["el tiburón", "la tilapia", "el pez payaso"], ["la anguila", "el bagre", "el dorado"]],
-        "reptil": [["la tortuga", "la lagartija"], ["la serpiente", "la iguana"], ["el cocodrilo", "el camaleón"]],
-        "anfibio": [["la rana", "el sapo"], ["la salamandra", "el tritón"], ["la rana marsupial", "la cecilia"]]
+        "mamif": [
+          ["el perro", "la vaca", "el gato", "el caballo", "el cerdo"],
+          ["la llama", "el oso", "el mono", "el conejo", "la oveja"],
+          ["la ballena", "el delfín", "el murciélago", "el manatí", "el oso de anteojos"]
+        ],
+        "ave": [
+          ["la gallina", "el pato", "el loro", "la paloma", "el pavo"],
+          ["el cóndor", "el colibrí", "la garza", "el tucán", "la lechuza"],
+          ["el pingüino", "el búho", "la fragata", "el flamenco", "el gavilán"]
+        ],
+        "pez": [
+          ["el pez", "la trucha", "el atún", "la sardina", "la corvina"],
+          ["el tiburón", "la tilapia", "el pez payaso", "la raya", "la anchoveta"],
+          ["la anguila", "el bagre", "el dorado", "el pez espada", "el mero"]
+        ],
+        "reptil": [
+          ["la tortuga", "la lagartija", "la iguana", "la salamanquesa", "la culebra"],
+          ["la serpiente", "la boa", "el camaleón", "la tortuga de río", "el lagarto"],
+          ["el cocodrilo", "la anaconda", "la tortuga gigante", "el caimán", "la víbora"]
+        ],
+        "anfibio": [
+          ["la rana", "el sapo", "el renacuajo", "la rana arborícola", "la rana toro"],
+          ["la salamandra", "el tritón", "la rana marsupial", "el sapo común", "la rana de cristal"],
+          ["la cecilia", "la rana cohete", "la rana venenosa", "la salamandra gigante", "la rana jambato"]
+        ]
       }
     },
     {
@@ -70,9 +90,21 @@
       ],
       "cestasPorNivel": [["herb", "carn"], ["herb", "carn", "omni"], ["herb", "carn", "omni"]],
       "items": {
-        "herb": [["la vaca", "el conejo", "el caballo"], ["la oveja", "la llama", "la jirafa"], ["el venado", "la iguana", "el manatí"]],
-        "carn": [["el león", "el tiburón", "el lobo"], ["el águila", "el puma", "el cocodrilo"], ["la araña", "el búho", "la mantis"]],
-        "omni": [["el oso", "el cerdo"], ["la gallina", "el ser humano"], ["el mono", "el zorro", "la rata"]]
+        "herb": [
+          ["la vaca", "el conejo", "el caballo", "la oveja", "la cabra"],
+          ["la llama", "la jirafa", "el venado", "el elefante", "la cebra"],
+          ["la iguana", "el manatí", "el panda", "la danta", "el capibara"]
+        ],
+        "carn": [
+          ["el león", "el tiburón", "el lobo", "el gato", "el puma"],
+          ["el águila", "el cocodrilo", "el jaguar", "la orca", "el tigre"],
+          ["la araña", "el búho", "la mantis", "la rana", "el camaleón"]
+        ],
+        "omni": [
+          ["el oso", "el cerdo", "la gallina", "el pato", "el ratón"],
+          ["el ser humano", "el mono", "el zorro", "el mapache", "el cuervo"],
+          ["el jabalí", "el avestruz", "la zarigüeya", "el coatí", "la tortuga"]
+        ]
       }
     },
     {
@@ -88,9 +120,21 @@
       ],
       "cestasPorNivel": [["ovip", "vivi"], ["ovip", "vivi"], ["ovip", "vivi", "ovovivi"]],
       "items": {
-        "ovip": [["la gallina", "la rana", "la tortuga"], ["el pez", "el ave", "la serpiente"], ["el cocodrilo", "la mariposa", "el avestruz"]],
-        "vivi": [["el perro", "el gato", "la vaca"], ["la ballena", "el caballo", "la llama"], ["el delfín", "el murciélago", "el ser humano"]],
-        "ovovivi": [[], [], ["el tiburón", "la víbora", "el caballito de mar"]]
+        "ovip": [
+          ["la gallina", "la rana", "la tortuga", "el pato", "el pez"],
+          ["el ave", "la serpiente", "la mariposa", "el cocodrilo", "la lagartija"],
+          ["el avestruz", "la salamandra", "la araña", "el escarabajo", "la tortuga gigante"]
+        ],
+        "vivi": [
+          ["el perro", "el gato", "la vaca", "el caballo", "el conejo"],
+          ["la ballena", "la llama", "la oveja", "el cerdo", "el oso"],
+          ["el delfín", "el murciélago", "el ser humano", "el manatí", "el mono"]
+        ],
+        "ovovivi": [
+          [],
+          [],
+          ["el tiburón", "la víbora", "el caballito de mar", "la mantarraya", "el guppy"]
+        ]
       }
     },
     {
@@ -107,10 +151,26 @@
       ],
       "cestasPorNivel": [["pulm", "branq"], ["pulm", "branq", "piel"], ["pulm", "branq", "piel", "traq"]],
       "items": {
-        "pulm": [["el perro", "el gato", "el ave"], ["la ballena", "el caballo", "la tortuga"], ["el delfín", "la serpiente", "el murciélago"]],
-        "branq": [["el pez", "el tiburón"], ["la trucha", "el atún"], ["el renacuajo", "el cangrejo", "el pulpo"]],
-        "piel": [[], ["la rana", "la lombriz"], ["el sapo", "la salamandra"]],
-        "traq": [[], [], ["la hormiga", "la mariposa", "el escarabajo", "la araña"]]
+        "pulm": [
+          ["el perro", "el gato", "el ave", "el caballo", "la vaca"],
+          ["la ballena", "la tortuga", "el delfín", "la serpiente", "el león"],
+          ["el murciélago", "el cocodrilo", "la iguana", "el manatí", "el oso"]
+        ],
+        "branq": [
+          ["el pez", "el tiburón", "la trucha", "el atún", "la tilapia"],
+          ["el renacuajo", "el cangrejo", "la raya", "la anguila", "el bagre"],
+          ["el pulpo", "el camarón", "la almeja", "el caballito de mar", "la sardina"]
+        ],
+        "piel": [
+          [],
+          ["la rana", "la lombriz", "la salamandra", "el sapo", "la planaria"],
+          ["el tritón", "la sanguijuela", "la babosa", "la rana de cristal", "la cecilia"]
+        ],
+        "traq": [
+          [],
+          [],
+          ["la hormiga", "la mariposa", "el escarabajo", "la araña", "la abeja"]
+        ]
       }
     },
     {
@@ -123,21 +183,35 @@
           { "t": "Los ovíparos nacen de huevos.", "c": true, "exp": "Como la gallina o la rana." },
           { "t": "Los vivíparos nacen de huevos.", "c": false, "exp": "Nacen del vientre de su mamá." },
           { "t": "Las aves tienen plumas.", "c": true, "exp": "" },
-          { "t": "El perro es un ave.", "c": false, "exp": "Es un mamífero." }
+          { "t": "El perro es un ave.", "c": false, "exp": "Es un mamífero." },
+          { "t": "Los peces viven en el agua.", "c": true, "exp": "" },
+          { "t": "El gato es un mamífero.", "c": true, "exp": "" },
+          { "t": "La rana puede vivir en el agua y en la tierra.", "c": true, "exp": "Es un anfibio." },
+          { "t": "Todos los animales tienen pelo.", "c": false, "exp": "Las aves tienen plumas y los peces, escamas." },
+          { "t": "La vaca come pasto.", "c": true, "exp": "Es herbívora." }
         ],
         [
           { "t": "Las ballenas son peces.", "c": false, "exp": "Son mamíferos: respiran aire." },
           { "t": "Los peces respiran por branquias.", "c": true, "exp": "" },
           { "t": "Los herbívoros comen carne.", "c": false, "exp": "Comen plantas." },
           { "t": "Los mamíferos dan leche a sus crías.", "c": true, "exp": "" },
-          { "t": "Los reptiles tienen escamas.", "c": true, "exp": "" }
+          { "t": "Los reptiles tienen escamas.", "c": true, "exp": "" },
+          { "t": "Las aves ponen huevos.", "c": true, "exp": "" },
+          { "t": "Los anfibios tienen la piel húmeda.", "c": true, "exp": "Por eso respiran también por la piel." },
+          { "t": "El león es herbívoro.", "c": false, "exp": "Es carnívoro." },
+          { "t": "Los carnívoros comen otros animales.", "c": true, "exp": "" }
         ],
         [
           { "t": "El murciélago es un ave.", "c": false, "exp": "Es un mamífero que vuela." },
           { "t": "Los anfibios viven en el agua y en la tierra.", "c": true, "exp": "Como la rana." },
           { "t": "Los vertebrados tienen huesos y columna.", "c": true, "exp": "" },
           { "t": "El tiburón es un mamífero.", "c": false, "exp": "Es un pez." },
-          { "t": "Los omnívoros comen plantas y animales.", "c": true, "exp": "" }
+          { "t": "Los omnívoros comen plantas y animales.", "c": true, "exp": "" },
+          { "t": "El delfín respira con branquias.", "c": false, "exp": "Respira aire con pulmones; sube a la superficie." },
+          { "t": "Los ovovivíparos guardan los huevos dentro del cuerpo hasta que nacen.", "c": true, "exp": "Como el tiburón o la víbora." },
+          { "t": "Todos los mamíferos viven en la tierra.", "c": false, "exp": "La ballena y el delfín viven en el mar." },
+          { "t": "El pingüino es un ave aunque no vuela.", "c": true, "exp": "Nada usando sus alas." },
+          { "t": "La salamandra es un reptil.", "c": false, "exp": "Es un anfibio de piel húmeda." }
         ]
       ]
     },
@@ -150,18 +224,32 @@
         [
           { "q": "¿Qué es un animal VIVÍPARO?", "c": "Nace del vientre de su mamá", "d": ["Nace de un huevo", "Nace de una semilla"] },
           { "q": "¿Qué es un animal OVÍPARO?", "c": "Nace de un huevo", "d": ["Nace del vientre", "Vive en el mar"] },
-          { "q": "¿Qué come un HERBÍVORO?", "c": "Plantas", "d": ["Carne", "Piedras"] }
+          { "q": "¿Qué come un HERBÍVORO?", "c": "Plantas", "d": ["Carne", "Piedras"] },
+          { "q": "¿Qué tienen las aves en el cuerpo?", "c": "Plumas", "d": ["Escamas", "Pelo"] },
+          { "q": "¿Dónde viven los peces?", "c": "En el agua", "d": ["En el aire", "Bajo la tierra"] },
+          { "q": "¿Qué es un MAMÍFERO?", "c": "Un animal que da leche a sus crías", "d": ["Un animal con plumas", "Un pez con escamas"] },
+          { "q": "¿Con qué nada el pez?", "c": "Con sus aletas", "d": ["Con patas", "Con alas"] },
+          { "q": "¿Qué cubre el cuerpo de un pez?", "c": "Escamas", "d": ["Plumas", "Pelo"] }
         ],
         [
           { "q": "¿Qué come un CARNÍVORO?", "c": "Otros animales", "d": ["Solo plantas", "Solo frutas"] },
           { "q": "¿Qué come un OMNÍVORO?", "c": "Plantas y animales", "d": ["Solo pasto", "Solo carne"] },
           { "q": "¿Con qué respiran los peces?", "c": "Con branquias", "d": ["Con pulmones", "Con la piel"] },
-          { "q": "¿Qué tienen las aves en el cuerpo?", "c": "Plumas", "d": ["Escamas", "Pelo"] }
+          { "q": "¿Qué tienen las aves en el cuerpo?", "c": "Plumas", "d": ["Escamas", "Pelo"] },
+          { "q": "¿Qué es un ANFIBIO?", "c": "Un animal que vive en el agua y en la tierra", "d": ["Un animal que solo vive en el mar", "Un animal que solo vive en el desierto"] },
+          { "q": "¿Qué es un REPTIL?", "c": "Un animal de piel con escamas que repta", "d": ["Un animal con plumas", "Un animal con pelo suave"] },
+          { "q": "¿Qué hace un animal NOCTURNO?", "c": "Está activo de noche", "d": ["Duerme toda la noche", "Solo sale al mediodía"] },
+          { "q": "¿Qué cubre el cuerpo de los mamíferos?", "c": "Pelo", "d": ["Plumas", "Escamas"] }
         ],
         [
           { "q": "¿Qué es un VERTEBRADO?", "c": "Un animal con huesos y columna", "d": ["Un animal sin huesos", "Un insecto"] },
           { "q": "¿Qué grupo da leche a sus crías?", "c": "Los mamíferos", "d": ["Las aves", "Los peces"] },
-          { "q": "¿Qué tienen los reptiles en la piel?", "c": "Escamas", "d": ["Plumas", "Pelo suave"] }
+          { "q": "¿Qué tienen los reptiles en la piel?", "c": "Escamas", "d": ["Plumas", "Pelo suave"] },
+          { "q": "¿Qué es un animal OVOVIVÍPARO?", "c": "El huevo se abre dentro de la madre", "d": ["Nace de una semilla", "Pone huevos en un nido"] },
+          { "q": "¿Con qué respira el delfín?", "c": "Con pulmones", "d": ["Con branquias", "Con la piel"] },
+          { "q": "¿Qué grupo tiene la piel húmeda y sin escamas?", "c": "Los anfibios", "d": ["Los reptiles", "Las aves"] },
+          { "q": "¿Qué es la METAMORFOSIS de la rana?", "c": "El cambio de renacuajo a rana", "d": ["Cambiar de color", "Cambiar de cueva"] },
+          { "q": "¿Qué animal es de sangre fría (ectotermo)?", "c": "El reptil", "d": ["El perro", "El ave"] }
         ]
       ]
     }

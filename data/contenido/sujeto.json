@@ -28,7 +28,11 @@
           { "palabras": ["La", "profesora", "explica"], "corte": 2 },
           { "palabras": ["Pedro", "salta", "la", "cuerda"], "corte": 1 },
           { "palabras": ["El", "sol", "brilla"], "corte": 2 },
-          { "palabras": ["María", "lee", "un", "cuento"], "corte": 1 }
+          { "palabras": ["María", "lee", "un", "cuento"], "corte": 1 },
+          { "palabras": ["El", "niño", "estudia"], "corte": 2 },
+          { "palabras": ["La", "vaca", "come", "pasto"], "corte": 2 },
+          { "palabras": ["Diego", "nada", "en", "la", "piscina"], "corte": 1 },
+          { "palabras": ["Mi", "gata", "duerme"], "corte": 2 }
         ],
         [
           { "palabras": ["Mi", "perro", "corre", "en", "el", "parque"], "corte": 2 },
@@ -44,7 +48,11 @@
           { "palabras": ["Los", "turistas", "visitan", "las", "islas"], "corte": 2 },
           { "palabras": ["La", "señora", "barre", "el", "patio"], "corte": 2 },
           { "palabras": ["Mi", "primo", "anda", "en", "bicicleta"], "corte": 2 },
-          { "palabras": ["El", "pescador", "lanza", "su", "red"], "corte": 2 }
+          { "palabras": ["El", "pescador", "lanza", "su", "red"], "corte": 2 },
+          { "palabras": ["El", "agricultor", "siembra", "maíz", "fresco"], "corte": 2 },
+          { "palabras": ["Mi", "hermana", "lava", "los", "platos"], "corte": 2 },
+          { "palabras": ["Los", "estudiantes", "leen", "un", "libro"], "corte": 2 },
+          { "palabras": ["La", "panadera", "vende", "pan", "caliente"], "corte": 2 }
         ],
         [
           { "palabras": ["El", "pequeño", "colibrí", "vuela", "sobre", "las", "flores"], "corte": 3 },
@@ -60,7 +68,11 @@
           { "palabras": ["El", "río", "Guayas", "cruza", "la", "ciudad"], "corte": 3 },
           { "palabras": ["Las", "altas", "montañas", "andinas", "tocan", "el", "cielo"], "corte": 4 },
           { "palabras": ["El", "famoso", "trenecito", "del", "Chimborazo", "lleva", "visitantes"], "corte": 5 },
-          { "palabras": ["Mi", "querida", "maestra", "premió", "a", "los", "mejores"], "corte": 3 }
+          { "palabras": ["Mi", "querida", "maestra", "premió", "a", "los", "mejores"], "corte": 3 },
+          { "palabras": ["El", "viejo", "pescador", "repara", "su", "vieja", "canoa"], "corte": 3 },
+          { "palabras": ["Los", "alegres", "turistas", "fotografían", "las", "tortugas"], "corte": 3 },
+          { "palabras": ["Mi", "tía", "de", "Cuenca", "teje", "sombreros"], "corte": 4 },
+          { "palabras": ["La", "enorme", "ballena", "jorobada", "salta", "en", "el", "mar"], "corte": 4 }
         ]
       ]
     }

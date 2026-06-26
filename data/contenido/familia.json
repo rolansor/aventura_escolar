@@ -33,18 +33,66 @@
         ["tierra", "agua", "arbol", "deporte", "mano"]
       ],
       "items": {
-        "pan": [["pan", "panadero", "panadería", "panecillo", "empanada", "panera"], [], []],
-        "flor": [["flor", "florero", "florista", "florería", "florecer", "floral"], [], []],
-        "mar": [["mar", "marino", "marinero", "marea", "marisco", "submarino"], [], []],
-        "libro": [["libro", "librería", "librero", "libreta", "librito", "librote"], [], []],
-        "sol": [["sol", "solar", "soleado", "asolear", "girasol", "solecito"], [], []],
-        "leche": [["leche", "lechero", "lechería", "lechoso", "lechón", "lechera"], [], []],
-        "zapato": [["zapato", "zapatero", "zapatería", "zapatilla", "zapatón", "zapatito"], [], []],
-        "tierra": [["tierra", "terrestre", "enterrar", "terreno", "terráqueo", "subterráneo", "aterrizar", "desenterrar"], [], []],
-        "agua": [["agua", "acuático", "aguacero", "aguar", "aguada", "paraguas", "aguanieve", "desagüe"], [], []],
-        "arbol": [["árbol", "arboleda", "arbolito", "arbolado", "arbóreo", "arbolillo"], [], []],
-        "deporte": [["deporte", "deportista", "deportivo", "deportividad", "deportivamente", "antideportivo"], [], []],
-        "mano": [["mano", "manualidad", "manazas", "manotazo", "manual", "manilla"], [], []]
+        "pan": [
+          ["pan", "panadero", "panecillo", "panera"],
+          ["panadería", "empanada", "panecito", "panificar"],
+          ["panificadora", "empanizar", "empanada", "panadería"]
+        ],
+        "flor": [
+          ["flor", "florero", "florista", "florcita"],
+          ["florería", "florecer", "floral", "florido"],
+          ["floración", "florecimiento", "floreciente", "floristería"]
+        ],
+        "mar": [
+          ["mar", "marino", "marea", "marinero"],
+          ["marisco", "submarino", "marejada", "marítimo"],
+          ["marisquería", "ultramar", "marinería", "submarinismo"]
+        ],
+        "libro": [
+          ["libro", "librero", "librito", "librería"],
+          ["libreta", "librote", "libresco", "librería"],
+          ["librillo", "libresco", "libreta", "librote"]
+        ],
+        "sol": [
+          ["sol", "solar", "soleado", "solito"],
+          ["girasol", "asolear", "solana", "solecito"],
+          ["insolación", "resolana", "asoleado", "quitasol"]
+        ],
+        "leche": [
+          ["leche", "lechero", "lechera", "lechería"],
+          ["lechoso", "lechón", "lechecita", "lecherito"],
+          ["lechoso", "lechería", "lechón", "lechero"]
+        ],
+        "zapato": [
+          ["zapato", "zapatero", "zapatito", "zapatería"],
+          ["zapatilla", "zapatón", "zapatazo", "zapatería"],
+          ["zapatería", "zapatazo", "zapatilla", "zapatón"]
+        ],
+        "tierra": [
+          ["tierra", "terreno", "enterrar", "terroso"],
+          ["terrestre", "aterrizar", "terráqueo", "terruño"],
+          ["subterráneo", "desenterrar", "terraplén", "extraterrestre"]
+        ],
+        "agua": [
+          ["agua", "aguar", "aguada", "aguacero"],
+          ["paraguas", "aguanieve", "aguado", "aguaje"],
+          ["acuático", "desagüe", "aguamarina", "aguamanos"]
+        ],
+        "arbol": [
+          ["árbol", "arbolito", "arboleda", "arbolado"],
+          ["arbóreo", "arbolillo", "arbolote", "arbolado"],
+          ["arborícola", "arboricultura", "arborescente", "arbóreo"]
+        ],
+        "deporte": [
+          ["deporte", "deportista", "deportivo", "deportes"],
+          ["deportividad", "polideportivo", "deportista", "deportivo"],
+          ["antideportivo", "deportivamente", "polideportivo", "deportividad"]
+        ],
+        "mano": [
+          ["mano", "manito", "manilla", "manotazo"],
+          ["manual", "manualidad", "manazas", "manija"],
+          ["manuscrito", "manufactura", "manotear", "maniobra"]
+        ]
       }
     }
   ]

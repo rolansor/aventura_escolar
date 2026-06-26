@@ -24,7 +24,11 @@
           { "base": "libro", "instr": "Ponla en diminutivo", "correcto": "librito", "opciones": ["librito", "librote", "libros"] },
           { "base": "carro", "instr": "Ponla en diminutivo", "correcto": "carrito", "opciones": ["carrito", "carrazo", "carros"] },
           { "base": "oso", "instr": "Ponla en diminutivo", "correcto": "osito", "opciones": ["osito", "osazo", "osos"] },
-          { "base": "vaca", "instr": "Ponla en diminutivo", "correcto": "vaquita", "opciones": ["vaquita", "vacota", "vacas"] }
+          { "base": "vaca", "instr": "Ponla en diminutivo", "correcto": "vaquita", "opciones": ["vaquita", "vacota", "vacas"] },
+          { "base": "pájaro", "instr": "Ponla en diminutivo", "correcto": "pajarito", "opciones": ["pajarito", "pajarote", "pájaros"] },
+          { "base": "silla", "instr": "Ponla en diminutivo", "correcto": "sillita", "opciones": ["sillita", "sillota", "sillas"] },
+          { "base": "barco", "instr": "Ponla en diminutivo", "correcto": "barquito", "opciones": ["barquito", "barcote", "barcos"] },
+          { "base": "rana", "instr": "Ponla en diminutivo", "correcto": "ranita", "opciones": ["ranita", "ranota", "ranas"] }
         ],
         [
           { "base": "árbol", "instr": "Ponla en diminutivo", "correcto": "arbolito", "opciones": ["arbolito", "arbolote", "árboles"] },
@@ -38,7 +42,11 @@
           { "base": "jardín", "instr": "Ponla en diminutivo", "correcto": "jardincito", "opciones": ["jardincito", "jardinote", "jardines"] },
           { "base": "tambor", "instr": "Ponla en diminutivo", "correcto": "tamborcito", "opciones": ["tamborcito", "tamborazo", "tambores"] },
           { "base": "avión", "instr": "Ponla en diminutivo", "correcto": "avioncito", "opciones": ["avioncito", "avionzote", "aviones"] },
-          { "base": "estrella", "instr": "Ponla en diminutivo", "correcto": "estrellita", "opciones": ["estrellita", "estrellota", "estrellas"] }
+          { "base": "estrella", "instr": "Ponla en diminutivo", "correcto": "estrellita", "opciones": ["estrellita", "estrellota", "estrellas"] },
+          { "base": "papel", "instr": "Ponla en diminutivo", "correcto": "papelito", "opciones": ["papelito", "papelote", "papeles"] },
+          { "base": "reloj", "instr": "Ponla en diminutivo", "correcto": "relojito", "opciones": ["relojito", "relojote", "relojes"] },
+          { "base": "señor", "instr": "Ponla en diminutivo", "correcto": "señorcito", "opciones": ["señorcito", "señorón", "señores"] },
+          { "base": "calor", "instr": "Ponla en diminutivo", "correcto": "calorcito", "opciones": ["calorcito", "calorón", "calores"] }
         ],
         [
           { "base": "camión", "instr": "Ponla en diminutivo", "correcto": "camioncito", "opciones": ["camioncito", "camionzote", "camiones"] },
@@ -52,7 +60,11 @@
           { "base": "viento", "instr": "Ponla en diminutivo", "correcto": "vientecito", "opciones": ["vientecito", "ventarrón", "vientos"] },
           { "base": "pie", "instr": "Ponla en diminutivo", "correcto": "piecito", "opciones": ["piecito", "piezote", "pies"] },
           { "base": "llave", "instr": "Ponla en diminutivo", "correcto": "llavecita", "opciones": ["llavecita", "llavota", "llaves"] },
-          { "base": "estación", "instr": "Ponla en diminutivo", "correcto": "estacioncita", "opciones": ["estacioncita", "estacionzota", "estaciones"] }
+          { "base": "estación", "instr": "Ponla en diminutivo", "correcto": "estacioncita", "opciones": ["estacioncita", "estacionzota", "estaciones"] },
+          { "base": "fuente", "instr": "Ponla en diminutivo", "correcto": "fuentecita", "opciones": ["fuentecita", "fuentón", "fuentes"] },
+          { "base": "diente", "instr": "Ponla en diminutivo", "correcto": "dientecito", "opciones": ["dientecito", "dientón", "dientes"] },
+          { "base": "joven", "instr": "Ponla en diminutivo", "correcto": "jovencito", "opciones": ["jovencito", "jovenón", "jóvenes"] },
+          { "base": "tren", "instr": "Ponla en diminutivo", "correcto": "trencito", "opciones": ["trencito", "trenzote", "trenes"] }
         ]
       ]
     },
@@ -74,7 +86,11 @@
           { "base": "pelota", "instr": "Ponla en aumentativo", "correcto": "pelotón", "opciones": ["pelotón", "pelotita", "pelotas"] },
           { "base": "taza", "instr": "Ponla en aumentativo", "correcto": "tazón", "opciones": ["tazón", "tacita", "tazas"] },
           { "base": "caja", "instr": "Ponla en aumentativo", "correcto": "cajón", "opciones": ["cajón", "cajita", "cajas"] },
-          { "base": "ratón", "instr": "Ponla en aumentativo", "correcto": "ratonazo", "opciones": ["ratonazo", "ratoncito", "ratones"] }
+          { "base": "ratón", "instr": "Ponla en aumentativo", "correcto": "ratonazo", "opciones": ["ratonazo", "ratoncito", "ratones"] },
+          { "base": "muñeca", "instr": "Ponla en aumentativo", "correcto": "muñecona", "opciones": ["muñecona", "muñequita", "muñecas"] },
+          { "base": "plato", "instr": "Ponla en aumentativo", "correcto": "platón", "opciones": ["platón", "platito", "platos"] },
+          { "base": "perra", "instr": "Ponla en aumentativo", "correcto": "perraza", "opciones": ["perraza", "perrita", "perras"] },
+          { "base": "guitarra", "instr": "Ponla en aumentativo", "correcto": "guitarrón", "opciones": ["guitarrón", "guitarrita", "guitarras"] }
         ],
         [
           { "base": "carro", "instr": "Ponla en aumentativo", "correcto": "carrazo", "opciones": ["carrazo", "carrito", "carros"] },
@@ -88,7 +104,11 @@
           { "base": "gol", "instr": "Ponla en aumentativo", "correcto": "golazo", "opciones": ["golazo", "golcito", "goles"] },
           { "base": "amigo", "instr": "Ponla en aumentativo", "correcto": "amigote", "opciones": ["amigote", "amiguito", "amigos"] },
           { "base": "camisa", "instr": "Ponla en aumentativo", "correcto": "camisón", "opciones": ["camisón", "camisita", "camisas"] },
-          { "base": "soltero", "instr": "Ponla en aumentativo", "correcto": "solterón", "opciones": ["solterón", "solterito", "solteros"] }
+          { "base": "soltero", "instr": "Ponla en aumentativo", "correcto": "solterón", "opciones": ["solterón", "solterito", "solteros"] },
+          { "base": "mano", "instr": "Ponla en aumentativo", "correcto": "manota", "opciones": ["manota", "manita", "manos"] },
+          { "base": "barriga", "instr": "Ponla en aumentativo", "correcto": "barrigón", "opciones": ["barrigón", "barriguita", "barrigas"] },
+          { "base": "bigote", "instr": "Ponla en aumentativo", "correcto": "bigotazo", "opciones": ["bigotazo", "bigotito", "bigotes"] },
+          { "base": "cara", "instr": "Ponla en aumentativo", "correcto": "carota", "opciones": ["carota", "carita", "caras"] }
         ],
         [
           { "base": "nube", "instr": "Ponla en aumentativo", "correcto": "nubarrón", "opciones": ["nubarrón", "nubecita", "nubes"] },
@@ -102,7 +122,11 @@
           { "base": "camión", "instr": "Ponla en aumentativo", "correcto": "camionazo", "opciones": ["camionazo", "camioncito", "camiones"] },
           { "base": "película", "instr": "Ponla en aumentativo", "correcto": "peliculón", "opciones": ["peliculón", "peliculita", "películas"] },
           { "base": "cuerpo", "instr": "Ponla en aumentativo", "correcto": "cuerpazo", "opciones": ["cuerpazo", "cuerpecito", "cuerpos"] },
-          { "base": "problema", "instr": "Ponla en aumentativo", "correcto": "problemón", "opciones": ["problemón", "problemita", "problemas"] }
+          { "base": "problema", "instr": "Ponla en aumentativo", "correcto": "problemón", "opciones": ["problemón", "problemita", "problemas"] },
+          { "base": "fiesta", "instr": "Ponla en aumentativo", "correcto": "fiestón", "opciones": ["fiestón", "fiestita", "fiestas"] },
+          { "base": "éxito", "instr": "Ponla en aumentativo", "correcto": "exitazo", "opciones": ["exitazo", "exitito", "éxitos"] },
+          { "base": "negocio", "instr": "Ponla en aumentativo", "correcto": "negociazo", "opciones": ["negociazo", "negocito", "negocios"] },
+          { "base": "susto", "instr": "Ponla en aumentativo", "correcto": "sustazo", "opciones": ["sustazo", "sustito", "sustos"] }
         ]
       ]
     },
@@ -124,7 +148,11 @@
           { "base": "abuela", "instr": "Cámbiala a masculino", "correcto": "abuelo", "opciones": ["abuelo", "abuelas", "abuelita"] },
           { "base": "gallo", "instr": "Cámbiala a femenino", "correcto": "gallina", "opciones": ["gallina", "gallos", "gallito"] },
           { "base": "libro", "instr": "Ponla en plural", "correcto": "libros", "opciones": ["libros", "libra", "librito"] },
-          { "base": "tío", "instr": "Cámbiala a femenino", "correcto": "tía", "opciones": ["tía", "tíos", "tiíto"] }
+          { "base": "tío", "instr": "Cámbiala a femenino", "correcto": "tía", "opciones": ["tía", "tíos", "tiíto"] },
+          { "base": "hijo", "instr": "Cámbiala a femenino", "correcto": "hija", "opciones": ["hija", "hijos", "hijito"] },
+          { "base": "señor", "instr": "Cámbiala a femenino", "correcto": "señora", "opciones": ["señora", "señores", "señorita"] },
+          { "base": "casa", "instr": "Ponla en plural", "correcto": "casas", "opciones": ["casas", "caso", "casita"] },
+          { "base": "perro", "instr": "Ponla en plural", "correcto": "perros", "opciones": ["perros", "perra", "perrito"] }
         ],
         [
           { "base": "profesor", "instr": "Cámbiala a femenino", "correcto": "profesora", "opciones": ["profesora", "profesores", "profesorita"] },
@@ -138,7 +166,11 @@
           { "base": "tigre", "instr": "Cámbiala a femenino", "correcto": "tigresa", "opciones": ["tigresa", "tigres", "tigrecito"] },
           { "base": "luz", "instr": "Ponla en plural", "correcto": "luces", "opciones": ["luces", "luzes", "lucecita"] },
           { "base": "toro", "instr": "Cámbiala a femenino", "correcto": "vaca", "opciones": ["vaca", "toros", "torito"] },
-          { "base": "nuez", "instr": "Ponla en plural", "correcto": "nueces", "opciones": ["nueces", "nuezes", "nuecita"] }
+          { "base": "nuez", "instr": "Ponla en plural", "correcto": "nueces", "opciones": ["nueces", "nuezes", "nuecita"] },
+          { "base": "cruz", "instr": "Ponla en plural", "correcto": "cruces", "opciones": ["cruces", "cruzes", "crucita"] },
+          { "base": "doctor", "instr": "Cámbiala a femenino", "correcto": "doctora", "opciones": ["doctora", "doctores", "doctorcita"] },
+          { "base": "pared", "instr": "Ponla en plural", "correcto": "paredes", "opciones": ["paredes", "pareds", "paredcita"] },
+          { "base": "voz", "instr": "Ponla en plural", "correcto": "voces", "opciones": ["voces", "vozes", "vocecita"] }
         ],
         [
           { "base": "actor", "instr": "Cámbiala a femenino", "correcto": "actriz", "opciones": ["actriz", "actora", "actores"] },
@@ -152,7 +184,11 @@
           { "base": "avestruz", "instr": "Ponla en plural", "correcto": "avestruces", "opciones": ["avestruces", "avestruzes", "avestrucito"] },
           { "base": "yerno", "instr": "Cámbiala a femenino", "correcto": "nuera", "opciones": ["nuera", "yernos", "yernita"] },
           { "base": "carnero", "instr": "Cámbiala a femenino", "correcto": "oveja", "opciones": ["oveja", "carneros", "carnerito"] },
-          { "base": "lombriz", "instr": "Ponla en plural", "correcto": "lombrices", "opciones": ["lombrices", "lombrizes", "lombricita"] }
+          { "base": "lombriz", "instr": "Ponla en plural", "correcto": "lombrices", "opciones": ["lombrices", "lombrizes", "lombricita"] },
+          { "base": "padrino", "instr": "Cámbiala a femenino", "correcto": "madrina", "opciones": ["madrina", "padrinos", "padrinito"] },
+          { "base": "rubí", "instr": "Ponla en plural", "correcto": "rubíes", "opciones": ["rubíes", "rubís", "rubices"] },
+          { "base": "macho", "instr": "Cámbiala a femenino", "correcto": "hembra", "opciones": ["hembra", "machos", "machito"] },
+          { "base": "caballero", "instr": "Cámbiala a femenino", "correcto": "dama", "opciones": ["dama", "caballeros", "caballerito"] }
         ]
       ]
     }

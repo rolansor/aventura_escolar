@@ -18,20 +18,29 @@
         [
           { "a": "cóndor andino 🦅", "b": "Sierra" },
           { "a": "tortuga gigante 🐢", "b": "Galápagos" },
-          { "a": "jaguar 🐆", "b": "Amazonía" }
+          { "a": "jaguar 🐆", "b": "Amazonía" },
+          { "a": "oso de anteojos 🐻", "b": "Sierra" },
+          { "a": "iguana marina 🦎", "b": "Galápagos" },
+          { "a": "mono araña 🐒", "b": "Amazonía" }
         ],
         [
           { "a": "cóndor andino 🦅", "b": "Sierra" },
           { "a": "oso de anteojos 🐻", "b": "Sierra" },
           { "a": "tapir (danta) 🐗", "b": "Amazonía" },
-          { "a": "iguana marina 🦎", "b": "Galápagos" }
+          { "a": "iguana marina 🦎", "b": "Galápagos" },
+          { "a": "tortuga gigante 🐢", "b": "Galápagos" },
+          { "a": "manatí 🦭", "b": "Amazonía" },
+          { "a": "fragata 🐦", "b": "Costa" }
         ],
         [
           { "a": "oso de anteojos 🐻", "b": "Sierra" },
+          { "a": "cóndor andino 🦅", "b": "Sierra" },
           { "a": "mono araña 🐒", "b": "Amazonía" },
+          { "a": "nutria gigante 🦦", "b": "Amazonía" },
           { "a": "tiburón martillo 🦈", "b": "Galápagos" },
+          { "a": "pingüino de Galápagos 🐧", "b": "Galápagos" },
           { "a": "fragata 🐦", "b": "Costa" },
-          { "a": "manatí 🦭", "b": "Amazonía" }
+          { "a": "cocodrilo de la Costa 🐊", "b": "Costa" }
         ]
       ]
     },

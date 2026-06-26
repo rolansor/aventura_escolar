@@ -18,19 +18,25 @@
           { "a": "Teoría de Bering", "b": "Vinieron de Asia caminando" },
           { "a": "Teoría Polinésica", "b": "Llegaron en balsas por el mar" },
           { "a": "Primeros pobladores", "b": "Cazadores y recolectores" },
-          { "a": "Estrecho de Bering", "b": "El mar bajó y se formó un puente" }
+          { "a": "Estrecho de Bering", "b": "El mar bajó y se formó un puente" },
+          { "a": "Primeras herramientas", "b": "Puntas de piedra para cazar" },
+          { "a": "Glaciación", "b": "Hacía mucho frío y había hielo" }
         ],
         [
           { "a": "Teoría de Bering", "b": "Desde Asia por el estrecho de hielo" },
           { "a": "Teoría Polinésica", "b": "Desde la Polinesia en balsas" },
           { "a": "Teoría Australiana", "b": "Desde Australia por la Antártida" },
-          { "a": "Teoría Autóctona", "b": "Nació en América (ya descartada)" }
+          { "a": "Teoría Autóctona", "b": "Nació en América (ya descartada)" },
+          { "a": "Beringia", "b": "Puente de tierra que unió Asia y América" },
+          { "a": "Teoría más aceptada", "b": "La de Bering (asiática)" }
         ],
         [
           { "a": "Teoría de Bering", "b": "Alex Hrdlička" },
           { "a": "Teoría Polinésica", "b": "Paul Rivet" },
           { "a": "Teoría Australiana", "b": "Méndez Correa" },
-          { "a": "Teoría Autóctona", "b": "Florentino Ameghino" }
+          { "a": "Teoría Autóctona", "b": "Florentino Ameghino" },
+          { "a": "Camino de entrada principal", "b": "El estrecho de Bering" },
+          { "a": "Llegada por el Pacífico", "b": "En balsas polinésicas" }
         ]
       ]
     },
@@ -43,13 +49,19 @@
       "pregunta": "Ordena del MÁS ANTIGUO al más reciente 👇",
       "secuencias": [
         [
-          ["Paleoindio: cazadores y recolectores", "Formativo: primera cerámica (Valdivia)", "Integración: confederaciones y señoríos"]
+          ["Paleoindio: cazadores y recolectores", "Formativo: primera cerámica (Valdivia)", "Integración: confederaciones y señoríos"],
+          ["Paleoindio: primeros cazadores nómadas", "Formativo: nacen las aldeas y la cerámica", "Integración: grandes señoríos y confederaciones"],
+          ["Paleoindio: vivían de la caza y la recolección", "Formativo: empieza la agricultura", "Integración: confederaciones de pueblos"]
         ],
         [
-          ["Paleoindio: grandes cazadores", "Formativo: agricultura y cerámica", "Desarrollo Regional: orfebrería y comercio", "Integración: grandes confederaciones"]
+          ["Paleoindio: grandes cazadores", "Formativo: agricultura y cerámica", "Desarrollo Regional: orfebrería y comercio", "Integración: grandes confederaciones"],
+          ["Paleoindio: grandes cazadores nómadas", "Formativo: aldeas, agricultura y cerámica", "Desarrollo Regional: orfebrería y comercio", "Integración: señoríos y confederaciones"],
+          ["Paleoindio: cazadores y recolectores", "Formativo: primeras aldeas agrícolas", "Desarrollo Regional: trabajo del oro y comercio", "Integración: grandes cacicazgos"]
         ],
         [
-          ["Paleoindio: grandes cazadores", "Formativo: agricultura y cerámica", "Desarrollo Regional: orfebrería y comercio", "Integración: grandes confederaciones"]
+          ["Paleoindio: grandes cazadores", "Formativo: agricultura y cerámica", "Desarrollo Regional: orfebrería y comercio", "Integración: grandes confederaciones"],
+          ["Paleoindio: bandas de cazadores", "Formativo: agricultura y primera cerámica", "Desarrollo Regional: orfebrería y comercio regional", "Integración: confederaciones y señoríos étnicos"],
+          ["Paleoindio: economía de caza y recolección", "Formativo: vida en aldeas agrícolas", "Desarrollo Regional: artesanía en oro y platino", "Integración: grandes señoríos antes de los incas"]
         ]
       ]
     },
@@ -62,13 +74,19 @@
       "pregunta": "Ordena de la sociedad más simple a la más compleja 👇",
       "secuencias": [
         [
-          ["Incipientes: primeras aldeas agrícolas", "Superiores: terrazas y canales de riego", "Supracomunales: señoríos étnicos"]
+          ["Incipientes: primeras aldeas agrícolas", "Superiores: terrazas y canales de riego", "Supracomunales: señoríos étnicos"],
+          ["Incipientes: primeras chacras y aldeas", "Superiores: riego con canales y terrazas", "Supracomunales: señoríos con un cacique"],
+          ["Incipientes: pequeñas aldeas que siembran", "Superiores: terrazas y andenes de cultivo", "Supracomunales: varios pueblos unidos por un jefe"]
         ],
         [
-          ["Incipientes: primeras aldeas agrícolas", "Superiores: terrazas y canales de riego", "Supracomunales: señoríos y comercio"]
+          ["Incipientes: primeras aldeas agrícolas", "Superiores: terrazas y canales de riego", "Supracomunales: señoríos y comercio"],
+          ["Incipientes: primeras aldeas agrícolas", "Superiores: canales de riego y terrazas", "Supracomunales: señoríos étnicos y comercio"],
+          ["Incipientes: aldeas que empiezan a cultivar", "Superiores: agricultura con riego avanzado", "Supracomunales: confederaciones de señoríos"]
         ],
         [
-          ["Incipientes: primeras aldeas agrícolas", "Superiores: terrazas y canales de riego", "Supracomunales: señoríos y comercio"]
+          ["Incipientes: primeras aldeas agrícolas", "Superiores: terrazas y canales de riego", "Supracomunales: señoríos y comercio"],
+          ["Incipientes: aldeas agrícolas iniciales", "Superiores: terrazas, andenes y canales", "Supracomunales: grandes señoríos y cacicazgos"],
+          ["Incipientes: primeras comunidades de cultivo", "Superiores: ingeniería de riego y terrazas", "Supracomunales: señoríos con comercio a larga distancia"]
         ]
       ]
     },
@@ -84,14 +102,18 @@
           { "a": "Valdivia", "b": "Primera cerámica" },
           { "a": "Las Vegas", "b": "Los Amantes de Sumpa" },
           { "a": "La Tolita", "b": "Sol de oro" },
-          { "a": "Cañari", "b": "Sierra sur" }
+          { "a": "Cañari", "b": "Sierra sur" },
+          { "a": "Quitu-Cara", "b": "Vivieron donde hoy está Quito" },
+          { "a": "Manteño", "b": "Comerciantes que viajaban en balsas" }
         ],
         [
           { "a": "Valdivia", "b": "Venus de Valdivia" },
           { "a": "Las Vegas", "b": "Los Amantes de Sumpa" },
           { "a": "La Tolita", "b": "Sol de oro" },
           { "a": "Chorrera", "b": "Botellas-silbato" },
-          { "a": "Cañari", "b": "Ingapirca, en la Sierra sur" }
+          { "a": "Cañari", "b": "Ingapirca, en la Sierra sur" },
+          { "a": "Machalilla", "b": "Botellas con asa de estribo" },
+          { "a": "Manteño-Huancavilca", "b": "Comercio en balsas por el mar" }
         ],
         [
           { "a": "Valdivia", "b": "Venus de Valdivia" },
@@ -117,19 +139,31 @@
           { "t": "Los primeros pobladores de América llegaron desde Asia.", "c": true, "exp": "Por el estrecho de Bering, según la teoría más aceptada." },
           { "t": "Los primeros pobladores eran agricultores con tractores.", "c": false, "exp": "Eran cazadores y recolectores nómadas." },
           { "t": "Valdivia hizo la primera cerámica del Ecuador.", "c": true, "exp": "" },
-          { "t": "El periodo Paleoindio es el más antiguo.", "c": true, "exp": "" }
+          { "t": "El periodo Paleoindio es el más antiguo.", "c": true, "exp": "" },
+          { "t": "Los primeros pobladores vivían en un solo lugar para siempre.", "c": false, "exp": "Eran nómadas: se movían buscando comida." },
+          { "t": "Cazaban animales y recogían frutos silvestres.", "c": true, "exp": "" },
+          { "t": "La cultura Las Vegas dejó a los Amantes de Sumpa.", "c": true, "exp": "Dos esqueletos abrazados muy antiguos." },
+          { "t": "Los primeros pobladores ya usaban celulares.", "c": false, "exp": "Eso es de hoy, no de la época aborigen." }
         ],
         [
           { "t": "La teoría de Bering dice que cruzaron por el estrecho de Bering.", "c": true, "exp": "Caminando desde Asia." },
           { "t": "Paul Rivet propuso que llegaron en balsas desde la Polinesia.", "c": true, "exp": "Es la teoría oceánica o polinésica." },
           { "t": "La teoría autóctona de Ameghino está aceptada hoy.", "c": false, "exp": "Fue descartada." },
-          { "t": "Los incas pertenecen al periodo de Integración.", "c": true, "exp": "" }
+          { "t": "Los incas pertenecen al periodo de Integración.", "c": true, "exp": "" },
+          { "t": "Alex Hrdlička defendió la teoría asiática (Bering).", "c": true, "exp": "" },
+          { "t": "La teoría australiana dice que llegaron por la Antártida.", "c": true, "exp": "La propuso Méndez Correa." },
+          { "t": "Valdivia es una cultura de la Costa del Ecuador.", "c": true, "exp": "En la actual provincia de Santa Elena." },
+          { "t": "El Cápac Ñan era un río de la Amazonía.", "c": false, "exp": "Era la gran red de caminos incas." }
         ],
         [
           { "t": "En la glaciación el mar bajó y se formó un puente de tierra (Beringia).", "c": true, "exp": "Por ahí pasaron desde Asia." },
           { "t": "Las sociedades supracomunales formaron señoríos étnicos.", "c": true, "exp": "Con un jefe o cacique." },
           { "t": "La cultura La Tolita es famosa por su 'sol de oro'.", "c": true, "exp": "Grandes orfebres." },
-          { "t": "El periodo Formativo es posterior al de Integración.", "c": false, "exp": "El Formativo es mucho más antiguo." }
+          { "t": "El periodo Formativo es posterior al de Integración.", "c": false, "exp": "El Formativo es mucho más antiguo." },
+          { "t": "La cultura Manteño-Huancavilca comerciaba en balsas por el mar.", "c": true, "exp": "Grandes navegantes y comerciantes." },
+          { "t": "La teoría autóctona de Ameghino sigue aceptada por la ciencia.", "c": false, "exp": "Fue descartada hace tiempo." },
+          { "t": "El periodo de Desarrollo Regional está entre el Formativo y la Integración.", "c": true, "exp": "" },
+          { "t": "Los señoríos étnicos eran dirigidos por un cacique.", "c": true, "exp": "Un jefe que gobernaba el grupo." }
         ]
       ]
     },
@@ -143,17 +177,32 @@
         [
           { "q": "¿De dónde llegaron los primeros pobladores según la teoría de Bering?", "c": "De Asia", "d": ["De Europa", "De África"] },
           { "q": "¿Cómo conseguían su comida los primeros pobladores?", "c": "Cazando y recolectando", "d": ["Sembrando trigo", "Comprando en el mercado"] },
-          { "q": "¿Qué cultura hizo la primera cerámica?", "c": "Valdivia", "d": ["Los incas", "La Tolita"] }
+          { "q": "¿Qué cultura hizo la primera cerámica?", "c": "Valdivia", "d": ["Los incas", "La Tolita"] },
+          { "q": "¿En qué viajaron por el mar según la teoría polinésica?", "c": "En balsas", "d": ["En aviones", "En trenes"] },
+          { "q": "¿Cómo se llamaban los grupos que se movían buscando comida?", "c": "Nómadas", "d": ["Agricultores", "Marineros"] },
+          { "q": "¿Qué cultura dejó a los Amantes de Sumpa?", "c": "Las Vegas", "d": ["Valdivia", "La Tolita"] },
+          { "q": "¿Qué animal de los Andes daba lana y cargaba cosas?", "c": "La llama", "d": ["El caballo", "El camello"] },
+          { "q": "¿Qué famoso objeto de oro hizo la cultura La Tolita?", "c": "El sol de oro", "d": ["Una corona", "Un anillo"] }
         ],
         [
           { "q": "¿Quién propuso la teoría polinésica (balsas por el Pacífico)?", "c": "Paul Rivet", "d": ["Alex Hrdlička", "Florentino Ameghino"] },
           { "q": "¿Por dónde cruzaron según la teoría de Bering?", "c": "Por el estrecho de Bering", "d": ["Por el río Amazonas", "Por el mar Caribe"] },
-          { "q": "¿Cuál es el periodo más antiguo de la época aborigen?", "c": "Paleoindio", "d": ["Integración", "Formativo"] }
+          { "q": "¿Cuál es el periodo más antiguo de la época aborigen?", "c": "Paleoindio", "d": ["Integración", "Formativo"] },
+          { "q": "¿Quién defendió la teoría asiática del poblamiento?", "c": "Alex Hrdlička", "d": ["Paul Rivet", "Méndez Correa"] },
+          { "q": "¿Desde dónde llegaron según la teoría australiana?", "c": "Desde Australia", "d": ["Desde Asia", "Desde Europa"] },
+          { "q": "¿En qué actual provincia estuvo la cultura Valdivia?", "c": "Santa Elena", "d": ["Pichincha", "Napo"] },
+          { "q": "¿Qué cultura es famosa por sus botellas-silbato?", "c": "Chorrera", "d": ["Cañari", "Inca"] },
+          { "q": "¿En qué periodo aparecen las confederaciones y señoríos?", "c": "Integración", "d": ["Paleoindio", "Formativo"] }
         ],
         [
           { "q": "¿Qué es Beringia?", "c": "El puente de tierra entre Asia y América", "d": ["Una ciudad inca", "Un volcán del Ecuador"] },
           { "q": "¿Qué es un señorío étnico?", "c": "Un grupo de pueblos con un jefe (cacique)", "d": ["Una clase de cerámica", "Un tipo de cultivo"] },
-          { "q": "¿Qué gran invento marcó el periodo Formativo?", "c": "La cerámica", "d": ["La rueda", "La escritura"] }
+          { "q": "¿Qué gran invento marcó el periodo Formativo?", "c": "La cerámica", "d": ["La rueda", "La escritura"] },
+          { "q": "¿Quién propuso la teoría australiana?", "c": "Méndez Correa", "d": ["Paul Rivet", "Alex Hrdlička"] },
+          { "q": "¿Cómo se llama la red de caminos de los incas?", "c": "El Cápac Ñan", "d": ["La Panamericana", "El camino de los Andes de piedra blanca"] },
+          { "q": "¿Qué cultura trabajó el oro y el platino?", "c": "La Tolita", "d": ["Valdivia", "Machalilla"] },
+          { "q": "¿Qué periodo va entre el Formativo y la Integración?", "c": "Desarrollo Regional", "d": ["Paleoindio", "Colonial"] },
+          { "q": "¿Cómo se llamaban los grandes navegantes comerciantes de la Costa?", "c": "Manteño-Huancavilca", "d": ["Quitu-Cara", "Puruhá"] }
         ]
       ]
     }

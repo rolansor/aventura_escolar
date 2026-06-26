@@ -104,50 +104,37 @@
       "total": 6,
       "preguntas": [
         [
-          {
-            "t": "El sol calienta el agua y se evapora.",
-            "c": true,
-            "exp": ""
-          },
-          {
-            "t": "El agua puede ser sólida, líquida y gaseosa.",
-            "c": true,
-            "exp": ""
-          },
-          {
-            "t": "El hielo es agua en estado gaseoso.",
-            "c": false,
-            "exp": "El hielo es sólida."
-          }
+          { "t": "El sol calienta el agua y se evapora.", "c": true, "exp": "" },
+          { "t": "El agua puede ser sólida, líquida y gaseosa.", "c": true, "exp": "" },
+          { "t": "El hielo es agua en estado gaseoso.", "c": false, "exp": "El hielo es sólido." },
+          { "t": "La lluvia cae de las nubes.", "c": true, "exp": "" },
+          { "t": "El vapor de agua sube hacia el cielo.", "c": true, "exp": "" },
+          { "t": "El hielo es agua congelada.", "c": true, "exp": "" },
+          { "t": "El agua de la lluvia llena los ríos.", "c": true, "exp": "" },
+          { "t": "El agua del mar es dulce.", "c": false, "exp": "El agua del mar es salada." },
+          { "t": "Las nubes están hechas de gotitas de agua.", "c": true, "exp": "" }
         ],
         [
-          {
-            "t": "El vapor sube y forma las nubes.",
-            "c": true,
-            "exp": ""
-          },
-          {
-            "t": "El agua de los ríos llega al mar.",
-            "c": true,
-            "exp": ""
-          },
-          {
-            "t": "El ciclo del agua se detiene en invierno.",
-            "c": false,
-            "exp": "El ciclo nunca se detiene."
-          }
+          { "t": "El vapor sube y forma las nubes.", "c": true, "exp": "" },
+          { "t": "El agua de los ríos llega al mar.", "c": true, "exp": "" },
+          { "t": "El ciclo del agua se detiene en invierno.", "c": false, "exp": "El ciclo nunca se detiene." },
+          { "t": "La condensación forma las nubes.", "c": true, "exp": "" },
+          { "t": "Cuando el agua hierve se convierte en vapor.", "c": true, "exp": "" },
+          { "t": "La nieve es agua en estado sólido.", "c": true, "exp": "" },
+          { "t": "El agua se infiltra y pasa al suelo.", "c": true, "exp": "" },
+          { "t": "El agua que se evapora del mar puede caer como lluvia en la montaña.", "c": true, "exp": "" },
+          { "t": "Solo el agua de los ríos se evapora.", "c": false, "exp": "También se evapora el agua del mar, los lagos y las plantas." }
         ],
         [
-          {
-            "t": "Las nubes se forman por condensación.",
-            "c": true,
-            "exp": ""
-          },
-          {
-            "t": "La lluvia es precipitación.",
-            "c": true,
-            "exp": ""
-          }
+          { "t": "Las nubes se forman por condensación.", "c": true, "exp": "" },
+          { "t": "La lluvia es precipitación.", "c": true, "exp": "" },
+          { "t": "Las plantas también devuelven agua al aire (transpiración).", "c": true, "exp": "" },
+          { "t": "La evaporación necesita calor.", "c": true, "exp": "" },
+          { "t": "La condensación ocurre cuando el vapor se enfría.", "c": true, "exp": "" },
+          { "t": "El rocío de la mañana se forma por condensación.", "c": true, "exp": "" },
+          { "t": "El granizo es precipitación en estado sólido.", "c": true, "exp": "" },
+          { "t": "En la evaporación el agua pasa de líquido a sólido.", "c": false, "exp": "Pasa de líquido a gas (vapor)." },
+          { "t": "El agua subterránea es parte del ciclo del agua.", "c": true, "exp": "" }
         ]
       ]
     },
@@ -159,58 +146,34 @@
       "total": 6,
       "preguntas": [
         [
-          {
-            "q": "¿Qué estado del agua es el hielo?",
-            "c": "Sólido",
-            "d": [
-              "Líquido",
-              "Gaseoso"
-            ]
-          },
-          {
-            "q": "¿Qué hace que el agua se evapore?",
-            "c": "El calor del sol",
-            "d": [
-              "El frío de la noche",
-              "El viento de la montaña"
-            ]
-          }
+          { "q": "¿Qué estado del agua es el hielo?", "c": "Sólido", "d": ["Líquido", "Gaseoso"] },
+          { "q": "¿Qué hace que el agua se evapore?", "c": "El calor del sol", "d": ["El frío de la noche", "El viento de la montaña"] },
+          { "q": "¿En qué estado está el vapor de agua?", "c": "Gaseoso", "d": ["Sólido", "Líquido"] },
+          { "q": "¿De dónde cae la lluvia?", "c": "De las nubes", "d": ["Del suelo", "De los ríos"] },
+          { "q": "¿En qué estado está el agua que bebemos del vaso?", "c": "Líquido", "d": ["Sólido", "Gaseoso"] },
+          { "q": "¿Qué se forma cuando el agua se congela?", "c": "Hielo", "d": ["Vapor", "Nubes"] },
+          { "q": "¿Cómo está el agua del mar?", "c": "Líquida", "d": ["Sólida", "Gaseosa"] },
+          { "q": "¿Qué calienta el agua de los mares y ríos?", "c": "El sol", "d": ["La luna", "El viento"] }
         ],
         [
-          {
-            "q": "¿Qué se forma cuando el vapor se enfría?",
-            "c": "Las nubes",
-            "d": [
-              "El hielo",
-              "Los ríos"
-            ]
-          },
-          {
-            "q": "¿Cómo se llama la lluvia o nieve que cae?",
-            "c": "Precipitación",
-            "d": [
-              "Evaporación",
-              "Condensación"
-            ]
-          }
+          { "q": "¿Qué se forma cuando el vapor se enfría?", "c": "Las nubes", "d": ["El hielo", "Los ríos"] },
+          { "q": "¿Cómo se llama la lluvia o nieve que cae?", "c": "Precipitación", "d": ["Evaporación", "Condensación"] },
+          { "q": "¿Qué pasa en la evaporación?", "c": "El agua se convierte en vapor", "d": ["El agua se congela", "El agua se filtra"] },
+          { "q": "¿Adónde llega el agua de los ríos?", "c": "Al mar", "d": ["A las nubes", "Al sol"] },
+          { "q": "¿Qué es la nieve?", "c": "Agua en estado sólido", "d": ["Agua en estado gaseoso", "Vapor caliente"] },
+          { "q": "¿Qué necesita el agua para evaporarse?", "c": "Calor", "d": ["Frío", "Oscuridad"] },
+          { "q": "¿Cómo se llama cuando el agua entra en el suelo?", "c": "Infiltración", "d": ["Evaporación", "Condensación"] },
+          { "q": "¿Qué son las nubes?", "c": "Muchas gotitas de agua juntas", "d": ["Humo del sol", "Polvo del cielo"] }
         ],
         [
-          {
-            "q": "¿Qué es la evaporación?",
-            "c": "Cuando el agua se calienta y sube como vapor",
-            "d": [
-              "Cuando el agua se congela",
-              "Cuando llueve"
-            ]
-          },
-          {
-            "q": "¿Qué es la condensación?",
-            "c": "Cuando el vapor se enfría y forma nubes",
-            "d": [
-              "Cuando el agua se calienta",
-              "Cuando el agua se filtra en el suelo"
-            ]
-          }
+          { "q": "¿Qué es la evaporación?", "c": "Cuando el agua se calienta y sube como vapor", "d": ["Cuando el agua se congela", "Cuando llueve"] },
+          { "q": "¿Qué es la condensación?", "c": "Cuando el vapor se enfría y forma nubes", "d": ["Cuando el agua se calienta", "Cuando el agua se filtra en el suelo"] },
+          { "q": "¿Qué es la transpiración de las plantas?", "c": "Cuando las plantas devuelven agua al aire", "d": ["Cuando las plantas beben agua", "Cuando las plantas crecen"] },
+          { "q": "¿Qué es la precipitación?", "c": "El agua que cae como lluvia, nieve o granizo", "d": ["El agua que sube al cielo", "El vapor que se calienta"] },
+          { "q": "¿Qué es el agua subterránea?", "c": "El agua que se guarda bajo el suelo", "d": ["El agua de las nubes", "El agua del mar"] },
+          { "q": "¿Qué es el rocío?", "c": "Gotitas que se forman al enfriarse el vapor en la noche", "d": ["Lluvia muy fuerte", "Hielo del congelador"] },
+          { "q": "¿Qué es el granizo?", "c": "Precipitación de agua en bolitas de hielo", "d": ["Vapor caliente", "Niebla de la mañana"] },
+          { "q": "¿Qué mueve el ciclo del agua?", "c": "La energía del sol", "d": ["La luz de la luna", "El viento de la noche"] }
         ]
       ]
     }

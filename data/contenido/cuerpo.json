@@ -19,10 +19,26 @@
         { "id": "cerebro", "nombre": "Cerebro", "emoji": "🧠" }
       ],
       "items": {
-        "pulmones": [["Respira el aire", "Toma el oxígeno", "Bota el dióxido de carbono"], [], []],
-        "corazon": [["Bombea la sangre", "Late todo el día", "Manda sangre al cuerpo"], [], []],
-        "estomago": [["Digiere la comida", "Recibe lo que tragas", "Deshace los alimentos"], [], []],
-        "cerebro": [["Piensa y aprende", "Manda órdenes al cuerpo", "Controla los sentidos"], [], []]
+        "pulmones": [
+          ["Respira el aire", "Toma el oxígeno", "Bota el dióxido de carbono", "Se llenan de aire", "Sirven para respirar"],
+          ["Pasan el oxígeno a la sangre", "Sacan el aire usado del cuerpo", "Se inflan cuando tomas aire", "Trabajan al respirar", "Limpian el aire que entra"],
+          ["Intercambian oxígeno por dióxido de carbono", "Pasan el oxígeno del aire a la sangre", "Expulsan el dióxido de carbono al exhalar", "Forman parte del sistema respiratorio", "Llevan oxígeno a los glóbulos rojos"]
+        ],
+        "corazon": [
+          ["Bombea la sangre", "Late todo el día", "Manda sangre al cuerpo", "Hace tic-tac en el pecho", "Empuja la sangre"],
+          ["Lleva la sangre a todo el cuerpo", "Trabaja como una bomba", "Late más rápido cuando corres", "Hace circular la sangre", "Manda la sangre con oxígeno al cuerpo"],
+          ["Impulsa la sangre por las arterias", "Es el motor del sistema circulatorio", "Bombea sangre con oxígeno a todo el cuerpo", "Recibe la sangre que vuelve por las venas", "Mantiene la circulación de la sangre"]
+        ],
+        "estomago": [
+          ["Digiere la comida", "Recibe lo que tragas", "Deshace los alimentos", "Suena cuando tienes hambre", "Guarda la comida que comes"],
+          ["Mezcla los alimentos con jugos", "Convierte la comida en papilla", "Empieza a digerir lo que comes", "Trabaja después de tragar", "Deshace la comida con sus jugos"],
+          ["Mezcla los alimentos con jugos gástricos", "Forma parte del sistema digestivo", "Transforma la comida en una papilla", "Continúa la digestión que empezó en la boca", "Sus jugos deshacen los alimentos"]
+        ],
+        "cerebro": [
+          ["Piensa y aprende", "Manda órdenes al cuerpo", "Controla los sentidos", "Sirve para pensar", "Guarda los recuerdos"],
+          ["Controla todo el cuerpo", "Recibe lo que ven los ojos", "Nos hace soñar e imaginar", "Coordina los movimientos", "Manda mensajes a los músculos"],
+          ["Es el centro del sistema nervioso", "Recibe e interpreta las señales de los sentidos", "Coordina los movimientos del cuerpo", "Manda órdenes a través de los nervios", "Guarda la memoria y permite pensar"]
+        ]
       }
     },
     {
@@ -39,11 +55,31 @@
         { "id": "tacto", "nombre": "Tacto", "emoji": "🤚" }
       ],
       "items": {
-        "vista": [["los colores", "la luz", "un dibujo"], [], []],
-        "oido": [["la música", "un ruido", "una voz"], [], []],
-        "olfato": [["el olor de una flor", "el perfume", "la comida rica"], [], []],
-        "gusto": [["lo dulce", "lo salado", "un jugo"], [], []],
-        "tacto": [["lo suave", "lo caliente", "lo áspero"], [], []]
+        "vista": [
+          ["los colores", "la luz", "un dibujo", "las estrellas", "una pelota"],
+          ["si está oscuro o claro", "la forma de las cosas", "qué tan lejos está algo", "leer un libro", "un arcoíris"],
+          ["distinguir los colores", "calcular la distancia de un objeto", "ver el movimiento de algo", "reconocer la cara de alguien", "percibir la profundidad"]
+        ],
+        "oido": [
+          ["la música", "un ruido", "una voz", "un trueno", "el ladrido de un perro"],
+          ["de dónde viene un sonido", "una canción suave", "el timbre de la casa", "el susurro de alguien", "el sonido del mar"],
+          ["distinguir un sonido grave de uno agudo", "saber de qué lado viene un ruido", "el volumen de la música", "el ritmo de una canción", "ayudar a mantener el equilibrio"]
+        ],
+        "olfato": [
+          ["el olor de una flor", "el perfume", "la comida rica", "el humo", "una fruta madura"],
+          ["si la comida está dañada", "el olor a lluvia", "el aroma del café", "un olor feo de basura", "el olor del pan recién hecho"],
+          ["distinguir dos perfumes parecidos", "detectar el olor a quemado", "reconocer un olor conocido", "avisar de un gas peligroso", "el aroma de las especias"]
+        ],
+        "gusto": [
+          ["lo dulce", "lo salado", "un jugo", "un caramelo", "lo amargo"],
+          ["lo ácido del limón", "lo picante de un ají", "si la sopa tiene sal", "el sabor de una fruta", "lo agrio del vinagre"],
+          ["distinguir dulce, salado, ácido y amargo", "el sabor del chocolate", "si una fruta está madura por su sabor", "combinar varios sabores en un plato", "el sabor de un caldo de carne"]
+        ],
+        "tacto": [
+          ["lo suave", "lo caliente", "lo áspero", "lo frío", "lo duro"],
+          ["si algo está mojado", "una superficie lisa", "el cosquilleo en la piel", "qué tan pesado es algo", "un pinchazo"],
+          ["distinguir liso de rugoso", "sentir el dolor de un golpe", "notar un cambio de temperatura", "la textura de una tela", "la presión de un abrazo"]
+        ]
       }
     },
     {
@@ -56,17 +92,31 @@
           { "t": "El corazón bombea la sangre.", "c": true, "exp": "Late todo el día." },
           { "t": "Los pulmones sirven para respirar.", "c": true, "exp": "Toman el oxígeno del aire." },
           { "t": "Tenemos 5 sentidos.", "c": true, "exp": "Vista, oído, olfato, gusto y tacto." },
-          { "t": "Vemos con los oídos.", "c": false, "exp": "Vemos con los ojos." }
+          { "t": "Vemos con los oídos.", "c": false, "exp": "Vemos con los ojos." },
+          { "t": "El estómago digiere la comida.", "c": true, "exp": "Deshace los alimentos." },
+          { "t": "El cerebro sirve para pensar.", "c": true, "exp": "Y manda órdenes al cuerpo." },
+          { "t": "Olemos con la nariz.", "c": true, "exp": "" },
+          { "t": "El corazón está en el pecho.", "c": true, "exp": "" }
         ],
         [
           { "t": "El cerebro controla el cuerpo.", "c": true, "exp": "Piensa y manda órdenes." },
           { "t": "El estómago digiere la comida.", "c": true, "exp": "Deshace los alimentos." },
-          { "t": "Los huesos forman el esqueleto.", "c": true, "exp": "" }
+          { "t": "Los huesos forman el esqueleto.", "c": true, "exp": "" },
+          { "t": "Saboreamos con la lengua.", "c": true, "exp": "Allí están las papilas." },
+          { "t": "El corazón late más rápido cuando corremos.", "c": true, "exp": "El cuerpo necesita más oxígeno." },
+          { "t": "Respiramos por los pulmones.", "c": true, "exp": "Tomamos oxígeno y botamos dióxido de carbono." },
+          { "t": "Los músculos nos ayudan a movernos.", "c": true, "exp": "" },
+          { "t": "El cerebro no sirve para nada.", "c": false, "exp": "Controla todo el cuerpo." }
         ],
         [
           { "t": "El corazón sirve para pensar.", "c": false, "exp": "Para eso está el cerebro." },
           { "t": "El esqueleto sostiene y protege el cuerpo.", "c": true, "exp": "" },
-          { "t": "Los pulmones botan el dióxido de carbono.", "c": true, "exp": "" }
+          { "t": "Los pulmones botan el dióxido de carbono.", "c": true, "exp": "Lo expulsan al exhalar." },
+          { "t": "El corazón es el motor del sistema circulatorio.", "c": true, "exp": "Bombea la sangre por todo el cuerpo." },
+          { "t": "El cerebro es el centro del sistema nervioso.", "c": true, "exp": "Manda órdenes por los nervios." },
+          { "t": "En los pulmones, la sangre toma oxígeno.", "c": true, "exp": "Y suelta el dióxido de carbono." },
+          { "t": "El estómago forma parte del sistema digestivo.", "c": true, "exp": "" },
+          { "t": "La sangre vuelve al corazón por las arterias.", "c": false, "exp": "Vuelve al corazón por las venas." }
         ]
       ]
     },
@@ -79,14 +129,32 @@
         [
           { "q": "¿Para qué sirven los pulmones?", "c": "Para respirar", "d": ["Para pensar", "Para caminar"] },
           { "q": "¿Qué órgano bombea la sangre?", "c": "El corazón", "d": ["El estómago", "El cerebro"] },
-          { "q": "¿Cuántos sentidos tenemos?", "c": "5", "d": ["2", "10"] }
+          { "q": "¿Cuántos sentidos tenemos?", "c": "5", "d": ["2", "10"] },
+          { "q": "¿Con qué vemos?", "c": "Con los ojos", "d": ["Con los oídos", "Con la nariz"] },
+          { "q": "¿Qué órgano digiere la comida?", "c": "El estómago", "d": ["El corazón", "Los pulmones"] },
+          { "q": "¿Para qué sirve el cerebro?", "c": "Para pensar y mandar órdenes", "d": ["Para respirar", "Para digerir"] },
+          { "q": "¿Con qué olemos?", "c": "Con la nariz", "d": ["Con la lengua", "Con los oídos"] },
+          { "q": "¿Con qué oímos?", "c": "Con los oídos", "d": ["Con los ojos", "Con la piel"] }
         ],
         [
           { "q": "¿Con qué sentido oímos?", "c": "El oído", "d": ["La vista", "El gusto"] },
-          { "q": "¿Qué órgano controla todo el cuerpo?", "c": "El cerebro", "d": ["El corazón", "El estómago"] }
+          { "q": "¿Qué órgano controla todo el cuerpo?", "c": "El cerebro", "d": ["El corazón", "El estómago"] },
+          { "q": "¿Con qué sentido saboreamos?", "c": "El gusto", "d": ["El olfato", "El tacto"] },
+          { "q": "¿Qué forma el esqueleto?", "c": "Los huesos", "d": ["Los músculos", "La sangre"] },
+          { "q": "¿Qué nos ayuda a mover el cuerpo?", "c": "Los músculos", "d": ["El estómago", "Los pulmones"] },
+          { "q": "¿Por dónde entra el aire al respirar?", "c": "Por la nariz", "d": ["Por los oídos", "Por los ojos"] },
+          { "q": "¿Qué órgano late más rápido cuando corremos?", "c": "El corazón", "d": ["El cerebro", "El estómago"] },
+          { "q": "¿Qué transporta el oxígeno por el cuerpo?", "c": "La sangre", "d": ["El aire", "Los huesos"] }
         ],
         [
-          { "q": "¿Con qué sentido sentimos la textura?", "c": "El tacto", "d": ["El olfato", "El oído"] }
+          { "q": "¿Con qué sentido sentimos la textura?", "c": "El tacto", "d": ["El olfato", "El oído"] },
+          { "q": "¿Cómo se llama el sistema que dirige el cerebro?", "c": "El sistema nervioso", "d": ["El sistema digestivo", "El sistema respiratorio"] },
+          { "q": "¿A qué sistema pertenece el corazón?", "c": "Al sistema circulatorio", "d": ["Al sistema digestivo", "Al sistema nervioso"] },
+          { "q": "¿Dónde pasa el oxígeno del aire a la sangre?", "c": "En los pulmones", "d": ["En el estómago", "En el corazón"] },
+          { "q": "¿Por qué vasos sale la sangre del corazón?", "c": "Por las arterias", "d": ["Por las venas", "Por los nervios"] },
+          { "q": "¿En qué se convierte la comida en el estómago?", "c": "En una papilla", "d": ["En sangre", "En aire"] },
+          { "q": "¿Qué gas botamos al exhalar?", "c": "El dióxido de carbono", "d": ["El oxígeno", "El nitrógeno"] },
+          { "q": "¿Cómo se llaman los mensajeros que llevan las órdenes del cerebro?", "c": "Los nervios", "d": ["Las venas", "Los huesos"] }
         ]
       ]
     }

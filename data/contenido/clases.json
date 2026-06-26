@@ -28,29 +28,29 @@
       ],
       "items": {
         "sustantivo": [
-          ["perro", "casa", "mesa", "Nelson", "escuela", "pelota", "mamá", "río", "gato", "niño", "sol", "pan", "flor", "papá", "libro", "silla"],
-          ["maestra", "cuaderno", "montaña", "Quito", "guitarra", "mercado", "colibrí", "ventana", "bicicleta", "tortuga", "plátano", "cóndor", "maleta", "jardín"],
-          ["libertad", "amistad", "Ecuador", "alegría", "esperanza", "naturaleza", "justicia", "valentía", "sabiduría", "honestidad", "tristeza", "bondad"]
+          ["perro", "casa", "mesa", "Nelson", "escuela", "pelota", "mamá", "río", "gato", "niño", "sol", "pan", "flor", "papá", "libro", "silla", "árbol", "cielo", "amigo", "mar"],
+          ["maestra", "cuaderno", "montaña", "Quito", "guitarra", "mercado", "colibrí", "ventana", "bicicleta", "tortuga", "plátano", "cóndor", "maleta", "jardín", "ballena", "volcán", "mochila", "ciudad"],
+          ["libertad", "amistad", "Ecuador", "alegría", "esperanza", "naturaleza", "justicia", "valentía", "sabiduría", "honestidad", "tristeza", "bondad", "igualdad", "paciencia", "imaginación", "gratitud"]
         ],
         "adjetivo": [
-          ["grande", "rojo", "feliz", "alto", "bonito", "frío", "pequeño", "azul", "suave", "dulce", "limpio", "nuevo"],
-          ["valiente", "amarillo", "curioso", "enorme", "tranquilo", "rápido", "simpático", "redondo", "peludo", "brillante", "salado", "delgado"],
-          ["transparente", "silencioso", "gigantesco", "amable", "misterioso", "generoso", "increíble", "asombroso", "maravilloso", "resplandeciente"]
+          ["grande", "rojo", "feliz", "alto", "bonito", "frío", "pequeño", "azul", "suave", "dulce", "limpio", "nuevo", "corto", "largo", "gordo", "flaco"],
+          ["valiente", "amarillo", "curioso", "enorme", "tranquilo", "rápido", "simpático", "redondo", "peludo", "brillante", "salado", "delgado", "verdoso", "ruidoso", "alegre", "oscuro"],
+          ["transparente", "silencioso", "gigantesco", "amable", "misterioso", "generoso", "increíble", "asombroso", "maravilloso", "resplandeciente", "inteligente", "trabajador", "responsable", "afortunado"]
         ],
         "verbo": [
-          ["correr", "saltar", "comer", "jugar", "dormir", "cantar", "beber", "reír", "mirar", "abrir", "caminar", "leer"],
-          ["escribir", "aprender", "cocinar", "nadar", "escuchar", "pintar", "dibujar", "estudiar", "viajar", "comprar", "bailar", "trabajar"],
-          ["construir", "imaginar", "resolver", "investigar", "agradecer", "descubrir", "organizar", "reflexionar", "colaborar", "observar"]
+          ["correr", "saltar", "comer", "jugar", "dormir", "cantar", "beber", "reír", "mirar", "abrir", "caminar", "leer", "lavar", "soñar", "llorar", "cerrar"],
+          ["escribir", "aprender", "cocinar", "nadar", "escuchar", "pintar", "dibujar", "estudiar", "viajar", "comprar", "bailar", "trabajar", "saludar", "regalar", "ayudar", "esperar"],
+          ["construir", "imaginar", "resolver", "investigar", "agradecer", "descubrir", "organizar", "reflexionar", "colaborar", "observar", "comprender", "compartir", "conseguir", "establecer"]
         ],
         "articulo": [
           [],
-          ["el", "la", "los", "las", "un", "una", "lo", "unos", "unas"],
-          ["el", "la", "los", "las", "lo", "un", "una", "unos", "unas"]
+          ["el", "la", "los", "las", "un", "una", "lo", "unos", "unas", "al", "del"],
+          ["el", "la", "los", "las", "lo", "un", "una", "unos", "unas", "al", "del"]
         ],
         "pronombre": [
           [],
           [],
-          ["yo", "tú", "él", "ella", "usted", "nosotros", "nosotras", "ustedes", "ellos", "ellas", "me", "te", "nos", "se"]
+          ["yo", "tú", "él", "ella", "usted", "nosotros", "nosotras", "ustedes", "ellos", "ellas", "me", "te", "nos", "se", "lo", "le", "mí", "ti"]
         ],
         "adverbio": [
           [],

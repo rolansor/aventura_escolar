@@ -50,7 +50,23 @@
       { "p": "¿Qué metal trabajaban con gran maestría las culturas de la Costa?",
         "c": "El oro", "d": ["El hierro", "El acero", "El bronce"] },
       { "p": "¿Cómo se llaman los montículos de tierra que las culturas hacían para vivir?",
-        "c": "Tolas", "d": ["Pirámides", "Cuevas", "Chozas"] }
+        "c": "Tolas", "d": ["Pirámides", "Cuevas", "Chozas"] },
+      { "p": "¿Qué nombre recibe el puente de tierra por el que cruzaron desde Asia?",
+        "c": "Beringia", "d": ["El Cápac Ñan", "La Mitad del Mundo", "El istmo de Panamá"] },
+      { "p": "¿Qué cultura de la Sierra norte construyó las pirámides (tolas) de Cochasquí?",
+        "c": "Quitu-Cara", "d": ["Cañari", "Valdivia", "Inca"] },
+      { "p": "¿Qué pueblo de la Sierra central vivió cerca del Chimborazo?",
+        "c": "Puruhá", "d": ["Manteño", "La Tolita", "Las Vegas"] },
+      { "p": "Los Manteño-Huancavilca fueron grandes…",
+        "c": "navegantes y comerciantes", "d": ["agricultores de papa", "pastores de llamas", "mineros de oro"] },
+      { "p": "¿Cómo se llamaban los grupos nómadas que se movían buscando comida?",
+        "c": "Bandas de cazadores", "d": ["Señoríos", "Imperios", "Colonias"] },
+      { "p": "¿Qué cultura de la Costa hizo botellas-silbato de cerámica?",
+        "c": "Chorrera", "d": ["Cañari", "Puruhá", "Quitu-Cara"] },
+      { "p": "El último gran imperio que llegó al Ecuador antes de los españoles fue el…",
+        "c": "Inca", "d": ["Azteca", "Maya", "Romano"] },
+      { "p": "¿En qué actual provincia estaba la cultura Valdivia?",
+        "c": "Santa Elena", "d": ["Pichincha", "Napo", "Loja"] }
     ],
     "territorio": [
       { "p": "¿Qué es más grande, una provincia o un cantón?",
@@ -96,7 +112,25 @@
       { "p": "¿Cuál es la moneda oficial del Ecuador?",
         "c": "El dólar", "d": ["El sucre", "El peso", "El euro"] },
       { "p": "¿En qué región natural hay páramos y nevados?",
-        "c": "Sierra", "d": ["Costa", "Amazonía", "Región Insular"] }
+        "c": "Sierra", "d": ["Costa", "Amazonía", "Región Insular"] },
+      { "p": "¿Cómo se llama la división territorial que agrupa varios cantones?",
+        "c": "La provincia", "d": ["La parroquia", "La manzana", "El barrio"] },
+      { "p": "¿Qué autoridad dirige un cantón?",
+        "c": "El alcalde", "d": ["El presidente", "El prefecto", "El director de escuela"] },
+      { "p": "¿Qué autoridad dirige el gobierno de una provincia?",
+        "c": "El prefecto", "d": ["El alcalde", "El teniente político", "El rector"] },
+      { "p": "¿Cuál es la región más extensa del Ecuador continental?",
+        "c": "La Amazonía", "d": ["La Costa", "La Sierra", "La Región Insular"] },
+      { "p": "¿Qué archipiélago forma la Región Insular del Ecuador?",
+        "c": "Las islas Galápagos", "d": ["Las islas Canarias", "Las islas Malvinas", "Las islas Marshall"] },
+      { "p": "¿En qué región se cultiva más banano y cacao?",
+        "c": "La Costa", "d": ["La Sierra", "La Amazonía", "La Región Insular"] },
+      { "p": "¿Cómo se llama la fila de volcanes de la Sierra, la 'avenida de los volcanes'?",
+        "c": "El callejón interandino", "d": ["La cordillera de la Costa", "La llanura amazónica", "El golfo de Guayaquil"] },
+      { "p": "¿Cuál es el punto más alto del Ecuador?",
+        "c": "El volcán Chimborazo", "d": ["El volcán Cotopaxi", "El cerro El Cóndor", "El nevado Cayambe"] },
+      { "p": "¿Qué nevado está justo sobre la línea ecuatorial?",
+        "c": "El Cayambe", "d": ["El Chimborazo", "El Tungurahua", "El Sangay"] }
     ]
   }
 }

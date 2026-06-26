@@ -11,7 +11,7 @@ el `tipo` de cada tema: clasificar/emparejar/ordenar/silabas/alfabetico/vf/defin
 escena/senala, y motor `mc`: mc/lectura). **Ya NO hay un `src/modos/<modo>.js` por actividad de banco** (se
 eliminaron; su lógica está en el runner). Cada `paginas/<modo>.html` carga su JSON + `datos.js` + el motor +
 `contenido.js` y arranca con `Datos.cargar(["contenido/<modo>"]).then(() => Contenido.montar("<modo>").init())`.
-Esquema completo: **`docs/ESQUEMA_CONTENIDO.md`**. Cómo editar bancos: **`docs/MANUAL_BANCOS.md`**.
+Esquema completo, tipos y excepciones: **`docs/ESQUEMA_CONTENIDO.md`**. Organización de `data/`: **`data/README.md`**.
 Excepciones que conservan su loader propio: **ortografia** y **copia** (`data/ortografia.json`/`parrafos.json`),
 **quiz** (geografía desde `DATOS.mapas` + bancos de texto en `data/contenido/quiz.json`), **mapas/cantones/
 donde** (geometría en `data/mapas/*` y `data/cantones.js`) y **Matemáticas** (generan los problemas).
@@ -67,7 +67,7 @@ página en `paginas/` que el menú enlaza. Las páginas de `paginas/` usan `<bas
 
 | Archivo | Global | Rol |
 |---|---|---|
-| `data/*.json` (+ `*.js` generados por `build.py`) | `DATOS.*`, `NINO`, `ECUADOR_SVG`, `ECUADOR_CANTONES` | **Datos puros**: ortografia, secuencias, parrafos, generador-parrafos, materias, nino, mapa-ec, cantones, mapas/*. Editar el `.json` y correr `herramientas/build.py`. |
+| `data/*.json` (+ `*.js` generados por `build.py`) | `DATOS.*`, `NINO`, `ECUADOR_SVG`, `ECUADOR_CANTONES` | **Datos** (ver `data/README.md`): **`data/contenido/<modo>.json`** (contenido de actividades, lo usa el runner), **`data/mapas/*`** (geografía: provincias, regiones, detalle, cantones, mapa-ec), y de sistema/loader propio (materias, nino, ortografia, parrafos, generador-parrafos, secuencias). Editar el `.json` y correr `herramientas/build.py`. |
 | `src/core/juego.js` | `Juego` | Núcleo: marcador, sonido, `localStorage`, temporizador, utilidades (`azar/azarEl/mezclar/cargar/guardar/frasePositiva/construirSecuencia`, `acierto/error/granPremio`, `cron*`, `jugador`, `aplicarIdentidad`) e `iniciarBase()`. **Perfiles** (`perfiles/perfilActivo/crearPerfil/seleccionarPerfil/actualizarPerfil/borrarPerfil`), **nivel de dificultad** (`nivel/nivelIdx/porNivel`) y **leaderboard** (`registrarResultado/mejores/fmtTiempo/tablaMejoresHTML`). Ver "Perfiles, Niveles y Leaderboard". |
 | `src/core/perfiles.js` | `Perfiles` | **Selector de perfiles** (solo en `index.html`): pantalla `pantalla-perfiles` con una tarjeta por niño (botones **✏️ editar** y **🗑️ borrar**) + "➕ Nuevo perfil". El modal `abrirForm(perfil?)` sirve para **crear y editar** (nombre del niño, **nombre de la mascota** = `avatar`, **género de la mascota** = `genero` —construye a Luna niña/niño— y nivel; precarga al editar y guarda con `Juego.actualizarPerfil`, que aplica la identidad en vivo a `Luna`). Chip de perfil en la barra para cambiar. `Perfiles.init/abrir/actualizarChip`. |
 | `src/core/datos.js` | `Datos` | `Datos.cargar([...])` lee `window.__DATOS__` y rellena los globales. |
@@ -75,14 +75,15 @@ página en `paginas/` que el menú enlaza. Las páginas de `paginas/` usan `<bas
 | `src/core/mc.js` | `MC` | Motor de **opción múltiple** (repasos rápidos). Fábrica `MC(px, temas)`; ronda de 10. Al terminar registra el resultado en el leaderboard (`Juego.registrarResultado(px,…)`). **No es el patrón por defecto** (ver Filosofía de diseño). |
 | `src/core/actividad.js` | `Actividad` | Motor de **actividades manipulativas** (hermano de `MC`). Fábrica `Actividad(px, temas, opts)`; cada tema tiene `ronda(host, ctrl)` que arma la interacción en `#<px>-extra` y resuelve con `ctrl.ganar()/fallar()/reintento()`. Sin temporizador (autocorrectivo). Al terminar registra el leaderboard. Reutiliza la misma estructura de página por prefijo que `MC`. |
 | `src/core/arrastrar.js` | `Arrastrar` | Arrastrar-y-soltar con eventos de **puntero** (mouse + dedo). `Arrastrar.hacer(item, zonas, alSoltar)` (marca `.zona-hover`, devuelve la zona destino o null) y `Arrastrar.clasificar(host, ctrl, {pregunta, cestas, items})` (actividad "clasifica en cestas"). Además dos ayudantes de **toque** para `ronda()` de `Actividad`: `Arrastrar.emparejar(host, ctrl, {pregunta, pares:[{a,b}]})` (une parejas: toca izquierda→derecha; CSS `.emp-*`) y `Arrastrar.ordenar(host, ctrl, {pregunta, correcto:[...]})` (toca fichas en orden; CSS `.ord-*`). |
-| `src/modos/ortografia.js` | `Ortografia` | Ejercicios desde `DATOS.ortografia`. |
+| `src/core/contenido.js` | `Contenido` | **Runner genérico de contenido**. `Contenido.montar("<modo>")` lee `DATOS.contenido[<modo>]` (de `data/contenido/<modo>.json`) y arma las rondas según el `tipo` de cada tema (clasificar/emparejar/ordenar/silabas/alfabetico/vf/definir/sujeto/signos/formas/escena/senala/problema/terminos; motor `mc`: mc/lectura), devolviendo un `Actividad`/`MC`. Centraliza la lógica que antes estaba en cada `src/modos/*.js`. Ver `docs/ESQUEMA_CONTENIDO.md`. |
+| `data/contenido/<modo>.json` | `DATOS.contenido[<modo>]` | **Contenido de ~24 actividades migradas** (Lengua: clases, familia, sinonimos, refranes, ordena, alfabetico, silabas, sujeto, signos, formas, lectura; Ciencias: animales, invertebrados, cuidafauna, plantas, cuerpo, materia, ambiente, cicloagua, senala; Sociales: epoca, regiones; Mate: problemas, terminos). **Ya NO tienen `src/modos/*.js`** (su lógica vive en el runner). Editar el JSON + `build.py`. |
+| `src/modos/ortografia.js` | `Ortografia` | Ejercicios desde `DATOS.ortografia` (loader propio). |
 | `src/modos/secuencias.js` | `Secuencias` | Secuencias numéricas. |
-| `src/modos/copia.js` | `Copia` | **Corregir / Dictado** (dos sub-modos manipulativos). *Corregir*: el texto sale con errores y el niño **toca la palabra mala** → mini-modal con opciones (dificultad por `Juego.nivelIdx()`: básico = errores marcados y opciones obvias; intermedio = marcados, opciones más parecidas; avanzado = sin marcar, el niño los **busca** y al final pulsa Comprobar). *Dictado*: la voz del navegador (**Web Speech API**, sin librerías; degrada a mostrar el texto si no hay voz) lee y el niño escribe. Puntaje = palabras correctas/total → leaderboard `"copia"`. Conserva `generarErrores` (lo usa `contenido.js`). |
-| `src/modos/invertebrados.js` | `Invertebrados` | Ciencias: clasificar invertebrados en sus 6 grupos + temas de **reproducción** (sexual/asexual) y **tipos de artrópodos** (`Arrastrar.clasificar` sobre `Actividad`, catálogo por niveles). Ver "Ciencias Naturales — Taller 1". |
-| `src/modos/editor.js` | `Editor` | Zona de adultos — **⚙️ Ajustes** (clave **24861793**): solo temporizador y reinicio de progreso. La identidad y el nivel viven en el perfil; el contenido, en `contenido.js`. |
-| `src/modos/contenido.js` | `Contenido` | Zona de adultos — **📚 Banco de contenido** (misma clave): administra palabras de ortografía (editor universal), secuencias propias y párrafos. Mantiene `claveBancoCustom/claveOcultasOrto/bancoDefaultOrto` alineadas con `ortografia.js`. |
-| `src/modos/mapas.js` | `Mapas` | Mapa SVG por provincias (usa `ECUADOR_SVG`). |
-| `src/modos/mapacantones.js` | `MapaCantones` | Mapa GeoJSON por cantones + provincia en 3D (usa `ECUADOR_CANTONES`). |
+| `src/modos/copia.js` | `Copia` | **Corregir / Dictado** (dos sub-modos manipulativos). *Corregir*: el texto sale con errores y el niño **toca la palabra mala** → mini-modal con opciones (dificultad por `Juego.nivelIdx()`: básico = errores marcados y opciones obvias; intermedio = marcados, opciones más parecidas; avanzado = sin marcar, el niño los **busca** y al final pulsa Comprobar). *Dictado*: la voz del navegador (**Web Speech API**, sin librerías; degrada a mostrar el texto si no hay voz) lee y el niño escribe. Puntaje = palabras correctas/total → leaderboard `"copia"`. Conserva `generarErrores` (lo usa `banco.js`). |
+| `src/modos/editor.js` | `Editor` | Zona de adultos — **⚙️ Ajustes** (clave **24861793**): solo temporizador y reinicio de progreso. La identidad y el nivel viven en el perfil; el contenido, en `banco.js`. |
+| `src/modos/banco.js` | `BancoContenido` | Zona de adultos — **📚 Banco de contenido** (misma clave): administra palabras de ortografía (editor universal), secuencias propias y párrafos. Mantiene `claveBancoCustom/claveOcultasOrto/bancoDefaultOrto` alineadas con `ortografia.js`. **Global `BancoContenido`** (distinto del runner `Contenido` de `src/core/contenido.js`). |
+| `src/modos/{aritmetica,tablas,multiplicacion,division,comparar,redondeo,numeros,valorposicional,dinero,medidas,hora,fracciones,secuencias}.js` | varios | **Matemáticas** (generadores numéricos): producen los ejercicios por nivel; no usan el runner (no hay banco de texto). |
+| `src/modos/{mapas,mapacantones,donde}.js` + `quiz.js` | `Mapas`/`MapaCantones`/`Donde`/`Quiz` | **Mapas** (SVG/GeoJSON desde `data/mapas/*`) y **Quiz** (geografía de `DATOS.mapas` + bancos de texto en `data/contenido/quiz.json`). Loader propio. |
 | `src/efectos/escena3d.js` / `luna.js` | `ESCENA` / `Luna` | Fondo 3D y mascota. `Luna` (niño/niña según `genero`) tiene gestos espontáneos (saludo/pensar), reacciones (feliz/triste/fiesta) y **`Luna.tip(texto)` / `Luna.decir(texto)`** para hablar por su globo. **Si NO hay perfil creado** saluda en genérico ("¡Hola! Soy Luna") y omite el nombre en sus frases (`hayPerfil()` consulta `Juego.perfilActivo()`), para no decir "Nelson" en el selector. |
 | `css/modulos/*.css` | — | Estilos modulares (orden en `css/modulos/_orden.md`). |
 | `recursos/ecuador_1.0/2.0.svg`, `recursos/banderas/EC-*.svg` | — | SVG original/horneado + banderas provinciales. |
@@ -317,8 +318,8 @@ que pinta la palabra y baraja las etiquetas como opciones.
 al añadir palabras hay que poner cada una en el grupo correcto. Cuidado con palabras ambiguas (que tienen
 a la vez diptongo e hiato): elegir solo ejemplos claros del rasgo que se quiere enseñar.
 
-### Editor universal de ortografía (`contenido.js`)
-> Movido del editor al **📚 Banco de contenido** (`src/modos/contenido.js` + `paginas/contenido.html`).
+### Editor universal de ortografía (`banco.js`)
+> Movido del editor al **📚 Banco de contenido** (`src/modos/banco.js`, global `BancoContenido`, + `paginas/contenido.html`).
 La sección "🔤 Palabras de ortografía" administra **cualquier** categoría según su `estrategia`:
 - **Selector de categoría** → muestra todas las de `DATOS.ortografia`.
 - **Selector de grupo** (`ed-orto-grupo`) → aparece solo en `mayus` (propios/comunes) y `clasificar`
@@ -334,7 +335,7 @@ La sección "🔤 Palabras de ortografía" administra **cualquier** categoría s
 - **Pares ✅/❌** → zona `ed-orto-pares-zona`, oculta para `clasificar` (allí no aplica).
 
 Las funciones clave de mapeo cat→clave (`claveBancoCustom`, `claveOcultasOrto`, `bancoDefaultOrto`)
-están en `contenido.js` y **deben permanecer alineadas** con las claves que lee `ortografia.js`.
+están en `banco.js` y **deben permanecer alineadas** con las claves que lee `ortografia.js`.
 
 ## Convenciones del proyecto
 - **Idioma**: todo en español (UI, comentarios, nombres de variables y funciones). Mantener tildes/ñ.
@@ -390,7 +391,7 @@ están en `contenido.js` y **deben permanecer alineadas** con las claves que lee
   - **Perfiles + Niveles + Leaderboard + separación de configuración** (4 fases): selector de perfiles
     al abrir, progreso/identidad/nivel por perfil, dificultad básico/intermedio/avanzado en Matemática,
     marcador por juego y perfil (tiempo + aciertos), y división de la zona de adultos en ⚙️ Ajustes
-    (`editor.js`) + 📚 Banco de contenido (`contenido.js`). Ver "Perfiles, Niveles y Leaderboard".
+    (`editor.js`) + 📚 Banco de contenido (`banco.js`). Ver "Perfiles, Niveles y Leaderboard".
   - **Ciencias: "Los invertebrados"** (`invertebrados.js`) — clasificar en los 6 grupos del *Manual*.
   - Pendiente alinear con el temario de **Quinto C** (examen 1-jul): faltan actividades de **"términos
     de la adición y la sustracción"** (sumando/minuendo/sustraendo) y **"problemas de 4 pasos"**.

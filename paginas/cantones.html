@@ -58,7 +58,7 @@
   <script>window.THREE || document.write('<scr'+'ipt src="lib/three.min.js"></scr'+'ipt>');</script>
   <script src="src/efectos/escena3d.js"></script>
   <script src="src/efectos/luna.js"></script>
-  <script src="data/cantones.js"></script>
+  <script src="data/mapas/cantones.js"></script>
   <script src="src/core/datos.js"></script>
   <script src="src/core/juego.js"></script>
   <script src="src/modos/mapacantones.js"></script>
@@ -68,7 +68,7 @@
       if (window.MapaCantones && MapaCantones.enFoco && MapaCantones.enFoco()) MapaCantones.cerrarFoco();
       else location.href = "index.html?materia=sociales";
     };
-    Datos.cargar(["cantones"]).then(function () {
+    Datos.cargar(["mapas/cantones"]).then(function () {
       Juego.iniciarBase();
       MapaCantones.init();
       MapaCantones.mostrar();

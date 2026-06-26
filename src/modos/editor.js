@@ -4,7 +4,7 @@
    - La identidad (nombre/avatar/género) y el nivel viven en cada PERFIL
      (ver src/core/perfiles.js y src/core/juego.js).
    - El CONTENIDO (palabras, secuencias, párrafos) vive en el Banco de
-     contenido (ver src/modos/contenido.js).
+     contenido (ver src/modos/banco.js).
    El botón de reinicio de progreso (#btn-reset-stats) lo cablea Juego.iniciarBase().
    ============================================================ */
 

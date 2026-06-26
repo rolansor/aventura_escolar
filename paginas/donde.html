@@ -49,7 +49,7 @@
   <script>window.THREE || document.write('<scr'+'ipt src="lib/three.min.js"></scr'+'ipt>');</script>
   <script src="src/efectos/escena3d.js"></script>
   <script src="src/efectos/luna.js"></script>
-  <script src="data/mapa-ec.js"></script>
+  <script src="data/mapas/mapa-ec.js"></script>
   <script src="data/mapas/provincias.js"></script>
   <script src="src/core/datos.js"></script>
   <script src="src/core/juego.js"></script>
@@ -57,7 +57,7 @@
   <script>
     window.RUTA_INICIO = "index.html";
     window.MODO_VOLVER = function () { location.href = "index.html?materia=sociales"; };
-    Datos.cargar(["mapa-ec", "mapas/provincias"]).then(function () {
+    Datos.cargar(["mapas/mapa-ec", "mapas/provincias"]).then(function () {
       Juego.iniciarBase();
       Donde.init();
       document.getElementById("donde-otra").onclick = function () { Donde.otraRonda(); };

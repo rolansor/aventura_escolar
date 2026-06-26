@@ -20,8 +20,8 @@ window.Datos = (function () {
     "generador-parrafos":  (v) => (DATOS.frasesGenerador = v),
     "materias":            (v) => (DATOS.materias = v),
     "nino":                (v) => (window.NINO = (v && v.nombre) || "Nelson"),
-    "cantones":            (v) => (window.ECUADOR_CANTONES = v),
-    "mapa-ec":             (v) => (window.ECUADOR_SVG = v),
+    "mapas/cantones":      (v) => (window.ECUADOR_CANTONES = v),
+    "mapas/mapa-ec":       (v) => (window.ECUADOR_SVG = v),
     "mapas/provincias":    (v) => ((DATOS.mapas = DATOS.mapas || {}).provincias = v),
     "mapas/regiones":      (v) => ((DATOS.mapas = DATOS.mapas || {}).regiones = v),
     "mapas/detalle":       (v) => ((DATOS.mapas = DATOS.mapas || {}).detalle = v)

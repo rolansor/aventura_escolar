@@ -130,7 +130,7 @@
   <script src="src/core/datos.js"></script>
   <script src="src/core/juego.js"></script>
   <script src="src/modos/copia.js"></script>
-  <script src="src/modos/contenido.js"></script>
+  <script src="src/modos/banco.js"></script>
   <script>
     window.RUTA_INICIO = "index.html";
     // Zona de adultos: la clave se pide en un modal DENTRO del menú (index.html).
@@ -140,7 +140,7 @@
       document.getElementById("pantalla-contenido").classList.add("activa");
       Datos.cargar(["ortografia", "generador-parrafos"]).then(function () {
         Juego.iniciarBase();
-        Contenido.init();
+        BancoContenido.init();
       }).catch(function (e) { console.error("Error cargando datos:", e); });
     })();
   </script>

@@ -2,7 +2,7 @@
 
 > Arquitectura nueva: **todo el contenido de las actividades vive en `data/contenido/<modo>.json`** y lo
 > consume un **runner genérico** (`src/core/contenido.js`). Cada actividad = un JSON. Esta guía define el
-> esquema exacto. Para editar bancos concretos ver también `docs/MANUAL_BANCOS.md`.
+> esquema exacto y, al final, las **excepciones** (actividades con loader propio).
 
 ## Pipeline
 ```
@@ -84,6 +84,23 @@ Cada tema lleva `tipo`, `icono`, `nombre`, `desc`, `total?` (rondas, def. 6) y s
    `data/contenido/<modo>.js`, `datos.js`, el motor (`actividad.js`/`mc.js`), `arrastrar.js`,
    `contenido.js`, y monta con `Datos.cargar(["contenido/<modo>"]).then(()=> Contenido.montar("<modo>").init())`.
 3. Registra el modo en `src/core/menu.js` (`PAGINA`) y en `data/materias.json` → `build.py`.
+
+## Excepciones — actividades con loader propio (NO usan el runner)
+Estas guardan su contenido en JSON pero las consume su propio módulo (no `Contenido.montar`). Se editan
+en su archivo y, tras editar, se corre `python herramientas/build.py`.
+
+- **Ortografía** (`data/ortografia.json`, lo lee `src/modos/ortografia.js`). Array de categorías; según su
+  campo `estrategia`:
+  - `letra` (b_v, c_s_z, g_j, m_p_b), `hache` (h_muda), `lly` (ll_y): arreglo **`palabras`**.
+  - `tilde` (tildes): arreglo **`conTilde`**. `mayus` (mayusculas): **`propios`** y **`comunes`**.
+  - `clasificar` (acentuacion, diptongo_hiato): objeto **`banco`** con una lista por cada etiqueta de
+    `clases`. **Clasifica a mano**, con ejemplos claros (evita palabras ambiguas).
+- **Corregir/Dictado** (`data/parrafos.json`, lo lee `src/modos/copia.js`): `[{ id, nombre, nivel, texto,
+  textoMal? }]`. `texto` = versión correcta; `textoMal` (opcional) = misma frase con errores del adulto.
+- **Quiz del Ecuador** (`src/modos/quiz.js`): la geografía se genera de `DATOS.mapas`; los bancos de texto
+  están en `data/contenido/quiz.json` → `bancos.aborigen` / `bancos.territorio` (`{p,c,d,pista?}`).
+- **Mapas** (`data/mapas/*`): geografía (ver `data/README.md`). **Matemáticas** (aritmetica, tablas, etc.):
+  **generan** los ejercicios; no hay banco de preguntas (su "config" son rangos por nivel en el módulo).
 
 ## Verificación
 - `python -c "import json; json.load(open('data/contenido/<modo>.json',encoding='utf-8'))"`.

@@ -1,5 +1,5 @@
 /* ============================================================
-   BANCO DE CONTENIDO (para adultos) — src/modos/contenido.js
+   BANCO DE CONTENIDO (para adultos) — src/modos/banco.js
    Administra el CONTENIDO de los juegos (lo que antes vivía dentro del
    editor): palabras de ortografía (editor universal), secuencias propias
    y párrafos para copia/dictado. Todo se guarda en localStorage del
@@ -420,4 +420,4 @@ const Contenido = (function () {
 
   return { init };
 })();
-window.Contenido = Contenido;
+window.BancoContenido = Contenido;

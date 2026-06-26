@@ -175,6 +175,81 @@ window.Contenido = (function () {
           } else { el.classList.add("mal"); setTimeout(() => el.classList.remove("mal"), 700); ctrl.reintento("¡Casi! Esa es otra parte, inténtalo 👇"); }
         });
       });
+    },
+    // Problema verbal (Mate): elige la operación y escribe la respuesta. Lee el banco
+    // del archivo (C.banco) filtrado por las operaciones del tema (t.ops). { ops:[…] }
+    problema: (t, C) => {
+      const OPS = ["+", "−", "×", "÷"];
+      const calc = (p) => p.op === "+" ? p.a + p.b : p.op === "−" ? p.a - p.b : p.op === "×" ? p.a * p.b : p.a / p.b;
+      const deck = ((C && C.banco) || []).filter((p) => !t.ops || t.ops.indexOf(p.op) >= 0);
+      let cola = [];
+      return (host, ctrl) => {
+        if (!cola.length) cola = ctrl.mezclar(deck.slice());
+        const p = cola.pop(); const r = calc(p);
+        ctrl.pregunta("🧮 Resuelve paso a paso");
+        host.innerHTML =
+          '<div class="prob-enun">' + esc(p.t) + "</div>" +
+          '<p class="prob-paso">1) ¿Qué operación usas?</p>' +
+          '<div class="prob-ops">' + OPS.map((s) => '<button class="prob-op" data-op="' + s + '">' + s + "</button>").join("") + "</div>" +
+          '<div class="prob-calc oculto"><p class="prob-paso">2) Haz el cálculo y escribe la respuesta</p>' +
+          '<div class="prob-cuenta"></div><div class="prob-resp"><input class="prob-input" inputmode="numeric" autocomplete="off" />' +
+          '<button class="prob-ok">Comprobar</button></div></div>';
+        const botones = Array.prototype.slice.call(host.querySelectorAll(".prob-op"));
+        botones.forEach((btn) => {
+          btn.onclick = () => {
+            if (btn.dataset.op === p.op) {
+              botones.forEach((b) => { b.disabled = true; });
+              btn.classList.add("ok");
+              host.querySelector(".prob-cuenta").textContent = p.a + " " + p.op + " " + p.b + " =";
+              host.querySelector(".prob-calc").classList.remove("oculto");
+              host.querySelector(".prob-input").focus();
+              ctrl.retro("¡Bien! Ahora calcula 👇", "bien");
+            } else { btn.classList.add("rojo"); setTimeout(() => btn.classList.remove("rojo"), 450); ctrl.reintento("Piensa: ¿sumar, restar, multiplicar o dividir? 🤔"); }
+          };
+        });
+        let intentos = 0;
+        function comprobar() {
+          const inp = host.querySelector(".prob-input"); const v = inp.value.trim();
+          if (v === "") return;
+          if (parseInt(v, 10) === r) { inp.disabled = true; ctrl.retro("✅ Respuesta: " + r + " " + esc(p.u), "bien"); ctrl.ganar(1500); }
+          else { intentos++; if (intentos >= 2) { inp.value = r; inp.disabled = true; ctrl.fallar("La respuesta era " + r + " " + esc(p.u) + " (" + p.a + " " + p.op + " " + p.b + ").", 2400); } else ctrl.reintento("Casi… revisa tu cálculo 👀"); }
+        }
+        host.querySelector(".prob-ok").onclick = comprobar;
+        host.querySelector(".prob-input").addEventListener("keydown", (e) => { if (e.key === "Enter") comprobar(); });
+      };
+    },
+    // Términos de la suma/resta (Mate, paramétrico): genera a±b según rangos por nivel
+    // y arrastra cada nombre a su número. { suma:bool, rangos:[[b],[i],[a]] }
+    terminos: (t) => (host, ctrl) => {
+      const rg = Juego.porNivel(t.rangos || [[2, 20], [20, 200], [200, 2000]]);
+      const suma = !!t.suma;
+      let a = ctrl.azar(rg[0], rg[1]), b = ctrl.azar(rg[0], rg[1]);
+      if (!suma && a < b) { const x = a; a = b; b = x; }
+      const c = suma ? a + b : a - b, signo = suma ? "+" : "−";
+      const partes = suma ? [{ n: a, rol: "sumando" }, { n: b, rol: "sumando" }, { n: c, rol: "suma" }]
+                          : [{ n: a, rol: "minuendo" }, { n: b, rol: "sustraendo" }, { n: c, rol: "diferencia" }];
+      const etiquetas = suma ? ["sumando", "sumando", "suma"] : ["minuendo", "sustraendo", "diferencia"];
+      const numHTML = (p) => '<div class="term-num" data-rol="' + p.rol + '"><b>' + p.n + '</b><span class="term-slot"></span></div>';
+      ctrl.pregunta("Arrastra cada nombre a su número 👇");
+      host.innerHTML = '<div class="term-op">' + numHTML(partes[0]) + '<span class="term-sig">' + signo + "</span>" +
+        numHTML(partes[1]) + '<span class="term-sig">=</span>' + numHTML(partes[2]) + "</div>" +
+        '<div class="fila-fichas term-fichas"></div>';
+      const fila = host.querySelector(".term-fichas");
+      const zonas = Array.prototype.slice.call(host.querySelectorAll(".term-num"));
+      let faltan = zonas.length;
+      ctrl.mezclar(etiquetas.slice()).forEach((rol) => {
+        const chip = document.createElement("button");
+        chip.className = "ficha-arr"; chip.textContent = rol; chip.dataset.rol = rol; fila.appendChild(chip);
+        Arrastrar.hacer(chip, zonas, (item, zona) => {
+          if (!zona) return;
+          if (zona.dataset.lleno !== "1" && zona.dataset.rol === item.dataset.rol) {
+            item.dataset.fijo = "1"; item.classList.add("colocada"); zona.dataset.lleno = "1";
+            zona.querySelector(".term-slot").appendChild(item);
+            zona.classList.add("ok"); setTimeout(() => zona.classList.remove("ok"), 600);
+            faltan--; if (faltan === 0) ctrl.ganar(); else ctrl.retro("¡Bien! Faltan " + faltan + " 👇", "bien");
+          } else { zona.classList.add("rojo"); setTimeout(() => zona.classList.remove("rojo"), 450); ctrl.reintento("Ese nombre no va ahí 👀"); }
+        });
+      });
     }
   };
 
@@ -209,7 +284,7 @@ window.Contenido = (function () {
       return MC(px, temas);
     }
     const temas = C.temas.map((t) => ({
-      icono: t.icono, nombre: t.nombre, desc: t.desc, total: t.total || 6, ronda: BUILDERS[t.tipo](t)
+      icono: t.icono, nombre: t.nombre, desc: t.desc, total: t.total || 6, ronda: BUILDERS[t.tipo](t, C)
     }));
     return Actividad(px, temas);
   }

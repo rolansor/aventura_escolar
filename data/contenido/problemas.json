@@ -1,0 +1,27 @@
+{
+  "modo": "problemas",
+  "materia": "matematicas",
+  "px": "prob",
+  "titulo": "Problemas paso a paso",
+  "icono": "🧮",
+  "motor": "actividad",
+  "destrezas": ["resolución de problemas"],
+  "banco": [
+    { "t": "En el mercado, Nelson compró 3 fundas con 12 mandarinas cada una. ¿Cuántas mandarinas tiene en total?", "op": "×", "a": 3, "b": 12, "u": "mandarinas" },
+    { "t": "Una caja trae 24 colas y se reparten en partes iguales entre 6 amigos. ¿Cuántas le tocan a cada uno?", "op": "÷", "a": 24, "b": 6, "u": "colas" },
+    { "t": "Sofía tenía $45 y gastó $18 en el mercado. ¿Cuánto dinero le quedó?", "op": "−", "a": 45, "b": 18, "u": "dólares" },
+    { "t": "En el bus subieron 28 personas y luego 15 más. ¿Cuántas personas hay ahora?", "op": "+", "a": 28, "b": 15, "u": "personas" },
+    { "t": "Un agricultor de Tungurahua cosechó 8 sacos con 25 kg de papas cada uno. ¿Cuántos kilos cosechó?", "op": "×", "a": 8, "b": 25, "u": "kilos" },
+    { "t": "Hay 56 panes para repartir en 7 canastas iguales. ¿Cuántos panes van en cada canasta?", "op": "÷", "a": 56, "b": 7, "u": "panes" },
+    { "t": "Una escuela tiene 134 niñas y 128 niños. ¿Cuántos estudiantes hay en total?", "op": "+", "a": 134, "b": 128, "u": "estudiantes" },
+    { "t": "En la feria de Otavalo había 90 ponchos y se vendieron 37. ¿Cuántos quedaron?", "op": "−", "a": 90, "b": 37, "u": "ponchos" },
+    { "t": "Cada cuy cuesta $6 y doña Rosa vendió 9 cuyes. ¿Cuánto dinero recibió?", "op": "×", "a": 6, "b": 9, "u": "dólares" },
+    { "t": "72 plátanos se acomodan en racimos de 8. ¿Cuántos racimos se arman?", "op": "÷", "a": 72, "b": 8, "u": "racimos" },
+    { "t": "Un tren recorrió 245 km por la mañana y 130 km por la tarde. ¿Cuántos km recorrió en el día?", "op": "+", "a": 245, "b": 130, "u": "km" },
+    { "t": "Andrés tenía 100 láminas y pegó 64 en su álbum. ¿Cuántas láminas le faltan por pegar?", "op": "−", "a": 100, "b": 64, "u": "láminas" }
+  ],
+  "temas": [
+    { "tipo": "problema", "icono": "➕➖", "nombre": "Sumar y restar", "desc": "problemas de + y −", "total": 6, "ops": ["+", "−"] },
+    { "tipo": "problema", "icono": "✖️➗", "nombre": "Multiplicar y dividir", "desc": "problemas de × y ÷", "total": 6, "ops": ["×", "÷"] }
+  ]
+}

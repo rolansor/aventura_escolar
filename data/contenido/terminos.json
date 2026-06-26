@@ -1,0 +1,13 @@
+{
+  "modo": "terminos",
+  "materia": "matematicas",
+  "px": "term",
+  "titulo": "Términos de la suma y resta",
+  "icono": "🏷️",
+  "motor": "actividad",
+  "destrezas": ["términos de la adición y sustracción"],
+  "temas": [
+    { "tipo": "terminos", "icono": "➕", "nombre": "Suma", "desc": "sumando + sumando = suma", "total": 6, "suma": true, "rangos": [[2, 20], [20, 200], [200, 2000]] },
+    { "tipo": "terminos", "icono": "➖", "nombre": "Resta", "desc": "minuendo − sustraendo = diferencia", "total": 6, "suma": false, "rangos": [[2, 20], [20, 200], [200, 2000]] }
+  ]
+}

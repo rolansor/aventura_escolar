@@ -27,7 +27,11 @@ window.Datos = (function () {
     "mapas/detalle":       (v) => ((DATOS.mapas = DATOS.mapas || {}).detalle = v)
   };
 
-  function aplicar(n, v) { if (DEST[n]) DEST[n](v); }
+  function aplicar(n, v) {
+    if (DEST[n]) { DEST[n](v); return; }
+    // Contenido de actividades: data/contenido/<modo>.json -> DATOS.contenido[<modo>]
+    if (n.indexOf("contenido/") === 0) { (DATOS.contenido = DATOS.contenido || {})[n.slice(10)] = v; }
+  }
 
   // Los datos ya están en window.__DATOS__ (los rellenan los <script src="data/<n>.js">
   // que cada página incluye). Funciona igual servido y con doble clic (file://).

@@ -1,0 +1,106 @@
+{
+  "modo": "regiones",
+  "materia": "sociales",
+  "px": "regiones",
+  "titulo": "Regiones y relieves",
+  "icono": "🌎",
+  "motor": "actividad",
+  "temas": [
+    {
+      "tipo": "clasificar",
+      "icono": "🌎",
+      "nombre": "Regiones naturales",
+      "desc": "Costa, Sierra, Amazonía e Insular",
+      "total": 6,
+      "pregunta": "¿De qué región es cada uno? Arrástralo a su lugar 👇",
+      "cestas": [
+        { "id": "costa", "nombre": "Costa", "emoji": "🏖️" },
+        { "id": "sierra", "nombre": "Sierra", "emoji": "⛰️" },
+        { "id": "amazonia", "nombre": "Amazonía", "emoji": "🌳" },
+        { "id": "insular", "nombre": "Insular", "emoji": "🐢" }
+      ],
+      "items": {
+        "costa": [
+          ["Guayas", "Manabí", "Esmeraldas", "Los Ríos", "El Oro", "Santa Elena", "Santo Domingo de los Tsáchilas"],
+          ["la fragata", "la ballena jorobada", "el cangrejo rojo", "la garza blanca", "el mono aullador"],
+          ["el encebollado", "clima cálido", "el ceviche", "las playas", "el bolón de verde"]
+        ],
+        "sierra": [
+          ["Pichincha", "Azuay", "Chimborazo", "Cotopaxi", "Tungurahua", "Imbabura", "Loja", "Cañar", "Bolívar", "Carchi"],
+          ["el cóndor", "el oso de anteojos", "la llama", "la vicuña", "el lobo de páramo", "el colibrí"],
+          ["el hornado", "clima frío", "los páramos", "los volcanes nevados", "la fanesca"]
+        ],
+        "amazonia": [
+          ["Napo", "Pastaza", "Morona Santiago", "Sucumbíos", "Orellana", "Zamora Chinchipe"],
+          ["el delfín rosado", "el jaguar", "la anaconda", "el tapir (danta)", "el guacamayo", "la boa"],
+          ["el maito", "clima cálido y lluvioso", "la selva tropical", "los ríos caudalosos", "la chicha de yuca"]
+        ],
+        "insular": [
+          ["Galápagos"],
+          ["la iguana marina", "la tortuga gigante", "el piquero de patas azules", "el lobo marino", "el pingüino de Galápagos"],
+          ["especies únicas", "las islas volcánicas", "el clima seco", "playas con lobos marinos", "los bosques de manglar"]
+        ]
+      }
+    },
+    {
+      "tipo": "clasificar",
+      "icono": "⛰️",
+      "nombre": "Relieves del Ecuador",
+      "desc": "volcán, río, cordillera, llanura",
+      "total": 6,
+      "pregunta": "¿Qué tipo de relieve es cada uno? 👇",
+      "cestas": [
+        { "id": "volcan", "nombre": "Volcán", "emoji": "🌋" },
+        { "id": "rio", "nombre": "Río", "emoji": "🌊" },
+        { "id": "cordillera", "nombre": "Cordillera", "emoji": "🏔️" },
+        { "id": "llanura", "nombre": "Llanura", "emoji": "🌾" }
+      ],
+      "cestasPorNivel": [
+        ["volcan", "rio", "cordillera"],
+        ["volcan", "rio", "cordillera", "llanura"],
+        ["volcan", "rio", "cordillera", "llanura"]
+      ],
+      "items": {
+        "volcan": [
+          ["Chimborazo", "Cotopaxi", "Tungurahua", "Cayambe", "Pichincha", "Antisana", "Sangay", "El Reventador", "Cotacachi", "Imbabura", "El Altar", "Sumaco"],
+          [],
+          []
+        ],
+        "rio": [
+          ["Guayas", "Napo", "Esmeraldas", "Daule", "Pastaza", "Babahoyo", "Coca", "Aguarico", "Zamora", "Jubones", "Chone", "Santiago"],
+          [],
+          []
+        ],
+        "cordillera": [
+          ["Occidental", "Real (Oriental)", "de los Andes", "Subandina", "del Cóndor"],
+          [],
+          []
+        ],
+        "llanura": [
+          ["llanura costera", "llanura amazónica", "llanura del Guayas", "sabanas amazónicas"],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "tipo": "ordenar",
+      "icono": "🪆",
+      "nombre": "Organización territorial",
+      "desc": "de lo más grande a lo más pequeño",
+      "total": 6,
+      "pregunta": "Ordena de lo MÁS GRANDE a lo más pequeño 👇",
+      "secuencias": [
+        [
+          ["País: Ecuador", "Provincia: Pichincha", "Cantón: Quito", "Parroquia: Cumbayá"]
+        ],
+        [
+          ["País: Ecuador", "Región: Sierra", "Provincia: Pichincha", "Cantón: Quito", "Parroquia: Cumbayá"]
+        ],
+        [
+          ["Continente: América", "País: Ecuador", "Región: Sierra", "Provincia: Pichincha", "Cantón: Quito", "Parroquia: Cumbayá"]
+        ]
+      ]
+    }
+  ]
+}

@@ -19,6 +19,11 @@ _*.tsv
 __pycache__/
 *.pyc
 
+# Material de referencia del usuario (no versionar): manuales PDF y capturas
+*.pdf
+*.jpg
+*.jpeg
+
 # Versión empaquetada (generada por el build).
 # Descomenta si NO quieres versionar la salida de doble clic:
 # dist/

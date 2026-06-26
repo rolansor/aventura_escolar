@@ -32,9 +32,99 @@ const Juego = (function () {
     }
     return arr;
   }
-  function jugador() { return cargar("jugador", (window.NINO || "Nelson")); }
-  function avatarNombre() { return cargar("avatar", "Luna"); }
-  function genero() { return cargar("genero", "nina"); }
+  /* ---------- Perfiles (cada niño tiene el suyo) ----------
+     Un perfil = { id, nombre, avatar, genero, nivel }. La lista vive en
+     "perfiles" y el activo en "perfil_activo". La identidad y el nivel de
+     dificultad se leen SIEMPRE del perfil activo (con fallback a las claves
+     viejas/NINO para no romper el doble-clic en páginas sueltas).            */
+  const NIVELES = ["basico", "intermedio", "avanzado"];
+  function perfiles() { return cargar("perfiles", []); }
+  function perfilActivoId() { return cargar("perfil_activo", null); }
+  function perfilActivo() {
+    const id = perfilActivoId();
+    return perfiles().find((p) => p.id === id) || null;
+  }
+  function crearPerfil(datos) {
+    datos = datos || {};
+    const lista = perfiles();
+    const p = {
+      id: "p" + Date.now() + "_" + Math.floor(Math.random() * 1e6),
+      nombre: (datos.nombre || "").trim() || (window.NINO || "Nelson"),
+      avatar: (datos.avatar || "").trim() || "Luna",
+      genero: datos.genero === "nino" ? "nino" : "nina",
+      nivel: NIVELES.indexOf(datos.nivel) >= 0 ? datos.nivel : "basico"
+    };
+    lista.push(p);
+    guardar("perfiles", lista);
+    return p;
+  }
+  function actualizarPerfil(id, campos) {
+    const lista = perfiles();
+    const p = lista.find((x) => x.id === id);
+    if (!p) return null;
+    Object.assign(p, campos);
+    guardar("perfiles", lista);
+    if (id === perfilActivoId()) aplicarIdentidad();
+    return p;
+  }
+  function borrarPerfil(id) {
+    guardar("perfiles", perfiles().filter((p) => p.id !== id));
+    guardar("estado__" + id, null);
+    if (perfilActivoId() === id) guardar("perfil_activo", null);
+  }
+  function seleccionarPerfil(id) {
+    guardar("perfil_activo", id);
+    cargarEstadoPerfil();
+    aplicarIdentidad();
+  }
+
+  /* ---------- Identidad (derivada del perfil activo) ---------- */
+  function jugador() { const p = perfilActivo(); return (p && p.nombre) || cargar("jugador", (window.NINO || "Nelson")); }
+  function avatarNombre() { const p = perfilActivo(); return (p && p.avatar) || cargar("avatar", "Luna"); }
+  function genero() { const p = perfilActivo(); return (p && p.genero) || cargar("genero", "nina"); }
+
+  /* ---------- Nivel de dificultad (propiedad del perfil) ---------- */
+  function nivel() { const p = perfilActivo(); return (p && p.nivel) || "basico"; }
+  function nivelIdx() { const i = NIVELES.indexOf(nivel()); return i < 0 ? 0 : i; }
+  // Devuelve el valor de `tres` que corresponde al nivel actual (basico/intermedio/avanzado).
+  function porNivel(tres) { return tres[nivelIdx()]; }
+
+  /* ---------- Leaderboard (por juego y por perfil) ----------
+     Cada juego registra sus rondas en "lb_<juego>__<perfilId>". Se guardan
+     las 5 mejores ordenadas por aciertos (desc) y, a igualdad, por tiempo (asc).
+     `juego` es el prefijo/identificador del modo (p.ej. "arit", "tablas").     */
+  function escHTML(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+  function claveLb(juego) { return "lb_" + juego + "__" + (perfilActivoId() || "default"); }
+  function registrarResultado(juego, datos) {
+    if (!juego) return [];
+    datos = datos || {};
+    const reg = { aciertos: datos.aciertos || 0, total: datos.total || 0, ms: datos.ms || 0, fecha: Date.now() };
+    const lista = cargar(claveLb(juego), []);
+    lista.push(reg);
+    lista.sort((a, b) => (b.aciertos - a.aciertos) || (a.ms - b.ms));
+    const top = lista.slice(0, 5);
+    guardar(claveLb(juego), top);
+    return top;
+  }
+  function mejores(juego, n) { return cargar(claveLb(juego), []).slice(0, n || 5); }
+  function fmtTiempo(ms) {
+    const s = Math.max(0, Math.round((ms || 0) / 1000));
+    const m = Math.floor(s / 60);
+    return m > 0 ? m + ":" + String(s % 60).padStart(2, "0") : s + "s";
+  }
+  // Devuelve el HTML de la tabla "🏆 Mejores" del juego (o "" si aún no hay rondas).
+  function tablaMejoresHTML(juego, n) {
+    const lista = mejores(juego, n || 3);
+    if (!lista.length) return "";
+    const filas = lista.map((r, i) => {
+      const pos = ["🥇", "🥈", "🥉"][i] || (i + 1) + ".";
+      return '<li><span class="lb-pos">' + pos + "</span>" +
+        '<span class="lb-ac">' + r.aciertos + "/" + r.total + " ⭐</span>" +
+        '<span class="lb-t">⏱️ ' + fmtTiempo(r.ms) + "</span></li>";
+    }).join("");
+    return '<div class="leaderboard"><h3>🏆 Mejores de ' + escHTML(jugador()) + "</h3>" +
+      '<ol class="lb-lista">' + filas + "</ol></div>";
+  }
 
   function frasePositiva() {
     const n = jugador();
@@ -98,10 +188,18 @@ const Juego = (function () {
     if (r) r.textContent = estado.racha;
     if (n) n.textContent = estado.nivel;
   }
+  function claveEstado() { return "estado__" + (perfilActivoId() || "default"); }
+  function cargarEstadoPerfil() {
+    const g = cargar(claveEstado(), null);
+    estado.estrellas = (g && g.estrellas) || 0;
+    estado.racha = 0; // la racha no se conserva entre páginas/perfiles
+    estado.nivel = (g && g.nivel) || 1;
+    refrescarMarcador();
+  }
   function sumarEstrellas(n) {
     estado.estrellas += n;
     estado.nivel = 1 + Math.floor(estado.estrellas / 15);
-    guardar("estado", estado);
+    guardar(claveEstado(), estado);
     refrescarMarcador();
   }
   function acierto() {
@@ -113,7 +211,7 @@ const Juego = (function () {
   }
   function error() {
     estado.racha = 0;
-    guardar("estado", estado);
+    guardar(claveEstado(), estado);
     refrescarMarcador();
     sonidoError();
     if (window.ESCENA && ESCENA.mascotaTriste) ESCENA.mascotaTriste();
@@ -132,7 +230,7 @@ const Juego = (function () {
   function reiniciarProgreso() {
     if (!window.confirm("¿Seguro que quieres reiniciar a CERO las estrellas, la racha y el nivel de " + jugador() + "?")) return;
     estado.estrellas = 0; estado.racha = 0; estado.nivel = 1;
-    guardar("estado", estado);
+    guardar(claveEstado(), estado);
     refrescarMarcador();
     reaccionMascota("feliz");
   }
@@ -197,10 +295,7 @@ const Juego = (function () {
 
   /* ---------- Arranque común de cada página ---------- */
   function iniciarBase() {
-    const guardado = cargar("estado", null);
-    if (guardado) Object.assign(estado, guardado);
-    estado.racha = 0; // la racha no se conserva entre páginas
-    refrescarMarcador();
+    cargarEstadoPerfil();
 
     if (window.ESCENA) ESCENA.iniciar();
     if (window.Luna) Luna.init();
@@ -236,7 +331,10 @@ const Juego = (function () {
   return {
     iniciarBase, guardar, cargar, azar, azarEl, mezclar, frasePositiva, construirSecuencia,
     acierto, error, granPremio, sumarEstrellas, reiniciarProgreso,
-    config, cronIniciar, cronDetener, jugador, avatarNombre, genero, aplicarIdentidad, tip
+    config, cronIniciar, cronDetener, jugador, avatarNombre, genero, aplicarIdentidad, tip,
+    perfiles, perfilActivo, perfilActivoId, crearPerfil, seleccionarPerfil, actualizarPerfil, borrarPerfil,
+    nivel, nivelIdx, porNivel,
+    registrarResultado, mejores, fmtTiempo, tablaMejoresHTML
   };
 })();
 window.Juego = Juego;

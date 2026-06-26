@@ -405,3 +405,43 @@
 .cesta.zona-hover { border-color: var(--amarillo); background: #fff7df; transform: scale(1.04); }
 .cesta.ok { border-style: solid; border-color: var(--verde); background: #e9fbf3; }
 .cesta.rojo { border-color: var(--rojo); background: #fdecea; }
+
+/* ---------- Leaderboard (🏆 mejores de la ronda, por perfil) ---------- */
+.leaderboard { margin: 14px auto 0; max-width: 360px; background: #fff; border-radius: 16px;
+  box-shadow: var(--sombra); padding: 12px 14px; }
+.leaderboard h3 { margin: 0 0 8px; font-size: 1.05rem; color: var(--azul-osc); text-align: center; }
+.lb-lista { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.lb-lista li { display: flex; align-items: center; gap: 8px; background: #f3f6ff; border-radius: 10px;
+  padding: 6px 10px; font-size: 1rem; }
+.lb-pos { font-size: 1.1rem; min-width: 1.6em; text-align: center; }
+.lb-ac { font-weight: bold; color: var(--azul-osc); }
+.lb-t { margin-left: auto; color: #4a5270; }
+
+/* ---------- Términos de la suma/resta (arrastrar nombres a números) ---------- */
+.term-op { display: flex; align-items: flex-start; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 10px 0 6px; }
+.term-num { display: flex; flex-direction: column; align-items: center; gap: 6px;
+  border: 3px solid var(--azul); border-radius: 14px; padding: 10px 14px; background: #fff; min-width: 64px; }
+.term-num b { font-size: 1.8rem; color: var(--azul-osc); }
+.term-num.ok { border-color: var(--verde); background: #e9fbf3; }
+.term-num.rojo { border-color: var(--rojo); background: #fdecea; }
+.term-num.zona-hover { border-color: var(--amarillo); background: #fff7df; }
+.term-slot { min-height: 34px; display: flex; align-items: center; }
+.term-sig { font-size: 1.8rem; font-weight: bold; color: #4a5270; align-self: center; }
+
+/* ---------- Problemas paso a paso ---------- */
+.prob-enun { font-size: 1.2rem; color: var(--azul-osc); background: #fff; border-radius: 14px;
+  padding: 14px 16px; box-shadow: var(--sombra); margin: 6px auto 12px; max-width: 520px; }
+.prob-paso { font-weight: bold; color: #4a5270; margin: 10px 0 6px; }
+.prob-ops { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.prob-op { font-size: 1.6rem; font-weight: bold; width: 60px; height: 60px;
+  border: 3px solid var(--azul); border-radius: 14px; background: #f3f6ff; color: var(--azul-osc); cursor: pointer; transition: transform 0.15s; }
+.prob-op:hover { transform: translateY(-2px); }
+.prob-op.ok { background: var(--verde); border-color: var(--verde); color: #fff; }
+.prob-op.rojo { border-color: var(--rojo); background: #fdecea; }
+.prob-op:disabled { opacity: 0.5; cursor: default; transform: none; }
+.prob-calc.oculto { display: none; }
+.prob-cuenta { font-size: 1.5rem; font-weight: bold; color: var(--azul-osc); text-align: center; margin: 8px 0; }
+.prob-resp { display: flex; gap: 8px; justify-content: center; align-items: center; }
+.prob-input { width: 120px; font-size: 1.3rem; text-align: center; border: 3px solid var(--azul); border-radius: 12px; padding: 8px; outline: none; }
+.prob-ok { font-family: var(--fuente); font-weight: bold; font-size: 1rem; padding: 10px 16px;
+  border: none; border-radius: 12px; background: var(--azul); color: #fff; cursor: pointer; }

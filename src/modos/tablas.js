@@ -4,18 +4,20 @@
    de tabla (o mixtas) -> ronda de 10; el niño escribe el resultado.
    ============================================================ */
 const Tablas = (function () {
-  let cola = [], indice = 0, aciertos = 0, actual = null, temporizador = null;
+  let cola = [], indice = 0, aciertos = 0, actual = null, temporizador = null, tInicio = 0;
   const TOTAL = 10;
   const TABLAS = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   const elSel = () => document.getElementById("tablas-selector");
   const elJuego = () => document.getElementById("tablas-juego");
 
+  // El nivel del perfil acota qué tablas se ofrecen (ver Juego.porNivel).
+  function tablasNivel() { return Juego.porNivel([[2, 3, 4, 5], [2, 3, 4, 5, 6, 7, 8, 9], TABLAS.slice()]); }
   function init() { pintarSelector(); }
 
   function pintarSelector() {
     const c = elSel(); if (!c) return;
     c.innerHTML = "";
-    TABLAS.forEach((t) => {
+    tablasNivel().forEach((t) => {
       const b = document.createElement("button");
       b.className = "chip-categoria";
       b.innerHTML = "✖️ Tabla del " + t + "<small>del " + t + "×1 al " + t + "×12</small>";
@@ -30,12 +32,12 @@ const Tablas = (function () {
   }
 
   function empezar(t) {
-    aciertos = 0; indice = 0; cola = [];
+    aciertos = 0; indice = 0; cola = []; tInicio = Date.now();
     let previo = "";
     for (let i = 0; i < TOTAL; i++) {
       let a, b, firma, intentos = 0;
       do {
-        a = (t === "mix") ? Juego.azar(2, 12) : t;
+        a = (t === "mix") ? Juego.azarEl(tablasNivel()) : t;
         b = Juego.azar(1, 12);
         firma = a + "x" + b;
         intentos++;
@@ -91,10 +93,11 @@ const Tablas = (function () {
   }
   function terminar() {
     Juego.cronDetener();
+    Juego.registrarResultado("tablas", { aciertos: aciertos, total: cola.length, ms: Date.now() - tInicio });
     document.getElementById("tablas-timer").classList.add("oculto");
     document.getElementById("tablas-progreso").style.width = "100%";
-    document.getElementById("tablas-pregunta").textContent =
-      "¡Terminaste, " + Juego.jugador() + "! " + aciertos + " de " + cola.length + " ⭐";
+    document.getElementById("tablas-pregunta").innerHTML =
+      "¡Terminaste, " + Juego.jugador() + "! " + aciertos + " de " + cola.length + " ⭐" + Juego.tablaMejoresHTML("tablas");
     const inp = document.getElementById("tablas-input"); inp.value = ""; inp.disabled = true;
     const retro = document.getElementById("tablas-retro");
     retro.textContent = aciertos === cola.length ? "¡Perfecto! 🏆" : "¡Muy bien! Toca otra ronda para seguir.";

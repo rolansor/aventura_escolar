@@ -7,7 +7,7 @@
    paso (llevando/prestando), y puede "Volver a intentar".
    ============================================================ */
 const Aritmetica = (function () {
-  let cola = [], indice = 0, aciertos = 0, actual = null, temporizador = null, reintento = false;
+  let cola = [], indice = 0, aciertos = 0, actual = null, temporizador = null, reintento = false, tInicio = 0;
   const TOTAL = 10;
   const CIFRAS = [3, 4, 5, 6, 7, 8, 9, 10];
   const ORDEN = ["unidades", "decenas", "centenas", "unidades de mil", "decenas de mil",
@@ -21,11 +21,13 @@ const Aritmetica = (function () {
   function fmt(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
   function colorCol(pos) { return COLOR[pos] || "col-u"; }
 
+  // El nivel del perfil acota cuántas cifras se ofrecen (ver Juego.porNivel).
+  function cifrasNivel() { return Juego.porNivel([[2, 3], [3, 4, 5, 6], [6, 7, 8, 9, 10]]); }
   function init() { pintarSelector(); }
   function pintarSelector() {
     const c = elSel(); if (!c) return;
     c.innerHTML = "";
-    CIFRAS.forEach((n) => {
+    cifrasNivel().forEach((n) => {
       const b = document.createElement("button");
       b.className = "chip-categoria";
       b.innerHTML = "➕➖ " + n + " cifras<small>sumas y restas al azar</small>";
@@ -35,7 +37,7 @@ const Aritmetica = (function () {
   }
 
   function empezar(cifras) {
-    aciertos = 0; indice = 0; cola = [];
+    aciertos = 0; indice = 0; cola = []; tInicio = Date.now();
     const firmas = {};
     for (let i = 0; i < TOTAL; i++) {
       let suma, a, b, firma, intentos = 0;
@@ -216,9 +218,10 @@ const Aritmetica = (function () {
 
   function terminar() {
     Juego.cronDetener();
+    Juego.registrarResultado("arit", { aciertos: aciertos, total: cola.length, ms: Date.now() - tInicio });
     $("arit-timer").classList.add("oculto");
     $("arit-progreso").style.width = "100%";
-    $("arit-grid").innerHTML = '<h2 class="pregunta">¡Terminaste, ' + Juego.jugador() + "! " + aciertos + " de " + cola.length + " ⭐</h2>";
+    $("arit-grid").innerHTML = '<h2 class="pregunta">¡Terminaste, ' + Juego.jugador() + "! " + aciertos + " de " + cola.length + " ⭐</h2>" + Juego.tablaMejoresHTML("arit");
     $("arit-explica").classList.add("oculto");
     $("arit-solucion").classList.add("oculto");
     $("arit-reintentar").classList.add("oculto");

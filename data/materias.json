@@ -44,6 +44,18 @@
         "desc": "De 3 a 10 cifras, con explicación paso a paso"
       },
       {
+        "modo": "terminos",
+        "icono": "🏷️",
+        "nombre": "Términos de la suma y resta",
+        "desc": "Sumando, suma, minuendo, sustraendo, diferencia"
+      },
+      {
+        "modo": "problemas",
+        "icono": "🧮",
+        "nombre": "Problemas paso a paso",
+        "desc": "Elige la operación y resuelve"
+      },
+      {
         "modo": "valor",
         "icono": "🔢",
         "nombre": "Valor posicional",
@@ -166,6 +178,12 @@
         "icono": "🐾",
         "nombre": "Los animales",
         "desc": "Grupos y alimentación"
+      },
+      {
+        "modo": "invertebrados",
+        "icono": "🐌",
+        "nombre": "Los invertebrados",
+        "desc": "Artrópodos, moluscos, gusanos y más"
       },
       {
         "modo": "cicloagua",

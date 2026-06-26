@@ -14,6 +14,8 @@ const Menu = (function () {
     secuencias: "paginas/secuencias.html",
     tablas:     "paginas/tablas.html",
     aritmetica: "paginas/aritmetica.html",
+    terminos:   "paginas/terminos.html",
+    problemas:  "paginas/problemas.html",
     valor:      "paginas/valorposicional.html",
     multiplicacion: "paginas/multiplicacion.html",
     division:   "paginas/division.html",
@@ -28,6 +30,7 @@ const Menu = (function () {
     plantas:    "paginas/plantas.html",
     cuerpo:     "paginas/cuerpo.html",
     animales:   "paginas/animales.html",
+    invertebrados: "paginas/invertebrados.html",
     cicloagua:  "paginas/cicloagua.html",
     materia:    "paginas/materia.html",
     ambiente:   "paginas/ambiente.html",
@@ -35,7 +38,8 @@ const Menu = (function () {
     cantones:   "paginas/cantones.html",
     quiz:       "paginas/quiz.html",
     donde:      "paginas/donde.html",
-    editor:     "paginas/editor.html"
+    editor:     "paginas/editor.html",
+    contenido:  "paginas/contenido.html"
   };
 
   function init() {
@@ -67,14 +71,17 @@ const Menu = (function () {
     (DATOS.materias || []).forEach((m) => {
       cont.appendChild(crearTarjeta(m.icono, m.nombre, m.desc, () => irAMateria(m.id)));
     });
-    cont.appendChild(crearTarjeta("⚙️", "Crear y Configurar", "Para mamá, papá o profe",
-      () => pedirClave()));
+    cont.appendChild(crearTarjeta("⚙️", "Ajustes", "Temporizador y progreso",
+      () => pedirClave(PAGINA.editor)));
+    cont.appendChild(crearTarjeta("📚", "Banco de contenido", "Palabras, secuencias y párrafos",
+      () => pedirClave(PAGINA.contenido)));
   }
 
   // Modal de clave ANTES de abrir el editor (no se puede saltar abriendo la página
   // directamente: editor.html sin la clave válida rebota al menú).
   const CLAVE = "24861793";
-  function pedirClave() {
+  function pedirClave(destino) {
+    destino = destino || PAGINA.editor;
     if (document.getElementById("modal-clave")) return;
     const fondo = document.createElement("div");
     fondo.id = "modal-clave"; fondo.className = "modal-fondo";
@@ -82,7 +89,7 @@ const Menu = (function () {
       '<div class="modal-caja" role="dialog" aria-modal="true">' +
         '<div class="modal-emoji">🔒</div>' +
         '<h3 class="modal-titulo">Zona de adultos</h3>' +
-        '<p class="modal-texto">Escribe la clave para entrar a <b>Crear y Configurar</b>.</p>' +
+        '<p class="modal-texto">Escribe la clave para entrar a la <b>zona de adultos</b>.</p>' +
         '<input type="password" inputmode="numeric" id="modal-input" class="modal-input" autocomplete="off" placeholder="Clave" />' +
         '<p class="modal-error" id="modal-error"></p>' +
         '<div class="modal-botones">' +
@@ -100,7 +107,7 @@ const Menu = (function () {
     function intentar() {
       if (input.value.trim() === CLAVE) {
         try { sessionStorage.setItem("ads_editor_ok", "1"); } catch (e) {}
-        location.href = PAGINA.editor;
+        location.href = destino;
       } else {
         error.textContent = "Clave incorrecta 🙈";
         caja.classList.remove("temblar"); void caja.offsetWidth; caja.classList.add("temblar");

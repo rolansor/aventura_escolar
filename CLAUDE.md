@@ -57,16 +57,19 @@ página en `paginas/` que el menú enlaza. Las páginas de `paginas/` usan `<bas
 | Archivo | Global | Rol |
 |---|---|---|
 | `data/*.json` (+ `*.js` generados por `build.py`) | `DATOS.*`, `NINO`, `ECUADOR_SVG`, `ECUADOR_CANTONES` | **Datos puros**: ortografia, secuencias, parrafos, generador-parrafos, materias, nino, mapa-ec, cantones, mapas/*. Editar el `.json` y correr `herramientas/build.py`. |
-| `src/core/juego.js` | `Juego` | Núcleo: marcador, sonido, `localStorage`, temporizador, utilidades (`azar/azarEl/mezclar/cargar/guardar/frasePositiva/construirSecuencia`, `acierto/error/granPremio`, `cron*`, `jugador`, `aplicarIdentidad`) e `iniciarBase()` (arranque común + barra superior). |
+| `src/core/juego.js` | `Juego` | Núcleo: marcador, sonido, `localStorage`, temporizador, utilidades (`azar/azarEl/mezclar/cargar/guardar/frasePositiva/construirSecuencia`, `acierto/error/granPremio`, `cron*`, `jugador`, `aplicarIdentidad`) e `iniciarBase()`. **Perfiles** (`perfiles/perfilActivo/crearPerfil/seleccionarPerfil/actualizarPerfil/borrarPerfil`), **nivel de dificultad** (`nivel/nivelIdx/porNivel`) y **leaderboard** (`registrarResultado/mejores/fmtTiempo/tablaMejoresHTML`). Ver "Perfiles, Niveles y Leaderboard". |
+| `src/core/perfiles.js` | `Perfiles` | **Selector de perfiles** (solo en `index.html`): pantalla `pantalla-perfiles` con una tarjeta por niño + "➕ Nuevo perfil" (modal con nombre/género/nivel), chip de perfil en la barra para cambiar. `Perfiles.init/abrir/actualizarChip`. |
 | `src/core/datos.js` | `Datos` | `Datos.cargar([...])` lee `window.__DATOS__` y rellena los globales. |
-| `src/core/menu.js` | `Menu` | Menú de materias (tarjetas desde `DATOS.materias`, enlaza a `paginas/<modo>.html`). **Modal de clave** (`pedirClave`) que se abre ANTES de ir al editor; sin clave válida no se navega. |
-| `src/core/mc.js` | `MC` | Motor de **opción múltiple** (repasos rápidos). Fábrica `MC(px, temas)`; ronda de 10. **No es el patrón por defecto** (ver Filosofía de diseño). |
-| `src/core/actividad.js` | `Actividad` | Motor de **actividades manipulativas** (hermano de `MC`). Fábrica `Actividad(px, temas, opts)`; cada tema tiene `ronda(host, ctrl)` que arma la interacción en `#<px>-extra` y resuelve con `ctrl.ganar()/fallar()/reintento()`. Sin temporizador (autocorrectivo). Reutiliza la misma estructura de página por prefijo que `MC`. |
+| `src/core/menu.js` | `Menu` | Menú de materias (tarjetas desde `DATOS.materias`, enlaza a `paginas/<modo>.html`). **Modal de clave** (`pedirClave(destino)`) que se abre ANTES de ir a la zona de adultos; sin clave válida no se navega. Dos tarjetas de adultos: **⚙️ Ajustes** (`editor.html`) y **📚 Banco de contenido** (`contenido.html`). |
+| `src/core/mc.js` | `MC` | Motor de **opción múltiple** (repasos rápidos). Fábrica `MC(px, temas)`; ronda de 10. Al terminar registra el resultado en el leaderboard (`Juego.registrarResultado(px,…)`). **No es el patrón por defecto** (ver Filosofía de diseño). |
+| `src/core/actividad.js` | `Actividad` | Motor de **actividades manipulativas** (hermano de `MC`). Fábrica `Actividad(px, temas, opts)`; cada tema tiene `ronda(host, ctrl)` que arma la interacción en `#<px>-extra` y resuelve con `ctrl.ganar()/fallar()/reintento()`. Sin temporizador (autocorrectivo). Al terminar registra el leaderboard. Reutiliza la misma estructura de página por prefijo que `MC`. |
 | `src/core/arrastrar.js` | `Arrastrar` | Arrastrar-y-soltar con eventos de **puntero** (mouse + dedo). `Arrastrar.hacer(item, zonas, alSoltar)` (marca `.zona-hover`, devuelve la zona destino o null) y `Arrastrar.clasificar(host, ctrl, {pregunta, cestas, items})` (actividad "clasifica en cestas", usada por las quizzes de Ciencias dentro de una `ronda()` de `Actividad`). |
 | `src/modos/ortografia.js` | `Ortografia` | Ejercicios desde `DATOS.ortografia`. |
 | `src/modos/secuencias.js` | `Secuencias` | Secuencias numéricas. |
 | `src/modos/copia.js` | `Copia` | Copia y Dictado. |
-| `src/modos/editor.js` | `Editor` | Zona de adultos (clave **24861793**). |
+| `src/modos/invertebrados.js` | `Invertebrados` | Ciencias: clasificar invertebrados en sus 6 grupos (`Arrastrar.clasificar` sobre `Actividad`). Contenido del *Manual de invertebrados*. |
+| `src/modos/editor.js` | `Editor` | Zona de adultos — **⚙️ Ajustes** (clave **24861793**): solo temporizador y reinicio de progreso. La identidad y el nivel viven en el perfil; el contenido, en `contenido.js`. |
+| `src/modos/contenido.js` | `Contenido` | Zona de adultos — **📚 Banco de contenido** (misma clave): administra palabras de ortografía (editor universal), secuencias propias y párrafos. Mantiene `claveBancoCustom/claveOcultasOrto/bancoDefaultOrto` alineadas con `ortografia.js`. |
 | `src/modos/mapas.js` | `Mapas` | Mapa SVG por provincias (usa `ECUADOR_SVG`). |
 | `src/modos/mapacantones.js` | `MapaCantones` | Mapa GeoJSON por cantones + provincia en 3D (usa `ECUADOR_CANTONES`). |
 | `src/efectos/escena3d.js` / `luna.js` | `ESCENA` / `Luna` | Fondo 3D y mascota. `Luna` (niño/niña según `genero`) tiene gestos espontáneos (saludo/pensar), reacciones (feliz/triste/fiesta) y **`Luna.tip(texto)` / `Luna.decir(texto)`** para hablar por su globo. |
@@ -84,9 +87,13 @@ El menú está organizado en **materias** (asignaturas). Definidas en `DATOS.mat
   actividades: [ { modo, icono, nombre, desc }, ... ],   // modo = pantalla existente
   proximamente: "texto" }                                 // solo si actividades está vacío
 ```
-Materias actuales: **Lengua** (ortografia, copia), **Matemáticas** (secuencias),
-**Estudios Sociales** (`mapas` = mapa SVG por provincias, `cantones` = mapa GeoJSON por cantones),
-**Ciencias Naturales** (placeholder — futuro: partes de plantas, cuerpo humano).
+Materias actuales: **Lengua** (ortografia, copia), **Matemáticas** (secuencias, aritmetica/tablas/
+multiplicacion/division/comparar/redondeo/numeros/valorposicional/dinero/medidas/hora/fracciones),
+**Estudios Sociales** (`mapas`, `cantones`, `donde`), **Ciencias Naturales** (senala, plantas, cuerpo,
+animales, **invertebrados**, cicloagua, materia, ambiente).
+
+**Antes del menú va el selector de perfiles** (`index.html`): al abrir, si no hay perfil activo se
+muestra `pantalla-perfiles`; al elegir uno se entra al menú. Ver "Perfiles, Niveles y Leaderboard".
 
 Flujo de pantallas (todo en `app.js`):
 `pantalla-menu` (materias, render dinámico con `pintarMenu`) → `irAMateria(id)` →
@@ -96,9 +103,34 @@ La tarjeta **⚙️ Crear y Configurar** vive en el menú raíz (no es materia) 
 con clave. `volverAtras` sube un nivel: ejercicio → selector → submenú materia → menú.
 `materiaActual` recuerda la materia de origen para el botón Volver.
 
-**Para añadir una actividad nueva**: crea su modo (pantalla + módulo JS estilo `ortografia.js`),
-regístralo en el `mapa` de `irAModo`, inícialo en `iniciar()`, y añádelo a las `actividades` de su
-materia en `DATOS.materias`. El menú y el submenú se pintan solos desde los datos.
+**Para añadir una actividad nueva** (modelo multipágina): crea `paginas/<modo>.html` (copiando una
+página del mismo motor, p.ej. `animales.html` para `Actividad`) y `src/modos/<modo>.js`; añade el modo
+al mapa `PAGINA` de `src/core/menu.js`; y regístralo en las `actividades` de su materia en
+`data/materias.json` y corre `python herramientas/build.py`. El menú y el submenú se pintan solos.
+Ejemplo reciente: **`invertebrados`** (ver fila en la tabla). El leaderboard se hereda gratis si el
+modo usa los motores `MC`/`Actividad`.
+
+## Perfiles, Niveles y Leaderboard
+**Perfiles** (`src/core/perfiles.js` + API en `juego.js`): cada niño tiene su perfil
+`{ id, nombre, avatar, genero, nivel }` en `localStorage` (`perfiles` = lista, `perfil_activo` = id).
+La **identidad** (`jugador/avatarNombre/genero`) y el **nivel** se leen SIEMPRE del perfil activo (con
+fallback a `NINO`/"Luna"/"nina"/"basico" si no hay perfil, para no romper el doble-clic en páginas
+sueltas). El **progreso** (`estado`: estrellas/racha/nivel) es por perfil, en clave `estado__<id>`. El
+selector vive solo en `index.html`; un chip en la barra permite cambiar de perfil. **El contenido
+(palabras/secuencias/párrafos) NO es por perfil**: es un banco compartido que cura el adulto.
+
+**Niveles de dificultad** (propiedad del perfil): `basico | intermedio | avanzado`. Un modo consulta
+`Juego.nivel()`/`Juego.nivelIdx()` o, lo más común, `Juego.porNivel([valBasico, valInter, valAvanzado])`
+para escoger su rango. Aplicado en Matemática: `aritmetica` (cifras), `tablas`, `multiplicacion`,
+`division` (magnitud) y `comparar` (hasta 6 cifras en avanzado, alineado al temario de Quinto). Modos
+con rangos incrustados (`numeros`, `medidas`) se adaptan de forma incremental con la misma convención.
+
+**Leaderboard** (por juego y por perfil): `Juego.registrarResultado(juego, {aciertos, total, ms})`
+guarda en `lb_<juego>__<perfilId>` las 5 mejores, ordenadas por aciertos (desc) y, a igualdad, por
+tiempo (asc). `juego` es el prefijo del modo (`px`). Los motores `MC`/`Actividad` lo llaman solos al
+`terminar()` (miden el tiempo total con `tInicio`), igual que los loops propios (`aritmetica/tablas/
+multiplicacion/division`). `Juego.tablaMejoresHTML(juego)` pinta el panel "🏆 Mejores de \<nombre\>"
+(estilos `.leaderboard` en `ejercicios.css`), que se muestra en la pantalla de fin de ronda.
 
 ## Modo Mapas — mapa del Ecuador (Estudios Sociales)
 Mapa interactivo SVG de las 24 provincias, coloreadas por las 4 regiones naturales
@@ -217,7 +249,8 @@ que pinta la palabra y baraja las etiquetas como opciones.
 al añadir palabras hay que poner cada una en el grupo correcto. Cuidado con palabras ambiguas (que tienen
 a la vez diptongo e hiato): elegir solo ejemplos claros del rasgo que se quiere enseñar.
 
-### Editor universal de ortografía (`editor.js`)
+### Editor universal de ortografía (`contenido.js`)
+> Movido del editor al **📚 Banco de contenido** (`src/modos/contenido.js` + `paginas/contenido.html`).
 La sección "🔤 Palabras de ortografía" administra **cualquier** categoría según su `estrategia`:
 - **Selector de categoría** → muestra todas las de `DATOS.ortografia`.
 - **Selector de grupo** (`ed-orto-grupo`) → aparece solo en `mayus` (propios/comunes) y `clasificar`
@@ -229,16 +262,16 @@ La sección "🔤 Palabras de ortografía" administra **cualquier** categoría s
 - **Pares ✅/❌** → zona `ed-orto-pares-zona`, oculta para `clasificar` (allí no aplica).
 
 Las funciones clave de mapeo cat→clave (`claveBancoCustom`, `claveOcultasOrto`, `bancoDefaultOrto`)
-están en `editor.js` y **deben permanecer alineadas** con las claves que lee `ortografia.js`.
+están en `contenido.js` y **deben permanecer alineadas** con las claves que lee `ortografia.js`.
 
 ## Convenciones del proyecto
 - **Idioma**: todo en español (UI, comentarios, nombres de variables y funciones). Mantener tildes/ñ.
 - **Tips/pistas**: NO se muestran como banner sobre el ejercicio; se enrutan a la mascota con
   `Juego.tip(texto)` (→ `Luna.tip`), que los "sugiere" en su globo. Los modos dejan vacíos los
   elementos de regla/pista (`#…-tema`, `#orto-regla`, `#orto-pista`), que el CSS oculta con `:empty`.
-- **Zona de adultos**: la clave (**24861793**) se pide en un **modal del menú** (`Menu.pedirClave`);
-  `editor.html` solo entra con el permiso de sesión (`sessionStorage ads_editor_ok`) y, sin él, rebota
-  al menú sin mostrar nada. No usar `window.prompt`.
+- **Zona de adultos**: la clave (**24861793**) se pide en un **modal del menú** (`Menu.pedirClave(destino)`);
+  `editor.html` (⚙️ Ajustes) y `contenido.html` (📚 Banco de contenido) solo entran con el permiso de
+  sesión (`sessionStorage ads_editor_ok`) y, sin él, rebotan al menú sin mostrar nada. No usar `window.prompt`.
 - **Sin dependencias** salvo three.js por CDN. No introducir build tools ni paquetes npm.
 - **Compatibilidad `file://`**: nada de `fetch` a archivos locales, módulos ES, ni rutas absolutas.
 - **Bancos de palabras**: español de Ecuador, vocabulario apropiado para ~9 años. Nombre del niño: Nelson.
@@ -249,11 +282,14 @@ están en `editor.js` y **deben permanecer alineadas** con las claves que lee `o
   - `orto_clas_<id>_<clase>` — palabras propias de categorías de clasificación.
   - `orto_pares_<id>` — pares ✅/❌ definidos por el adulto.
   - `orto_ocultas_<id>` (y `_<grupo>` en mayúsculas/clasificar) — palabras del juego ocultadas.
-  - `secuencias_propias`, `parrafos_propios`, `config`, `jugador`, `avatar`, `genero`, `estado`.
-- **Importante**: las claves de "custom" y "ocultas" están duplicadas entre `editor.js` (escribe) y
+  - `secuencias_propias`, `parrafos_propios`, `config` — banco/ajustes **compartidos** (no por perfil).
+  - **Perfiles**: `perfiles` (lista `[{id,nombre,avatar,genero,nivel}]`), `perfil_activo` (id).
+  - **Por perfil**: `estado__<id>` (estrellas/racha/nivel) y `lb_<juego>__<id>` (leaderboard, top-5).
+  - Heredadas (un solo perfil, fallback): `jugador`, `avatar`, `genero`, `estado`.
+- **Importante**: las claves de "custom" y "ocultas" están duplicadas entre `contenido.js` (escribe) y
   `ortografia.js` (`quitarOcultas`, `extras`, generadores; lee). Si cambias una convención de clave,
   cámbiala en AMBOS archivos.
-- Al cambiar categorías/contenido, recordar que `Ortografia.pintarSelector()` y `Editor` re-leen `DATOS`.
+- Al cambiar categorías/contenido, recordar que `Ortografia.pintarSelector()` y `Contenido` re-leen `DATOS`.
 
 ## Git
 - Repositorio git activo. Remoto `origin`: https://github.com/rolansor/aventura_escolar.git
@@ -262,6 +298,13 @@ están en `editor.js` y **deben permanecer alineadas** con las claves que lee `o
 
 ## Estado / próximos pasos posibles
 - Hecho recientemente:
+  - **Perfiles + Niveles + Leaderboard + separación de configuración** (4 fases): selector de perfiles
+    al abrir, progreso/identidad/nivel por perfil, dificultad básico/intermedio/avanzado en Matemática,
+    marcador por juego y perfil (tiempo + aciertos), y división de la zona de adultos en ⚙️ Ajustes
+    (`editor.js`) + 📚 Banco de contenido (`contenido.js`). Ver "Perfiles, Niveles y Leaderboard".
+  - **Ciencias: "Los invertebrados"** (`invertebrados.js`) — clasificar en los 6 grupos del *Manual*.
+  - Pendiente alinear con el temario de **Quinto C** (examen 1-jul): faltan actividades de **"términos
+    de la adición y la sustracción"** (sumando/minuendo/sustraendo) y **"problemas de 4 pasos"**.
   - Actividades de **acentuación** (agudas/llanas/esdrújulas/sobresdrújulas) y
     **diptongo/triptongo/hiato** como categorías de Ortografía (tipo `clasificar`).
   - **Reorganización del menú por materias** (Lengua, Matemáticas, Estudios Sociales, Ciencias
@@ -276,5 +319,4 @@ están en `editor.js` y **deben permanecer alineadas** con las claves que lee `o
   - Integrar el SVG real y verificar Galápagos/Región Insular.
   - Capas y temas: cantones, capitales (quiz "¿dónde está…?"), hidrografía, orografía, historia,
     platos típicos, mapa político vs. cambios históricos del mapa.
-  - **Ciencias Naturales**: partes de las plantas, animales, cuerpo humano.
-  - **Ciencias Naturales**: partes de las plantas, animales, cuerpo humano.
+  - **Ciencias Naturales**: más sobre invertebrados (subgrupos), plantas y cuerpo humano.

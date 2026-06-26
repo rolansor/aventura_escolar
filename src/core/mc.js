@@ -10,7 +10,7 @@
    Cada fn devuelve: { tema, pregunta, opciones, correcta, html?, pista? }
    ============================================================ */
 window.MC = function (px, temas) {
-  let cola = [], i = 0, ac = 0, t = null;
+  let cola = [], i = 0, ac = 0, t = null, tInicio = 0;
   const TOTAL = 10;
   const $ = (s) => document.getElementById(px + "-" + s);
   const elSel = () => $("selector"), elJuego = () => $("juego");
@@ -28,7 +28,7 @@ window.MC = function (px, temas) {
     });
   }
   function empezar(tm) {
-    ac = 0; i = 0; cola = [];
+    ac = 0; i = 0; cola = []; tInicio = Date.now();
     let prev = "";
     for (let k = 0; k < TOTAL; k++) {
       let q, f, tr = 0;
@@ -88,9 +88,10 @@ window.MC = function (px, temas) {
   function avanzar(ms) { t = setTimeout(() => { i++; if (i >= cola.length) terminar(); else mostrar(); }, ms); }
   function terminar() {
     Juego.cronDetener(); if ($("timer")) $("timer").classList.add("oculto");
+    Juego.registrarResultado(px, { aciertos: ac, total: cola.length, ms: Date.now() - tInicio });
     $("progreso").style.width = "100%";
     if ($("tema")) $("tema").textContent = "";
-    if ($("extra")) $("extra").innerHTML = "";
+    if ($("extra")) $("extra").innerHTML = Juego.tablaMejoresHTML(px);
     $("pregunta").textContent = "¡Terminaste, " + Juego.jugador() + "! " + ac + " de " + cola.length + " ⭐";
     if ($("pista")) $("pista").textContent = "";
     $("opciones").innerHTML = "";

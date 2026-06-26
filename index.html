@@ -22,12 +22,20 @@
         <span class="nivel">Nivel <b id="puntaje-nivel">1</b></span>
       </div>
       <div class="grupo-barra grupo-der">
+        <button id="btn-perfil" class="chip-perfil oculto" title="Cambiar de perfil"></button>
         <button id="btn-sonido" class="boton-icono" title="Activar/silenciar sonido">🔊</button>
       </div>
     </header>
 
+    <!-- Selector de perfiles (se muestra al abrir si no hay perfil activo) -->
+    <section id="pantalla-perfiles" class="pantalla">
+      <h1 class="titulo-juego">La Aventura</h1>
+      <p class="subtitulo">¿Quién va a jugar hoy? 🇪🇨</p>
+      <div class="tarjetas-menu" id="perfiles-lista"></div>
+    </section>
+
     <!-- Menú de materias -->
-    <section id="pantalla-menu" class="pantalla activa">
+    <section id="pantalla-menu" class="pantalla">
       <h1 class="titulo-juego" id="titulo-juego">La Aventura de Nelson</h1>
       <p class="subtitulo" id="subtitulo">¡Hola, Nelson! Elige una materia para empezar 🇪🇨</p>
       <div class="tarjetas-menu" id="tarjetas-menu"></div>
@@ -56,13 +64,17 @@
   <script src="data/nino.js"></script>
   <script src="src/core/datos.js"></script>
   <script src="src/core/juego.js"></script>
+  <script src="src/core/perfiles.js"></script>
   <script src="src/core/menu.js"></script>
   <script>
     window.ES_MENU = true;
     window.RUTA_INICIO = "index.html";
     Datos.cargar(["materias", "nino"]).then(function () {
       Juego.iniciarBase();
-      Menu.init();
+      Perfiles.init();
+      // Si ya hay un perfil elegido, al menú; si no, al selector de perfiles.
+      if (Juego.perfilActivo()) Menu.init();
+      else Perfiles.abrir();
     }).catch(function (e) { console.error("Error cargando datos:", e); });
   </script>
 </body>

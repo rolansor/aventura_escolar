@@ -1,6 +1,6 @@
 /* División (con/sin residuo) con explicación — Matemáticas */
 const Division = (function () {
-  let cola = [], i = 0, ac = 0, act = null, t = null, re = false;
+  let cola = [], i = 0, ac = 0, act = null, t = null, re = false, tInicio = 0;
   const TOTAL = 10;
   const $ = (id) => document.getElementById(id);
   const elSel = () => $("div-selector"), elJuego = () => $("div-juego");
@@ -8,7 +8,9 @@ const Division = (function () {
 
   function gen(exact) {
     const b = Juego.azar(2, 9);
-    const c = Juego.azar(11, 99);
+    // El nivel del perfil acota la magnitud del cociente (números más grandes = más difícil).
+    const rango = Juego.porNivel([[2, 12], [11, 50], [11, 99]]);
+    const c = Juego.azar(rango[0], rango[1]);
     let r = exact === true ? 0 : exact === false ? Juego.azar(1, b - 1) : (Juego.azar(0, 1) ? 0 : Juego.azar(1, b - 1));
     return { a: b * c + r, b: b, c: c, res: r };
   }
@@ -19,7 +21,7 @@ const Division = (function () {
       btn.innerHTML = "➗ " + nv.n + "<small>" + (nv.d || "dividir") + "</small>"; btn.onclick = () => empezar(nv.e); cc.appendChild(btn); });
   }
   function empezar(exact) {
-    ac = 0; i = 0; cola = []; const f = {};
+    ac = 0; i = 0; cola = []; tInicio = Date.now(); const f = {};
     for (let k = 0; k < TOTAL; k++) { let q, fi, tr = 0; do { q = gen(exact); fi = q.a + "/" + q.b; tr++; } while (f[fi] && tr < 12); f[fi] = 1; cola.push(q); }
     elSel().classList.add("oculto"); elJuego().classList.remove("oculto"); mostrar();
   }
@@ -59,7 +61,8 @@ const Division = (function () {
   function tag() { $("div-coc").disabled = true; $("div-res").disabled = true; const r = $("div-retro"); r.textContent = "⏰ ¡Tiempo! Mira cómo se hace 👇"; r.className = "retro mal"; if (!re) Juego.error(); fallo(); }
   function terminar() {
     Juego.cronDetener(); $("div-timer").classList.add("oculto"); $("div-progreso").style.width = "100%";
-    $("div-pregunta").textContent = "¡Terminaste, " + Juego.jugador() + "! " + ac + " de " + cola.length + " ⭐";
+    Juego.registrarResultado("div", { aciertos: ac, total: cola.length, ms: Date.now() - tInicio });
+    $("div-pregunta").innerHTML = "¡Terminaste, " + Juego.jugador() + "! " + ac + " de " + cola.length + " ⭐" + Juego.tablaMejoresHTML("div");
     ["div-resp", "div-explica", "div-reintentar", "div-siguiente"].forEach((id) => $(id).classList.add("oculto"));
     const r = $("div-retro"); r.textContent = ac === cola.length ? "¡Perfecto! 🏆" : "¡Muy bien! Toca otra ronda para seguir."; r.className = "retro bien";
     if (ac >= cola.length - 1) Juego.granPremio(); t = setTimeout(volverSelector, 2500);

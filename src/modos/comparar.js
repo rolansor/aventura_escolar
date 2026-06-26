@@ -4,6 +4,8 @@
    La idea abstracta (>, <, =) nace de una acción concreta: pesar. */
 (function () {
   const az = (a, b) => Juego.azar(a, b);
+  // El nivel del perfil acota la magnitud de los números a comparar/ordenar.
+  function rng() { return Juego.porNivel([[2, 50], [10, 999], [1000, 999999]]); }
   function nums(cant, min, max) {
     const s = {}, r = [];
     while (r.length < cant) { const n = az(min, max); if (!s[n]) { s[n] = 1; r.push(n); } }
@@ -12,7 +14,7 @@
 
   /* ---------- Balanza: toca el plato más pesado ---------- */
   function rondaBalanza(host, ctrl) {
-    let a = az(10, 9999), b = az(10, 9999);
+    const g = rng(); let a = az(g[0], g[1]), b = az(g[0], g[1]);
     if (Math.random() < 0.18) b = a;           // a veces son iguales
     ctrl.pregunta("⚖️ Toca el plato que pesa más (el número <b>mayor</b>)");
     host.innerHTML =
@@ -51,7 +53,7 @@
   /* ---------- Elegir mayor / menor: la carta crece ---------- */
   function rondaElegir(buscarMayor) {
     return function (host, ctrl) {
-      const ns = nums(4, 10, 9999);
+      const g = rng(); const ns = nums(4, g[0], g[1]);
       const meta = buscarMayor ? Math.max.apply(null, ns) : Math.min.apply(null, ns);
       ctrl.pregunta("Toca el número <b>" + (buscarMayor ? "MAYOR ⬆️" : "MENOR ⬇️") + "</b>");
       host.innerHTML = '<div class="fila-cartas"></div>';
@@ -78,7 +80,7 @@
 
   /* ---------- Ordenar: toca dos cartas para intercambiarlas ---------- */
   function rondaOrden(host, ctrl) {
-    let ns = nums(3, 5, 999);
+    const g = rng(); let ns = nums(3, g[0], g[1]);
     while (ns[0] < ns[1] && ns[1] < ns[2]) ns = Juego.mezclar(ns);   // que NO empiece ordenado
     ctrl.pregunta("Ordena de <b>MENOR a MAYOR</b>. Toca dos cartas para cambiarlas ↔️");
     host.innerHTML = '<div class="fila-orden"></div><div class="orden-guia">⬅️ menor &nbsp;·&nbsp; mayor ➡️</div>';

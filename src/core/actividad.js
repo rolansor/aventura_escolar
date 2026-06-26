@@ -25,7 +25,7 @@
 window.Actividad = function (px, temas, opts) {
   opts = opts || {};
   const $ = (s) => document.getElementById(px + "-" + s);
-  let actual = null, total = 8, i = 0, ac = 0, t = null, ganada = false;
+  let actual = null, total = 8, i = 0, ac = 0, t = null, ganada = false, tInicio = 0;
 
   function init() { pintar(); }
 
@@ -41,7 +41,7 @@ window.Actividad = function (px, temas, opts) {
   }
 
   function empezar(tm) {
-    actual = tm; ac = 0; i = 0;
+    actual = tm; ac = 0; i = 0; tInicio = Date.now();
     total = tm.total || opts.total || 8;
     $("selector").classList.add("oculto");
     $("juego").classList.remove("oculto");
@@ -92,8 +92,9 @@ window.Actividad = function (px, temas, opts) {
 
   function terminar() {
     Juego.cronDetener();
+    Juego.registrarResultado(px, { aciertos: ac, total: total, ms: Date.now() - tInicio });
     $("progreso").style.width = "100%";
-    $("extra").innerHTML = "";
+    $("extra").innerHTML = Juego.tablaMejoresHTML(px);
     $("pregunta").textContent = "¡Terminaste, " + Juego.jugador() + "! " + ac + " de " + total + " ⭐";
     const r = $("retro");
     r.textContent = ac === total ? "¡Perfecto! 🏆" : "¡Muy bien! Toca otra ronda para seguir.";

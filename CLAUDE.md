@@ -4,8 +4,17 @@ Juego educativo (Lengua, Matemáticas, Estudios Sociales) en **HTML/CSS/JavaScri
 Para un niño de ~9 años, en **español de Ecuador**. Sin framework ni npm. **Estructura modular**
 (ver `docs/ARQUITECTURA.md`): un HTML por módulo en `paginas/`, lógica en `src/`, datos en `data/`,
 CSS en `css/modulos/`. Funciona **con doble clic** (`index.html`) **y servido**.
-**Para editar/ampliar el contenido** (preguntas, ítems, palabras) de cada actividad: ver
-`docs/MANUAL_BANCOS.md` (guía técnica de los bancos por módulo, lista para seguir por una persona u otra IA).
+**Arquitectura de contenido (NUEVA — leer antes de tocar actividades).** El contenido de casi todas las
+actividades vive ahora en **`data/contenido/<modo>.json`** y lo consume un **runner genérico**
+`src/core/contenido.js` (`Contenido.montar("<modo>")` lee `DATOS.contenido[<modo>]` y arma las rondas según
+el `tipo` de cada tema: clasificar/emparejar/ordenar/silabas/alfabetico/vf/definir/sujeto/signos/formas/
+escena/senala, y motor `mc`: mc/lectura). **Ya NO hay un `src/modos/<modo>.js` por actividad de banco** (se
+eliminaron; su lógica está en el runner). Cada `paginas/<modo>.html` carga su JSON + `datos.js` + el motor +
+`contenido.js` y arranca con `Datos.cargar(["contenido/<modo>"]).then(() => Contenido.montar("<modo>").init())`.
+Esquema completo: **`docs/ESQUEMA_CONTENIDO.md`**. Cómo editar bancos: **`docs/MANUAL_BANCOS.md`**.
+Excepciones que conservan su loader propio: **ortografia** y **copia** (`data/ortografia.json`/`parrafos.json`),
+**quiz** (geografía desde `DATOS.mapas` + bancos de texto en `data/contenido/quiz.json`), **mapas/cantones/
+donde** (geometría en `data/mapas/*` y `data/cantones.js`) y **Matemáticas** (generan los problemas).
 
 ## Filosofía de diseño (LEER ANTES DE CREAR CUALQUIER ACTIVIDAD)
 **Principio rector**: las actividades deben ser lo **más interactivas y manipulativas posible**, NO

@@ -1,5 +1,11 @@
 # Manual de bancos de contenido — *La Aventura de Nelson*
 
+> ⚠️ **DESACTUALIZADO en parte.** Casi todas las actividades migraron a la arquitectura nueva: su contenido
+> vive en **`data/contenido/<modo>.json`** y lo consume el runner `src/core/contenido.js`. Para editar esos
+> bancos, usa **`docs/ESQUEMA_CONTENIDO.md`** (esquema canónico). Este manual sigue siendo válido para las
+> excepciones con loader propio (ortografia, copia/párrafos, quiz, mapas) y para los conceptos generales;
+> ignora las referencias a `src/modos/<modo>.js` de actividades ya migradas (esos archivos se eliminaron).
+
 > Guía técnica para **editar, mejorar y ampliar** el contenido (preguntas, ítems, palabras) de cada
 > actividad. Pensada para que la siga una persona **o otra IA** sin contexto previo. Si eres una IA:
 > respeta **exactamente** las estructuras de datos; **no cambies** la lógica, los `export`/globales ni los

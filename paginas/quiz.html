@@ -57,6 +57,7 @@
   <script src="data/mapas/detalle.js"></script>
   <script src="data/mapas/regiones.js"></script>
   <script src="data/cantones.js"></script>
+  <script src="data/contenido/quiz.js"></script>
   <script src="src/core/datos.js"></script>
   <script src="src/core/juego.js"></script>
   <script src="src/modos/quiz.js"></script>
@@ -67,7 +68,7 @@
       if (juego && !juego.classList.contains("oculto")) Quiz.volverSelector();
       else location.href = "index.html?materia=sociales";
     };
-    Datos.cargar(["mapas/provincias", "mapas/detalle", "mapas/regiones", "cantones"]).then(function () {
+    Datos.cargar(["mapas/provincias", "mapas/detalle", "mapas/regiones", "cantones", "contenido/quiz"]).then(function () {
       Juego.iniciarBase();
       Quiz.init();
     }).catch(function (e) { console.error("Error cargando datos:", e); });

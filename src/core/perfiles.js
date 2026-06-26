@@ -100,7 +100,7 @@ const Perfiles = (function () {
         '<input type="text" id="perfil-nombre" class="modal-input" maxlength="16" placeholder="Tu nombre" autocomplete="off" value="' + (editar ? esc(existente.nombre) : "") + '" />' +
         '<p class="modal-texto">¿Cómo se llama tu mascota? 🌙</p>' +
         '<input type="text" id="perfil-mascota" class="modal-input" maxlength="16" placeholder="Nombre de la mascota" autocomplete="off" value="' + esc(editar ? (existente.avatar || "Luna") : "Luna") + '" />' +
-        '<p class="modal-texto">¿Niño o niña?</p>' +
+        '<p class="modal-texto">¿Tu mascota es niña o niño? 🌙</p>' +
         '<div class="perfil-opciones" id="perfil-genero">' +
           '<button type="button" class="perfil-op' + act(genero === "nina") + '" data-g="nina">👧 Niña</button>' +
           '<button type="button" class="perfil-op' + act(genero === "nino") + '" data-g="nino">👦 Niño</button>' +

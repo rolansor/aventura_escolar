@@ -4,6 +4,8 @@ Juego educativo (Lengua, Matemáticas, Estudios Sociales) en **HTML/CSS/JavaScri
 Para un niño de ~9 años, en **español de Ecuador**. Sin framework ni npm. **Estructura modular**
 (ver `docs/ARQUITECTURA.md`): un HTML por módulo en `paginas/`, lógica en `src/`, datos en `data/`,
 CSS en `css/modulos/`. Funciona **con doble clic** (`index.html`) **y servido**.
+**Para editar/ampliar el contenido** (preguntas, ítems, palabras) de cada actividad: ver
+`docs/MANUAL_BANCOS.md` (guía técnica de los bancos por módulo, lista para seguir por una persona u otra IA).
 
 ## Filosofía de diseño (LEER ANTES DE CREAR CUALQUIER ACTIVIDAD)
 **Principio rector**: las actividades deben ser lo **más interactivas y manipulativas posible**, NO
@@ -58,7 +60,7 @@ página en `paginas/` que el menú enlaza. Las páginas de `paginas/` usan `<bas
 |---|---|---|
 | `data/*.json` (+ `*.js` generados por `build.py`) | `DATOS.*`, `NINO`, `ECUADOR_SVG`, `ECUADOR_CANTONES` | **Datos puros**: ortografia, secuencias, parrafos, generador-parrafos, materias, nino, mapa-ec, cantones, mapas/*. Editar el `.json` y correr `herramientas/build.py`. |
 | `src/core/juego.js` | `Juego` | Núcleo: marcador, sonido, `localStorage`, temporizador, utilidades (`azar/azarEl/mezclar/cargar/guardar/frasePositiva/construirSecuencia`, `acierto/error/granPremio`, `cron*`, `jugador`, `aplicarIdentidad`) e `iniciarBase()`. **Perfiles** (`perfiles/perfilActivo/crearPerfil/seleccionarPerfil/actualizarPerfil/borrarPerfil`), **nivel de dificultad** (`nivel/nivelIdx/porNivel`) y **leaderboard** (`registrarResultado/mejores/fmtTiempo/tablaMejoresHTML`). Ver "Perfiles, Niveles y Leaderboard". |
-| `src/core/perfiles.js` | `Perfiles` | **Selector de perfiles** (solo en `index.html`): pantalla `pantalla-perfiles` con una tarjeta por niño (botones **✏️ editar** y **🗑️ borrar**) + "➕ Nuevo perfil". El modal `abrirForm(perfil?)` sirve para **crear y editar** (nombre del niño, **nombre de la mascota** = `avatar`, género y nivel; precarga al editar y guarda con `Juego.actualizarPerfil`, que aplica la identidad en vivo a `Luna`). Chip de perfil en la barra para cambiar. `Perfiles.init/abrir/actualizarChip`. |
+| `src/core/perfiles.js` | `Perfiles` | **Selector de perfiles** (solo en `index.html`): pantalla `pantalla-perfiles` con una tarjeta por niño (botones **✏️ editar** y **🗑️ borrar**) + "➕ Nuevo perfil". El modal `abrirForm(perfil?)` sirve para **crear y editar** (nombre del niño, **nombre de la mascota** = `avatar`, **género de la mascota** = `genero` —construye a Luna niña/niño— y nivel; precarga al editar y guarda con `Juego.actualizarPerfil`, que aplica la identidad en vivo a `Luna`). Chip de perfil en la barra para cambiar. `Perfiles.init/abrir/actualizarChip`. |
 | `src/core/datos.js` | `Datos` | `Datos.cargar([...])` lee `window.__DATOS__` y rellena los globales. |
 | `src/core/menu.js` | `Menu` | Menú de materias (tarjetas desde `DATOS.materias`, enlaza a `paginas/<modo>.html`). **Modal de clave** (`pedirClave(destino)`) que se abre ANTES de ir a la zona de adultos; sin clave válida no se navega. Dos tarjetas de adultos: **⚙️ Ajustes** (`editor.html`) y **📚 Banco de contenido** (`contenido.html`). |
 | `src/core/mc.js` | `MC` | Motor de **opción múltiple** (repasos rápidos). Fábrica `MC(px, temas)`; ronda de 10. Al terminar registra el resultado en el leaderboard (`Juego.registrarResultado(px,…)`). **No es el patrón por defecto** (ver Filosofía de diseño). |

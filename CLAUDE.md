@@ -90,8 +90,23 @@ El menú está organizado en **materias** (asignaturas). Definidas en `DATOS.mat
 Materias actuales: **Lengua** (ortografia, copia, **clases, familia, sinonimos, formas, silabas,
 ordena, sujeto, signos, alfabetico, lectura, refranes**), **Matemáticas** (secuencias, aritmetica/tablas/
 multiplicacion/division/comparar/redondeo/numeros/valorposicional/dinero/medidas/hora/fracciones),
-**Estudios Sociales** (`mapas`, `cantones`, `donde`), **Ciencias Naturales** (senala, plantas, cuerpo,
-animales, **invertebrados**, cicloagua, materia, ambiente).
+**Estudios Sociales** (**epoca, regiones**, `mapas`, `cantones`, `quiz`, `donde`), **Ciencias Naturales**
+(senala, plantas, cuerpo, animales, **invertebrados**, cicloagua, materia, ambiente).
+
+### Estudios Sociales — adaptación al Taller 1 de Quinto ("Época Aborigen" + territorio)
+Dos módulos nuevos manipulativos (`Actividad` + `Arrastrar`, catálogo INLINE por 3 niveles, página copia
+de `epoca.html`, `MODO_VOLVER`→`materia=sociales`) y la ampliación del Quiz:
+- **epoca** (`Epoca`) — Historia "Época Aborigen", 4 temas: **¿Cómo llegaron?** (teorías del poblamiento de
+  América: Bering/Hrdlička, Polinésica/Rivet, Australiana/Méndez Correa, Autóctona/Ameghino — `emparejar`),
+  **Línea de tiempo** (Paleoindio→Formativo→Desarrollo Regional→Integración — `ordenar`), **Sociedades
+  agrícolas** (Incipientes→Superiores→Supracomunales — `ordenar`), **Pueblos y culturas** (Valdivia, Las
+  Vegas, La Tolita, Cañari, Manteño-Huancavilca… — `emparejar`).
+- **regiones** (`Regiones`) — Geografía, 3 temas: **Regiones naturales** (Costa/Sierra/Amazonía/Insular —
+  `clasificar`), **Relieves** (volcán/río/cordillera/llanura — `clasificar`), **Organización territorial**
+  (País→Región→Provincia→Cantón→Parroquia — `ordenar`).
+- **quiz** (`src/modos/quiz.js`) — ampliado con 2 temas: **🏺 Época Aborigen** y **🧭 Territorio y relieves**
+  (bancos inline `ABORIGEN`/`TERRITORIO`, gens `gAborigen`/`gTerritorio` vía el helper `pregunta()` que
+  garantiza `correcta ∈ opciones`; registrados en `GEN`, `GEN.mixto` y `TEMAS`).
 
 ### Lengua — actividades manipulativas (todas con catálogo INLINE por 3 niveles vía `Juego.nivelIdx()`)
 Cada una es un `Actividad("px", …)` (o `MC` para lectura) con su `paginas/<modo>.html` (copia del patrón
@@ -322,6 +337,10 @@ están en `contenido.js` y **deben permanecer alineadas** con las claves que lee
 
 ## Estado / próximos pasos posibles
 - Hecho recientemente:
+  - **Estudios Sociales alineado al Taller 1 de Quinto (Época Aborigen)**: módulos nuevos `epoca`
+    (historia: poblamiento de América y teorías, periodización, sociedades agrícolas, culturas) y
+    `regiones` (regiones naturales, relieves, organización territorial), + `quiz` ampliado con temas de
+    historia y territorio. (Smoke test happy-dom: `scratchpad/test_sociales.js`.)
   - **11 actividades nuevas de Lengua** (clases, familia, sinónimos, formas, sílabas, ordena, sujeto,
     signos, alfabético, lectura, refranes), todas manipulativas y con catálogo por 3 niveles. Se añadieron
     dos ayudantes reutilizables `Arrastrar.emparejar` y `Arrastrar.ordenar`. (Smoke test real con happy-dom:

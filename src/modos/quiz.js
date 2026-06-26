@@ -122,14 +122,81 @@ const Quiz = (function () {
       { imagen: "recursos/banderas/" + p.iso + ".svg" });
   }
 
+  /* ---------- Época Aborigen (Taller 1) ---------- */
+  // Bancos fijos: cada pregunta tiene su correcta y sus distractores a mano.
+  const ABORIGEN = [
+    { p: "¿Por dónde llegaron los primeros pobladores según la teoría de Bering?",
+      c: "Por el estrecho de Bering", d: ["Por el río Amazonas", "En avión", "Por el mar Caribe"],
+      pista: "Un paso de tierra entre Asia y América." },
+    { p: "¿Quién propuso que llegaron desde la Polinesia en balsas?",
+      c: "Paul Rivet", d: ["Cristóbal Colón", "Charles Darwin", "Simón Bolívar"] },
+    { p: "Los primeros pobladores del Ecuador eran…",
+      c: "cazadores y recolectores", d: ["agricultores con tractores", "comerciantes", "marineros"] },
+    { p: "¿En qué periodo se hizo la PRIMERA cerámica?",
+      c: "Formativo", d: ["Paleoindio", "Integración", "Colonial"] },
+    { p: "¿Cuál es el periodo más ANTIGUO de la época aborigen?",
+      c: "Paleoindio", d: ["Formativo", "Integración", "Desarrollo Regional"] },
+    { p: "Las confederaciones y señoríos pertenecen al periodo…",
+      c: "Integración", d: ["Paleoindio", "Formativo", "Colonial"] },
+    { p: "¿Qué cultura hizo la primera cerámica del Ecuador?",
+      c: "Valdivia", d: ["La Tolita", "Cañari", "Las Vegas"], pista: "Sus figuras femeninas son famosas." },
+    { p: "Los 'Amantes de Sumpa' pertenecen a la cultura…",
+      c: "Las Vegas", d: ["Valdivia", "La Tolita", "Inca"] },
+    { p: "El famoso 'sol de oro' es de la cultura…",
+      c: "La Tolita", d: ["Valdivia", "Las Vegas", "Cañari"] },
+    { p: "Los Cañari vivieron en la…",
+      c: "Sierra sur", d: ["Costa norte", "Amazonía", "Región Insular"] },
+    { p: "¿Cómo conseguían su comida los primeros pobladores?",
+      c: "Cazando y recolectando frutos", d: ["Comprando en el mercado", "Pescando con barcos", "Sembrando trigo"],
+      pista: "Aún no sembraban ni criaban animales." },
+    { p: "¿Qué gran invento marcó el periodo Formativo?",
+      c: "La cerámica", d: ["La rueda", "La escritura", "El dinero"] }
+  ];
+  function gAborigen() {
+    const x = azarEl(ABORIGEN);
+    return pregunta("🏺 Época Aborigen", x.p, x.c, x.d, x.pista ? { pista: x.pista } : null);
+  }
+
+  /* ---------- Territorio y relieves ---------- */
+  const TERRITORIO = [
+    { p: "¿Qué es más grande, una provincia o un cantón?",
+      c: "La provincia", d: ["El cantón", "Son iguales", "La parroquia"] },
+    { p: "¿Cómo se llama la división territorial más pequeña?",
+      c: "La parroquia", d: ["El cantón", "La provincia", "La región"] },
+    { p: "¿En cuántas provincias se divide el Ecuador?",
+      c: "24", d: ["20", "22", "30"] },
+    { p: "¿Cuál es el volcán más ALTO del Ecuador?",
+      c: "Chimborazo", d: ["Cotopaxi", "Tungurahua", "Cayambe"], pista: "Su cumbre es el punto más alejado del centro de la Tierra." },
+    { p: "¿En qué región está Galápagos?",
+      c: "Región Insular", d: ["Costa", "Sierra", "Amazonía"] },
+    { p: "El río Napo está en la región…",
+      c: "Amazonía", d: ["Costa", "Sierra", "Región Insular"] },
+    { p: "Las cuatro regiones naturales son Costa, Sierra, Amazonía e…",
+      c: "Insular", d: ["Antártica", "Pacífica", "Central"] },
+    { p: "¿En qué cordillera está el Ecuador?",
+      c: "Los Andes", d: ["Los Alpes", "Los Pirineos", "El Himalaya"] },
+    { p: "¿Cómo se llama la división que agrupa varias parroquias?",
+      c: "El cantón", d: ["La provincia", "La región", "La nación"] },
+    { p: "¿Cuántas regiones naturales tiene el Ecuador?",
+      c: "4", d: ["2", "3", "5"] },
+    { p: "El callejón interandino, con muchos volcanes, está en la región…",
+      c: "Sierra", d: ["Costa", "Amazonía", "Región Insular"] }
+  ];
+  function gTerritorio() {
+    const x = azarEl(TERRITORIO);
+    return pregunta("🧭 Territorio y relieves", x.p, x.c, x.d, x.pista ? { pista: x.pista } : null);
+  }
+
   const GEN = {
     capitales: [gCapitalDe, gProvDeCapital],
     regiones: [gRegionDe, gProvDeRegion],
     gentilicios: [gGentilicio],
     cantones: [gCantonDe, gProvDeCanton, gCuantosCantones],
-    banderas: [gBandera]
+    banderas: [gBandera],
+    aborigen: [gAborigen],
+    territorio: [gTerritorio]
   };
-  GEN.mixto = [].concat(GEN.capitales, GEN.regiones, GEN.gentilicios, GEN.cantones, GEN.banderas);
+  GEN.mixto = [].concat(GEN.capitales, GEN.regiones, GEN.gentilicios, GEN.cantones, GEN.banderas, GEN.aborigen, GEN.territorio);
 
   const TEMAS = [
     { id: "capitales", icono: "🏛️", nombre: "Capitales" },
@@ -137,6 +204,8 @@ const Quiz = (function () {
     { id: "gentilicios", icono: "🙋", nombre: "Gentilicios" },
     { id: "cantones", icono: "🏘️", nombre: "Cantones" },
     { id: "banderas", icono: "🚩", nombre: "Banderas" },
+    { id: "aborigen", icono: "🏺", nombre: "Época Aborigen" },
+    { id: "territorio", icono: "🧭", nombre: "Territorio y relieves" },
     { id: "mixto", icono: "🎲", nombre: "Mixto (todo)" }
   ];
 

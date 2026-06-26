@@ -49,6 +49,8 @@ const Menu = (function () {
     cantones:   "paginas/cantones.html",
     quiz:       "paginas/quiz.html",
     donde:      "paginas/donde.html",
+    epoca:      "paginas/epoca.html",
+    regiones:   "paginas/regiones.html",
     editor:     "paginas/editor.html",
     contenido:  "paginas/contenido.html"
   };

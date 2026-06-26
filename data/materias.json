@@ -187,8 +187,20 @@
     "id": "sociales",
     "icono": "🗺️",
     "nombre": "Estudios Sociales",
-    "desc": "Ecuador y su geografía",
+    "desc": "Ecuador: geografía e historia",
     "actividades": [
+      {
+        "modo": "epoca",
+        "icono": "🏺",
+        "nombre": "Época Aborigen",
+        "desc": "Primeros pobladores, culturas y tiempo"
+      },
+      {
+        "modo": "regiones",
+        "icono": "🌎",
+        "nombre": "Regiones y relieves",
+        "desc": "Regiones, relieves y organización del Ecuador"
+      },
       {
         "modo": "mapas",
         "icono": "🗺️",

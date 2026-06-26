@@ -52,17 +52,22 @@
   <script>window.THREE || document.write('<scr'+'ipt src="lib/three.min.js"></scr'+'ipt>');</script>
   <script src="src/efectos/escena3d.js"></script>
   <script src="src/efectos/luna.js"></script>
+  <script src="data/contenido/lectura.js"></script>
+  <script src="src/core/datos.js"></script>
   <script src="src/core/juego.js"></script>
   <script src="src/core/mc.js"></script>
-  <script src="src/modos/lectura.js"></script>
+  <script src="src/core/contenido.js"></script>
   <script>
     window.RUTA_INICIO = "index.html";
-    window.MODO_VOLVER = function () {
-      if (!document.getElementById("lectura-juego").classList.contains("oculto")) Lectura.volverSelector();
-      else location.href = "index.html?materia=lengua";
-    };
-    Juego.iniciarBase();
-    Lectura.init();
+    Datos.cargar(["contenido/lectura"]).then(function () {
+      Juego.iniciarBase();
+      var MODO = Contenido.montar("lectura");
+      window.MODO_VOLVER = function () {
+        if (!document.getElementById("lectura-juego").classList.contains("oculto")) MODO.volverSelector();
+        else location.href = "index.html?materia=lengua";
+      };
+      MODO.init();
+    });
   </script>
 </body>
 </html>

@@ -49,9 +49,12 @@ window.Contenido = (function () {
       const items = ids.map((id) => ({ txt: itemDe(t.items[id], niv), cesta: id }));
       Arrastrar.clasificar(host, ctrl, { pregunta: t.pregunta, cestas: cestas, items: ctrl.mezclar(items) });
     },
-    // Unir parejas (izquierda↔derecha).
+    // Unir parejas (izquierda↔derecha). Toma un SUBCONJUNTO al azar del banco del
+    // nivel (por defecto 3/4/5 parejas por ronda; configurable con "porRonda").
     emparejar: (t) => (host, ctrl) => {
-      const pares = Juego.porNivel(t.pares).map((p) => ({ a: p.a, b: p.b }));
+      const pool = Juego.porNivel(t.pares) || [];
+      const n = Math.min(Juego.porNivel(t.porRonda || [3, 4, 5]), pool.length);
+      const pares = ctrl.mezclar(pool.slice()).slice(0, n).map((p) => ({ a: p.a, b: p.b }));
       Arrastrar.emparejar(host, ctrl, { pregunta: t.pregunta || "Une cada pareja 👇", pares: pares });
     },
     // Ordenar una secuencia (tócalas en orden).

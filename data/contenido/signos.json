@@ -1,0 +1,68 @@
+{
+  "modo": "signos",
+  "materia": "lengua",
+  "px": "signo",
+  "titulo": "Pon el signo",
+  "icono": "❓",
+  "motor": "actividad",
+  "temas": [
+    {
+      "tipo": "signos",
+      "icono": "❓",
+      "nombre": "Pon el signo",
+      "desc": "Signos de puntuación",
+      "total": 8,
+      "pregunta": "¿Qué signo va en el ▢? Tócalo 👇",
+      "items": [
+        [
+          { "antes": "Hoy es un día muy bonito", "despues": "", "correcto": ".", "opciones": [".", "?", "!"] },
+          { "antes": "Qué rico está el almuerzo", "despues": "", "correcto": "!", "opciones": [".", "!", "?"] },
+          { "antes": "Cómo te llamas", "despues": "", "correcto": "?", "opciones": ["?", ".", "!"] },
+          { "antes": "Mi perro se llama Toby", "despues": "", "correcto": ".", "opciones": [".", "!", "?"] },
+          { "antes": "Cuántos años tienes", "despues": "", "correcto": "?", "opciones": ["?", "!", "."] },
+          { "antes": "Qué lindo está el paisaje", "despues": "", "correcto": "!", "opciones": ["!", "?", "."] },
+          { "antes": "En vacaciones fuimos a la playa", "despues": "", "correcto": ".", "opciones": [".", "?", "!"] },
+          { "antes": "Me gusta jugar con mis amigos", "despues": "", "correcto": ".", "opciones": [".", "?", "!"] },
+          { "antes": "Qué emoción ver el mar", "despues": "", "correcto": "!", "opciones": ["!", "?", "."] },
+          { "antes": "Dónde está mi cuaderno", "despues": "", "correcto": "?", "opciones": ["?", ".", "!"] },
+          { "antes": "Hoy comimos encebollado", "despues": "", "correcto": ".", "opciones": [".", "!", "?"] },
+          { "antes": "Quieres un poco de jugo", "despues": "", "correcto": "?", "opciones": ["?", "!", "."] },
+          { "antes": "Qué grande es ese árbol", "despues": "", "correcto": "!", "opciones": ["!", "?", "."] },
+          { "antes": "La maestra revisó la tarea", "despues": "", "correcto": ".", "opciones": [".", "?", "!"] }
+        ],
+        [
+          { "antes": "", "despues": "Cómo estás?", "correcto": "¿", "opciones": ["¿", "¡", "-"] },
+          { "antes": "", "despues": "Qué linda mañana!", "correcto": "¡", "opciones": ["¡", "¿", "-"] },
+          { "antes": "", "despues": "Dónde vives?", "correcto": "¿", "opciones": ["¿", "¡", "-"] },
+          { "antes": "", "despues": "Qué rica está la fruta!", "correcto": "¡", "opciones": ["¡", "¿", "-"] },
+          { "antes": "", "despues": "Quieres jugar conmigo?", "correcto": "¿", "opciones": ["¿", "¡", "-"] },
+          { "antes": "", "despues": "Cuidado con el escalón!", "correcto": "¡", "opciones": ["¡", "¿", "-"] },
+          { "antes": "", "despues": "A qué hora llegamos?", "correcto": "¿", "opciones": ["¿", "¡", "-"] },
+          { "antes": "", "despues": "Te gusta el helado?", "correcto": "¿", "opciones": ["¿", "¡", "-"] },
+          { "antes": "", "despues": "Qué día tan caluroso!", "correcto": "¡", "opciones": ["¡", "¿", "-"] },
+          { "antes": "", "despues": "Cuándo es tu cumpleaños?", "correcto": "¿", "opciones": ["¿", "¡", "-"] },
+          { "antes": "", "despues": "Qué susto me diste!", "correcto": "¡", "opciones": ["¡", "¿", "-"] },
+          { "antes": "", "despues": "Has visto a mi gato?", "correcto": "¿", "opciones": ["¿", "¡", "-"] },
+          { "antes": "", "despues": "Vamos a la cancha!", "correcto": "¡", "opciones": ["¡", "¿", "-"] },
+          { "antes": "", "despues": "Por qué lloras?", "correcto": "¿", "opciones": ["¿", "¡", "-"] }
+        ],
+        [
+          { "antes": "Compré manzanas", "despues": "peras y uvas", "correcto": ",", "opciones": [",", ".", ";"] },
+          { "antes": "Nelson", "despues": "ven a comer", "correcto": ",", "opciones": [",", ".", "!"] },
+          { "antes": "En el zoológico vi monos", "despues": "tigres y loros", "correcto": ",", "opciones": [",", ".", ";"] },
+          { "antes": "Mamá", "despues": "ya terminé la tarea", "correcto": ",", "opciones": [",", ".", "?"] },
+          { "antes": "Necesito lápices", "despues": "cuadernos y borradores", "correcto": ",", "opciones": [",", ";", "."] },
+          { "antes": "Profe", "despues": "puedo pasar al baño", "correcto": ",", "opciones": [",", ".", "?"] },
+          { "antes": "Ecuador tiene costa", "despues": "sierra y oriente", "correcto": ",", "opciones": [",", ".", ";"] },
+          { "antes": "Tengo cuadernos", "despues": "lápices y reglas", "correcto": ",", "opciones": [",", ".", ";"] },
+          { "antes": "Abuelita", "despues": "ya llegamos a casa", "correcto": ",", "opciones": [",", ".", "!"] },
+          { "antes": "En el mercado venden papas", "despues": "choclos y habas", "correcto": ",", "opciones": [",", ".", ";"] },
+          { "antes": "Carlos", "despues": "trae la pelota", "correcto": ",", "opciones": [",", ".", "?"] },
+          { "antes": "Vi gallinas", "despues": "patos y chanchos", "correcto": ",", "opciones": [",", ".", ";"] },
+          { "antes": "Doctor", "despues": "me duele la cabeza", "correcto": ",", "opciones": [",", ".", "?"] },
+          { "antes": "Comimos arroz", "despues": "menestra y carne", "correcto": ",", "opciones": [",", ".", ";"] }
+        ]
+      ]
+    }
+  ]
+}

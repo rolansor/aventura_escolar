@@ -110,7 +110,27 @@
       "conversar",
       "nervio",
       "verdura",
-      "ovillo"
+      "ovillo",
+      "bufanda",
+      "burbuja",
+      "buzón",
+      "bocina",
+      "abrigo",
+      "hierba",
+      "brisa",
+      "bondad",
+      "barba",
+      "biberón",
+      "vereda",
+      "vencer",
+      "ventaja",
+      "vacío",
+      "volante",
+      "valiente",
+      "vivienda",
+      "votar",
+      "verdadero",
+      "voltear"
     ]
   },
   {
@@ -205,7 +225,28 @@
       "calabaza",
       "cazuela",
       "abrazo",
-      "tijeras"
+      "tijeras",
+      "cita",
+      "ceniza",
+      "cebada",
+      "ciruela",
+      "sucio",
+      "sirena",
+      "señal",
+      "salud",
+      "sorpresa",
+      "saludo",
+      "cuaderno",
+      "ciencia",
+      "cocinero",
+      "zarpa",
+      "zigzag",
+      "zafiro",
+      "azulejo",
+      "belleza",
+      "naturaleza",
+      "danza",
+      "tristeza"
     ]
   },
   {
@@ -299,7 +340,27 @@
       "cajón",
       "jirafita",
       "relojero",
-      "jabón"
+      "jabón",
+      "gerente",
+      "gesto",
+      "gimnasia",
+      "germen",
+      "gélido",
+      "frágil",
+      "tragedia",
+      "biología",
+      "geometría",
+      "jugador",
+      "joyero",
+      "jugoso",
+      "justicia",
+      "juventud",
+      "jeringa",
+      "mejor",
+      "lejano",
+      "tejer",
+      "ejército",
+      "personaje"
     ]
   },
   {
@@ -363,7 +424,27 @@
       "hechizo",
       "hervir",
       "ahogar",
-      "anhelo"
+      "anhelo",
+      "huerta",
+      "humedad",
+      "hamburguesa",
+      "halcón",
+      "hazaña",
+      "hebilla",
+      "helecho",
+      "hembra",
+      "herida",
+      "hermoso",
+      "hilo",
+      "hincha",
+      "hogar",
+      "hoguera",
+      "hondo",
+      "honor",
+      "horizonte",
+      "huésped",
+      "huracán",
+      "moho"
     ]
   },
   {
@@ -453,7 +534,27 @@
       "proyecto",
       "mayoría",
       "yodo",
-      "cuyo"
+      "cuyo",
+      "ballena",
+      "bolsillo",
+      "cordillera",
+      "cuello",
+      "destello",
+      "llama",
+      "llanura",
+      "lluvioso",
+      "olla",
+      "rollo",
+      "talla",
+      "toalla",
+      "varilla",
+      "ayer",
+      "ayuno",
+      "hoyo",
+      "maya",
+      "rayuela",
+      "subrayar",
+      "tuyo"
     ]
   },
   {
@@ -553,7 +654,27 @@
       "cómodo",
       "pólvora",
       "sábana",
-      "válvula"
+      "válvula",
+      "atún",
+      "balcón",
+      "champú",
+      "increíble",
+      "íntimo",
+      "lágrima",
+      "líquido",
+      "máscara",
+      "mástil",
+      "mérito",
+      "móvil",
+      "página",
+      "párpado",
+      "público",
+      "súbito",
+      "tóxico",
+      "vehículo",
+      "zócalo",
+      "ácido",
+      "cómico"
     ],
     "pares": [
       {
@@ -740,7 +861,17 @@
       "Tena",
       "Sudamérica",
       "Atlántico",
-      "Antisana"
+      "Antisana",
+      "Imbabura",
+      "Manabí",
+      "Azuay",
+      "Tulcán",
+      "Babahoyo",
+      "Puyo",
+      "Bolívar",
+      "Gabriela",
+      "Joaquín",
+      "Nicolás"
     ],
     "comunes": [
       "perro",
@@ -792,7 +923,17 @@
       "mariposa",
       "pájaro",
       "caballo",
-      "conejo"
+      "conejo",
+      "mochila",
+      "borrador",
+      "pupitre",
+      "regla",
+      "guitarra",
+      "tortuga",
+      "oveja",
+      "tomate",
+      "galleta",
+      "bufanda"
     ]
   },
   {
@@ -867,7 +1008,27 @@
       "bambú",
       "comba",
       "rombo",
-      "campamento"
+      "campamento",
+      "ambos",
+      "asamblea",
+      "bombón",
+      "campesino",
+      "compañero",
+      "comprender",
+      "computadora",
+      "embarcar",
+      "empanada",
+      "empaque",
+      "emparejar",
+      "imprenta",
+      "impresora",
+      "membrillo",
+      "nombrar",
+      "ombligo",
+      "templo",
+      "trampa",
+      "vampiro",
+      "sombrilla"
     ]
   },
   {
@@ -934,7 +1095,12 @@
         "autobús",
         "compás",
         "además",
-        "atrás"
+        "atrás",
+        "cajón",
+        "ladrón",
+        "natación",
+        "rincón",
+        "después"
       ],
       "Llana": [
         "casa",
@@ -986,7 +1152,12 @@
         "útil",
         "hábil",
         "néctar",
-        "mártir"
+        "mártir",
+        "fútbol",
+        "carácter",
+        "ágil",
+        "fémur",
+        "póster"
       ],
       "Esdrújula": [
         "música",
@@ -1028,7 +1199,12 @@
         "esdrújula",
         "ridículo",
         "plástico",
-        "público"
+        "público",
+        "cámara",
+        "fórmula",
+        "lágrima",
+        "máximo",
+        "bárbaro"
       ],
       "Sobresdrújula": [
         "cómpramelo",
@@ -1050,7 +1226,10 @@
         "prepáramelo",
         "corrígemelo",
         "comiéndoselo",
-        "dibújamelo"
+        "dibújamelo",
+        "véndemelo",
+        "llévatelo",
+        "escríbemelo"
       ]
     }
   },
@@ -1117,7 +1296,15 @@
         "fuente",
         "vienen",
         "bailarina",
-        "aceitoso"
+        "aceitoso",
+        "guante",
+        "cuadro",
+        "fuerte",
+        "viento",
+        "feria",
+        "estudio",
+        "radio",
+        "premio"
       ],
       "Triptongo": [
         "Paraguay",
@@ -1134,7 +1321,10 @@
         "actuáis",
         "continuáis",
         "insinuáis",
-        "Camagüey"
+        "Camagüey",
+        "anunciáis",
+        "pronunciáis",
+        "santiguáis"
       ],
       "Hiato": [
         "día",
@@ -1176,7 +1366,14 @@
         "feo",
         "peor",
         "paseo",
-        "deseo"
+        "deseo",
+        "marea",
+        "boa",
+        "vacío",
+        "judío",
+        "todavía",
+        "garantía",
+        "ataúd"
       ]
     }
   }

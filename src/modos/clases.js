@@ -20,32 +20,43 @@
   // Bancos por nivel [básico, intermedio, avanzado]. Español del Ecuador, ~9 años.
   const POOL = {
     sustantivo: [
-      ["perro", "casa", "mesa", "Nelson", "escuela", "pelota", "mamá", "río"],
-      ["maestra", "cuaderno", "montaña", "Quito", "guitarra", "mercado", "colibrí"],
-      ["libertad", "amistad", "Ecuador", "alegría", "esperanza", "naturaleza"]
+      ["perro", "casa", "mesa", "Nelson", "escuela", "pelota", "mamá", "río",
+       "gato", "niño", "sol", "pan", "flor", "papá", "libro", "silla"],
+      ["maestra", "cuaderno", "montaña", "Quito", "guitarra", "mercado", "colibrí",
+       "ventana", "bicicleta", "tortuga", "plátano", "cóndor", "maleta", "jardín"],
+      ["libertad", "amistad", "Ecuador", "alegría", "esperanza", "naturaleza",
+       "justicia", "valentía", "sabiduría", "honestidad", "tristeza", "bondad"]
     ],
     adjetivo: [
-      ["grande", "rojo", "feliz", "alto", "bonito", "frío"],
-      ["valiente", "amarillo", "curioso", "enorme", "tranquilo", "rápido"],
-      ["transparente", "silencioso", "gigantesco", "brillante", "amable"]
+      ["grande", "rojo", "feliz", "alto", "bonito", "frío",
+       "pequeño", "azul", "suave", "dulce", "limpio", "nuevo"],
+      ["valiente", "amarillo", "curioso", "enorme", "tranquilo", "rápido",
+       "simpático", "redondo", "peludo", "brillante", "salado", "delgado"],
+      ["transparente", "silencioso", "gigantesco", "amable", "misterioso",
+       "generoso", "increíble", "asombroso", "maravilloso", "resplandeciente"]
     ],
     verbo: [
-      ["correr", "saltar", "comer", "jugar", "dormir", "cantar"],
-      ["escribir", "aprender", "cocinar", "nadar", "escuchar", "pintar"],
-      ["construir", "imaginar", "resolver", "investigar", "agradecer"]
+      ["correr", "saltar", "comer", "jugar", "dormir", "cantar",
+       "beber", "reír", "mirar", "abrir", "caminar", "leer"],
+      ["escribir", "aprender", "cocinar", "nadar", "escuchar", "pintar",
+       "dibujar", "estudiar", "viajar", "comprar", "bailar", "trabajar"],
+      ["construir", "imaginar", "resolver", "investigar", "agradecer",
+       "descubrir", "organizar", "reflexionar", "colaborar", "observar"]
     ],
     articulo: [
       [],
-      ["el", "la", "los", "las", "un", "una"],
-      ["el", "la", "los", "las", "un", "una", "unos", "unas"]
+      ["el", "la", "los", "las", "un", "una", "lo", "unos", "unas"],
+      ["el", "la", "los", "las", "lo", "un", "una", "unos", "unas"]
     ],
     pronombre: [
       [], [],
-      ["yo", "tú", "él", "ella", "nosotros", "ellos", "ustedes"]
+      ["yo", "tú", "él", "ella", "usted", "nosotros", "nosotras",
+       "ustedes", "ellos", "ellas", "me", "te", "nos", "se"]
     ],
     adverbio: [
       [], [],
-      ["ahora", "aquí", "siempre", "rápido", "ayer", "muy", "nunca", "despacio"]
+      ["ahora", "aquí", "siempre", "rápido", "ayer", "muy", "nunca", "despacio",
+       "hoy", "mañana", "allí", "bien", "mal", "cerca", "lejos", "temprano"]
     ]
   };
 

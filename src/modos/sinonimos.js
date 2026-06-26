@@ -16,17 +16,26 @@
     [ // básico
       ["contento", "feliz"], ["bonito", "lindo"], ["grande", "enorme"],
       ["rápido", "veloz"], ["casa", "hogar"], ["lindo", "hermoso"],
-      ["chico", "pequeño"], ["alegre", "contento"]
+      ["chico", "pequeño"], ["alegre", "contento"],
+      ["feo", "horrible"], ["flaco", "delgado"], ["gordo", "grueso"],
+      ["niño", "chiquillo"], ["sucio", "cochino"], ["raro", "extraño"],
+      ["viejo", "anciano"], ["gritar", "chillar"]
     ],
     [ // intermedio
       ["valiente", "audaz"], ["comenzar", "empezar"], ["mojado", "húmedo"],
       ["tonto", "bobo"], ["listo", "inteligente"], ["enojado", "molesto"],
-      ["bello", "precioso"], ["fuerte", "robusto"]
+      ["bello", "precioso"], ["fuerte", "robusto"],
+      ["asustado", "temeroso"], ["cansado", "agotado"], ["bravo", "furioso"],
+      ["caminar", "andar"], ["famoso", "conocido"], ["barato", "económico"],
+      ["delicioso", "sabroso"], ["amplio", "espacioso"]
     ],
     [ // avanzado
       ["diminuto", "pequeño"], ["hermoso", "precioso"], ["oculto", "escondido"],
       ["asustado", "atemorizado"], ["antiguo", "viejo"], ["sabio", "inteligente"],
-      ["veloz", "ligero"], ["tranquilo", "sereno"]
+      ["veloz", "ligero"], ["tranquilo", "sereno"],
+      ["valiente", "intrépido"], ["generoso", "desprendido"], ["afortunado", "dichoso"],
+      ["enorme", "colosal"], ["extraño", "insólito"], ["honesto", "sincero"],
+      ["abundante", "copioso"], ["risueño", "sonriente"]
     ]
   ];
 
@@ -34,17 +43,26 @@
     [ // básico
       ["grande", "pequeño"], ["alto", "bajo"], ["día", "noche"],
       ["frío", "calor"], ["feliz", "triste"], ["bueno", "malo"],
-      ["blanco", "negro"], ["nuevo", "viejo"]
+      ["blanco", "negro"], ["nuevo", "viejo"],
+      ["gordo", "flaco"], ["rápido", "lento"], ["caliente", "frío"],
+      ["dulce", "amargo"], ["fuerte", "débil"], ["duro", "blando"],
+      ["claro", "oscuro"], ["seco", "mojado"]
     ],
     [ // intermedio
       ["subir", "bajar"], ["abrir", "cerrar"], ["limpio", "sucio"],
       ["lleno", "vacío"], ["dentro", "fuera"], ["entrar", "salir"],
-      ["mucho", "poco"], ["arriba", "abajo"]
+      ["mucho", "poco"], ["arriba", "abajo"],
+      ["cerca", "lejos"], ["ganar", "perder"], ["empezar", "terminar"],
+      ["dar", "quitar"], ["juntar", "separar"], ["recordar", "olvidar"],
+      ["encender", "apagar"], ["temprano", "tarde"]
     ],
     [ // avanzado
       ["valiente", "cobarde"], ["generoso", "tacaño"], ["claro", "oscuro"],
       ["áspero", "suave"], ["antiguo", "moderno"], ["alegre", "afligido"],
-      ["fácil", "difícil"], ["amplio", "estrecho"]
+      ["fácil", "difícil"], ["amplio", "estrecho"],
+      ["humilde", "orgulloso"], ["verdad", "mentira"], ["aceptar", "rechazar"],
+      ["ordenado", "desordenado"], ["culpable", "inocente"], ["permitir", "prohibir"],
+      ["aparecer", "desaparecer"], ["aumentar", "disminuir"]
     ]
   ];
 

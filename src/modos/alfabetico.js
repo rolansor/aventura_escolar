@@ -24,7 +24,15 @@
       ["niño", "abuela", "tío"],
       ["pan", "queso", "arroz"],
       ["zapato", "camisa", "gorra"],
-      ["Quito", "Cuenca", "Manta"]
+      ["Quito", "Cuenca", "Manta"],
+      ["mango", "uva", "limón"],
+      ["tigre", "oso", "foca"],
+      ["mesa", "silla", "cama"],
+      ["nube", "lluvia", "viento"],
+      ["rojo", "azul", "verde"],
+      ["lunes", "martes", "jueves"],
+      ["dedo", "mano", "pie"],
+      ["leche", "café", "agua"]
     ],
     // intermedio: 4 palabras, algunas comparten la primera letra
     [
@@ -35,7 +43,15 @@
       ["lápiz", "luna", "libro", "ave"],
       ["banana", "barco", "bota", "uva"],
       ["tigre", "tortuga", "tren", "ave"],
-      ["río", "rosa", "rana", "ola"]
+      ["río", "rosa", "rana", "ola"],
+      ["pera", "piña", "pan", "uva"],
+      ["gato", "gallo", "ganso", "oso"],
+      ["mesa", "mono", "mango", "ave"],
+      ["sol", "silla", "selva", "uno"],
+      ["casa", "cielo", "campo", "uva"],
+      ["tren", "tigre", "torre", "ave"],
+      ["rosa", "ratón", "risa", "ola"],
+      ["bota", "bote", "barco", "ave"]
     ],
     // avanzado: 5 palabras, varias comparten 1ª y 2ª letra
     [
@@ -46,7 +62,15 @@
       ["barco", "barro", "balsa", "banco", "bota"],
       ["cara", "carta", "carne", "casa", "ceja"],
       ["lana", "lápiz", "largo", "leche", "luna"],
-      ["rama", "rana", "ratón", "remo", "río"]
+      ["rama", "rana", "ratón", "remo", "río"],
+      ["pino", "pila", "pico", "pita", "piña"],
+      ["mesa", "menta", "metro", "medio", "melón"],
+      ["cara", "cama", "cabo", "caña", "casa"],
+      ["lobo", "loma", "lona", "loro", "lodo"],
+      ["tela", "tema", "teja", "tecla", "tenis"],
+      ["sopa", "soga", "sola", "solo", "sonido"],
+      ["pato", "pala", "palo", "pavo", "paso"],
+      ["rana", "rama", "rato", "raya", "raro"]
     ]
   ];
 

@@ -19,7 +19,14 @@
       "Mi mamá cocina arroz.",
       "El perro corre rápido.",
       "Hoy llueve mucho.",
-      "La luna brilla."
+      "La luna brilla.",
+      "El sol brilla fuerte.",
+      "Mi perro juega mucho.",
+      "La niña dibuja flores.",
+      "Nelson come una manzana.",
+      "Los patos nadan juntos.",
+      "El árbol da sombra.",
+      "Mi hermana canta bien."
     ],
     [
       "El colibrí vuela sobre las flores.",
@@ -28,7 +35,14 @@
       "Mi abuela vende frutas en el mercado.",
       "Los niños cantan en el patio.",
       "El río baja desde la sierra.",
-      "La maestra explica una lección nueva."
+      "La maestra explica una lección nueva.",
+      "Los niños juegan en el parque.",
+      "Mi papá maneja el carro azul.",
+      "La gallina pone un huevo grande.",
+      "Nelson dibuja un paisaje muy bonito.",
+      "La profesora reparte los cuadernos nuevos.",
+      "Mi tía prepara jugo de mora.",
+      "Los estudiantes leen un cuento divertido."
     ],
     [
       "Después de la lluvia salió un gran arcoíris.",
@@ -36,7 +50,13 @@
       "Nelson y su hermana caminan juntos hacia la escuela.",
       "En el mercado de Otavalo venden hermosos tejidos de colores.",
       "Las ballenas llegan a la costa cuando termina el invierno.",
-      "El volcán Cotopaxi se ve enorme desde la ciudad de Quito."
+      "El volcán Cotopaxi se ve enorme desde la ciudad de Quito.",
+      "Nelson estudia mucho porque quiere aprender más.",
+      "El sol salió y los pájaros cantaron.",
+      "La maestra explicó la lección y todos entendieron.",
+      "Mi abuelo cuenta historias mientras tomamos café.",
+      "Los turistas visitan Cuenca porque es muy hermosa.",
+      "Nelson guardó sus juguetes y luego se durmió."
     ]
   ];
 

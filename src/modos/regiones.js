@@ -17,22 +17,25 @@
   // banco por nivel: para cada región, lista de ítems posibles. [básico, intermedio, avanzado]
   const BANCO_REG = [
     {
-      costa: ["Guayas", "Manabí", "Esmeraldas"],
-      sierra: ["Pichincha", "Azuay", "Chimborazo"],
-      amazonia: ["Napo", "Pastaza", "Morona"],
+      // Básico: PROVINCIAS por región natural
+      costa: ["Guayas", "Manabí", "Esmeraldas", "Los Ríos", "El Oro", "Santa Elena", "Santo Domingo de los Tsáchilas"],
+      sierra: ["Pichincha", "Azuay", "Chimborazo", "Cotopaxi", "Tungurahua", "Imbabura", "Loja", "Cañar", "Bolívar", "Carchi"],
+      amazonia: ["Napo", "Pastaza", "Morona Santiago", "Sucumbíos", "Orellana", "Zamora Chinchipe"],
       insular: ["Galápagos"]
     },
     {
-      costa: ["la fragata", "la ballena jorobada"],
-      sierra: ["el cóndor", "el oso de anteojos"],
-      amazonia: ["el delfín rosado", "el jaguar"],
-      insular: ["la iguana marina", "la tortuga gigante"]
+      // Intermedio: ANIMALES típicos de cada región
+      costa: ["la fragata", "la ballena jorobada", "el cangrejo rojo", "la garza blanca", "el mono aullador"],
+      sierra: ["el cóndor", "el oso de anteojos", "la llama", "la vicuña", "el lobo de páramo", "el colibrí"],
+      amazonia: ["el delfín rosado", "el jaguar", "la anaconda", "el tapir (danta)", "el guacamayo", "la boa"],
+      insular: ["la iguana marina", "la tortuga gigante", "el piquero de patas azules", "el lobo marino", "el pingüino de Galápagos"]
     },
     {
-      costa: ["el encebollado", "clima cálido"],
-      sierra: ["el hornado", "clima frío"],
-      amazonia: ["el maito", "clima lluvioso"],
-      insular: ["las Galápagos", "especies únicas"]
+      // Avanzado: PLATOS, CLIMA y PAISAJES de cada región
+      costa: ["el encebollado", "clima cálido", "el ceviche", "las playas", "el bolón de verde"],
+      sierra: ["el hornado", "clima frío", "los páramos", "los volcanes nevados", "la fanesca"],
+      amazonia: ["el maito", "clima cálido y lluvioso", "la selva tropical", "los ríos caudalosos", "la chicha de yuca"],
+      insular: ["especies únicas", "las islas volcánicas", "el clima seco", "playas con lobos marinos", "los bosques de manglar"]
     }
   ];
 
@@ -44,17 +47,17 @@
     { id: "llanura", nombre: "Llanura", emoji: "🌾" }
   ];
   const BANCO_REL = {
-    volcan: ["Chimborazo", "Cotopaxi", "Tungurahua", "Cayambe", "Pichincha"],
-    rio: ["Guayas", "Napo", "Esmeraldas", "Daule", "Pastaza"],
-    cordillera: ["Occidental", "Real (Oriental)", "de los Andes"],
-    llanura: ["llanura costera", "llanura amazónica"]
+    volcan: ["Chimborazo", "Cotopaxi", "Tungurahua", "Cayambe", "Pichincha", "Antisana", "Sangay", "El Reventador", "Cotacachi", "Imbabura", "El Altar", "Sumaco"],
+    rio: ["Guayas", "Napo", "Esmeraldas", "Daule", "Pastaza", "Babahoyo", "Coca", "Aguarico", "Zamora", "Jubones", "Chone", "Santiago"],
+    cordillera: ["Occidental", "Real (Oriental)", "de los Andes", "Subandina", "del Cóndor"],
+    llanura: ["llanura costera", "llanura amazónica", "llanura del Guayas", "sabanas amazónicas"]
   };
 
   // ---- Tema 3: Organización territorial (de mayor a menor) ----
   const TERRITORIO = [
-    ["País: Ecuador", "Provincia: Pichincha", "Cantón: Quito"],
+    ["País: Ecuador", "Provincia: Pichincha", "Cantón: Quito", "Parroquia: Cumbayá"],
     ["País: Ecuador", "Región: Sierra", "Provincia: Pichincha", "Cantón: Quito", "Parroquia: Cumbayá"],
-    ["País: Ecuador", "Región: Sierra", "Provincia: Pichincha", "Cantón: Quito", "Parroquia: Cumbayá"]
+    ["Continente: América", "País: Ecuador", "Región: Sierra", "Provincia: Pichincha", "Cantón: Quito", "Parroquia: Cumbayá"]
   ];
 
   // Toma UN ítem al azar por cada cesta indicada (de su banco del nivel)

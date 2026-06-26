@@ -11,15 +11,16 @@
   // [básico, intermedio, avanzado]
   const POBLAMIENTO = [
     [
-      { a: "Teoría de Bering", b: "Desde Asia por el estrecho" },
-      { a: "Teoría Polinésica", b: "Desde la Polinesia en balsas" },
-      { a: "Primeros pobladores", b: "Cazadores y recolectores" }
+      { a: "Teoría de Bering", b: "Vinieron de Asia caminando" },
+      { a: "Teoría Polinésica", b: "Llegaron en balsas por el mar" },
+      { a: "Primeros pobladores", b: "Cazadores y recolectores" },
+      { a: "Estrecho de Bering", b: "El mar bajó y se formó un puente" }
     ],
     [
-      { a: "Teoría de Bering", b: "Desde Asia por el hielo" },
+      { a: "Teoría de Bering", b: "Desde Asia por el estrecho de hielo" },
       { a: "Teoría Polinésica", b: "Desde la Polinesia en balsas" },
       { a: "Teoría Australiana", b: "Desde Australia por la Antártida" },
-      { a: "Teoría Autóctona", b: "Nació en América (descartada)" }
+      { a: "Teoría Autóctona", b: "Nació en América (ya descartada)" }
     ],
     [
       { a: "Teoría de Bering", b: "Alex Hrdlička" },
@@ -31,25 +32,20 @@
 
   // ---- Tema 2: Línea de tiempo de la Época Aborigen (orden cronológico) ----
   const PERIODOS = [
-    ["Paleoindio: cazadores", "Formativo: primera cerámica", "Integración: confederaciones"],
-    ["Paleoindio: cazadores", "Formativo: primera cerámica", "Desarrollo Regional: orfebrería", "Integración: confederaciones"],
-    ["Paleoindio: cazadores", "Formativo: primera cerámica", "Desarrollo Regional: orfebrería", "Integración: confederaciones"]
+    ["Paleoindio: cazadores y recolectores", "Formativo: primera cerámica (Valdivia)", "Integración: confederaciones y señoríos"],
+    ["Paleoindio: grandes cazadores", "Formativo: agricultura y cerámica", "Desarrollo Regional: orfebrería y comercio", "Integración: grandes confederaciones"],
+    ["Paleoindio: grandes cazadores", "Formativo: agricultura y cerámica", "Desarrollo Regional: orfebrería y comercio", "Integración: grandes confederaciones"]
   ];
 
   // ---- Tema 3: Sociedades agrícolas (de la más simple a la más compleja) ----
   const SOCIEDADES = [
-    ["Incipientes: primeras aldeas", "Superiores: terrazas y canales", "Supracomunales: señoríos"],
-    ["Incipientes: primeras aldeas", "Superiores: terrazas y canales", "Supracomunales: señoríos y comercio"],
-    ["Incipientes: primeras aldeas", "Superiores: terrazas y canales", "Supracomunales: señoríos y comercio"]
+    ["Incipientes: primeras aldeas agrícolas", "Superiores: terrazas y canales de riego", "Supracomunales: señoríos étnicos"],
+    ["Incipientes: primeras aldeas agrícolas", "Superiores: terrazas y canales de riego", "Supracomunales: señoríos y comercio"],
+    ["Incipientes: primeras aldeas agrícolas", "Superiores: terrazas y canales de riego", "Supracomunales: señoríos y comercio"]
   ];
 
   // ---- Tema 4: Pueblos y culturas del Ecuador ↔ su dato ----
   const CULTURAS = [
-    [
-      { a: "Valdivia", b: "Primera cerámica" },
-      { a: "Las Vegas", b: "Los Amantes de Sumpa" },
-      { a: "Cañari", b: "Sierra sur" }
-    ],
     [
       { a: "Valdivia", b: "Primera cerámica" },
       { a: "Las Vegas", b: "Los Amantes de Sumpa" },
@@ -58,10 +54,21 @@
     ],
     [
       { a: "Valdivia", b: "Venus de Valdivia" },
-      { a: "Chorrera", b: "Botellas-silbato" },
+      { a: "Las Vegas", b: "Los Amantes de Sumpa" },
       { a: "La Tolita", b: "Sol de oro" },
+      { a: "Chorrera", b: "Botellas-silbato" },
+      { a: "Cañari", b: "Ingapirca, en la Sierra sur" }
+    ],
+    [
+      { a: "Valdivia", b: "Venus de Valdivia" },
+      { a: "Machalilla", b: "Botellas con asa de estribo" },
+      { a: "Chorrera", b: "Botellas-silbato" },
+      { a: "La Tolita", b: "Trabajó el oro y el platino" },
+      { a: "Jama-Coaque", b: "Figuras de cerámica muy adornadas" },
+      { a: "Bahía", b: "El gigante de Bahía" },
       { a: "Manteño-Huancavilca", b: "Comercio en balsas" },
-      { a: "Quitu-Cara", b: "Sierra de Quito" }
+      { a: "Quitu-Cara", b: "Sierra de Quito" },
+      { a: "Puruhá", b: "Sierra central (Chimborazo)" }
     ]
   ];
 

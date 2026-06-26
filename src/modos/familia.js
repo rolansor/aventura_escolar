@@ -13,24 +13,24 @@
   const FAMILIAS = [
     // ----- básico (idx 0): 3 familias fáciles -----
     [
-      { id: "pan",  nombre: "Pan",  emoji: "🍞", derivadas: ["pan", "panadero", "panadería"] },
-      { id: "flor", nombre: "Flor", emoji: "🌸", derivadas: ["flor", "florero", "florista"] },
-      { id: "mar",  nombre: "Mar",  emoji: "🌊", derivadas: ["mar", "marino", "marinero"] }
+      { id: "pan",  nombre: "Pan",  emoji: "🍞", derivadas: ["pan", "panadero", "panadería", "panecillo", "empanada", "panera"] },
+      { id: "flor", nombre: "Flor", emoji: "🌸", derivadas: ["flor", "florero", "florista", "florería", "florecer", "floral"] },
+      { id: "mar",  nombre: "Mar",  emoji: "🌊", derivadas: ["mar", "marino", "marinero", "marea", "marisco", "submarino"] }
     ],
     // ----- intermedio (idx 1): 4 familias -----
     [
-      { id: "libro",  nombre: "Libro",  emoji: "📚", derivadas: ["libro", "librería", "librero"] },
-      { id: "sol",    nombre: "Sol",    emoji: "☀️", derivadas: ["sol", "solar", "soleado"] },
-      { id: "leche",  nombre: "Leche",  emoji: "🥛", derivadas: ["leche", "lechero", "lechería"] },
-      { id: "zapato", nombre: "Zapato", emoji: "👟", derivadas: ["zapato", "zapatero", "zapatería"] }
+      { id: "libro",  nombre: "Libro",  emoji: "📚", derivadas: ["libro", "librería", "librero", "libreta", "librito", "librote"] },
+      { id: "sol",    nombre: "Sol",    emoji: "☀️", derivadas: ["sol", "solar", "soleado", "asolear", "girasol", "solecito"] },
+      { id: "leche",  nombre: "Leche",  emoji: "🥛", derivadas: ["leche", "lechero", "lechería", "lechoso", "lechón", "lechera"] },
+      { id: "zapato", nombre: "Zapato", emoji: "👟", derivadas: ["zapato", "zapatero", "zapatería", "zapatilla", "zapatón", "zapatito"] }
     ],
     // ----- avanzado (idx 2): 5 familias con derivadas menos obvias -----
     [
-      { id: "tierra",  nombre: "Tierra",  emoji: "🌎", derivadas: ["tierra", "terrestre", "enterrar", "terreno"] },
-      { id: "agua",    nombre: "Agua",    emoji: "💧", derivadas: ["agua", "acuático", "aguacero", "aguar"] },
-      { id: "arbol",   nombre: "Árbol",   emoji: "🌳", derivadas: ["árbol", "arboleda", "arbolito"] },
-      { id: "deporte", nombre: "Deporte", emoji: "⚽", derivadas: ["deporte", "deportista", "deportivo"] },
-      { id: "mano",    nombre: "Mano",    emoji: "✋", derivadas: ["mano", "manualidad", "manija", "manazas"] }
+      { id: "tierra",  nombre: "Tierra",  emoji: "🌎", derivadas: ["tierra", "terrestre", "enterrar", "terreno", "terráqueo", "subterráneo", "aterrizar", "desenterrar"] },
+      { id: "agua",    nombre: "Agua",    emoji: "💧", derivadas: ["agua", "acuático", "aguacero", "aguar", "aguada", "paraguas", "aguanieve", "desagüe"] },
+      { id: "arbol",   nombre: "Árbol",   emoji: "🌳", derivadas: ["árbol", "arboleda", "arbolito", "arbolado", "arbóreo", "arbolillo"] },
+      { id: "deporte", nombre: "Deporte", emoji: "⚽", derivadas: ["deporte", "deportista", "deportivo", "deportividad", "deportivamente", "antideportivo"] },
+      { id: "mano",    nombre: "Mano",    emoji: "✋", derivadas: ["mano", "manualidad", "manazas", "manotazo", "manual", "manilla"] }
     ]
   ];
 

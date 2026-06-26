@@ -20,7 +20,13 @@
         { base: "gato",   instr: "Ponla en diminutivo", correcto: "gatito",   opciones: ["gatito", "gatazo", "gatos"] },
         { base: "flor",   instr: "Ponla en diminutivo", correcto: "florcita", opciones: ["florcita", "florota", "flores"] },
         { base: "pato",   instr: "Ponla en diminutivo", correcto: "patito",   opciones: ["patito", "patón", "patos"] },
-        { base: "mesa",   instr: "Ponla en diminutivo", correcto: "mesita",   opciones: ["mesita", "mesona", "mesas"] }
+        { base: "mesa",   instr: "Ponla en diminutivo", correcto: "mesita",   opciones: ["mesita", "mesona", "mesas"] },
+        { base: "niño",   instr: "Ponla en diminutivo", correcto: "niñito",   opciones: ["niñito", "niñote", "niños"] },
+        { base: "pelota", instr: "Ponla en diminutivo", correcto: "pelotita", opciones: ["pelotita", "pelotota", "pelotas"] },
+        { base: "libro",  instr: "Ponla en diminutivo", correcto: "librito",  opciones: ["librito", "librote", "libros"] },
+        { base: "carro",  instr: "Ponla en diminutivo", correcto: "carrito",  opciones: ["carrito", "carrazo", "carros"] },
+        { base: "oso",    instr: "Ponla en diminutivo", correcto: "osito",    opciones: ["osito", "osazo", "osos"] },
+        { base: "vaca",   instr: "Ponla en diminutivo", correcto: "vaquita",  opciones: ["vaquita", "vacota", "vacas"] }
       ],
       // intermedio
       [
@@ -29,7 +35,13 @@
         { base: "ratón",  instr: "Ponla en diminutivo", correcto: "ratoncito", opciones: ["ratoncito", "ratonazo", "ratones"] },
         { base: "pan",    instr: "Ponla en diminutivo", correcto: "panecito", opciones: ["panecito", "panzote", "panes"] },
         { base: "sol",    instr: "Ponla en diminutivo", correcto: "solcito",  opciones: ["solcito", "solazo", "soles"] },
-        { base: "zapato", instr: "Ponla en diminutivo", correcto: "zapatito", opciones: ["zapatito", "zapatón", "zapatos"] }
+        { base: "zapato", instr: "Ponla en diminutivo", correcto: "zapatito", opciones: ["zapatito", "zapatón", "zapatos"] },
+        { base: "color",  instr: "Ponla en diminutivo", correcto: "colorcito", opciones: ["colorcito", "colorote", "colores"] },
+        { base: "mujer",  instr: "Ponla en diminutivo", correcto: "mujercita", opciones: ["mujercita", "mujerona", "mujeres"] },
+        { base: "jardín", instr: "Ponla en diminutivo", correcto: "jardincito", opciones: ["jardincito", "jardinote", "jardines"] },
+        { base: "tambor", instr: "Ponla en diminutivo", correcto: "tamborcito", opciones: ["tamborcito", "tamborazo", "tambores"] },
+        { base: "avión",  instr: "Ponla en diminutivo", correcto: "avioncito", opciones: ["avioncito", "avionzote", "aviones"] },
+        { base: "estrella", instr: "Ponla en diminutivo", correcto: "estrellita", opciones: ["estrellita", "estrellota", "estrellas"] }
       ],
       // avanzado
       [
@@ -38,7 +50,13 @@
         { base: "nube",   instr: "Ponla en diminutivo", correcto: "nubecita",   opciones: ["nubecita", "nubarrón", "nubes"] },
         { base: "puente", instr: "Ponla en diminutivo", correcto: "puentecito", opciones: ["puentecito", "puentón", "puentes"] },
         { base: "mano",   instr: "Ponla en diminutivo", correcto: "manita",     opciones: ["manita", "manaza", "manos"] },
-        { base: "lápiz",  instr: "Ponla en diminutivo", correcto: "lapicito",   opciones: ["lapicito", "lapizote", "lápices"] }
+        { base: "lápiz",  instr: "Ponla en diminutivo", correcto: "lapicito",   opciones: ["lapicito", "lapizote", "lápices"] },
+        { base: "corazón", instr: "Ponla en diminutivo", correcto: "corazoncito", opciones: ["corazoncito", "corazonzote", "corazones"] },
+        { base: "pueblo",  instr: "Ponla en diminutivo", correcto: "pueblito",   opciones: ["pueblito", "pueblote", "pueblos"] },
+        { base: "viento",  instr: "Ponla en diminutivo", correcto: "vientecito", opciones: ["vientecito", "ventarrón", "vientos"] },
+        { base: "pie",     instr: "Ponla en diminutivo", correcto: "piecito",    opciones: ["piecito", "piezote", "pies"] },
+        { base: "llave",   instr: "Ponla en diminutivo", correcto: "llavecita",  opciones: ["llavecita", "llavota", "llaves"] },
+        { base: "estación", instr: "Ponla en diminutivo", correcto: "estacioncita", opciones: ["estacioncita", "estacionzota", "estaciones"] }
       ]
     ],
     aumentativos: [
@@ -49,7 +67,13 @@
         { base: "gato",   instr: "Ponla en aumentativo", correcto: "gatazo",  opciones: ["gatazo", "gatito", "gatos"] },
         { base: "libro",  instr: "Ponla en aumentativo", correcto: "librote", opciones: ["librote", "librito", "libros"] },
         { base: "mano",   instr: "Ponla en aumentativo", correcto: "manaza",  opciones: ["manaza", "manita", "manos"] },
-        { base: "silla",  instr: "Ponla en aumentativo", correcto: "sillón",  opciones: ["sillón", "sillita", "sillas"] }
+        { base: "silla",  instr: "Ponla en aumentativo", correcto: "sillón",  opciones: ["sillón", "sillita", "sillas"] },
+        { base: "zapato", instr: "Ponla en aumentativo", correcto: "zapatón", opciones: ["zapatón", "zapatito", "zapatos"] },
+        { base: "boca",   instr: "Ponla en aumentativo", correcto: "bocaza",  opciones: ["bocaza", "boquita", "bocas"] },
+        { base: "pelota", instr: "Ponla en aumentativo", correcto: "pelotón", opciones: ["pelotón", "pelotita", "pelotas"] },
+        { base: "taza",   instr: "Ponla en aumentativo", correcto: "tazón",   opciones: ["tazón", "tacita", "tazas"] },
+        { base: "caja",   instr: "Ponla en aumentativo", correcto: "cajón",   opciones: ["cajón", "cajita", "cajas"] },
+        { base: "ratón",  instr: "Ponla en aumentativo", correcto: "ratonazo", opciones: ["ratonazo", "ratoncito", "ratones"] }
       ],
       // intermedio
       [
@@ -58,7 +82,13 @@
         { base: "hombre", instr: "Ponla en aumentativo", correcto: "hombrón", opciones: ["hombrón", "hombrecito", "hombres"] },
         { base: "ojo",    instr: "Ponla en aumentativo", correcto: "ojazo",   opciones: ["ojazo", "ojito", "ojos"] },
         { base: "nariz",  instr: "Ponla en aumentativo", correcto: "narizota", opciones: ["narizota", "naricita", "narices"] },
-        { base: "perro",  instr: "Ponla en aumentativo", correcto: "perrote", opciones: ["perrote", "perrito", "perros"] }
+        { base: "perro",  instr: "Ponla en aumentativo", correcto: "perrote", opciones: ["perrote", "perrito", "perros"] },
+        { base: "mujer",  instr: "Ponla en aumentativo", correcto: "mujerona", opciones: ["mujerona", "mujercita", "mujeres"] },
+        { base: "voz",    instr: "Ponla en aumentativo", correcto: "vozarrón", opciones: ["vozarrón", "vocecita", "voces"] },
+        { base: "gol",    instr: "Ponla en aumentativo", correcto: "golazo",   opciones: ["golazo", "golcito", "goles"] },
+        { base: "amigo",  instr: "Ponla en aumentativo", correcto: "amigote",  opciones: ["amigote", "amiguito", "amigos"] },
+        { base: "camisa", instr: "Ponla en aumentativo", correcto: "camisón",  opciones: ["camisón", "camisita", "camisas"] },
+        { base: "soltero", instr: "Ponla en aumentativo", correcto: "solterón", opciones: ["solterón", "solterito", "solteros"] }
       ],
       // avanzado
       [
@@ -67,7 +97,13 @@
         { base: "cabeza", instr: "Ponla en aumentativo", correcto: "cabezota", opciones: ["cabezota", "cabecita", "cabezas"] },
         { base: "puerta", instr: "Ponla en aumentativo", correcto: "portón",   opciones: ["portón", "puertita", "puertas"] },
         { base: "muñeco", instr: "Ponla en aumentativo", correcto: "muñecote", opciones: ["muñecote", "muñequito", "muñecos"] },
-        { base: "rico",   instr: "Ponla en aumentativo", correcto: "ricachón", opciones: ["ricachón", "riquito", "ricos"] }
+        { base: "rico",   instr: "Ponla en aumentativo", correcto: "ricachón", opciones: ["ricachón", "riquito", "ricos"] },
+        { base: "palabra", instr: "Ponla en aumentativo", correcto: "palabrota", opciones: ["palabrota", "palabrita", "palabras"] },
+        { base: "novela", instr: "Ponla en aumentativo", correcto: "novelón",  opciones: ["novelón", "novelita", "novelas"] },
+        { base: "camión", instr: "Ponla en aumentativo", correcto: "camionazo", opciones: ["camionazo", "camioncito", "camiones"] },
+        { base: "película", instr: "Ponla en aumentativo", correcto: "peliculón", opciones: ["peliculón", "peliculita", "películas"] },
+        { base: "cuerpo", instr: "Ponla en aumentativo", correcto: "cuerpazo", opciones: ["cuerpazo", "cuerpecito", "cuerpos"] },
+        { base: "problema", instr: "Ponla en aumentativo", correcto: "problemón", opciones: ["problemón", "problemita", "problemas"] }
       ]
     ],
     genero_numero: [
@@ -78,7 +114,13 @@
         { base: "perra", instr: "Cámbiala a masculino", correcto: "perro", opciones: ["perro", "perras", "perrito"] },
         { base: "flor",  instr: "Ponla en plural",     correcto: "flores", opciones: ["flores", "flora", "florcita"] },
         { base: "el",    instr: "Cámbialo a femenino", correcto: "la",     opciones: ["la", "lo", "los"] },
-        { base: "amigo", instr: "Cámbiala a femenino", correcto: "amiga",  opciones: ["amiga", "amigos", "amiguito"] }
+        { base: "amigo", instr: "Cámbiala a femenino", correcto: "amiga",  opciones: ["amiga", "amigos", "amiguito"] },
+        { base: "maestro", instr: "Cámbiala a femenino", correcto: "maestra", opciones: ["maestra", "maestros", "maestrito"] },
+        { base: "pato",  instr: "Ponla en plural",      correcto: "patos",  opciones: ["patos", "pata", "patito"] },
+        { base: "abuela", instr: "Cámbiala a masculino", correcto: "abuelo", opciones: ["abuelo", "abuelas", "abuelita"] },
+        { base: "gallo", instr: "Cámbiala a femenino",  correcto: "gallina", opciones: ["gallina", "gallos", "gallito"] },
+        { base: "libro", instr: "Ponla en plural",      correcto: "libros", opciones: ["libros", "libra", "librito"] },
+        { base: "tío",   instr: "Cámbiala a femenino",  correcto: "tía",    opciones: ["tía", "tíos", "tiíto"] }
       ],
       // intermedio
       [
@@ -87,7 +129,13 @@
         { base: "león",     instr: "Cámbiala a femenino", correcto: "leona",     opciones: ["leona", "leones", "leoncito"] },
         { base: "pez",      instr: "Ponla en plural",     correcto: "peces",     opciones: ["peces", "pezes", "pececito"] },
         { base: "una",      instr: "Cámbialo a masculino", correcto: "un",       opciones: ["un", "uno", "unas"] },
-        { base: "rey",      instr: "Cámbiala a femenino", correcto: "reina",     opciones: ["reina", "reyes", "reyna"] }
+        { base: "rey",      instr: "Cámbiala a femenino", correcto: "reina",     opciones: ["reina", "reyes", "reyna"] },
+        { base: "conductor", instr: "Cámbiala a femenino", correcto: "conductora", opciones: ["conductora", "conductores", "conductorcito"] },
+        { base: "raíz",     instr: "Ponla en plural",     correcto: "raíces",   opciones: ["raíces", "raízes", "raicita"] },
+        { base: "tigre",    instr: "Cámbiala a femenino", correcto: "tigresa",  opciones: ["tigresa", "tigres", "tigrecito"] },
+        { base: "luz",      instr: "Ponla en plural",     correcto: "luces",    opciones: ["luces", "luzes", "lucecita"] },
+        { base: "toro",     instr: "Cámbiala a femenino", correcto: "vaca",     opciones: ["vaca", "toros", "torito"] },
+        { base: "nuez",     instr: "Ponla en plural",     correcto: "nueces",   opciones: ["nueces", "nuezes", "nuecita"] }
       ],
       // avanzado
       [
@@ -96,7 +144,13 @@
         { base: "caballo",   instr: "Cámbiala a femenino", correcto: "yegua",      opciones: ["yegua", "caballa", "caballos"] },
         { base: "lunes",     instr: "Ponla en plural",     correcto: "lunes",      opciones: ["lunes", "luneses", "lunás"] },
         { base: "emperador", instr: "Cámbiala a femenino", correcto: "emperatriz", opciones: ["emperatriz", "emperadora", "emperadores"] },
-        { base: "jabalí",    instr: "Ponla en plural",     correcto: "jabalíes",   opciones: ["jabalíes", "jabalís", "jabalices"] }
+        { base: "jabalí",    instr: "Ponla en plural",     correcto: "jabalíes",   opciones: ["jabalíes", "jabalís", "jabalices"] },
+        { base: "héroe",     instr: "Cámbiala a femenino", correcto: "heroína",    opciones: ["heroína", "heroesa", "héroes"] },
+        { base: "príncipe",  instr: "Cámbiala a femenino", correcto: "princesa",   opciones: ["princesa", "príncipes", "principito"] },
+        { base: "avestruz",  instr: "Ponla en plural",     correcto: "avestruces", opciones: ["avestruces", "avestruzes", "avestrucito"] },
+        { base: "yerno",     instr: "Cámbiala a femenino", correcto: "nuera",      opciones: ["nuera", "yernos", "yernita"] },
+        { base: "carnero",   instr: "Cámbiala a femenino", correcto: "oveja",      opciones: ["oveja", "carneros", "carnerito"] },
+        { base: "lombriz",   instr: "Ponla en plural",     correcto: "lombrices",  opciones: ["lombrices", "lombrizes", "lombricita"] }
       ]
     ]
   };

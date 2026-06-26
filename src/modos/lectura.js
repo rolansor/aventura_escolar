@@ -47,6 +47,41 @@
           { q: "¿Dónde está el río Napo?", opciones: ["En la Amazonía", "En la Sierra", "En Galápagos"], correcta: "En la Amazonía" },
           { q: "¿Qué navega por el río Napo?", opciones: ["Canoas", "Aviones", "Trenes"], correcta: "Canoas" }
         ]
+      },
+      {
+        texto: "El banano crece en la Costa del Ecuador y se vende en muchos países.",
+        preguntas: [
+          { q: "¿Dónde crece el banano?", opciones: ["En la Costa", "En la nieve", "En el cielo"], correcta: "En la Costa" },
+          { q: "¿Qué pasa con el banano?", opciones: ["Se vende en muchos países", "Se esconde", "Se pinta"], correcta: "Se vende en muchos países" }
+        ]
+      },
+      {
+        texto: "La capital del Ecuador es Quito y está en la Sierra.",
+        preguntas: [
+          { q: "¿Cuál es la capital del Ecuador?", opciones: ["Quito", "Manta", "Loja"], correcta: "Quito" },
+          { q: "¿Dónde está Quito?", opciones: ["En la Sierra", "En el mar", "En la Amazonía"], correcta: "En la Sierra" }
+        ]
+      },
+      {
+        texto: "El guacamayo es un loro grande de colores que vive en la Amazonía.",
+        preguntas: [
+          { q: "¿Qué es el guacamayo?", opciones: ["Un loro grande", "Un pez", "Un perro"], correcta: "Un loro grande" },
+          { q: "¿Dónde vive el guacamayo?", opciones: ["En la Amazonía", "En la nieve", "En la luna"], correcta: "En la Amazonía" }
+        ]
+      },
+      {
+        texto: "En la playa de Salinas la gente nada y juega en la arena.",
+        preguntas: [
+          { q: "¿Qué hace la gente en Salinas?", opciones: ["Nada y juega en la arena", "Esquía", "Duerme todo el día"], correcta: "Nada y juega en la arena" },
+          { q: "¿Qué es Salinas?", opciones: ["Una playa", "Un volcán", "Un río"], correcta: "Una playa" }
+        ]
+      },
+      {
+        texto: "El cuy es un animal pequeño que se cría en la Sierra del Ecuador.",
+        preguntas: [
+          { q: "¿Cómo es el cuy?", opciones: ["Un animal pequeño", "Un animal gigante", "Un ave"], correcta: "Un animal pequeño" },
+          { q: "¿Dónde se cría el cuy?", opciones: ["En la Sierra", "En el mar", "En la ciudad"], correcta: "En la Sierra" }
+        ]
       }
     ],
 
@@ -86,6 +121,41 @@
           { q: "¿Dónde vive el oso de anteojos?", opciones: ["En los bosques de la Sierra", "En el mar", "En el desierto"], correcta: "En los bosques de la Sierra" },
           { q: "¿Qué tiene de especial este oso?", opciones: ["Es el único oso del Ecuador", "Es de color azul", "Vive en la ciudad"], correcta: "Es el único oso del Ecuador" }
         ]
+      },
+      {
+        texto: "El tren del Ecuador sube por la montaña llamada Nariz del Diablo. Los turistas miran el paisaje desde las ventanas.",
+        preguntas: [
+          { q: "¿Por dónde sube el tren?", opciones: ["Por la Nariz del Diablo", "Por el mar", "Por el cielo"], correcta: "Por la Nariz del Diablo" },
+          { q: "¿Desde dónde miran el paisaje los turistas?", opciones: ["Desde las ventanas", "Desde el techo", "Desde un avión"], correcta: "Desde las ventanas" }
+        ]
+      },
+      {
+        texto: "El cóndor pone un solo huevo cada dos años. Por eso quedan muy pocos cóndores en el Ecuador.",
+        preguntas: [
+          { q: "¿Cada cuánto pone un huevo el cóndor?", opciones: ["Cada dos años", "Cada día", "Cada hora"], correcta: "Cada dos años" },
+          { q: "¿Cuántos cóndores quedan en el Ecuador?", opciones: ["Muy pocos", "Millones", "Ninguno"], correcta: "Muy pocos" }
+        ]
+      },
+      {
+        texto: "En Cuenca se hacen los famosos sombreros de paja toquilla. Las personas del lugar los tejen con mucha paciencia.",
+        preguntas: [
+          { q: "¿Qué se hace en Cuenca?", opciones: ["Sombreros de paja toquilla", "Zapatos de hierro", "Barcos"], correcta: "Sombreros de paja toquilla" },
+          { q: "¿Cómo tejen los sombreros?", opciones: ["Con mucha paciencia", "Muy rápido y sin cuidado", "Con una máquina sola"], correcta: "Con mucha paciencia" }
+        ]
+      },
+      {
+        texto: "La Amazonía ecuatoriana tiene una selva muy verde y húmeda. Allí llueve casi todos los días.",
+        preguntas: [
+          { q: "¿Cómo es la selva de la Amazonía?", opciones: ["Verde y húmeda", "Seca y blanca", "Fría y nevada"], correcta: "Verde y húmeda" },
+          { q: "¿Cuándo llueve en la Amazonía?", opciones: ["Casi todos los días", "Una vez al año", "Nunca"], correcta: "Casi todos los días" }
+        ]
+      },
+      {
+        texto: "El delfín rosado vive en los ríos de la Amazonía. Es de color rosado y muy juguetón.",
+        preguntas: [
+          { q: "¿Dónde vive el delfín rosado?", opciones: ["En los ríos de la Amazonía", "En la nieve", "En el desierto"], correcta: "En los ríos de la Amazonía" },
+          { q: "¿Cómo es el delfín rosado?", opciones: ["Rosado y juguetón", "Negro y enojado", "Verde y lento"], correcta: "Rosado y juguetón" }
+        ]
       }
     ],
 
@@ -124,6 +194,41 @@
         preguntas: [
           { q: "¿Qué nos enseña esta historia?", opciones: ["Compartir hace bien a todos", "Hay que comer solo", "La comida es mala"], correcta: "Compartir hace bien a todos" },
           { q: "¿Cómo terminó la fiesta?", opciones: ["Todos se fueron contentos", "Todos discutieron", "Se acabó muy temprano"], correcta: "Todos se fueron contentos" }
+        ]
+      },
+      {
+        texto: "Cuando Nelson abrió la ventana, vio el suelo mojado y muchos charcos en la calle. Decidió ponerse las botas antes de salir.",
+        preguntas: [
+          { q: "¿Qué crees que pasó durante la noche?", opciones: ["Llovió mucho", "Hizo un sol fuerte", "Nevó en la playa"], correcta: "Llovió mucho" },
+          { q: "¿Por qué Nelson se puso las botas?", opciones: ["Para no mojarse los pies", "Para correr más rápido", "Porque eran nuevas"], correcta: "Para no mojarse los pies" }
+        ]
+      },
+      {
+        texto: "El pinzón de Darwin usa una ramita para sacar insectos de los troncos. Así consigue comida que otros pájaros no alcanzan.",
+        preguntas: [
+          { q: "¿Por qué el pinzón usa una ramita?", opciones: ["Para alcanzar comida difícil", "Para construir un nido", "Para jugar"], correcta: "Para alcanzar comida difícil" },
+          { q: "¿Qué saca el pinzón de los troncos?", opciones: ["Insectos", "Frutas", "Piedras"], correcta: "Insectos" }
+        ]
+      },
+      {
+        texto: "Ana regó su planta cada mañana y la puso junto a la ventana donde había sol. Con el tiempo, la planta creció fuerte y dio flores.",
+        preguntas: [
+          { q: "¿Por qué la planta creció fuerte?", opciones: ["Porque Ana la cuidó bien", "Porque estaba en la oscuridad", "Porque nadie la tocó"], correcta: "Porque Ana la cuidó bien" },
+          { q: "¿Qué dio la planta al final?", opciones: ["Flores", "Frutas secas", "Nada"], correcta: "Flores" }
+        ]
+      },
+      {
+        texto: "Los pingüinos de Galápagos viven cerca de la línea ecuatorial, donde casi nunca hace frío. Por eso son los únicos pingüinos que viven tan al norte.",
+        preguntas: [
+          { q: "¿Por qué estos pingüinos son especiales?", opciones: ["Viven donde hace calor, tan al norte", "Son de color rojo", "No saben nadar"], correcta: "Viven donde hace calor, tan al norte" },
+          { q: "¿Cómo es el clima donde viven?", opciones: ["Casi nunca hace frío", "Siempre nieva", "Hace mucho viento helado"], correcta: "Casi nunca hace frío" }
+        ]
+      },
+      {
+        texto: "El mercado abrió muy temprano y para el mediodía ya casi no quedaban frutas. La gente había comprado mucho ese día.",
+        preguntas: [
+          { q: "¿Por qué quedaban pocas frutas al mediodía?", opciones: ["Porque la gente compró mucho", "Porque las frutas se escondieron", "Porque el mercado cerró"], correcta: "Porque la gente compró mucho" },
+          { q: "¿A qué hora ya casi no había frutas?", opciones: ["Al mediodía", "En la noche", "A la madrugada"], correcta: "Al mediodía" }
         ]
       }
     ]

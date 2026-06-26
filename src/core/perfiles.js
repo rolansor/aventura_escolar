@@ -98,6 +98,8 @@ const Perfiles = (function () {
         '<div class="modal-emoji">' + (editar ? "✏️" : "🌟") + "</div>" +
         '<h3 class="modal-titulo">' + (editar ? "Editar perfil" : "Nuevo perfil") + "</h3>" +
         '<input type="text" id="perfil-nombre" class="modal-input" maxlength="16" placeholder="Tu nombre" autocomplete="off" value="' + (editar ? esc(existente.nombre) : "") + '" />' +
+        '<p class="modal-texto">¿Cómo se llama tu mascota? 🌙</p>' +
+        '<input type="text" id="perfil-mascota" class="modal-input" maxlength="16" placeholder="Nombre de la mascota" autocomplete="off" value="' + esc(editar ? (existente.avatar || "Luna") : "Luna") + '" />' +
         '<p class="modal-texto">¿Niño o niña?</p>' +
         '<div class="perfil-opciones" id="perfil-genero">' +
           '<button type="button" class="perfil-op' + act(genero === "nina") + '" data-g="nina">👧 Niña</button>' +
@@ -144,13 +146,14 @@ const Perfiles = (function () {
         caja.classList.remove("temblar"); void caja.offsetWidth; caja.classList.add("temblar");
         input.focus(); return;
       }
+      const mascota = document.getElementById("perfil-mascota").value.trim() || "Luna";
       if (editar) {
-        Juego.actualizarPerfil(existente.id, { nombre: nombre, genero: genero, nivel: nivel });
+        Juego.actualizarPerfil(existente.id, { nombre: nombre, avatar: mascota, genero: genero, nivel: nivel });
         cerrar();
         actualizarChip();
         pintarSelector();
       } else {
-        const p = Juego.crearPerfil({ nombre: nombre, genero: genero, nivel: nivel });
+        const p = Juego.crearPerfil({ nombre: nombre, avatar: mascota, genero: genero, nivel: nivel });
         cerrar();
         entrar(p.id);
       }

@@ -255,13 +255,19 @@
         "modo": "animales",
         "icono": "🐾",
         "nombre": "Los animales",
-        "desc": "Grupos y alimentación"
+        "desc": "Vertebrados, alimentación, reproducción y respiración"
       },
       {
         "modo": "invertebrados",
         "icono": "🐌",
         "nombre": "Los invertebrados",
-        "desc": "Artrópodos, moluscos, gusanos y más"
+        "desc": "Grupos, características y reproducción"
+      },
+      {
+        "modo": "cuidafauna",
+        "icono": "🐾",
+        "nombre": "Cuida la fauna",
+        "desc": "Animales en peligro y cómo cuidarlos"
       },
       {
         "modo": "cicloagua",

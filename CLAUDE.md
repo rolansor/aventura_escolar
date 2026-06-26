@@ -58,7 +58,7 @@ página en `paginas/` que el menú enlaza. Las páginas de `paginas/` usan `<bas
 |---|---|---|
 | `data/*.json` (+ `*.js` generados por `build.py`) | `DATOS.*`, `NINO`, `ECUADOR_SVG`, `ECUADOR_CANTONES` | **Datos puros**: ortografia, secuencias, parrafos, generador-parrafos, materias, nino, mapa-ec, cantones, mapas/*. Editar el `.json` y correr `herramientas/build.py`. |
 | `src/core/juego.js` | `Juego` | Núcleo: marcador, sonido, `localStorage`, temporizador, utilidades (`azar/azarEl/mezclar/cargar/guardar/frasePositiva/construirSecuencia`, `acierto/error/granPremio`, `cron*`, `jugador`, `aplicarIdentidad`) e `iniciarBase()`. **Perfiles** (`perfiles/perfilActivo/crearPerfil/seleccionarPerfil/actualizarPerfil/borrarPerfil`), **nivel de dificultad** (`nivel/nivelIdx/porNivel`) y **leaderboard** (`registrarResultado/mejores/fmtTiempo/tablaMejoresHTML`). Ver "Perfiles, Niveles y Leaderboard". |
-| `src/core/perfiles.js` | `Perfiles` | **Selector de perfiles** (solo en `index.html`): pantalla `pantalla-perfiles` con una tarjeta por niño (botones **✏️ editar** y **🗑️ borrar**) + "➕ Nuevo perfil". El modal `abrirForm(perfil?)` sirve para **crear y editar** (precarga nombre/género/nivel; guarda con `Juego.actualizarPerfil`). Chip de perfil en la barra para cambiar. `Perfiles.init/abrir/actualizarChip`. |
+| `src/core/perfiles.js` | `Perfiles` | **Selector de perfiles** (solo en `index.html`): pantalla `pantalla-perfiles` con una tarjeta por niño (botones **✏️ editar** y **🗑️ borrar**) + "➕ Nuevo perfil". El modal `abrirForm(perfil?)` sirve para **crear y editar** (nombre del niño, **nombre de la mascota** = `avatar`, género y nivel; precarga al editar y guarda con `Juego.actualizarPerfil`, que aplica la identidad en vivo a `Luna`). Chip de perfil en la barra para cambiar. `Perfiles.init/abrir/actualizarChip`. |
 | `src/core/datos.js` | `Datos` | `Datos.cargar([...])` lee `window.__DATOS__` y rellena los globales. |
 | `src/core/menu.js` | `Menu` | Menú de materias (tarjetas desde `DATOS.materias`, enlaza a `paginas/<modo>.html`). **Modal de clave** (`pedirClave(destino)`) que se abre ANTES de ir a la zona de adultos; sin clave válida no se navega. Dos tarjetas de adultos: **⚙️ Ajustes** (`editor.html`) y **📚 Banco de contenido** (`contenido.html`). |
 | `src/core/mc.js` | `MC` | Motor de **opción múltiple** (repasos rápidos). Fábrica `MC(px, temas)`; ronda de 10. Al terminar registra el resultado en el leaderboard (`Juego.registrarResultado(px,…)`). **No es el patrón por defecto** (ver Filosofía de diseño). |
@@ -67,7 +67,7 @@ página en `paginas/` que el menú enlaza. Las páginas de `paginas/` usan `<bas
 | `src/modos/ortografia.js` | `Ortografia` | Ejercicios desde `DATOS.ortografia`. |
 | `src/modos/secuencias.js` | `Secuencias` | Secuencias numéricas. |
 | `src/modos/copia.js` | `Copia` | **Corregir / Dictado** (dos sub-modos manipulativos). *Corregir*: el texto sale con errores y el niño **toca la palabra mala** → mini-modal con opciones (dificultad por `Juego.nivelIdx()`: básico = errores marcados y opciones obvias; intermedio = marcados, opciones más parecidas; avanzado = sin marcar, el niño los **busca** y al final pulsa Comprobar). *Dictado*: la voz del navegador (**Web Speech API**, sin librerías; degrada a mostrar el texto si no hay voz) lee y el niño escribe. Puntaje = palabras correctas/total → leaderboard `"copia"`. Conserva `generarErrores` (lo usa `contenido.js`). |
-| `src/modos/invertebrados.js` | `Invertebrados` | Ciencias: clasificar invertebrados en sus 6 grupos (`Arrastrar.clasificar` sobre `Actividad`). Contenido del *Manual de invertebrados*. |
+| `src/modos/invertebrados.js` | `Invertebrados` | Ciencias: clasificar invertebrados en sus 6 grupos + temas de **reproducción** (sexual/asexual) y **tipos de artrópodos** (`Arrastrar.clasificar` sobre `Actividad`, catálogo por niveles). Ver "Ciencias Naturales — Taller 1". |
 | `src/modos/editor.js` | `Editor` | Zona de adultos — **⚙️ Ajustes** (clave **24861793**): solo temporizador y reinicio de progreso. La identidad y el nivel viven en el perfil; el contenido, en `contenido.js`. |
 | `src/modos/contenido.js` | `Contenido` | Zona de adultos — **📚 Banco de contenido** (misma clave): administra palabras de ortografía (editor universal), secuencias propias y párrafos. Mantiene `claveBancoCustom/claveOcultasOrto/bancoDefaultOrto` alineadas con `ortografia.js`. |
 | `src/modos/mapas.js` | `Mapas` | Mapa SVG por provincias (usa `ECUADOR_SVG`). |
@@ -91,7 +91,24 @@ Materias actuales: **Lengua** (ortografia, copia, **clases, familia, sinonimos, 
 ordena, sujeto, signos, alfabetico, lectura, refranes**), **Matemáticas** (secuencias, aritmetica/tablas/
 multiplicacion/division/comparar/redondeo/numeros/valorposicional/dinero/medidas/hora/fracciones),
 **Estudios Sociales** (**epoca, regiones**, `mapas`, `cantones`, `quiz`, `donde`), **Ciencias Naturales**
-(senala, plantas, cuerpo, animales, **invertebrados**, cicloagua, materia, ambiente).
+(senala, plantas, cuerpo, **animales, invertebrados, cuidafauna**, cicloagua, materia, ambiente).
+
+### Ciencias Naturales — adaptación al Taller 1 de Quinto ("Animales")
+Todo manipulativo (`Actividad`+`Arrastrar`), catálogo INLINE por 3 niveles (`Juego.nivelIdx()`/`porNivel`):
+- **animales** (`Animales`, px "ani") — temas de clasificar (vertebrado/invertebrado, grupos de vertebrados,
+  alimentación, cómo nacen ovíparo/vivíparo/ovovivíparo, respiración) **+ temas de CONCEPTO**: **🤔 ¿Verdadero
+  o falso?** y **📖 ¿Qué es cada cosa?** (definición con opciones). Así no es solo categorizar: también se
+  estudia *qué es* cada cosa (p. ej. "los vivíparos nacen del vientre, no de huevos").
+- **invertebrados** (`Invertebrados`, px "inv") — reescrito según el *Manual*: clasificar los 6 grupos y sus
+  **subclasificaciones** (artrópodos→insecto/arácnido/crustáceo/miriápodo; moluscos→gasterópodo/bivalvo/
+  cefalópodo; gusanos→anélido/platelminto/nemátodo), **con/sin patas**, **respiración**, **hábitat** y
+  **reproducción** — **+ temas de CONCEPTO** (¿verdadero o falso? y ¿qué es cada cosa?). Las rondas de
+  concepto (`rondaVF`/`rondaDef`) se construyen en la propia `ronda()` con botones `.ord-chip`.
+- **cuidafauna** (`CuidaFauna`, px "fauna") — NUEVO: **Animales en peligro** (empareja animal amenazado↔región
+  del Ecuador) y **¿Ayuda o daña?** (clasifica acciones por su huella ecológica). → CN.3.1.4, CS.3.3.18.
+
+Mapeo de destrezas: características/clasificación de invertebrados (CN.3.1.1), diversidad y amenazas por
+región (CN.3.1.4), reproducción de vertebrados (CN.3.1.6) e invertebrados (CN.3.1.7), huella ecológica (CS.3.3.18).
 
 ### Estudios Sociales — adaptación al Taller 1 de Quinto ("Época Aborigen" + territorio)
 Dos módulos nuevos manipulativos (`Actividad` + `Arrastrar`, catálogo INLINE por 3 niveles, página copia
@@ -337,6 +354,10 @@ están en `contenido.js` y **deben permanecer alineadas** con las claves que lee
 
 ## Estado / próximos pasos posibles
 - Hecho recientemente:
+  - **Ciencias Naturales alineado al Taller 1 de Quinto (Animales)**: `animales` reescrito (vertebrado/
+    invertebrado, grupos, alimentación, reproducción, respiración), `invertebrados` ampliado (reproducción
+    sexual/asexual, tipos de artrópodos) y módulo nuevo `cuidafauna` (animales en peligro + huella ecológica).
+    (Smoke test happy-dom: `scratchpad/test_ciencias.js`.)
   - **Estudios Sociales alineado al Taller 1 de Quinto (Época Aborigen)**: módulos nuevos `epoca`
     (historia: poblamiento de América y teorías, periodización, sociedades agrícolas, culturas) y
     `regiones` (regiones naturales, relieves, organización territorial), + `quiz` ampliado con temas de

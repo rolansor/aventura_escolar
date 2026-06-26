@@ -42,6 +42,7 @@ const Menu = (function () {
     cuerpo:     "paginas/cuerpo.html",
     animales:   "paginas/animales.html",
     invertebrados: "paginas/invertebrados.html",
+    cuidafauna: "paginas/cuidafauna.html",
     cicloagua:  "paginas/cicloagua.html",
     materia:    "paginas/materia.html",
     ambiente:   "paginas/ambiente.html",

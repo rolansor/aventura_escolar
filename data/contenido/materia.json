@@ -1,0 +1,88 @@
+{
+  "modo": "materia",
+  "materia": "ciencias",
+  "px": "mat",
+  "titulo": "La materia",
+  "icono": "🧪",
+  "motor": "actividad",
+  "temas": [
+    {
+      "tipo": "clasificar",
+      "icono": "🧊",
+      "nombre": "Estados de la materia",
+      "desc": "sólido, líquido, gaseoso",
+      "pregunta": "Arrastra cada cosa a su estado 👇",
+      "cestas": [
+        { "id": "solido", "nombre": "Sólido", "emoji": "🧊" },
+        { "id": "liquido", "nombre": "Líquido", "emoji": "💧" },
+        { "id": "gaseoso", "nombre": "Gaseoso", "emoji": "💨" }
+      ],
+      "items": {
+        "solido": [["una piedra", "el hielo", "una mesa", "una moneda", "un libro"], [], []],
+        "liquido": [["el agua", "la leche", "el jugo", "el aceite"], [], []],
+        "gaseoso": [["el aire", "el vapor", "el humo", "el viento"], [], []]
+      }
+    },
+    {
+      "tipo": "clasificar",
+      "icono": "🪵",
+      "nombre": "¿De qué material?",
+      "desc": "madera, metal, vidrio, plástico",
+      "pregunta": "Arrastra cada objeto a su material 👇",
+      "cestas": [
+        { "id": "madera", "nombre": "Madera", "emoji": "🪵" },
+        { "id": "metal", "nombre": "Metal", "emoji": "🔩" },
+        { "id": "vidrio", "nombre": "Vidrio", "emoji": "🥃" },
+        { "id": "plastico", "nombre": "Plástico", "emoji": "🧴" }
+      ],
+      "items": {
+        "madera": [["una silla", "un lápiz", "una puerta"], [], []],
+        "metal": [["una cuchara", "una llave", "un clavo"], [], []],
+        "vidrio": [["un vaso", "una ventana", "un espejo"], [], []],
+        "plastico": [["un juguete", "una funda", "un balde"], [], []]
+      }
+    },
+    {
+      "tipo": "vf",
+      "icono": "🤔",
+      "nombre": "¿Verdadero o falso?",
+      "desc": "conceptos de la materia",
+      "preguntas": [
+        [
+          { "t": "El hielo es agua sólida.", "c": true, "exp": "" },
+          { "t": "El aire es un gas.", "c": true, "exp": "" },
+          { "t": "El agua es líquida.", "c": true, "exp": "" },
+          { "t": "El plástico es un metal.", "c": false, "exp": "" }
+        ],
+        [
+          { "t": "Los sólidos tienen forma fija.", "c": true, "exp": "" },
+          { "t": "Los líquidos toman la forma del recipiente.", "c": true, "exp": "" },
+          { "t": "El vapor es un sólido.", "c": false, "exp": "El vapor es un gas." }
+        ],
+        [
+          { "t": "Si calientas el hielo se derrite.", "c": true, "exp": "Se vuelve líquido." }
+        ]
+      ]
+    },
+    {
+      "tipo": "definir",
+      "icono": "📖",
+      "nombre": "¿Qué es cada cosa?",
+      "desc": "elige la definición",
+      "preguntas": [
+        [
+          { "q": "¿Qué estado tiene forma fija?", "c": "Sólido", "d": ["Líquido", "Gaseoso"] },
+          { "q": "¿De qué material es una ventana?", "c": "Vidrio", "d": ["Madera", "Plástico"] },
+          { "q": "¿En qué estado está el agua de un río?", "c": "Líquido", "d": ["Sólido", "Gaseoso"] }
+        ],
+        [
+          { "q": "¿Cómo se llama el agua en forma de gas?", "c": "Vapor", "d": ["Hielo", "Lluvia"] },
+          { "q": "¿Qué estado se dispersa por todos lados?", "c": "Gaseoso", "d": ["Sólido", "Líquido"] }
+        ],
+        [
+          { "q": "¿Qué le pasa al hielo si lo calientas?", "c": "Se derrite (se vuelve líquido)", "d": ["Se vuelve piedra", "Se vuelve gas frío"] }
+        ]
+      ]
+    }
+  ]
+}

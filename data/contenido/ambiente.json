@@ -1,0 +1,86 @@
+{
+  "modo": "ambiente",
+  "materia": "ciencias",
+  "px": "amb",
+  "titulo": "Ecosistemas y ambiente",
+  "icono": "♻️",
+  "motor": "actividad",
+  "temas": [
+    {
+      "tipo": "clasificar",
+      "icono": "♻️",
+      "nombre": "¿En qué contenedor?",
+      "desc": "separa la basura",
+      "pregunta": "Arrastra cada cosa a su contenedor de reciclaje 👇",
+      "cestas": [
+        { "id": "papel", "nombre": "Papel", "emoji": "📄" },
+        { "id": "plastico", "nombre": "Plástico", "emoji": "🧴" },
+        { "id": "organico", "nombre": "Orgánico", "emoji": "🍎" },
+        { "id": "vidrio", "nombre": "Vidrio", "emoji": "🍶" }
+      ],
+      "items": {
+        "papel": [["un periódico", "una caja de cartón", "un cuaderno viejo"], [], []],
+        "plastico": [["una botella de agua", "una funda", "un envase de yogur"], [], []],
+        "organico": [["una cáscara de plátano", "restos de comida", "una hoja seca"], [], []],
+        "vidrio": [["un frasco", "una botella de vidrio", "un vaso roto"], [], []]
+      }
+    },
+    {
+      "tipo": "clasificar",
+      "icono": "💚",
+      "nombre": "Cuida / Daña el planeta",
+      "desc": "lo bueno y lo malo",
+      "pregunta": "Arrastra cada acción a su grupo 👇",
+      "cestas": [
+        { "id": "cuida", "nombre": "Cuida 💚", "emoji": "🌳" },
+        { "id": "dana", "nombre": "Daña 💔", "emoji": "🏭" }
+      ],
+      "items": {
+        "cuida": [["sembrar árboles", "reciclar", "cerrar el grifo", "apagar la luz", "ir en bici"], [], []],
+        "dana": [["botar basura al río", "talar bosques", "desperdiciar agua", "contaminar el aire"], [], []]
+      }
+    },
+    {
+      "tipo": "vf",
+      "icono": "🤔",
+      "nombre": "¿Verdadero o falso?",
+      "desc": "conceptos del ambiente",
+      "preguntas": [
+        [
+          { "t": "Reciclar cuida el planeta.", "c": true, "exp": "" },
+          { "t": "Sembrar árboles ayuda al ambiente.", "c": true, "exp": "" },
+          { "t": "Ahorrar agua cuida el planeta.", "c": true, "exp": "" },
+          { "t": "Talar todos los bosques es bueno.", "c": false, "exp": "" }
+        ],
+        [
+          { "t": "Botar basura al río daña a los animales.", "c": true, "exp": "" },
+          { "t": "La cáscara de fruta es basura orgánica.", "c": true, "exp": "" },
+          { "t": "Las botellas de plástico van al tacho de papel.", "c": false, "exp": "Van al tacho de plástico." }
+        ],
+        [
+          { "t": "La cáscara de fruta es basura orgánica.", "c": true, "exp": "" }
+        ]
+      ]
+    },
+    {
+      "tipo": "definir",
+      "icono": "📖",
+      "nombre": "¿Qué es cada cosa?",
+      "desc": "elige la definición",
+      "preguntas": [
+        [
+          { "q": "¿Qué es reciclar?", "c": "Volver a usar la basura para algo nuevo", "d": ["Botar toda la basura junta", "Quemar la basura"] },
+          { "q": "¿Dónde va una botella de plástico?", "c": "Al contenedor de plástico", "d": ["Al contenedor de papel", "Al contenedor orgánico"] },
+          { "q": "¿Qué acción cuida el planeta?", "c": "Sembrar árboles", "d": ["Talar bosques", "Botar basura al río"] }
+        ],
+        [
+          { "q": "¿Dónde va la cáscara de plátano?", "c": "Al contenedor orgánico", "d": ["Al contenedor de vidrio", "Al contenedor de plástico"] },
+          { "q": "¿Qué pasa si botamos basura en la naturaleza?", "c": "Daña a los animales y plantas", "d": ["Ayuda a los animales", "No pasa nada"] }
+        ],
+        [
+          { "q": "¿Qué es un ecosistema?", "c": "Un lugar con seres vivos y su entorno", "d": ["Una ciudad sin animales", "Una fábrica de carros"] }
+        ]
+      ]
+    }
+  ]
+}

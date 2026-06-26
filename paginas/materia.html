@@ -52,18 +52,23 @@
   <script>window.THREE || document.write('<scr'+'ipt src="lib/three.min.js"></scr'+'ipt>');</script>
   <script src="src/efectos/escena3d.js"></script>
   <script src="src/efectos/luna.js"></script>
+  <script src="data/contenido/materia.js"></script>
+  <script src="src/core/datos.js"></script>
   <script src="src/core/juego.js"></script>
   <script src="src/core/actividad.js"></script>
   <script src="src/core/arrastrar.js"></script>
-  <script src="src/modos/materia.js"></script>
+  <script src="src/core/contenido.js"></script>
   <script>
     window.RUTA_INICIO = "index.html";
-    window.MODO_VOLVER = function () {
-      if (!document.getElementById("mat-juego").classList.contains("oculto")) Materia.volverSelector();
-      else location.href = "index.html?materia=ciencias";
-    };
-    Juego.iniciarBase();
-    Materia.init();
+    Datos.cargar(["contenido/materia"]).then(function () {
+      Juego.iniciarBase();
+      var MODO = Contenido.montar("materia");
+      window.MODO_VOLVER = function () {
+        if (!document.getElementById("mat-juego").classList.contains("oculto")) MODO.volverSelector();
+        else location.href = "index.html?materia=ciencias";
+      };
+      MODO.init();
+    });
   </script>
 </body>
 </html>

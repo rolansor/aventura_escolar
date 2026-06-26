@@ -84,10 +84,79 @@
     };
   }
 
-  window.CicloAgua = Actividad("agua", [
+  /* ---- Conceptos (no solo arrastrar): ¿verdadero o falso? y definiciones ---- */
+  function itemDe(niveles, niv) {
+    let arr = niveles[niv];
+    for (let k = niv; k >= 0 && (!arr || !arr.length); k--) arr = niveles[k];
+    return Juego.azarEl(arr);
+  }
+
+  const CONCEPTOS = [
+    [
+      { t: "El sol calienta el agua y se evapora.", c: true, exp: "" },
+      { t: "El agua puede ser sólida, líquida y gaseosa.", c: true, exp: "" },
+      { t: "El hielo es agua en estado gaseoso.", c: false, exp: "El hielo es sólida." }
+    ],
+    [
+      { t: "El vapor sube y forma las nubes.", c: true, exp: "" },
+      { t: "El agua de los ríos llega al mar.", c: true, exp: "" },
+      { t: "El ciclo del agua se detiene en invierno.", c: false, exp: "El ciclo nunca se detiene." }
+    ],
+    [
+      { t: "Las nubes se forman por condensación.", c: true, exp: "" },
+      { t: "La lluvia es precipitación.", c: true, exp: "" }
+    ]
+  ];
+  const DEFINICIONES = [
+    [
+      { q: "¿Qué estado del agua es el hielo?", c: "Sólido", d: ["Líquido", "Gaseoso"] },
+      { q: "¿Qué hace que el agua se evapore?", c: "El calor del sol", d: ["El frío de la noche", "El viento de la montaña"] }
+    ],
+    [
+      { q: "¿Qué se forma cuando el vapor se enfría?", c: "Las nubes", d: ["El hielo", "Los ríos"] },
+      { q: "¿Cómo se llama la lluvia o nieve que cae?", c: "Precipitación", d: ["Evaporación", "Condensación"] }
+    ],
+    [
+      { q: "¿Qué es la evaporación?", c: "Cuando el agua se calienta y sube como vapor", d: ["Cuando el agua se congela", "Cuando llueve"] },
+      { q: "¿Qué es la condensación?", c: "Cuando el vapor se enfría y forma nubes", d: ["Cuando el agua se calienta", "Cuando el agua se filtra en el suelo"] }
+    ]
+  ];
+
+  const rondaVF = (host, ctrl) => {
+    const q = itemDe(CONCEPTOS, Juego.nivelIdx());
+    ctrl.pregunta("🤔 ¿Es verdad?<br><b>" + q.t + "</b>");
+    host.innerHTML = '<div class="ord-fuente"></div>';
+    const cont = host.querySelector(".ord-fuente");
+    [["✅ Verdadero", true], ["❌ Falso", false]].forEach((par) => {
+      const b = document.createElement("button");
+      b.className = "ord-chip"; b.textContent = par[0];
+      b.onclick = () => {
+        if (par[1] === q.c) ctrl.ganar();
+        else ctrl.fallar("Era <b>" + (q.c ? "Verdadero" : "Falso") + "</b>. " + (q.exp || ""));
+      };
+      cont.appendChild(b);
+    });
+  };
+  const rondaDef = (host, ctrl) => {
+    const q = itemDe(DEFINICIONES, Juego.nivelIdx());
+    ctrl.pregunta("📖 " + q.q);
+    host.innerHTML = '<div class="ord-fuente"></div>';
+    const cont = host.querySelector(".ord-fuente");
+    ctrl.mezclar([q.c].concat(q.d)).forEach((op) => {
+      const b = document.createElement("button");
+      b.className = "ord-chip"; b.textContent = op;
+      b.onclick = () => { if (op === q.c) ctrl.ganar(); else ctrl.reintento("Casi… inténtalo otra vez 🤔"); };
+      cont.appendChild(b);
+    });
+  };
+
+  const temas = [
     { icono: "💧", nombre: "Arma el ciclo", desc: "arrastra cada etapa", total: 5,
       ronda: rondaArrastre(ESCENA, ETAPAS, ETAPAS, "💧 Arrastra cada etapa a su lugar en el dibujo 👇") },
     { icono: "🧊", nombre: "Estados del agua", desc: "sólido, líquido, gas", total: 6,
       ronda: rondaArrastre(ESTADOS_ESCENA, ESTADOS, ESTADOS, "🧊 Lleva cada agua a su estado 👇") }
-  ]);
+  ];
+  temas.push({ icono: "🤔", nombre: "¿Verdadero o falso?", desc: "conceptos del ciclo del agua", total: 6, ronda: rondaVF });
+  temas.push({ icono: "📖", nombre: "¿Qué es cada cosa?", desc: "elige la definición", total: 6, ronda: rondaDef });
+  window.CicloAgua = Actividad("agua", temas);
 })();

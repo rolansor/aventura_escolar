@@ -110,6 +110,11 @@ Todo manipulativo (`Actividad`+`Arrastrar`), catálogo INLINE por 3 niveles (`Ju
 Mapeo de destrezas: características/clasificación de invertebrados (CN.3.1.1), diversidad y amenazas por
 región (CN.3.1.4), reproducción de vertebrados (CN.3.1.6) e invertebrados (CN.3.1.7), huella ecológica (CS.3.3.18).
 
+**Conceptos en TODO Ciencias** (no solo clasificar — ver [[mezclar-conceptos-no-solo-clasificar]]): los módulos
+del motor `Actividad` (**plantas, cuerpo, materia, ambiente, cicloagua**, además de animales/invertebrados)
+incorporan los temas **🤔 ¿Verdadero o falso?** y **📖 ¿Qué es cada cosa?** (definición con opciones), por 3
+niveles, vía `rondaVF`/`rondaDef` (botones `.ord-chip`). `senala` se mantiene como motor SVG de "señalar".
+
 ### Estudios Sociales — adaptación al Taller 1 de Quinto ("Época Aborigen" + territorio)
 Dos módulos nuevos manipulativos (`Actividad` + `Arrastrar`, catálogo INLINE por 3 niveles, página copia
 de `epoca.html`, `MODO_VOLVER`→`materia=sociales`) y la ampliación del Quiz:

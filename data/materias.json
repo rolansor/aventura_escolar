@@ -14,8 +14,74 @@
       {
         "modo": "copia",
         "icono": "✍️",
-        "nombre": "Copia y Dictado",
-        "desc": "Practica con párrafos"
+        "nombre": "Corregir y Dictado",
+        "desc": "Caza los errores o escribe al dictado"
+      },
+      {
+        "modo": "clases",
+        "icono": "🔤",
+        "nombre": "Clases de palabras",
+        "desc": "Sustantivo, adjetivo, verbo…"
+      },
+      {
+        "modo": "familia",
+        "icono": "🌳",
+        "nombre": "Familias de palabras",
+        "desc": "Palabras de una misma raíz"
+      },
+      {
+        "modo": "sinonimos",
+        "icono": "🔁",
+        "nombre": "Sinónimos y antónimos",
+        "desc": "Une palabras que combinan"
+      },
+      {
+        "modo": "formas",
+        "icono": "🪄",
+        "nombre": "Cambia la palabra",
+        "desc": "Diminutivos, aumentativos, género y número"
+      },
+      {
+        "modo": "silabas",
+        "icono": "🧱",
+        "nombre": "Separa en sílabas",
+        "desc": "Forma la palabra sílaba a sílaba"
+      },
+      {
+        "modo": "ordena",
+        "icono": "🧩",
+        "nombre": "Ordena la oración",
+        "desc": "Arma la frase con sentido"
+      },
+      {
+        "modo": "sujeto",
+        "icono": "✂️",
+        "nombre": "Sujeto y predicado",
+        "desc": "Divide la oración en sus dos partes"
+      },
+      {
+        "modo": "signos",
+        "icono": "❓",
+        "nombre": "Pon el signo",
+        "desc": "Signos de puntuación"
+      },
+      {
+        "modo": "alfabetico",
+        "icono": "🔠",
+        "nombre": "Orden alfabético",
+        "desc": "Ordena de la A a la Z"
+      },
+      {
+        "modo": "lectura",
+        "icono": "📖",
+        "nombre": "Comprensión lectora",
+        "desc": "Lee y responde"
+      },
+      {
+        "modo": "refranes",
+        "icono": "📜",
+        "nombre": "Refranes y adivinanzas",
+        "desc": "Une el refrán con su final"
       }
     ]
   },

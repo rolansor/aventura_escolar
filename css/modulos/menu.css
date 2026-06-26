@@ -77,6 +77,11 @@
   opacity: 0.45; padding: 4px; border-radius: 8px; transition: opacity 0.15s, transform 0.15s;
 }
 .perfil-borrar:hover { opacity: 1; transform: scale(1.2); }
+.perfil-editar {
+  position: absolute; top: 6px; left: 8px; font-size: 1.1rem; line-height: 1;
+  opacity: 0.45; padding: 4px; border-radius: 8px; transition: opacity 0.15s, transform 0.15s;
+}
+.perfil-editar:hover { opacity: 1; transform: scale(1.2); }
 .tarjeta-nuevo-perfil { background: rgba(255,255,255,0.78); border: 3px dashed #c7d2f0; }
 
 /* Grupos "elige uno" del formulario de nuevo perfil (género / nivel). */

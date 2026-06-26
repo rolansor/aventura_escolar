@@ -27,6 +27,7 @@ const Contenido = (function () {
     document.getElementById("ed-orto-palabra").addEventListener("keydown", (e) => {
       if (e.key === "Enter") agregarPalabraOrto();
     });
+    document.getElementById("ed-orto-buscar").addEventListener("input", renderBancoOrto);
     document.getElementById("ed-orto-guardar").onclick = guardarOrtoPar;
     configurarOrto();
 
@@ -121,6 +122,8 @@ const Contenido = (function () {
     paresZona.classList.toggle("oculto", cat.estrategia === "clasificar");
 
     document.getElementById("ed-orto-ayuda").textContent = "💡 " + cat.regla;
+    const buscar = document.getElementById("ed-orto-buscar");
+    if (buscar) buscar.value = ""; // el filtro no se arrastra entre categorías
     renderBancoOrto();
     listarOrtoPares();
   }
@@ -142,6 +145,8 @@ const Contenido = (function () {
     Juego.guardar(claveC, customs);
     inp.value = "";
     inp.focus();
+    const buscar = document.getElementById("ed-orto-buscar");
+    if (buscar) buscar.value = ""; // muestra la lista de "tuyas" con la recién agregada
     renderBancoOrto();
     refrescarSelectorOrto();
     Juego.acierto();
@@ -194,6 +199,14 @@ const Contenido = (function () {
     return div;
   }
 
+  // Quita tildes/mayúsculas para que la búsqueda sea tolerante ("nino" halla "niño").
+  function norm(s) {
+    return String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").trim();
+  }
+
+  // Lista DINÁMICA: con el buscador vacío no vuelca el banco entero (puede ser enorme);
+  // muestra solo un resumen + tus palabras. Al escribir, filtra entre todas (tuyas + del juego).
+  const TOPE_RESULTADOS = 60;
   function renderBancoOrto() {
     const cat = catOrtoActual();
     const grupo = grupoOrtoActual(cat);
@@ -203,16 +216,46 @@ const Contenido = (function () {
     const customs = Juego.cargar(claveC, []);
     const ocultas = new Set(Juego.cargar(claveO, []));
     const defaults = bancoDefaultOrto(cat, grupo);
+    const buscarEl = document.getElementById("ed-orto-buscar");
+    const filtro = norm(buscarEl ? buscarEl.value : "");
 
     cont.innerHTML = "";
     const info = document.createElement("small");
     info.style.color = "#3a4266";
-    info.textContent = `Tienes ${customs.length} palabra(s) tuya(s) y ${defaults.length} del juego` +
-      (ocultas.size ? ` (${ocultas.size} ocultas)` : "") + ".";
+    info.style.display = "block";
+    info.style.marginBottom = "6px";
+
+    const fila = (w, propia) => cont.appendChild(filaPalabraOrto(w, propia, ocultas.has(w), claveC, claveO));
+
+    if (!filtro) {
+      // Vista compacta: resumen + solo TUS palabras (las del juego se buscan).
+      info.textContent = `Tienes ${customs.length} palabra(s) tuya(s) y ${defaults.length} del juego` +
+        (ocultas.size ? ` · ${ocultas.size} ocultas` : "") +
+        (defaults.length ? ". 🔎 Escribe arriba para buscar y administrar las del juego." : ".");
+      cont.appendChild(info);
+      customs.forEach((w) => fila(w, true));
+      return;
+    }
+
+    // Vista de búsqueda: filtra entre tuyas y del juego.
+    const okFiltro = (w) => norm(w).includes(filtro);
+    const cFil = customs.filter(okFiltro);
+    const dFil = defaults.filter(okFiltro);
+    const total = cFil.length + dFil.length;
+    info.textContent = total
+      ? `${total} coincidencia(s) con «${buscarEl.value.trim()}».`
+      : `No hay palabras con «${buscarEl.value.trim()}». Escríbela arriba y pulsa ➕ para agregarla.`;
     cont.appendChild(info);
 
-    customs.forEach((w) => cont.appendChild(filaPalabraOrto(w, true, ocultas.has(w), claveC, claveO)));
-    defaults.forEach((w) => cont.appendChild(filaPalabraOrto(w, false, ocultas.has(w), claveC, claveO)));
+    let n = 0;
+    for (const w of cFil) { if (n++ >= TOPE_RESULTADOS) break; fila(w, true); }
+    for (const w of dFil) { if (n++ >= TOPE_RESULTADOS) break; fila(w, false); }
+    if (total > TOPE_RESULTADOS) {
+      const mas = document.createElement("small");
+      mas.style.color = "#3a4266";
+      mas.textContent = `… y ${total - TOPE_RESULTADOS} más. Afina la búsqueda para verlas.`;
+      cont.appendChild(mas);
+    }
   }
 
   function refrescarSelectorOrto() {

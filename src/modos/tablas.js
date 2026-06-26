@@ -29,6 +29,7 @@ const Tablas = (function () {
     m.innerHTML = "🎲 Mixtas<small>todas las tablas</small>";
     m.onclick = () => empezar("mix");
     c.appendChild(m);
+    Juego.pintarMejores(c, "tablas"); // 🏆 mejores de esta actividad
   }
 
   function empezar(t) {

@@ -15,6 +15,7 @@ const Multiplicacion = (function () {
     const c = elSel(); if (!c) return; c.innerHTML = "";
     nivNivel().forEach((nv) => { const b = document.createElement("button"); b.className = "chip-categoria";
       b.innerHTML = "✖️ " + nv.n + "<small>multiplicar</small>"; b.onclick = () => empezar(nv); c.appendChild(b); });
+    Juego.pintarMejores(c, "mul"); // 🏆 mejores de esta actividad
   }
   function empezar(nv) {
     ac = 0; i = 0; cola = []; tInicio = Date.now(); const f = {};

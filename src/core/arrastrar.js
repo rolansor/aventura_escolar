@@ -100,5 +100,79 @@ window.Arrastrar = (function () {
     });
   }
 
-  return { hacer, clasificar };
+  // Actividad "une las parejas": dos columnas, se toca una de la izquierda
+  // y luego su pareja de la derecha. opts = { pregunta, pares:[{a,b}] }
+  // Pensada para una ronda() del motor Actividad (ctrl). Toque (no arrastre),
+  // así es fácil con el dedo.
+  function emparejar(host, ctrl, opts) {
+    ctrl.pregunta(opts.pregunta || "Une cada pareja 👇");
+    const pares = opts.pares || [];
+    const izq = ctrl.mezclar(pares.map((p, i) => ({ t: p.a, k: i })));
+    const der = ctrl.mezclar(pares.map((p, i) => ({ t: p.b, k: i })));
+    host.innerHTML = '<div class="emp-cols"><div class="emp-col emp-izq"></div><div class="emp-col emp-der"></div></div>';
+    const colI = host.querySelector(".emp-izq"), colD = host.querySelector(".emp-der");
+    let sel = null, faltan = pares.length;
+    function limpiarSel() { if (sel) { sel.classList.remove("sel"); sel = null; } }
+    function botones(col, lista, lado) {
+      lista.forEach((o) => {
+        const b = document.createElement("button");
+        b.className = "emp-item"; b.textContent = o.t; b.dataset.k = o.k; b.dataset.lado = lado;
+        b.onclick = () => elegir(b);
+        col.appendChild(b);
+      });
+    }
+    function elegir(b) {
+      if (b.disabled) return;
+      if (b.dataset.lado === "izq") { limpiarSel(); sel = b; b.classList.add("sel"); return; }
+      if (!sel) { ctrl.reintento("Primero toca una palabra de la izquierda 👈"); return; }
+      if (b.dataset.k === sel.dataset.k) {
+        b.classList.add("ok"); sel.classList.add("ok"); b.disabled = true; sel.disabled = true;
+        limpiarSel(); faltan--;
+        if (faltan === 0) ctrl.ganar(); else ctrl.retro("¡Bien! Faltan " + faltan + " 👇", "bien");
+      } else {
+        b.classList.add("rojo"); setTimeout(() => b.classList.remove("rojo"), 420);
+        limpiarSel(); ctrl.reintento("Esas no son pareja, prueba otra 👀");
+      }
+    }
+    botones(colI, izq, "izq"); botones(colD, der, "der");
+  }
+
+  // Actividad "ponlas en orden": fichas desordenadas que se tocan en el orden
+  // correcto (armar la oración / orden alfabético / sílabas). opts =
+  // { pregunta, correcto:[..en orden..] }. Pensada para una ronda() de Actividad.
+  function ordenar(host, ctrl, opts) {
+    ctrl.pregunta(opts.pregunta || "Tócalas en el orden correcto 👇");
+    const correcto = opts.correcto || [];
+    const fuenteArr = ctrl.mezclar(correcto.map((t, i) => ({ t: t, i: i })));
+    host.innerHTML = '<div class="ord-destino" id="ord-dest"></div><div class="ord-fuente" id="ord-fuente"></div>';
+    const dest = host.querySelector(".ord-destino"), fuente = host.querySelector(".ord-fuente");
+    let puestos = [];
+    function pintarFuente() {
+      fuente.innerHTML = "";
+      fuenteArr.forEach((o) => {
+        if (puestos.includes(o)) return;
+        const b = document.createElement("button");
+        b.className = "ord-chip"; b.textContent = o.t; b.onclick = () => poner(o);
+        fuente.appendChild(b);
+      });
+    }
+    function pintarDest() {
+      dest.innerHTML = "";
+      puestos.forEach((o) => {
+        const b = document.createElement("button");
+        b.className = "ord-chip puesto"; b.textContent = o.t; b.onclick = () => quitar(o);
+        dest.appendChild(b);
+      });
+    }
+    function poner(o) { puestos.push(o); pintarDest(); pintarFuente(); if (puestos.length === correcto.length) revisar(); }
+    function quitar(o) { puestos = puestos.filter((x) => x !== o); pintarDest(); pintarFuente(); }
+    function revisar() {
+      const bien = puestos.every((o, idx) => o.i === idx);
+      if (bien) { dest.querySelectorAll(".ord-chip").forEach((c) => c.classList.add("ok")); ctrl.ganar(); }
+      else { dest.querySelectorAll(".ord-chip").forEach((c) => c.classList.add("rojo")); ctrl.reintento("Ese orden aún no; quita alguna y prueba 👀"); }
+    }
+    pintarFuente();
+  }
+
+  return { hacer, clasificar, emparejar, ordenar };
 })();

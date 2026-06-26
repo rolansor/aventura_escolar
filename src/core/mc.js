@@ -26,6 +26,7 @@ window.MC = function (px, temas) {
       b.onclick = () => empezar(tm);
       c.appendChild(b);
     });
+    Juego.pintarMejores(c, px); // 🏆 leaderboard de esta actividad bajo los temas
   }
   function empezar(tm) {
     ac = 0; i = 0; cola = []; tInicio = Date.now();

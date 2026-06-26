@@ -58,21 +58,21 @@ página en `paginas/` que el menú enlaza. Las páginas de `paginas/` usan `<bas
 |---|---|---|
 | `data/*.json` (+ `*.js` generados por `build.py`) | `DATOS.*`, `NINO`, `ECUADOR_SVG`, `ECUADOR_CANTONES` | **Datos puros**: ortografia, secuencias, parrafos, generador-parrafos, materias, nino, mapa-ec, cantones, mapas/*. Editar el `.json` y correr `herramientas/build.py`. |
 | `src/core/juego.js` | `Juego` | Núcleo: marcador, sonido, `localStorage`, temporizador, utilidades (`azar/azarEl/mezclar/cargar/guardar/frasePositiva/construirSecuencia`, `acierto/error/granPremio`, `cron*`, `jugador`, `aplicarIdentidad`) e `iniciarBase()`. **Perfiles** (`perfiles/perfilActivo/crearPerfil/seleccionarPerfil/actualizarPerfil/borrarPerfil`), **nivel de dificultad** (`nivel/nivelIdx/porNivel`) y **leaderboard** (`registrarResultado/mejores/fmtTiempo/tablaMejoresHTML`). Ver "Perfiles, Niveles y Leaderboard". |
-| `src/core/perfiles.js` | `Perfiles` | **Selector de perfiles** (solo en `index.html`): pantalla `pantalla-perfiles` con una tarjeta por niño + "➕ Nuevo perfil" (modal con nombre/género/nivel), chip de perfil en la barra para cambiar. `Perfiles.init/abrir/actualizarChip`. |
+| `src/core/perfiles.js` | `Perfiles` | **Selector de perfiles** (solo en `index.html`): pantalla `pantalla-perfiles` con una tarjeta por niño (botones **✏️ editar** y **🗑️ borrar**) + "➕ Nuevo perfil". El modal `abrirForm(perfil?)` sirve para **crear y editar** (precarga nombre/género/nivel; guarda con `Juego.actualizarPerfil`). Chip de perfil en la barra para cambiar. `Perfiles.init/abrir/actualizarChip`. |
 | `src/core/datos.js` | `Datos` | `Datos.cargar([...])` lee `window.__DATOS__` y rellena los globales. |
 | `src/core/menu.js` | `Menu` | Menú de materias (tarjetas desde `DATOS.materias`, enlaza a `paginas/<modo>.html`). **Modal de clave** (`pedirClave(destino)`) que se abre ANTES de ir a la zona de adultos; sin clave válida no se navega. Dos tarjetas de adultos: **⚙️ Ajustes** (`editor.html`) y **📚 Banco de contenido** (`contenido.html`). |
 | `src/core/mc.js` | `MC` | Motor de **opción múltiple** (repasos rápidos). Fábrica `MC(px, temas)`; ronda de 10. Al terminar registra el resultado en el leaderboard (`Juego.registrarResultado(px,…)`). **No es el patrón por defecto** (ver Filosofía de diseño). |
 | `src/core/actividad.js` | `Actividad` | Motor de **actividades manipulativas** (hermano de `MC`). Fábrica `Actividad(px, temas, opts)`; cada tema tiene `ronda(host, ctrl)` que arma la interacción en `#<px>-extra` y resuelve con `ctrl.ganar()/fallar()/reintento()`. Sin temporizador (autocorrectivo). Al terminar registra el leaderboard. Reutiliza la misma estructura de página por prefijo que `MC`. |
-| `src/core/arrastrar.js` | `Arrastrar` | Arrastrar-y-soltar con eventos de **puntero** (mouse + dedo). `Arrastrar.hacer(item, zonas, alSoltar)` (marca `.zona-hover`, devuelve la zona destino o null) y `Arrastrar.clasificar(host, ctrl, {pregunta, cestas, items})` (actividad "clasifica en cestas", usada por las quizzes de Ciencias dentro de una `ronda()` de `Actividad`). |
+| `src/core/arrastrar.js` | `Arrastrar` | Arrastrar-y-soltar con eventos de **puntero** (mouse + dedo). `Arrastrar.hacer(item, zonas, alSoltar)` (marca `.zona-hover`, devuelve la zona destino o null) y `Arrastrar.clasificar(host, ctrl, {pregunta, cestas, items})` (actividad "clasifica en cestas"). Además dos ayudantes de **toque** para `ronda()` de `Actividad`: `Arrastrar.emparejar(host, ctrl, {pregunta, pares:[{a,b}]})` (une parejas: toca izquierda→derecha; CSS `.emp-*`) y `Arrastrar.ordenar(host, ctrl, {pregunta, correcto:[...]})` (toca fichas en orden; CSS `.ord-*`). |
 | `src/modos/ortografia.js` | `Ortografia` | Ejercicios desde `DATOS.ortografia`. |
 | `src/modos/secuencias.js` | `Secuencias` | Secuencias numéricas. |
-| `src/modos/copia.js` | `Copia` | Copia y Dictado. |
+| `src/modos/copia.js` | `Copia` | **Corregir / Dictado** (dos sub-modos manipulativos). *Corregir*: el texto sale con errores y el niño **toca la palabra mala** → mini-modal con opciones (dificultad por `Juego.nivelIdx()`: básico = errores marcados y opciones obvias; intermedio = marcados, opciones más parecidas; avanzado = sin marcar, el niño los **busca** y al final pulsa Comprobar). *Dictado*: la voz del navegador (**Web Speech API**, sin librerías; degrada a mostrar el texto si no hay voz) lee y el niño escribe. Puntaje = palabras correctas/total → leaderboard `"copia"`. Conserva `generarErrores` (lo usa `contenido.js`). |
 | `src/modos/invertebrados.js` | `Invertebrados` | Ciencias: clasificar invertebrados en sus 6 grupos (`Arrastrar.clasificar` sobre `Actividad`). Contenido del *Manual de invertebrados*. |
 | `src/modos/editor.js` | `Editor` | Zona de adultos — **⚙️ Ajustes** (clave **24861793**): solo temporizador y reinicio de progreso. La identidad y el nivel viven en el perfil; el contenido, en `contenido.js`. |
 | `src/modos/contenido.js` | `Contenido` | Zona de adultos — **📚 Banco de contenido** (misma clave): administra palabras de ortografía (editor universal), secuencias propias y párrafos. Mantiene `claveBancoCustom/claveOcultasOrto/bancoDefaultOrto` alineadas con `ortografia.js`. |
 | `src/modos/mapas.js` | `Mapas` | Mapa SVG por provincias (usa `ECUADOR_SVG`). |
 | `src/modos/mapacantones.js` | `MapaCantones` | Mapa GeoJSON por cantones + provincia en 3D (usa `ECUADOR_CANTONES`). |
-| `src/efectos/escena3d.js` / `luna.js` | `ESCENA` / `Luna` | Fondo 3D y mascota. `Luna` (niño/niña según `genero`) tiene gestos espontáneos (saludo/pensar), reacciones (feliz/triste/fiesta) y **`Luna.tip(texto)` / `Luna.decir(texto)`** para hablar por su globo. |
+| `src/efectos/escena3d.js` / `luna.js` | `ESCENA` / `Luna` | Fondo 3D y mascota. `Luna` (niño/niña según `genero`) tiene gestos espontáneos (saludo/pensar), reacciones (feliz/triste/fiesta) y **`Luna.tip(texto)` / `Luna.decir(texto)`** para hablar por su globo. **Si NO hay perfil creado** saluda en genérico ("¡Hola! Soy Luna") y omite el nombre en sus frases (`hayPerfil()` consulta `Juego.perfilActivo()`), para no decir "Nelson" en el selector. |
 | `css/modulos/*.css` | — | Estilos modulares (orden en `css/modulos/_orden.md`). |
 | `recursos/ecuador_1.0/2.0.svg`, `recursos/banderas/EC-*.svg` | — | SVG original/horneado + banderas provinciales. |
 | `paginas/*.html` | — | Una por módulo; incluye sus `data/*.js`, core, su modo, y arranca con `Datos.cargar(...).then(() => { Juego.iniciarBase(); Modo.init(); })`. |
@@ -87,10 +87,27 @@ El menú está organizado en **materias** (asignaturas). Definidas en `DATOS.mat
   actividades: [ { modo, icono, nombre, desc }, ... ],   // modo = pantalla existente
   proximamente: "texto" }                                 // solo si actividades está vacío
 ```
-Materias actuales: **Lengua** (ortografia, copia), **Matemáticas** (secuencias, aritmetica/tablas/
+Materias actuales: **Lengua** (ortografia, copia, **clases, familia, sinonimos, formas, silabas,
+ordena, sujeto, signos, alfabetico, lectura, refranes**), **Matemáticas** (secuencias, aritmetica/tablas/
 multiplicacion/division/comparar/redondeo/numeros/valorposicional/dinero/medidas/hora/fracciones),
 **Estudios Sociales** (`mapas`, `cantones`, `donde`), **Ciencias Naturales** (senala, plantas, cuerpo,
 animales, **invertebrados**, cicloagua, materia, ambiente).
+
+### Lengua — actividades manipulativas (todas con catálogo INLINE por 3 niveles vía `Juego.nivelIdx()`)
+Cada una es un `Actividad("px", …)` (o `MC` para lectura) con su `paginas/<modo>.html` (copia del patrón
+de `clases.html`) y su contenido en el propio módulo (sin `data/*.json`). Heredan leaderboard y niveles.
+- **clases** (`Clases`) — Clases de palabras: arrastra a su grupo gramatical (sustantivo/adjetivo/verbo,
+  +artículo, +pronombre/adverbio según nivel). `Arrastrar.clasificar`.
+- **familia** (`Familia`) — Familias de palabras (derivadas a su raíz). `Arrastrar.clasificar`.
+- **sinonimos** (`Sinonimos`) — Sinónimos y antónimos (2 temas). `Arrastrar.emparejar`.
+- **refranes** (`Refranes`) — Refranes y adivinanzas (2 temas, une mitades). `Arrastrar.emparejar`.
+- **ordena** (`Ordena`) — Ordena la oración. `Arrastrar.ordenar`.
+- **alfabetico** (`Alfabetico`) — Orden alfabético (sort tolerante a tildes). `Arrastrar.ordenar`.
+- **silabas** (`Silabas`) — Separa en sílabas (banco separado a mano). `Arrastrar.ordenar`.
+- **sujeto** (`Sujeto`) — Sujeto y predicado: toca dónde empieza el predicado (`corte` etiquetado a mano).
+- **signos** (`Signos`) — Pon el signo: toca el signo del hueco ▢ (CSS `.signo-*`).
+- **formas** (`Formas`) — Cambia la palabra: diminutivos/aumentativos/género-número (3 temas, toca la forma).
+- **lectura** (`Lectura`) — Comprensión lectora: texto + preguntas (motor `MC`; `html`=texto, banco por nivel).
 
 **Antes del menú va el selector de perfiles** (`index.html`): al abrir, si no hay perfil activo se
 muestra `pantalla-perfiles`; al elegir uno se entra al menú. Ver "Perfiles, Niveles y Leaderboard".
@@ -130,7 +147,10 @@ guarda en `lb_<juego>__<perfilId>` las 5 mejores, ordenadas por aciertos (desc) 
 tiempo (asc). `juego` es el prefijo del modo (`px`). Los motores `MC`/`Actividad` lo llaman solos al
 `terminar()` (miden el tiempo total con `tInicio`), igual que los loops propios (`aritmetica/tablas/
 multiplicacion/division`). `Juego.tablaMejoresHTML(juego)` pinta el panel "🏆 Mejores de \<nombre\>"
-(estilos `.leaderboard` en `ejercicios.css`), que se muestra en la pantalla de fin de ronda.
+(estilos `.leaderboard` en `ejercicios.css`), que se muestra en la pantalla de fin de ronda **y en el
+selector de cada actividad** vía `Juego.pintarMejores(contenedor, juego)` (lo llaman los motores
+`MC`/`Actividad` y los loops propios al pintar su selector; el panel ocupa toda la fila del grid con
+`.leaderboard-wrap`). Así cada tipo de actividad muestra su propio leaderboard antes de jugar.
 
 ## Modo Mapas — mapa del Ecuador (Estudios Sociales)
 Mapa interactivo SVG de las 24 provincias, coloreadas por las 4 regiones naturales
@@ -259,6 +279,10 @@ La sección "🔤 Palabras de ortografía" administra **cualquier** categoría s
 - **Ocultar 🚫 / Mostrar ↩️** → alterna en `claveOcultasOrto(cat, grupo)`; el generador respeta esto vía
   `quitarOcultas` (si se ocultan TODAS, se ignora el filtro para no dejar la categoría vacía).
 - **Borrar 🗑️** → solo en palabras propias (las del juego no se borran, solo se ocultan).
+- **Buscador dinámico** (`ed-orto-buscar`) → la lista **no vuelca el banco entero** (puede ser enorme):
+  con el buscador vacío muestra solo un resumen + **tus** palabras; al escribir filtra entre tuyas y las
+  del juego de forma tolerante a tildes/mayúsculas (`norm()`), con tope de 60 resultados. El filtro se
+  limpia al cambiar de categoría y al agregar una palabra.
 - **Pares ✅/❌** → zona `ed-orto-pares-zona`, oculta para `clasificar` (allí no aplica).
 
 Las funciones clave de mapeo cat→clave (`claveBancoCustom`, `claveOcultasOrto`, `bancoDefaultOrto`)
@@ -298,6 +322,15 @@ están en `contenido.js` y **deben permanecer alineadas** con las claves que lee
 
 ## Estado / próximos pasos posibles
 - Hecho recientemente:
+  - **11 actividades nuevas de Lengua** (clases, familia, sinónimos, formas, sílabas, ordena, sujeto,
+    signos, alfabético, lectura, refranes), todas manipulativas y con catálogo por 3 niveles. Se añadieron
+    dos ayudantes reutilizables `Arrastrar.emparejar` y `Arrastrar.ordenar`. (Smoke test real con happy-dom:
+    `scratchpad/test_lengua.js` — arrancan y corren sin errores en básico y avanzado.)
+  - **Editar perfiles** (✏️ en cada tarjeta del selector), **leaderboard en el selector de cada
+    actividad** (`Juego.pintarMejores`), y **rehecho "Copia y Dictado" → "Corregir y Dictado"**: sub-modo
+    *Corregir* manipulativo (tocar la palabra mala → mini-modal, dificultad por nivel) y *Dictado* por voz
+    (Web Speech API). La mascota ya no saluda con "Nelson" si no hay perfil; buscador dinámico en el banco
+    de palabras de ortografía. (Probado headless: `scratchpad/test_copia.js`.)
   - **Perfiles + Niveles + Leaderboard + separación de configuración** (4 fases): selector de perfiles
     al abrir, progreso/identidad/nivel por perfil, dificultad básico/intermedio/avanzado en Matemática,
     marcador por juego y perfil (tiempo + aciertos), y división de la zona de adultos en ⚙️ Ajustes

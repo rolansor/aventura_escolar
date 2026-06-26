@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es-EC">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="../" />
+  <title>Orden alfabético — La Aventura</title>
+  <link rel="stylesheet" href="css/modulos/base.css" />
+  <link rel="stylesheet" href="css/modulos/ejercicios.css" />
+  <link rel="stylesheet" href="css/modulos/efectos.css" />
+</head>
+<body>
+  <canvas id="lienzo3d"></canvas>
+  <div id="interfaz">
+    <header id="barra-superior">
+      <div class="grupo-barra grupo-izq">
+        <button id="btn-inicio" class="boton-icono" title="Ir al menú principal">🏠</button>
+        <button id="btn-volver-global" class="boton-icono" title="Volver atrás">↩️</button>
+      </div>
+      <div id="marcador">
+        <span class="estrellas">⭐ <b id="puntaje-estrellas">0</b></span>
+        <span class="racha">🔥 <b id="puntaje-racha">0</b></span>
+        <span class="nivel">Nivel <b id="puntaje-nivel">1</b></span>
+      </div>
+      <div class="grupo-barra grupo-der">
+        <button id="btn-sonido" class="boton-icono" title="Activar/silenciar sonido">🔊</button>
+      </div>
+    </header>
+
+    <section id="pantalla-alfab" class="pantalla activa">
+      <div id="alfab-selector" class="selector-categorias"></div>
+      <div id="alfab-juego" class="caja-juego oculto">
+        <div class="fila-timer"><span class="timer oculto" id="alfab-timer"></span></div>
+        <div class="progreso"><div class="progreso-barra" id="alfab-progreso"></div></div>
+        <p class="regla-ayuda" id="alfab-tema"></p>
+        <h2 class="pregunta" id="alfab-pregunta"></h2>
+        <div id="alfab-extra" class="mc-extra"></div>
+        <div class="opciones" id="alfab-opciones"></div>
+        <p class="retro" id="alfab-retro"></p>
+      </div>
+    </section>
+  </div>
+
+  <div id="luna" title="Luna">
+    <div class="luna-globo" id="luna-globo">Soy Luna 🌙</div>
+    <canvas id="luna-canvas"></canvas>
+    <div class="luna-nombre">🌙 Luna ✋</div>
+  </div>
+  <div id="celebracion"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>window.THREE || document.write('<scr'+'ipt src="lib/three.min.js"></scr'+'ipt>');</script>
+  <script src="src/efectos/escena3d.js"></script>
+  <script src="src/efectos/luna.js"></script>
+  <script src="src/core/juego.js"></script>
+  <script src="src/core/actividad.js"></script>
+  <script src="src/core/arrastrar.js"></script>
+  <script src="src/modos/alfabetico.js"></script>
+  <script>
+    window.RUTA_INICIO = "index.html";
+    window.MODO_VOLVER = function () {
+      if (!document.getElementById("alfab-juego").classList.contains("oculto")) Alfabetico.volverSelector();
+      else location.href = "index.html?materia=lengua";
+    };
+    Juego.iniciarBase();
+    Alfabetico.init();
+  </script>
+</body>
+</html>

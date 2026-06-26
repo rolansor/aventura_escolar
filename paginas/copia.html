@@ -30,16 +30,28 @@
     <section id="pantalla-copia" class="pantalla activa">
       <div id="copia-selector" class="selector-categorias"></div>
       <div id="copia-juego" class="caja-juego oculto">
-        <div class="fila-timer"><span class="timer oculto" id="copia-timer"></span></div>
         <div class="toggle-modo">
-          <button class="opcion-modo activa" data-cmodo="corregir">🔍 Corregir errores</button>
-          <button class="opcion-modo" data-cmodo="copiar">📝 Copiar igual</button>
+          <button class="opcion-modo activa" data-cmodo="corregir">🔍 Corregir el texto</button>
+          <button class="opcion-modo" data-cmodo="dictado">🎧 Dictado por voz</button>
         </div>
         <p class="regla-ayuda" id="copia-regla"></p>
-        <div class="texto-modelo" id="copia-modelo"></div>
-        <button class="boton-secundario oculto" id="copia-pista">💡 Señalar los errores</button>
-        <textarea id="copia-input" class="entrada-area" placeholder="Escribe aquí el texto…"></textarea>
-        <button class="boton-grande" id="copia-comprobar">Comprobar</button>
+
+        <!-- Sub-modo CORREGIR: el texto aparece con errores; se toca la palabra mala -->
+        <div id="copia-corregir">
+          <div class="texto-corregir" id="copia-parrafo"></div>
+          <button class="boton-grande" id="copia-comprobar">✅ Comprobar</button>
+        </div>
+
+        <!-- Sub-modo DICTADO: la voz del navegador lee y el niño escribe -->
+        <div id="copia-dictado" class="oculto">
+          <div class="dictado-controles">
+            <button class="boton-grande" id="copia-escuchar">🔊 Escuchar</button>
+            <button class="boton-secundario" id="copia-escuchar-lento">🐢 Más despacio</button>
+          </div>
+          <textarea id="copia-dictado-input" class="entrada-area" placeholder="Escribe aquí lo que escuchas…"></textarea>
+          <button class="boton-grande" id="copia-dictado-comprobar">✅ Comprobar</button>
+        </div>
+
         <div class="resultado-copia" id="copia-resultado"></div>
       </div>
     </section>
@@ -70,7 +82,6 @@
     Datos.cargar(["parrafos"]).then(function () {
       Juego.iniciarBase();
       Copia.init();
-      document.getElementById("copia-comprobar").onclick = function () { Copia.comprobar(); };
     }).catch(function (e) { console.error("Error cargando datos:", e); });
   </script>
 </body>

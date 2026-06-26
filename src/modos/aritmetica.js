@@ -34,6 +34,7 @@ const Aritmetica = (function () {
       b.onclick = () => empezar(n);
       c.appendChild(b);
     });
+    Juego.pintarMejores(c, "arit"); // 🏆 mejores de esta actividad
   }
 
   function empezar(cifras) {

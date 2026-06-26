@@ -38,6 +38,7 @@ window.Actividad = function (px, temas, opts) {
       b.onclick = () => empezar(tm);
       c.appendChild(b);
     });
+    Juego.pintarMejores(c, px); // 🏆 leaderboard de esta actividad bajo los temas
   }
 
   function empezar(tm) {

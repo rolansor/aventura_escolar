@@ -241,22 +241,32 @@ const Luna = (function () {
 
   /* ---------------- Globo de diálogo ---------------- */
   let globoTimer = null;
+  // ¿Hay un niño/perfil creado? Si no, la mascota saluda en genérico (sin nombre).
+  function hayPerfil() {
+    try { return !!(window.Juego && Juego.perfilActivo && Juego.perfilActivo()); }
+    catch (e) { return false; }
+  }
   function saludar() {
-    mostrarGloboTexto("¡Hola, " + Juego.jugador() + "! Soy " + Juego.avatarNombre() + " 🌙", 2600);
+    const av = Juego.avatarNombre();
+    const txt = hayPerfil()
+      ? "¡Hola, " + Juego.jugador() + "! Soy " + av + " 🌙"
+      : "¡Hola! Soy " + av + " 🌙";
+    mostrarGloboTexto(txt, 2600);
   }
   function mostrarGlobo(tipo) {
-    const n = Juego.jugador();
+    // Solo usamos el nombre si hay un perfil creado; si no, frase sin nombre.
+    const n = hayPerfil() ? Juego.jugador() : null;
     const feliz = [
-      "¡Muy bien, " + n + "! 😄", "¡Genial! 🌟", "¡Sigue así! 💜", "¡Correcto! ✨", "¡Eres increíble! 🤩",
-      "¡Qué crack, " + n + "! 💪", "¡Brillante! 💡", "¡Lo clavaste! 🎯", "¡Súper! 🚀", "¡Bien pensado! 🧠",
+      n ? "¡Muy bien, " + n + "! 😄" : "¡Muy bien! 😄", "¡Genial! 🌟", "¡Sigue así! 💜", "¡Correcto! ✨", "¡Eres increíble! 🤩",
+      n ? "¡Qué crack, " + n + "! 💪" : "¡Qué crack! 💪", "¡Brillante! 💡", "¡Lo clavaste! 🎯", "¡Súper! 🚀", "¡Bien pensado! 🧠",
       "¡Esa es! 👏", "¡Vas volando! 🪁"
     ];
     const triste = [
-      "¡Casi! 🙂", "¡Tú puedes, " + n + "! 💪", "¡Otra vez! 🌙", "¡No te rindas! 💜",
-      "¡Casi casi! Respira y prueba 🌈", "¡Tranqui, " + n + ", inténtalo de nuevo! 🤗",
+      "¡Casi! 🙂", n ? "¡Tú puedes, " + n + "! 💪" : "¡Tú puedes! 💪", "¡Otra vez! 🌙", "¡No te rindas! 💜",
+      "¡Casi casi! Respira y prueba 🌈", n ? "¡Tranqui, " + n + ", inténtalo de nuevo! 🤗" : "¡Tranqui, inténtalo de nuevo! 🤗",
       "¡Equivocarse también enseña! 🌱", "¡Estás cerquita! 🔎"
     ];
-    const fiesta = ["¡Lo lograste! 🏆", "¡Campeón, " + n + "! 🥇", "¡Increíble ronda! 🎉", "¡Eres una estrella! 🌟"];
+    const fiesta = ["¡Lo lograste! 🏆", n ? "¡Campeón, " + n + "! 🥇" : "¡Campeón! 🥇", "¡Increíble ronda! 🎉", "¡Eres una estrella! 🌟"];
     let txt;
     if (tipo === "triste") txt = triste[Math.floor(Math.random() * triste.length)];
     else if (tipo === "fiesta") txt = fiesta[Math.floor(Math.random() * fiesta.length)];

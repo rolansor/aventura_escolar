@@ -55,11 +55,13 @@ const Perfiles = (function () {
       const b = document.createElement("button");
       b.className = "tarjeta tarjeta-perfil";
       b.innerHTML =
+        '<span class="perfil-editar" title="Editar perfil">✏️</span>' +
         '<span class="perfil-borrar" title="Borrar perfil">🗑️</span>' +
         '<span class="emoji-grande">' + emojiGenero(p.genero) + "</span>" +
         '<span class="titulo-tarjeta">' + esc(p.nombre) + "</span>" +
         '<span class="desc-tarjeta">' + etiquetaNivel(p.nivel) + "</span>";
       b.onclick = () => entrar(p.id);
+      b.querySelector(".perfil-editar").onclick = (e) => { e.stopPropagation(); abrirForm(p); };
       b.querySelector(".perfil-borrar").onclick = (e) => { e.stopPropagation(); borrar(p); };
       cont.appendChild(b);
     });
@@ -80,32 +82,37 @@ const Perfiles = (function () {
     pintarSelector();
   }
 
-  /* ---------- Modal "Nuevo perfil" ---------- */
-  function abrirForm() {
+  /* ---------- Modal "Nuevo perfil" / "Editar perfil" ----------
+     Si recibe un perfil existente, edita (precarga datos y guarda con
+     actualizarPerfil); si no, crea uno nuevo. */
+  function abrirForm(existente) {
     if (document.getElementById("modal-perfil")) return;
-    let genero = "nina", nivel = "basico";
+    const editar = !!(existente && existente.id);
+    let genero = editar ? (existente.genero === "nino" ? "nino" : "nina") : "nina";
+    let nivel = editar && NIVELES.some((n) => n.id === existente.nivel) ? existente.nivel : "basico";
+    const act = (cond) => (cond ? " activa" : "");
     const fondo = document.createElement("div");
     fondo.id = "modal-perfil"; fondo.className = "modal-fondo";
     fondo.innerHTML =
       '<div class="modal-caja" role="dialog" aria-modal="true">' +
-        '<div class="modal-emoji">🌟</div>' +
-        '<h3 class="modal-titulo">Nuevo perfil</h3>' +
-        '<input type="text" id="perfil-nombre" class="modal-input" maxlength="16" placeholder="Tu nombre" autocomplete="off" />' +
+        '<div class="modal-emoji">' + (editar ? "✏️" : "🌟") + "</div>" +
+        '<h3 class="modal-titulo">' + (editar ? "Editar perfil" : "Nuevo perfil") + "</h3>" +
+        '<input type="text" id="perfil-nombre" class="modal-input" maxlength="16" placeholder="Tu nombre" autocomplete="off" value="' + (editar ? esc(existente.nombre) : "") + '" />' +
         '<p class="modal-texto">¿Niño o niña?</p>' +
         '<div class="perfil-opciones" id="perfil-genero">' +
-          '<button type="button" class="perfil-op activa" data-g="nina">👧 Niña</button>' +
-          '<button type="button" class="perfil-op" data-g="nino">👦 Niño</button>' +
+          '<button type="button" class="perfil-op' + act(genero === "nina") + '" data-g="nina">👧 Niña</button>' +
+          '<button type="button" class="perfil-op' + act(genero === "nino") + '" data-g="nino">👦 Niño</button>' +
         '</div>' +
         '<p class="modal-texto">Nivel de dificultad</p>' +
         '<div class="perfil-opciones" id="perfil-nivel">' +
-          '<button type="button" class="perfil-op activa" data-n="basico">🟢 Básico</button>' +
-          '<button type="button" class="perfil-op" data-n="intermedio">🟡 Intermedio</button>' +
-          '<button type="button" class="perfil-op" data-n="avanzado">🔴 Avanzado</button>' +
+          '<button type="button" class="perfil-op' + act(nivel === "basico") + '" data-n="basico">🟢 Básico</button>' +
+          '<button type="button" class="perfil-op' + act(nivel === "intermedio") + '" data-n="intermedio">🟡 Intermedio</button>' +
+          '<button type="button" class="perfil-op' + act(nivel === "avanzado") + '" data-n="avanzado">🔴 Avanzado</button>' +
         '</div>' +
         '<p class="modal-error" id="perfil-error"></p>' +
         '<div class="modal-botones">' +
           '<button class="boton-secundario" id="perfil-cancelar">Cancelar</button>' +
-          '<button class="boton-grande" id="perfil-crear">¡Crear!</button>' +
+          '<button class="boton-grande" id="perfil-crear">' + (editar ? "Guardar" : "¡Crear!") + "</button>" +
         '</div>' +
       '</div>';
     document.body.appendChild(fondo);
@@ -113,7 +120,7 @@ const Perfiles = (function () {
     const input = document.getElementById("perfil-nombre");
     const error = document.getElementById("perfil-error");
     const caja = fondo.querySelector(".modal-caja");
-    setTimeout(() => input.focus(), 40);
+    setTimeout(() => { input.focus(); input.select(); }, 40);
 
     // Grupos de botones tipo "elige uno" (género y nivel)
     grupo("perfil-genero", "g", (v) => { genero = v; });
@@ -130,21 +137,28 @@ const Perfiles = (function () {
     }
 
     function cerrar() { fondo.remove(); }
-    function crear() {
+    function guardar() {
       const nombre = input.value.trim();
       if (!nombre) {
         error.textContent = "Escribe tu nombre 🙂";
         caja.classList.remove("temblar"); void caja.offsetWidth; caja.classList.add("temblar");
         input.focus(); return;
       }
-      const p = Juego.crearPerfil({ nombre: nombre, genero: genero, nivel: nivel });
-      cerrar();
-      entrar(p.id);
+      if (editar) {
+        Juego.actualizarPerfil(existente.id, { nombre: nombre, genero: genero, nivel: nivel });
+        cerrar();
+        actualizarChip();
+        pintarSelector();
+      } else {
+        const p = Juego.crearPerfil({ nombre: nombre, genero: genero, nivel: nivel });
+        cerrar();
+        entrar(p.id);
+      }
     }
-    document.getElementById("perfil-crear").onclick = crear;
+    document.getElementById("perfil-crear").onclick = guardar;
     document.getElementById("perfil-cancelar").onclick = cerrar;
     fondo.addEventListener("click", (e) => { if (e.target === fondo) cerrar(); });
-    input.addEventListener("keydown", (e) => { if (e.key === "Enter") crear(); else if (e.key === "Escape") cerrar(); });
+    input.addEventListener("keydown", (e) => { if (e.key === "Enter") guardar(); else if (e.key === "Escape") cerrar(); });
   }
 
   return { init, abrir, actualizarChip };

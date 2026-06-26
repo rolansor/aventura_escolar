@@ -125,6 +125,18 @@ const Juego = (function () {
     return '<div class="leaderboard"><h3>🏆 Mejores de ' + escHTML(jugador()) + "</h3>" +
       '<ol class="lb-lista">' + filas + "</ol></div>";
   }
+  // Inyecta el panel "🏆 Mejores" dentro de `cont` (si hay marcas). Ocupa toda
+  // la fila para no romper la rejilla de chips del selector. Lo usan los motores
+  // MC/Actividad y los modos con loop propio para mostrar el leaderboard en su selector.
+  function pintarMejores(cont, juego) {
+    if (!cont) return;
+    const html = tablaMejoresHTML(juego);
+    if (!html) return;
+    const w = document.createElement("div");
+    w.className = "leaderboard-wrap";
+    w.innerHTML = html;
+    cont.appendChild(w);
+  }
 
   function frasePositiva() {
     const n = jugador();
@@ -334,7 +346,7 @@ const Juego = (function () {
     config, cronIniciar, cronDetener, jugador, avatarNombre, genero, aplicarIdentidad, tip,
     perfiles, perfilActivo, perfilActivoId, crearPerfil, seleccionarPerfil, actualizarPerfil, borrarPerfil,
     nivel, nivelIdx, porNivel,
-    registrarResultado, mejores, fmtTiempo, tablaMejoresHTML
+    registrarResultado, mejores, fmtTiempo, tablaMejoresHTML, pintarMejores
   };
 })();
 window.Juego = Juego;

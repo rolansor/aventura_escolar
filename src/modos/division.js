@@ -19,6 +19,7 @@ const Division = (function () {
     const cc = elSel(); if (!cc) return; cc.innerHTML = "";
     NIV.forEach((nv) => { const btn = document.createElement("button"); btn.className = "chip-categoria";
       btn.innerHTML = "➗ " + nv.n + "<small>" + (nv.d || "dividir") + "</small>"; btn.onclick = () => empezar(nv.e); cc.appendChild(btn); });
+    Juego.pintarMejores(cc, "div"); // 🏆 mejores de esta actividad
   }
   function empezar(exact) {
     ac = 0; i = 0; cola = []; tInicio = Date.now(); const f = {};

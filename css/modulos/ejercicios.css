@@ -183,6 +183,78 @@
 }
 #copia-pista { display: block; margin: 0 auto 14px; }
 
+/* ---------- Corregir el texto (tocar la palabra mala) ---------- */
+.texto-corregir {
+  background: #fffbe7; border: 3px dashed var(--amarillo); border-radius: 14px;
+  padding: 16px 18px; font-size: 1.3rem; line-height: 2.1; margin-bottom: 16px; text-align: left;
+}
+.texto-corregir .palabra { border-radius: 6px; padding: 1px 4px; transition: background 0.12s, transform 0.12s; }
+.palabra.clicable { cursor: pointer; }
+.palabra.clicable:hover { background: #eef3ff; transform: translateY(-1px); }
+.palabra.err-mark { color: var(--rojo); font-weight: bold; text-decoration: underline wavy var(--rojo); background: #ffe0e0; }
+.palabra.tocada { background: #e7efff; color: var(--azul-osc); font-weight: bold; box-shadow: inset 0 -2px 0 var(--azul); }
+.texto-corregir .palabra.ok { background: #d7f8e8; color: #1c8f63; font-weight: bold; text-decoration: none; }
+.texto-corregir .palabra.mal { background: #ffd9d9; color: var(--rojo); font-weight: bold; text-decoration: underline wavy var(--rojo); }
+
+/* Mini-modal de corrección de una palabra */
+.corr-modal-fondo {
+  position: fixed; inset: 0; background: rgba(20,24,45,0.45); display: flex;
+  align-items: center; justify-content: center; z-index: 60; padding: 16px;
+}
+.corr-modal {
+  background: #fff; border-radius: 18px; padding: 18px 20px; box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  max-width: 420px; width: 100%; animation: latido 0.25s;
+}
+.corr-titulo { margin: 0 0 12px; font-size: 1.15rem; color: var(--azul-osc); text-align: center; font-weight: bold; }
+.corr-ops { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.corr-op {
+  border: 3px solid var(--azul); background: #fff; color: var(--azul-osc); border-radius: 14px;
+  padding: 12px 18px; font-family: var(--fuente); font-size: 1.25rem; cursor: pointer; transition: all 0.12s;
+}
+.corr-op:hover { background: var(--azul); color: #fff; transform: scale(1.06); }
+
+/* Controles del dictado por voz */
+.dictado-controles { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px; }
+
+/* ---------- Une las parejas (emparejar) ---------- */
+.emp-cols { display: flex; gap: 28px; justify-content: center; align-items: flex-start; flex-wrap: wrap; }
+.emp-col { display: flex; flex-direction: column; gap: 10px; min-width: 130px; }
+.emp-item {
+  border: 3px solid var(--azul); background: #fff; color: var(--azul-osc); border-radius: 14px;
+  padding: 10px 14px; font-family: var(--fuente); font-size: 1.15rem; cursor: pointer; transition: all 0.12s;
+}
+.emp-item:hover { transform: scale(1.04); }
+.emp-item.sel { background: var(--amarillo); border-color: var(--amarillo); color: #1d2440; }
+.emp-item.ok { background: var(--verde); border-color: var(--verde); color: #fff; cursor: default; }
+.emp-item.rojo { background: var(--rojo); border-color: var(--rojo); color: #fff; animation: temblor 0.4s; }
+
+/* ---------- Ponlas en orden (ordenar) ---------- */
+.ord-destino {
+  min-height: 56px; border: 3px dashed var(--azul); border-radius: 14px; background: #f3f6ff;
+  padding: 10px; margin-bottom: 14px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+}
+.ord-fuente { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.ord-chip {
+  border: 3px solid var(--azul); background: #fff; color: var(--azul-osc); border-radius: 12px;
+  padding: 8px 14px; font-family: var(--fuente); font-size: 1.2rem; cursor: pointer; transition: all 0.12s;
+}
+.ord-chip:hover { transform: scale(1.05); }
+.ord-chip.puesto { background: #eef3ff; }
+.ord-chip.ok { background: var(--verde); border-color: var(--verde); color: #fff; }
+.ord-chip.rojo { background: var(--rojo); border-color: var(--rojo); color: #fff; animation: temblor 0.4s; }
+
+/* ---------- Pon el signo (puntuación) ---------- */
+.signo-frase {
+  background: #fffbe7; border: 3px dashed var(--amarillo); border-radius: 14px;
+  padding: 16px 18px; font-size: 1.4rem; line-height: 1.7; margin-bottom: 16px; text-align: center;
+}
+.signo-hueco {
+  display: inline-block; min-width: 1.1em; padding: 0 6px; margin: 0 2px;
+  border-bottom: 3px solid var(--azul); color: var(--azul); font-weight: bold;
+}
+.signo-hueco.signo-ok { border-bottom-color: var(--verde); color: var(--verde); }
+.signo-opciones { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
 /* Quiz del Ecuador: imagen de bandera en la pregunta */
 #quiz-imagen { text-align: center; }
 .quiz-bandera { width: 120px; height: auto; border-radius: 6px; border: 1px solid #e3e9f7;
@@ -416,6 +488,8 @@
 .lb-pos { font-size: 1.1rem; min-width: 1.6em; text-align: center; }
 .lb-ac { font-weight: bold; color: var(--azul-osc); }
 .lb-t { margin-left: auto; color: #4a5270; }
+/* En el selector (grid de chips) el panel ocupa toda la fila, debajo de los temas. */
+.leaderboard-wrap { grid-column: 1 / -1; display: flex; justify-content: center; }
 
 /* ---------- Términos de la suma/resta (arrastrar nombres a números) ---------- */
 .term-op { display: flex; align-items: flex-start; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 10px 0 6px; }

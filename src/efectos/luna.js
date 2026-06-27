@@ -59,7 +59,7 @@ const Luna = (function () {
 
   function construirLuna() {
     grupo = new THREE.Group();
-    const esNina = Juego.genero() !== "nino";
+    const esNina = (Juego.generoMascota ? Juego.generoMascota() : Juego.genero()) !== "nino";
 
     const piel = new THREE.MeshStandardMaterial({ color: 0xffd9b0, roughness: 0.7 });
     const pelo = new THREE.MeshStandardMaterial({ color: 0x3a2d5c, roughness: 0.6 });
@@ -308,6 +308,8 @@ const Luna = (function () {
   }
 
   /* ---------------- Respaldo sin WebGL ---------------- */
+  // Carita de la mascota según su sexo (no el del participante).
+  function caraMascota() { return (Juego.generoMascota ? Juego.generoMascota() : Juego.genero()) === "nino" ? "👦" : "👧"; }
   function respaldoEmoji() {
     ok3d = false;
     const c = canvas();
@@ -316,15 +318,16 @@ const Luna = (function () {
     if (!em) {
       em = document.createElement("div");
       em.id = "luna-emoji";
-      em.textContent = "🌙👧";
+      em.textContent = "🌙" + caraMascota();
       cont().insertBefore(em, document.querySelector(".luna-nombre"));
     }
   }
   function animarRespaldo(tipo) {
     const em = document.getElementById("luna-emoji");
     if (!em) return;
-    em.textContent = tipo === "triste" ? "🌧️👧" : (tipo === "fiesta" ? "🥳🌙" : "✨👧");
-    setTimeout(() => (em.textContent = "🌙👧"), 1600);
+    const cara = caraMascota();
+    em.textContent = tipo === "triste" ? "🌧️" + cara : (tipo === "fiesta" ? "🥳🌙" : "✨" + cara);
+    setTimeout(() => (em.textContent = "🌙" + cara), 1600);
   }
 
   /* ---------------- Arrastre ---------------- */

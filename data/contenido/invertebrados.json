@@ -169,6 +169,74 @@
     },
     {
       "tipo": "clasificar",
+      "icono": "⭐",
+      "nombre": "Tipos de equinodermos",
+      "desc": "estrellas, erizos y pepinos",
+      "pregunta": "¿Qué tipo de equinodermo es? 👇",
+      "cestas": [
+        { "id": "asteroideo", "nombre": "Asteroideos (estrellas)", "emoji": "⭐" },
+        { "id": "equinoideo", "nombre": "Equinoideos (erizos)", "emoji": "🦔" },
+        { "id": "holoturoideo", "nombre": "Holoturoideos (pepinos)", "emoji": "🥒" }
+      ],
+      "cestasPorNivel": [
+        ["asteroideo", "equinoideo"],
+        ["asteroideo", "equinoideo"],
+        ["asteroideo", "equinoideo", "holoturoideo"]
+      ],
+      "items": {
+        "asteroideo": [
+          ["la estrella de mar", "la estrella roja", "la estrella azul", "la estrella común", "la estrella de arena"],
+          ["la estrella girasol", "la estrella de cuero", "la estrella espinosa", "la estrella de mar gigante", "la estrella sol"],
+          ["la estrella corona de espinas", "la estrella murciélago", "la estrella de mar reticulada", "la estrella de mar chocolate", "la estrella collar"]
+        ],
+        "equinoideo": [
+          ["el erizo de mar", "el erizo negro", "el erizo verde", "el erizo común", "el erizo rojo"],
+          ["el dólar de arena", "la galleta de mar", "el erizo de lápiz", "el erizo de roca", "el erizo morado"],
+          ["el erizo corazón", "el erizo de fuego", "el erizo gigante", "la galleta de mar perforada", "el erizo flor"]
+        ],
+        "holoturoideo": [
+          [],
+          [],
+          ["el pepino de mar", "el cohombro de mar", "el pepino de mar negro", "el pepino de mar tigre", "el pepino de mar real"]
+        ]
+      }
+    },
+    {
+      "tipo": "emparejar",
+      "icono": "🗂️",
+      "nombre": "Cada grupo y sus subgrupos",
+      "desc": "como el cuadro del cuaderno",
+      "total": 5,
+      "pregunta": "Une cada grupo con sus subgrupos 👇",
+      "pares": [
+        [
+          { "a": "Artrópodos", "b": "insectos, arácnidos y crustáceos" },
+          { "a": "Moluscos", "b": "gasterópodos, bivalvos y cefalópodos" },
+          { "a": "Gusanos", "b": "planos y redondos" },
+          { "a": "Equinodermos", "b": "estrellas y erizos de mar" },
+          { "a": "Cnidarios", "b": "medusas y pólipos" },
+          { "a": "Poríferos", "b": "las esponjas de mar" }
+        ],
+        [
+          { "a": "Artrópodos", "b": "insectos, arácnidos, crustáceos y miriápodos" },
+          { "a": "Moluscos", "b": "gasterópodos, bivalvos y cefalópodos" },
+          { "a": "Gusanos", "b": "anélidos, platelmintos y nemátodos" },
+          { "a": "Equinodermos", "b": "asteroideos y equinoideos" },
+          { "a": "Cnidarios", "b": "medusas y pólipos" },
+          { "a": "Poríferos", "b": "calcáreas y demosponjas" }
+        ],
+        [
+          { "a": "Artrópodos", "b": "insectos, arácnidos, crustáceos y miriápodos" },
+          { "a": "Moluscos", "b": "gasterópodos, bivalvos y cefalópodos" },
+          { "a": "Anélidos y gusanos", "b": "anélidos, platelmintos y nemátodos" },
+          { "a": "Equinodermos", "b": "asteroideos, equinoideos y holoturoideos" },
+          { "a": "Cnidarios o celentéreos", "b": "medusas y pólipos" },
+          { "a": "Poríferos", "b": "calcáreas y demosponjas" }
+        ]
+      ]
+    },
+    {
+      "tipo": "clasificar",
       "icono": "🦵",
       "nombre": "¿Con patas o sin patas?",
       "desc": "artrópodos vs. los demás",
@@ -298,6 +366,39 @@
       }
     },
     {
+      "tipo": "emparejar",
+      "icono": "🔬",
+      "nombre": "Reproducción: tipos y formas",
+      "desc": "sexual, asexual, fragmentación…",
+      "total": 5,
+      "pregunta": "Une cada palabra con lo que significa 👇",
+      "pares": [
+        [
+          { "a": "Reproducción sexual", "b": "hace falta un macho y una hembra" },
+          { "a": "Reproducción asexual", "b": "basta un solo progenitor" },
+          { "a": "Fragmentación", "b": "el cuerpo se parte y cada trozo es un nuevo ser" },
+          { "a": "Gemación", "b": "crece una yema o bulto que se desprende" },
+          { "a": "Huevo", "b": "de él nace el nuevo animalito" }
+        ],
+        [
+          { "a": "Reproducción sexual", "b": "se unen una célula del macho y otra de la hembra" },
+          { "a": "Reproducción asexual", "b": "un solo progenitor forma una copia" },
+          { "a": "Fecundación interna", "b": "la unión ocurre dentro del animal" },
+          { "a": "Fecundación externa", "b": "la unión ocurre fuera, en el agua" },
+          { "a": "Fragmentación", "b": "el cuerpo se rompe en pedazos" },
+          { "a": "Gemación", "b": "un brote crece y se separa" }
+        ],
+        [
+          { "a": "Fecundación interna", "b": "las células se unen dentro del cuerpo" },
+          { "a": "Fecundación externa", "b": "las células se unen fuera, en el agua" },
+          { "a": "Fragmentación", "b": "cada pedazo del cuerpo forma un nuevo individuo" },
+          { "a": "Gemación", "b": "una yema crece en el progenitor y se independiza" },
+          { "a": "Hermafrodita", "b": "tiene órganos de macho y de hembra a la vez" },
+          { "a": "Reproducción asexual", "b": "no necesita de otro ser para tener crías" }
+        ]
+      ]
+    },
+    {
       "tipo": "vf",
       "icono": "🤔",
       "nombre": "¿Verdadero o falso?",
@@ -328,6 +429,8 @@
           { "t": "Los moluscos tienen huesos por dentro.", "c": false, "exp": "Su cuerpo es blando; algunos tienen concha." },
           { "t": "Muchos gusanos son hermafroditas.", "c": true, "exp": "Tienen órganos de papá y mamá a la vez." },
           { "t": "Los corales se reproducen por gemación.", "c": true, "exp": "Un brote crece y se desprende." },
+          { "t": "En la fragmentación, un trozo del cuerpo puede formar un nuevo animal.", "c": true, "exp": "Así se reproducen algunas estrellas de mar y gusanos." },
+          { "t": "En la fecundación externa las células se unen dentro del cuerpo.", "c": false, "exp": "En la externa se unen FUERA, en el agua." },
           { "t": "Las medusas son cnidarios con tentáculos.", "c": true, "exp": "Atrapan presas con células urticantes." },
           { "t": "Los equinodermos tienen simetría radial (forma de estrella).", "c": true, "exp": "Su cuerpo se reparte alrededor de un centro." },
           { "t": "Las lombrices tienen patas.", "c": false, "exp": "No tienen patas: reptan con su cuerpo." },
@@ -363,6 +466,8 @@
         ],
         [
           { "q": "¿Qué es la reproducción ASEXUAL por gemación?", "c": "Un brote crece y se separa", "d": ["Unir un macho y una hembra", "Poner muchos huevos"] },
+          { "q": "¿Qué es la FRAGMENTACIÓN?", "c": "El cuerpo se parte y cada pedazo forma un nuevo ser", "d": ["Crece una yema que se desprende", "Se unen un macho y una hembra"] },
+          { "q": "¿Qué es la FECUNDACIÓN EXTERNA?", "c": "Las células se unen fuera del cuerpo, en el agua", "d": ["Las células se unen dentro del animal", "El cuerpo se parte en dos"] },
           { "q": "¿Qué son los GASTERÓPODOS?", "c": "Moluscos con concha en espiral", "d": ["Moluscos con dos valvas", "Moluscos con tentáculos"] },
           { "q": "Que un gusano sea HERMAFRODITA significa que…", "c": "tiene órganos de papá y mamá", "d": ["vive en el mar", "tiene muchas patas"] },
           { "q": "¿Qué grupo tiene forma de estrella (simetría radial)?", "c": "Los equinodermos", "d": ["Los insectos", "Los gusanos"] },

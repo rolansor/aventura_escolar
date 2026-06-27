@@ -33,10 +33,12 @@ const Juego = (function () {
     return arr;
   }
   /* ---------- Perfiles (cada niño tiene el suyo) ----------
-     Un perfil = { id, nombre, avatar, genero, nivel }. La lista vive en
-     "perfiles" y el activo en "perfil_activo". La identidad y el nivel de
-     dificultad se leen SIEMPRE del perfil activo (con fallback a las claves
-     viejas/NINO para no romper el doble-clic en páginas sueltas).            */
+     Un perfil = { id, nombre, genero, avatar, generoMascota, nivel }. `genero`
+     es el sexo del PARTICIPANTE (decide su emoji 👧/👦) y `generoMascota` el de
+     la MASCOTA (decide la figura de Perchita). La lista vive en "perfiles" y el
+     activo en "perfil_activo". La identidad y el nivel se leen SIEMPRE del perfil
+     activo (con fallback a las claves viejas/NINO para no romper el doble-clic en
+     páginas sueltas). En perfiles antiguos `generoMascota` cae a `genero`.       */
   const NIVELES = ["basico", "intermedio", "avanzado"];
   function perfiles() { return cargar("perfiles", []); }
   function perfilActivoId() { return cargar("perfil_activo", null); }
@@ -50,8 +52,9 @@ const Juego = (function () {
     const p = {
       id: "p" + Date.now() + "_" + Math.floor(Math.random() * 1e6),
       nombre: (datos.nombre || "").trim() || (window.NINO || "Nelson"),
-      avatar: (datos.avatar || "").trim() || "Luna",
       genero: datos.genero === "nino" ? "nino" : "nina",
+      avatar: (datos.avatar || "").trim() || "Perchita",
+      generoMascota: datos.generoMascota === "nino" ? "nino" : "nina",
       nivel: NIVELES.indexOf(datos.nivel) >= 0 ? datos.nivel : "basico"
     };
     lista.push(p);
@@ -80,8 +83,14 @@ const Juego = (function () {
 
   /* ---------- Identidad (derivada del perfil activo) ---------- */
   function jugador() { const p = perfilActivo(); return (p && p.nombre) || cargar("jugador", (window.NINO || "Nelson")); }
-  function avatarNombre() { const p = perfilActivo(); return (p && p.avatar) || cargar("avatar", "Luna"); }
+  function avatarNombre() { const p = perfilActivo(); return (p && p.avatar) || cargar("avatar", "Perchita"); }
   function genero() { const p = perfilActivo(); return (p && p.genero) || cargar("genero", "nina"); }
+  // Sexo de la mascota (independiente del participante; cae a `genero` en perfiles viejos).
+  function generoMascota() {
+    const p = perfilActivo();
+    if (p) return (p.generoMascota || p.genero) === "nino" ? "nino" : "nina";
+    return cargar("genero_mascota", cargar("genero", "nina"));
+  }
 
   /* ---------- Nivel de dificultad (propiedad del perfil) ---------- */
   function nivel() { const p = perfilActivo(); return (p && p.nivel) || "basico"; }
@@ -343,7 +352,7 @@ const Juego = (function () {
   return {
     iniciarBase, guardar, cargar, azar, azarEl, mezclar, frasePositiva, construirSecuencia,
     acierto, error, granPremio, sumarEstrellas, reiniciarProgreso,
-    config, cronIniciar, cronDetener, jugador, avatarNombre, genero, aplicarIdentidad, tip,
+    config, cronIniciar, cronDetener, jugador, avatarNombre, genero, generoMascota, aplicarIdentidad, tip,
     perfiles, perfilActivo, perfilActivoId, crearPerfil, seleccionarPerfil, actualizarPerfil, borrarPerfil,
     nivel, nivelIdx, porNivel,
     registrarResultado, mejores, fmtTiempo, tablaMejoresHTML, pintarMejores

@@ -69,7 +69,7 @@ página en `paginas/` que el menú enlaza. Las páginas de `paginas/` usan `<bas
 |---|---|---|
 | `data/*.json` (+ `*.js` generados por `build.py`) | `DATOS.*`, `NINO`, `ECUADOR_SVG`, `ECUADOR_CANTONES` | **Datos** (ver `data/README.md`): **`data/contenido/<modo>.json`** (contenido de actividades, lo usa el runner), **`data/mapas/*`** (geografía: provincias, regiones, detalle, cantones, mapa-ec), y de sistema/loader propio (materias, nino, ortografia, parrafos, generador-parrafos, secuencias). Editar el `.json` y correr `herramientas/build.py`. |
 | `src/core/juego.js` | `Juego` | Núcleo: marcador, sonido, `localStorage`, temporizador, utilidades (`azar/azarEl/mezclar/cargar/guardar/frasePositiva/construirSecuencia`, `acierto/error/granPremio`, `cron*`, `jugador`, `aplicarIdentidad`) e `iniciarBase()`. **Perfiles** (`perfiles/perfilActivo/crearPerfil/seleccionarPerfil/actualizarPerfil/borrarPerfil`), **nivel de dificultad** (`nivel/nivelIdx/porNivel`) y **leaderboard** (`registrarResultado/mejores/fmtTiempo/tablaMejoresHTML`). Ver "Perfiles, Niveles y Leaderboard". |
-| `src/core/perfiles.js` | `Perfiles` | **Selector de perfiles** (solo en `index.html`): pantalla `pantalla-perfiles` con una tarjeta por niño (botones **✏️ editar** y **🗑️ borrar**) + "➕ Nuevo perfil". El modal `abrirForm(perfil?)` sirve para **crear y editar** (nombre del niño, **nombre de la mascota** = `avatar`, **género de la mascota** = `genero` —construye a Luna niña/niño— y nivel; precarga al editar y guarda con `Juego.actualizarPerfil`, que aplica la identidad en vivo a `Luna`). Chip de perfil en la barra para cambiar. `Perfiles.init/abrir/actualizarChip`. |
+| `src/core/perfiles.js` | `Perfiles` | **Selector de perfiles** (solo en `index.html`): pantalla `pantalla-perfiles` con una tarjeta por niño (botones **✏️ editar** y **🗑️ borrar**) + "➕ Nuevo perfil". El modal `abrirForm(perfil?)` sirve para **crear y editar** (nombre del niño, **sexo del niño** = `genero` —emoji 👧/👦 de su tarjeta—, **nombre de la mascota** = `avatar` —por defecto "Perchita"—, **sexo de la mascota** = `generoMascota` —construye a la mascota niña/niño— y nivel; precarga al editar y guarda con `Juego.actualizarPerfil`, que aplica la identidad en vivo a la mascota). **Valida** ambos nombres con `validarNombre` (solo letras, sin números/símbolos/groserías; listas `SOECES_PALABRA`/`SOECES_FUERTE`). Chip de perfil en la barra para cambiar. `Perfiles.init/abrir/actualizarChip`. |
 | `src/core/datos.js` | `Datos` | `Datos.cargar([...])` lee `window.__DATOS__` y rellena los globales. |
 | `src/core/menu.js` | `Menu` | Menú de materias (tarjetas desde `DATOS.materias`, enlaza a `paginas/<modo>.html`). **Modal de clave** (`pedirClave(destino)`) que se abre ANTES de ir a la zona de adultos; sin clave válida no se navega. Dos tarjetas de adultos: **⚙️ Ajustes** (`editor.html`) y **📚 Banco de contenido** (`contenido.html`). |
 | `src/core/mc.js` | `MC` | Motor de **opción múltiple** (repasos rápidos). Fábrica `MC(px, temas)`; ronda de 10. Al terminar registra el resultado en el leaderboard (`Juego.registrarResultado(px,…)`). **No es el patrón por defecto** (ver Filosofía de diseño). |
@@ -178,10 +178,13 @@ modo usa los motores `MC`/`Actividad`.
 
 ## Perfiles, Niveles y Leaderboard
 **Perfiles** (`src/core/perfiles.js` + API en `juego.js`): cada niño tiene su perfil
-`{ id, nombre, avatar, genero, nivel }` en `localStorage` (`perfiles` = lista, `perfil_activo` = id).
-La **identidad** (`jugador/avatarNombre/genero`) y el **nivel** se leen SIEMPRE del perfil activo (con
-fallback a `NINO`/"Luna"/"nina"/"basico" si no hay perfil, para no romper el doble-clic en páginas
-sueltas). El **progreso** (`estado`: estrellas/racha/nivel) es por perfil, en clave `estado__<id>`. El
+`{ id, nombre, genero, avatar, generoMascota, nivel }` en `localStorage` (`perfiles` = lista,
+`perfil_activo` = id). **`genero`** es el sexo del PARTICIPANTE (decide su emoji 👧/👦) y **`generoMascota`**
+el de la MASCOTA (decide la figura de Perchita); en perfiles antiguos `generoMascota` cae a `genero`. El
+formulario **valida** ambos nombres (niño y mascota) con `validarNombre` (solo letras/tildes/ñ, sin números,
+símbolos ni groserías). La **identidad** (`jugador/avatarNombre/genero/generoMascota`) y el **nivel** se leen
+SIEMPRE del perfil activo (con fallback a `NINO`/"Perchita"/"nina"/"basico" si no hay perfil, para no romper
+el doble-clic en páginas sueltas). El **progreso** (`estado`: estrellas/racha/nivel) es por perfil, en clave `estado__<id>`. El
 selector vive solo en `index.html`; un chip en la barra permite cambiar de perfil. **El contenido
 (palabras/secuencias/párrafos) NO es por perfil**: es un banco compartido que cura el adulto.
 
@@ -356,7 +359,7 @@ están en `banco.js` y **deben permanecer alineadas** con las claves que lee `or
   - `orto_pares_<id>` — pares ✅/❌ definidos por el adulto.
   - `orto_ocultas_<id>` (y `_<grupo>` en mayúsculas/clasificar) — palabras del juego ocultadas.
   - `secuencias_propias`, `parrafos_propios`, `config` — banco/ajustes **compartidos** (no por perfil).
-  - **Perfiles**: `perfiles` (lista `[{id,nombre,avatar,genero,nivel}]`), `perfil_activo` (id).
+  - **Perfiles**: `perfiles` (lista `[{id,nombre,genero,avatar,generoMascota,nivel}]`), `perfil_activo` (id).
   - **Por perfil**: `estado__<id>` (estrellas/racha/nivel) y `lb_<juego>__<id>` (leaderboard, top-5).
   - Heredadas (un solo perfil, fallback): `jugador`, `avatar`, `genero`, `estado`.
 - **Importante**: las claves de "custom" y "ocultas" están duplicadas entre `contenido.js` (escribe) y

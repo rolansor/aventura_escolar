@@ -288,5 +288,19 @@
         "desc": "Regiones del Ecuador y cuidar el planeta"
       }
     ]
+  },
+  {
+    "id": "ingles",
+    "icono": "🗣️",
+    "nombre": "Inglés",
+    "desc": "Palabras y juegos en inglés",
+    "actividades": [
+      {
+        "modo": "ahorcado",
+        "icono": "🍎",
+        "nombre": "El ahorcado",
+        "desc": "Adivina la fruta en inglés letra por letra"
+      }
+    ]
   }
 ]

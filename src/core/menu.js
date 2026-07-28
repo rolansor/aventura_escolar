@@ -46,6 +46,7 @@ const Menu = (function () {
     cicloagua:  "paginas/cicloagua.html",
     materia:    "paginas/materia.html",
     ambiente:   "paginas/ambiente.html",
+    ahorcado:   "paginas/ahorcado.html",
     mapas:      "paginas/mapas.html",
     cantones:   "paginas/cantones.html",
     quiz:       "paginas/quiz.html",

@@ -75,8 +75,8 @@ página en `paginas/` que el menú enlaza. Las páginas de `paginas/` usan `<bas
 | `src/core/mc.js` | `MC` | Motor de **opción múltiple** (repasos rápidos). Fábrica `MC(px, temas)`; ronda de 10. Al terminar registra el resultado en el leaderboard (`Juego.registrarResultado(px,…)`). **No es el patrón por defecto** (ver Filosofía de diseño). |
 | `src/core/actividad.js` | `Actividad` | Motor de **actividades manipulativas** (hermano de `MC`). Fábrica `Actividad(px, temas, opts)`; cada tema tiene `ronda(host, ctrl)` que arma la interacción en `#<px>-extra` y resuelve con `ctrl.ganar()/fallar()/reintento()`. Sin temporizador (autocorrectivo). Al terminar registra el leaderboard. Reutiliza la misma estructura de página por prefijo que `MC`. |
 | `src/core/arrastrar.js` | `Arrastrar` | Arrastrar-y-soltar con eventos de **puntero** (mouse + dedo). `Arrastrar.hacer(item, zonas, alSoltar)` (marca `.zona-hover`, devuelve la zona destino o null) y `Arrastrar.clasificar(host, ctrl, {pregunta, cestas, items})` (actividad "clasifica en cestas"). Además dos ayudantes de **toque** para `ronda()` de `Actividad`: `Arrastrar.emparejar(host, ctrl, {pregunta, pares:[{a,b}]})` (une parejas: toca izquierda→derecha; CSS `.emp-*`) y `Arrastrar.ordenar(host, ctrl, {pregunta, correcto:[...]})` (toca fichas en orden; CSS `.ord-*`). |
-| `src/core/contenido.js` | `Contenido` | **Runner genérico de contenido**. `Contenido.montar("<modo>")` lee `DATOS.contenido[<modo>]` (de `data/contenido/<modo>.json`) y arma las rondas según el `tipo` de cada tema (clasificar/emparejar/ordenar/silabas/alfabetico/vf/definir/sujeto/signos/formas/escena/senala/problema/terminos; motor `mc`: mc/lectura), devolviendo un `Actividad`/`MC`. Centraliza la lógica que antes estaba en cada `src/modos/*.js`. Ver `docs/ESQUEMA_CONTENIDO.md`. |
-| `data/contenido/<modo>.json` | `DATOS.contenido[<modo>]` | **Contenido de ~24 actividades migradas** (Lengua: clases, familia, sinonimos, refranes, ordena, alfabetico, silabas, sujeto, signos, formas, lectura; Ciencias: animales, invertebrados, cuidafauna, plantas, cuerpo, materia, ambiente, cicloagua, senala; Sociales: epoca, regiones; Mate: problemas, terminos). **Ya NO tienen `src/modos/*.js`** (su lógica vive en el runner). Editar el JSON + `build.py`. |
+| `src/core/contenido.js` | `Contenido` | **Runner genérico de contenido**. `Contenido.montar("<modo>")` lee `DATOS.contenido[<modo>]` (de `data/contenido/<modo>.json`) y arma las rondas según el `tipo` de cada tema (clasificar/emparejar/ordenar/silabas/alfabetico/vf/definir/sujeto/signos/formas/escena/senala/problema/terminos/**ahorcado**; motor `mc`: mc/lectura), devolviendo un `Actividad`/`MC`. Incluye el helper de **voz en inglés** (`hablarEn`, Web Speech API) que usa el ahorcado. Centraliza la lógica que antes estaba en cada `src/modos/*.js`. Ver `docs/ESQUEMA_CONTENIDO.md`. |
+| `data/contenido/<modo>.json` | `DATOS.contenido[<modo>]` | **Contenido de ~25 actividades migradas** (Lengua: clases, familia, sinonimos, refranes, ordena, alfabetico, silabas, sujeto, signos, formas, lectura; Ciencias: animales, invertebrados, cuidafauna, plantas, cuerpo, materia, ambiente, cicloagua, senala; Sociales: epoca, regiones; Mate: problemas, terminos; Inglés: ahorcado). **Ya NO tienen `src/modos/*.js`** (su lógica vive en el runner). Editar el JSON + `build.py`. |
 | `src/modos/ortografia.js` | `Ortografia` | Ejercicios desde `DATOS.ortografia` (loader propio). |
 | `src/modos/secuencias.js` | `Secuencias` | Secuencias numéricas. |
 | `src/modos/copia.js` | `Copia` | **Corregir / Dictado** (dos sub-modos manipulativos). *Corregir*: el texto sale con errores y el niño **toca la palabra mala** → mini-modal con opciones (dificultad por `Juego.nivelIdx()`: básico = errores marcados y opciones obvias; intermedio = marcados, opciones más parecidas; avanzado = sin marcar, el niño los **busca** y al final pulsa Comprobar). *Dictado*: la voz del navegador (**Web Speech API**, sin librerías; degrada a mostrar el texto si no hay voz) lee y el niño escribe. Puntaje = palabras correctas/total → leaderboard `"copia"`. Conserva `generarErrores` (lo usa `banco.js`). |
@@ -103,7 +103,19 @@ Materias actuales: **Lengua** (ortografia, copia, **clases, familia, sinonimos, 
 ordena, sujeto, signos, alfabetico, lectura, refranes**), **Matemáticas** (secuencias, aritmetica/tablas/
 multiplicacion/division/comparar/redondeo/numeros/valorposicional/dinero/medidas/hora/fracciones),
 **Estudios Sociales** (**epoca, regiones**, `mapas`, `cantones`, `quiz`, `donde`), **Ciencias Naturales**
-(senala, plantas, cuerpo, **animales, invertebrados, cuidafauna**, cicloagua, materia, ambiente).
+(senala, plantas, cuerpo, **animales, invertebrados, cuidafauna**, cicloagua, materia, ambiente),
+**Inglés** (**ahorcado**).
+
+### Inglés — módulo nuevo (materia `ingles`)
+Primera actividad: **El ahorcado** (`ahorcado`, px `ahor`, `data/contenido/ahorcado.json`, tipo nuevo
+`ahorcado` en el runner). Dos temas: **🍎 Fruits** (frutas comunes) y **🇪🇨 Fruits of Ecuador** (guineo,
+verde, uvilla, tomate de árbol, guanábana, pitahaya…). El niño adivina la palabra **en inglés** tocando
+letras (o con el teclado real de la compu); la pista es el **emoji grande + la traducción al español de
+Ecuador** (en avanzado del tema 1 se oculta la traducción). Cada fallo dibuja una parte del monigote y
+quita un ❤️ (6 vidas); en básico se regalan 2 letras, 1 en intermedio y 0 en avanzado (`pistas`). Al
+terminar la ronda, la **voz del navegador pronuncia la palabra en inglés** (Web Speech API, `en-US`,
+con botón 🔊 para repetir; si no hay voz, no pasa nada). Estilos `.ahor-*` en `ejercicios.css`.
+Para añadir frutas/temas: editar el JSON + `python herramientas/build.py`.
 
 ### Ciencias Naturales — adaptación al Taller 1 de Quinto ("Animales")
 Todo manipulativo (`Actividad`+`Arrastrar`), catálogo INLINE por 3 niveles (`Juego.nivelIdx()`/`porNivel`):
@@ -374,6 +386,10 @@ están en `banco.js` y **deben permanecer alineadas** con las claves que lee `or
 
 ## Estado / próximos pasos posibles
 - Hecho recientemente:
+  - **Materia nueva: Inglés** con su primer juego, **El ahorcado de las frutas** (tipo `ahorcado` en el
+    runner + `data/contenido/ahorcado.json`, temas *Fruits* y *Fruits of Ecuador*, vocabulario español
+    del Ecuador: guineo, verde, uvilla, limón sutil, tomate riñón…). Incluye pronunciación en inglés por
+    voz del navegador. (Smoke test happy-dom en el scratchpad del job: monta y juega los 3 niveles.)
   - **Ciencias Naturales alineado al Taller 1 de Quinto (Animales)**: `animales` reescrito (vertebrado/
     invertebrado, grupos, alimentación, reproducción, respiración), `invertebrados` ampliado (reproducción
     sexual/asexual, tipos de artrópodos) y módulo nuevo `cuidafauna` (animales en peligro + huella ecológica).

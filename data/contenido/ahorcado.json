@@ -1,0 +1,94 @@
+{
+  "modo": "ahorcado",
+  "materia": "ingles",
+  "px": "ahor",
+  "titulo": "El ahorcado",
+  "icono": "🍎",
+  "motor": "actividad",
+  "temas": [
+    {
+      "tipo": "ahorcado",
+      "icono": "🍎",
+      "nombre": "Fruits",
+      "desc": "adivina la fruta en inglés",
+      "total": 6,
+      "vidas": 6,
+      "pistas": [2, 1, 0],
+      "mostrarEs": [true, true, false],
+      "palabras": [
+        [
+          { "en": "APPLE", "es": "manzana", "emoji": "🍎" },
+          { "en": "PEAR", "es": "pera", "emoji": "🍐" },
+          { "en": "KIWI", "es": "kiwi", "emoji": "🥝" },
+          { "en": "PLUM", "es": "ciruela", "emoji": "🟣" },
+          { "en": "GRAPE", "es": "uva", "emoji": "🍇" },
+          { "en": "LEMON", "es": "limón", "emoji": "🍋" },
+          { "en": "MELON", "es": "melón", "emoji": "🍈" },
+          { "en": "PEACH", "es": "durazno", "emoji": "🍑" },
+          { "en": "MANGO", "es": "mango", "emoji": "🥭" },
+          { "en": "LIME", "es": "limón sutil", "emoji": "🟢" },
+          { "en": "FIG", "es": "higo", "emoji": "🟤" }
+        ],
+        [
+          { "en": "BANANA", "es": "guineo", "emoji": "🍌" },
+          { "en": "ORANGE", "es": "naranja", "emoji": "🍊" },
+          { "en": "CHERRY", "es": "cereza", "emoji": "🍒" },
+          { "en": "TOMATO", "es": "tomate riñón", "emoji": "🍅" },
+          { "en": "PAPAYA", "es": "papaya", "emoji": "🍈" },
+          { "en": "GUAVA", "es": "guayaba", "emoji": "🍐" },
+          { "en": "COCONUT", "es": "coco", "emoji": "🥥" },
+          { "en": "AVOCADO", "es": "aguacate", "emoji": "🥑" }
+        ],
+        [
+          { "en": "PINEAPPLE", "es": "piña", "emoji": "🍍" },
+          { "en": "STRAWBERRY", "es": "frutilla", "emoji": "🍓" },
+          { "en": "WATERMELON", "es": "sandía", "emoji": "🍉" },
+          { "en": "BLUEBERRY", "es": "mora azul (arándano)", "emoji": "🫐" },
+          { "en": "TANGERINE", "es": "mandarina", "emoji": "🍊" },
+          { "en": "GRAPEFRUIT", "es": "toronja", "emoji": "🍊" },
+          { "en": "BLACKBERRY", "es": "mora", "emoji": "🫐" },
+          { "en": "RASPBERRY", "es": "frambuesa", "emoji": "🔴" }
+        ]
+      ]
+    },
+    {
+      "tipo": "ahorcado",
+      "icono": "🌴",
+      "nombre": "Fruits of Ecuador",
+      "desc": "frutas de nuestra tierra, en inglés",
+      "total": 6,
+      "vidas": 6,
+      "pistas": [2, 1, 0],
+      "mostrarEs": [true, true, true],
+      "palabras": [
+        [
+          { "en": "BANANA", "es": "guineo", "emoji": "🍌" },
+          { "en": "MANGO", "es": "mango", "emoji": "🥭" },
+          { "en": "PAPAYA", "es": "papaya", "emoji": "🍈" },
+          { "en": "GUAVA", "es": "guayaba", "emoji": "🍐" },
+          { "en": "LEMON", "es": "limón", "emoji": "🍋" },
+          { "en": "ORANGE", "es": "naranja", "emoji": "🍊" },
+          { "en": "CACAO", "es": "cacao", "emoji": "🍫" }
+        ],
+        [
+          { "en": "COCONUT", "es": "coco", "emoji": "🥥" },
+          { "en": "AVOCADO", "es": "aguacate", "emoji": "🥑" },
+          { "en": "PINEAPPLE", "es": "piña", "emoji": "🍍" },
+          { "en": "PLANTAIN", "es": "verde (plátano)", "emoji": "🍌" },
+          { "en": "SOURSOP", "es": "guanábana", "emoji": "🟢" },
+          { "en": "BLACKBERRY", "es": "mora de Castilla", "emoji": "🫐" },
+          { "en": "TAMARIND", "es": "tamarindo", "emoji": "🟤" },
+          { "en": "CHERIMOYA", "es": "chirimoya", "emoji": "🟩" }
+        ],
+        [
+          { "en": "PASSION FRUIT", "es": "maracuyá", "emoji": "🟡" },
+          { "en": "TREE TOMATO", "es": "tomate de árbol", "emoji": "🍅" },
+          { "en": "DRAGON FRUIT", "es": "pitahaya", "emoji": "🌸" },
+          { "en": "GOLDEN BERRY", "es": "uvilla", "emoji": "🟠" },
+          { "en": "STAR FRUIT", "es": "carambola", "emoji": "⭐" },
+          { "en": "SUGAR APPLE", "es": "anona", "emoji": "🟩" }
+        ]
+      ]
+    }
+  ]
+}

@@ -478,6 +478,40 @@
 .cesta.ok { border-style: solid; border-color: var(--verde); background: #e9fbf3; }
 .cesta.rojo { border-color: var(--rojo); background: #fdecea; }
 
+/* ---------- El ahorcado (Inglés): dibujo, palabra y teclado ---------- */
+.ahor-zona { display: flex; align-items: center; justify-content: center; gap: clamp(10px,4vw,28px); flex-wrap: wrap; margin: 4px 0 6px; }
+.ahor-dibujo { width: clamp(110px,30vw,160px); height: auto; }
+.ahor-dibujo line, .ahor-dibujo circle, .ahor-dibujo path { fill: none; stroke: #3a4266; stroke-width: 5; stroke-linecap: round; }
+.ahor-dibujo .ahor-ojo { fill: #3a4266; stroke: none; }
+.ahor-dibujo .ahor-cara { stroke-width: 2.5; }
+.ahor-parte { opacity: 0; transition: opacity .35s; }
+.ahor-parte.on { opacity: 1; }
+.ahor-info { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.ahor-emoji { font-size: clamp(2.6rem,11vw,3.6rem); line-height: 1; }
+.ahor-es { font-weight: bold; color: var(--azul-osc); font-size: 1.1rem; }
+.ahor-vidas { font-size: 1.05rem; letter-spacing: 1px; }
+.ahor-audio { cursor: pointer; border: 2px solid var(--azul); background: #fff; color: var(--azul-osc); border-radius: 12px;
+  font-family: var(--fuente); font-weight: bold; font-size: .9rem; padding: 6px 12px; margin-top: 2px; }
+.ahor-audio:hover { background: #eef3ff; }
+.ahor-palabra { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 6px 0 14px; }
+.ahor-letra { min-width: 30px; font-size: clamp(1.4rem,6vw,2rem); font-weight: bold; color: var(--azul-osc);
+  text-align: center; border-bottom: 4px solid var(--azul); padding-bottom: 2px; }
+.ahor-letra.ahor-hueco { border-bottom: none; min-width: 14px; }
+.ahor-letra.puesta { animation: latido .35s; }
+.ahor-letra.revelada { color: var(--rojo); border-bottom-color: var(--rojo); }
+.ahor-teclado { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; max-width: 460px; margin: 0 auto; }
+.ahor-tecla { width: 38px; height: 44px; border: 2px solid var(--azul); border-radius: 10px; background: #fff;
+  font-family: var(--fuente); font-weight: bold; font-size: 1.05rem; color: #1d2440; cursor: pointer; transition: transform .12s; }
+.ahor-tecla:hover:not(:disabled) { background: #eef3ff; transform: translateY(-2px); }
+.ahor-tecla.ok { background: var(--verde); border-color: var(--verde); color: #fff; }
+.ahor-tecla.pista { background: var(--amarillo); border-color: #e0a800; color: #5a4500; }
+.ahor-tecla.mal { background: #fdecea; border-color: var(--rojo); color: var(--rojo); }
+.ahor-tecla:disabled { cursor: default; opacity: .95; }
+@media (max-width: 520px) {
+  .ahor-tecla { width: 31px; height: 38px; font-size: .95rem; }
+  .ahor-teclado { gap: 5px; }
+}
+
 /* ---------- Leaderboard (🏆 mejores de la ronda, por perfil) ---------- */
 .leaderboard { margin: 14px auto 0; max-width: 360px; background: #fff; border-radius: 16px;
   box-shadow: var(--sombra); padding: 12px 14px; }

@@ -60,6 +60,7 @@ Cada tema lleva `tipo`, `icono`, `nombre`, `desc`, `total?` (rondas, def. 6) y s
 | `senala` | `svg`, `partes:[{id,nombre}]` | tocar la región correcta sobre un SVG |
 | `problema` | `ops:[…]` (filtra el `banco` del archivo, ítems `{t,op,a,b,u}`) | problema verbal: elige operación y escribe la respuesta |
 | `terminos` | `suma:bool`, `rangos:[[b],[i],[a]]` | paramétrico: genera a±b y arrastra los nombres |
+| `ahorcado` | `palabras:[ [ {en,es,emoji} ], [i], [a] ]`, `vidas?` (def. 6), `pistas?:[b,i,a]` (letras regaladas), `mostrarEs?:[b,i,a]` | adivina la palabra en inglés letra por letra (teclado en pantalla **y** teclado real); el emoji + la traducción son la pista, y al terminar la voz del navegador la pronuncia en inglés |
 
 > `escena`/`senala`: el SVG va embebido como **una cadena JSON** (escapar las comillas). `problema` lee un
 > campo **`banco`** a nivel de archivo (no por tema); cada tema `problema` lo filtra por sus `ops`.

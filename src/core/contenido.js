@@ -9,7 +9,8 @@
      { modo, materia, px, titulo, icono, motor: "actividad"|"mc", temas: [ … ] }
    Cada tema: { tipo, icono, nombre, desc, total?, …contenido por nivel [b,i,a]… }
    Tipos: clasificar | emparejar | ordenar | silabas | alfabetico | vf | definir
-          | sujeto | signos | formas | (motor mc:) lectura | mc
+          | sujeto | signos | formas | escena | senala | problema | terminos
+          | ahorcado (Inglés) | (motor mc:) lectura | mc
    ============================================================ */
 window.Contenido = (function () {
   function esc(s) { const d = document.createElement("div"); d.textContent = String(s == null ? "" : s); return d.innerHTML; }
@@ -23,6 +24,30 @@ window.Contenido = (function () {
   }
   // Un ítem al azar del nivel (con fallback).
   function itemDe(niveles, niv) { return Juego.azarEl(nivelArr(niveles, niv)); }
+
+  /* Voz en inglés (Web Speech API, sin librerías). Si el navegador no tiene voz,
+     simplemente no suena: la actividad sigue funcionando igual. */
+  let vozEn = null;
+  function buscarVozEn() {
+    if (vozEn || !window.speechSynthesis || !window.speechSynthesis.getVoices) return vozEn;
+    const vs = window.speechSynthesis.getVoices() || [];
+    vozEn = vs.find((v) => /^en(-|_)/i.test(v.lang)) || vs.find((v) => /english|ingl/i.test(v.name)) || null;
+    return vozEn;
+  }
+  function hablarEn(texto) {
+    if (!window.speechSynthesis || !window.SpeechSynthesisUtterance || !texto) return;
+    try {
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(String(texto).toLowerCase());
+      u.lang = "en-US"; u.rate = 0.8; u.pitch = 1;
+      const v = buscarVozEn(); if (v) u.voice = v;
+      window.speechSynthesis.speak(u);
+    } catch (e) { /* sin voz, sin drama */ }
+  }
+  // Las voces pueden cargar tarde (addEventListener para no pisar a copia.js).
+  if (window.speechSynthesis && window.speechSynthesis.addEventListener) {
+    window.speechSynthesis.addEventListener("voiceschanged", function () { vozEn = null; buscarVozEn(); });
+  }
 
   // Pinta botones tipo ".ord-chip" dentro de un contenedor ".ord-fuente" en host.
   function pintarBotones(host, etiquetas, alElegir) {
@@ -250,6 +275,131 @@ window.Contenido = (function () {
           } else { zona.classList.add("rojo"); setTimeout(() => zona.classList.remove("rojo"), 450); ctrl.reintento("Ese nombre no va ahí 👀"); }
         });
       });
+    },
+    // Ahorcado (Inglés): adivina la palabra tocando letras (o con el teclado real).
+    // La pista es el dibujo/emoji + la traducción; al terminar, la voz la pronuncia.
+    // { palabras:[[{en,es,emoji}],[i],[a]], vidas?, pistas?:[b,i,a], mostrarEs?:[b,i,a] }
+    ahorcado: (t) => {
+      const ABC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+      const esLetra = (c) => c >= "A" && c <= "Z";
+      // Horca fija + 6 partes del monigote (una por cada fallo).
+      const DIBUJO =
+        '<svg class="ahor-dibujo" viewBox="0 0 150 170" aria-hidden="true">' +
+          '<line class="ahor-horca" x1="12" y1="160" x2="112" y2="160"/>' +
+          '<line class="ahor-horca" x1="34" y1="160" x2="34" y2="14"/>' +
+          '<line class="ahor-horca" x1="34" y1="14" x2="100" y2="14"/>' +
+          '<line class="ahor-horca" x1="100" y1="14" x2="100" y2="32"/>' +
+          '<g class="ahor-parte"><circle cx="100" cy="46" r="14"/>' +
+            '<circle class="ahor-ojo" cx="95" cy="43" r="1.9"/><circle class="ahor-ojo" cx="105" cy="43" r="1.9"/>' +
+            '<path class="ahor-cara" d="M94 51 q6 5 12 0"/></g>' +
+          '<line class="ahor-parte" x1="100" y1="60" x2="100" y2="104"/>' +
+          '<line class="ahor-parte" x1="100" y1="72" x2="80" y2="92"/>' +
+          '<line class="ahor-parte" x1="100" y1="72" x2="120" y2="92"/>' +
+          '<line class="ahor-parte" x1="100" y1="104" x2="82" y2="132"/>' +
+          '<line class="ahor-parte" x1="100" y1="104" x2="118" y2="132"/>' +
+        '</svg>';
+      let cola = [], colaNiv = -1, quitarTeclas = null;
+      return (host, ctrl) => {
+        if (quitarTeclas) quitarTeclas();          // por si quedó viva la ronda anterior
+        const niv = Juego.nivelIdx();
+        // Cola barajada del nivel: no repite palabra hasta agotarlas todas.
+        if (colaNiv !== niv || !cola.length) { cola = ctrl.mezclar(nivelArr(t.palabras, niv).slice()); colaNiv = niv; }
+        const p = cola.pop() || { en: "APPLE", es: "manzana", emoji: "🍎" };
+        const palabra = String(p.en).toUpperCase(), letras = palabra.split("");
+        const vidas = t.vidas || 6, verEs = Juego.porNivel(t.mostrarEs || [true, true, false]);
+        let fallos = 0, faltan = letras.filter(esLetra).length, fin = false;
+
+        ctrl.pregunta("🔤 ¿Cómo se escribe en inglés? Toca las letras 👇");
+        host.innerHTML =
+          '<div class="ahor-zona">' + DIBUJO +
+            '<div class="ahor-info">' +
+              '<div class="ahor-emoji">' + esc(p.emoji || "🍎") + "</div>" +
+              '<div class="ahor-es">' + (verEs ? esc(p.es) : "¿…?") + "</div>" +
+              '<div class="ahor-vidas"></div>' +
+              '<button class="ahor-audio oculto" type="button" title="Escuchar en inglés">🔊 Escuchar</button>' +
+            "</div>" +
+          "</div>" +
+          '<div class="ahor-palabra"></div>' +
+          '<div class="ahor-teclado"></div>';
+
+        const elPal = host.querySelector(".ahor-palabra");
+        const celdas = letras.map((c) => {
+          const s = document.createElement("span");
+          s.className = esLetra(c) ? "ahor-letra" : "ahor-letra ahor-hueco";
+          s.textContent = esLetra(c) ? "" : (c === " " ? "" : c);
+          elPal.appendChild(s); return s;
+        });
+        const elVidas = host.querySelector(".ahor-vidas");
+        const partes = host.querySelectorAll(".ahor-parte");
+        const audio = host.querySelector(".ahor-audio");
+        audio.onclick = () => hablarEn(palabra);
+        function pintarVidas() {
+          let s = ""; for (let k = 0; k < vidas; k++) s += k < vidas - fallos ? "❤️" : "🤍";
+          elVidas.textContent = s;
+        }
+        pintarVidas();
+
+        const teclas = {};
+        const elTec = host.querySelector(".ahor-teclado");
+        ABC.forEach((L) => {
+          const b = document.createElement("button");
+          b.className = "ahor-tecla"; b.type = "button"; b.textContent = L;
+          b.onclick = () => probar(L);
+          teclas[L] = b; elTec.appendChild(b);
+        });
+
+        function cerrar() {
+          fin = true;
+          if (quitarTeclas) quitarTeclas();
+          ABC.forEach((L) => { teclas[L].disabled = true; });
+          audio.classList.remove("oculto");
+        }
+        function probar(L, gratis) {
+          if (fin) return;
+          const b = teclas[L]; if (!b || b.disabled) return;
+          b.disabled = true;
+          const pos = []; letras.forEach((c, k) => { if (c === L) pos.push(k); });
+          if (pos.length) {
+            b.classList.add(gratis ? "pista" : "ok");
+            pos.forEach((k) => { celdas[k].textContent = L; celdas[k].classList.add("puesta"); });
+            faltan -= pos.length;
+            if (faltan <= 0) {
+              cerrar(); hablarEn(palabra);
+              ctrl.ganar(2300);
+              ctrl.retro("🎉 <b>" + esc(palabra) + "</b> = " + esc(p.es) + " — escúchala 🔊", "bien");
+            } else if (!gratis) {
+              ctrl.retro("¡Sí! Hay " + pos.length + " «" + L + "» 🎉", "bien");
+            }
+          } else {
+            b.classList.add("mal");
+            fallos++; pintarVidas();
+            if (partes[fallos - 1]) partes[fallos - 1].classList.add("on");
+            if (fallos >= vidas) {
+              letras.forEach((c, k) => { if (esLetra(c) && !celdas[k].textContent) { celdas[k].textContent = c; celdas[k].classList.add("revelada"); } });
+              cerrar(); hablarEn(palabra);
+              ctrl.fallar("Era <b>" + esc(palabra) + "</b> = " + esc(p.es) + " 👀", 3000);
+            } else {
+              ctrl.reintento("La «" + L + "» no está. Te quedan " + (vidas - fallos) + " ❤️");
+            }
+          }
+        }
+
+        // También se puede jugar con el teclado real de la compu.
+        const caja = host.closest ? host.closest(".caja-juego") : null;
+        function alTeclear(e) {
+          if (e.ctrlKey || e.altKey || e.metaKey) return;
+          if (caja && caja.classList.contains("oculto")) return;   // se salió al selector
+          const L = String(e.key || "").toUpperCase();
+          if (L.length === 1 && esLetra(L)) { e.preventDefault(); probar(L); }
+        }
+        document.addEventListener("keydown", alTeclear);
+        quitarTeclas = function () { document.removeEventListener("keydown", alTeclear); quitarTeclas = null; };
+
+        // Regalo inicial: unas letras ya puestas (más en básico, ninguna en avanzado).
+        const nPistas = Juego.porNivel(t.pistas || [2, 1, 0]) || 0;
+        const unicas = ctrl.mezclar(letras.filter(esLetra).filter((c, k, a) => a.indexOf(c) === k));
+        unicas.slice(0, Math.min(nPistas, Math.max(0, unicas.length - 1))).forEach((L) => probar(L, true));
+      };
     }
   };
 

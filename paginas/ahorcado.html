@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es-EC">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="../" />
+  <title>El ahorcado (Inglés) — La Aventura</title>
+  <link rel="stylesheet" href="css/modulos/base.css" />
+  <link rel="stylesheet" href="css/modulos/ejercicios.css" />
+  <link rel="stylesheet" href="css/modulos/efectos.css" />
+</head>
+<body>
+  <canvas id="lienzo3d"></canvas>
+  <div id="interfaz">
+    <header id="barra-superior">
+      <div class="grupo-barra grupo-izq">
+        <button id="btn-inicio" class="boton-icono" title="Ir al menú principal">🏠</button>
+        <button id="btn-volver-global" class="boton-icono" title="Volver atrás">↩️</button>
+      </div>
+      <div id="marcador">
+        <span class="estrellas">⭐ <b id="puntaje-estrellas">0</b></span>
+        <span class="racha">🔥 <b id="puntaje-racha">0</b></span>
+        <span class="nivel">Nivel <b id="puntaje-nivel">1</b></span>
+      </div>
+      <div class="grupo-barra grupo-der">
+        <button id="btn-sonido" class="boton-icono" title="Activar/silenciar sonido">🔊</button>
+      </div>
+    </header>
+
+    <section id="pantalla-ahorcado" class="pantalla activa">
+      <div id="ahor-selector" class="selector-categorias"></div>
+      <div id="ahor-juego" class="caja-juego oculto">
+        <div class="fila-timer"><span class="timer oculto" id="ahor-timer"></span></div>
+        <div class="progreso"><div class="progreso-barra" id="ahor-progreso"></div></div>
+        <p class="regla-ayuda" id="ahor-tema"></p>
+        <h2 class="pregunta" id="ahor-pregunta"></h2>
+        <div id="ahor-extra" class="mc-extra"></div>
+        <div class="opciones" id="ahor-opciones"></div>
+        <p class="retro" id="ahor-retro"></p>
+      </div>
+    </section>
+  </div>
+
+  <div id="luna" title="Perchita">
+    <div class="luna-globo" id="luna-globo">Soy Perchita 🌙</div>
+    <canvas id="luna-canvas"></canvas>
+    <div class="luna-nombre">🌙 Perchita ✋</div>
+  </div>
+  <div id="celebracion"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>window.THREE || document.write('<scr'+'ipt src="lib/three.min.js"></scr'+'ipt>');</script>
+  <script src="src/efectos/escena3d.js"></script>
+  <script src="src/efectos/luna.js"></script>
+  <script src="data/contenido/ahorcado.js"></script>
+  <script src="src/core/datos.js"></script>
+  <script src="src/core/juego.js"></script>
+  <script src="src/core/actividad.js"></script>
+  <script src="src/core/arrastrar.js"></script>
+  <script src="src/core/contenido.js"></script>
+  <script>
+    window.RUTA_INICIO = "index.html";
+    Datos.cargar(["contenido/ahorcado"]).then(function () {
+      Juego.iniciarBase();
+      var MODO = Contenido.montar("ahorcado");
+      window.MODO_VOLVER = function () {
+        if (!document.getElementById("ahor-juego").classList.contains("oculto")) MODO.volverSelector();
+        else location.href = "index.html?materia=ingles";
+      };
+      MODO.init();
+      Juego.tip("Toca una letra. Si no está, ¡pierdes un corazón! 💛");
+    });
+  </script>
+</body>
+</html>

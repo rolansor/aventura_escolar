@@ -49,6 +49,17 @@ def aviso(donde, tema, msg):
 
 
 # ------------------------------------------------------------------ contenido
+def oraciones(p):
+    """Parte un párrafo en oraciones igual que oraciones() de src/core/contenido.js."""
+    out, ini = [], 0
+    for m in re.finditer(r'[.!?…]+["»”)]*\s+', p):
+        out.append(p[ini:m.end()])
+        ini = m.end()
+    if ini < len(p):
+        out.append(p[ini:])
+    return out
+
+
 def tres_niveles(f, t, clave):
     v = t.get(clave)
     if not isinstance(v, list) or len(v) != 3:
@@ -195,11 +206,34 @@ def revisar_tema(f, t, C):
                     error(f, nom, "la palabra tiene caracteres que no están en el teclado: " + w["en"])
 
     elif tp == "lectura":
+        total = t.get("total", 6)
         for n, arr in enumerate(tres_niveles(f, t, "lecturas")):
             for lec in arr:
+                tit = "%s, «%s»" % (NIV[n], lec.get("titulo", "sin título"))
+                parrafos = lec["texto"] if isinstance(lec["texto"], list) else [lec["texto"]]
+                ors = [norm(o) for p in parrafos for o in oraciones(p)]
+                if len(lec["preguntas"]) != total:
+                    error(f, nom, "%s tiene %d preguntas y la ronda es de %d (una sesión = un texto)"
+                          % (tit, len(lec["preguntas"]), total))
                 for q in lec["preguntas"]:
-                    if q["correcta"] not in q["opciones"]:
-                        error(f, nom, "la respuesta correcta no está entre las opciones: " + q["q"])
+                    clases = [k for k in ("c", "toca", "ordena") if k in q]
+                    if len(clases) != 1:
+                        error(f, nom, "%s: la pregunta debe ser de UNA clase (c+d, toca u ordena): %s" % (tit, q.get("q")))
+                    if "c" in q:
+                        if q["c"] in q.get("d", []):
+                            error(f, nom, "%s: la correcta también está entre los distractores: %s" % (tit, q["q"]))
+                        if len(q.get("d", [])) < 2:
+                            error(f, nom, "%s: faltan distractores en: %s" % (tit, q["q"]))
+                    # La pista y la oración que se toca deben estar en el texto, dentro de UNA oración.
+                    for campo in ("pista", "toca"):
+                        if campo in q:
+                            hay = [o for o in ors if norm(q[campo]) in o]
+                            if not hay:
+                                error(f, nom, "%s: «%s» no está dentro de una sola oración del texto" % (tit, q[campo]))
+                            elif campo == "toca" and len(hay) > 1:
+                                error(f, nom, "%s: «%s» está en más de una oración (no se sabría cuál tocar)" % (tit, q[campo]))
+                    if "ordena" in q and (len(q["ordena"]) < 3 or len(set(q["ordena"])) != len(q["ordena"])):
+                        error(f, nom, "%s: «ordena» necesita 3 o más hechos distintos" % tit)
 
     elif tp == "mc":
         for x in t.get("banco", []):

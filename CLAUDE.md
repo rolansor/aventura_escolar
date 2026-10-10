@@ -84,7 +84,7 @@ página en `paginas/` que el menú enlaza. Las páginas de `paginas/` usan `<bas
 | `src/core/mc.js` | `MC` | Motor de **opción múltiple** (repasos rápidos). Fábrica `MC(px, temas)`; ronda de 10. Al terminar registra el resultado en el leaderboard (`Juego.registrarResultado(px,…)`). **No es el patrón por defecto** (ver Filosofía de diseño). |
 | `src/core/actividad.js` | `Actividad` | Motor de **actividades manipulativas** (hermano de `MC`). Fábrica `Actividad(px, temas, opts)`; cada tema tiene `ronda(host, ctrl)` que arma la interacción en `#<px>-extra` y resuelve con `ctrl.ganar()/fallar()/reintento()`. Sin temporizador (autocorrectivo). Al terminar registra el leaderboard. Reutiliza la misma estructura de página por prefijo que `MC`. |
 | `src/core/arrastrar.js` | `Arrastrar` | Arrastrar-y-soltar con eventos de **puntero** (mouse + dedo). `Arrastrar.hacer(item, zonas, alSoltar)` (marca `.zona-hover`, devuelve la zona destino o null) y `Arrastrar.clasificar(host, ctrl, {pregunta, cestas, items})` (actividad "clasifica en cestas"). Además dos ayudantes de **toque** para `ronda()` de `Actividad`: `Arrastrar.emparejar(host, ctrl, {pregunta, pares:[{a,b}]})` (une parejas: toca izquierda→derecha; CSS `.emp-*`) y `Arrastrar.ordenar(host, ctrl, {pregunta, correcto:[...]})` (toca fichas en orden; CSS `.ord-*`). |
-| `src/core/contenido.js` | `Contenido` | **Runner genérico de contenido**. `Contenido.montar("<modo>")` lee `DATOS.contenido[<modo>]` (de `data/contenido/<modo>.json`) y arma las rondas según el `tipo` de cada tema (clasificar/emparejar/ordenar/silabas/alfabetico/vf/definir/sujeto/signos/formas/escena/senala/problema/terminos/**ahorcado**; motor `mc`: mc/lectura), devolviendo un `Actividad`/`MC`. Incluye el helper de **voz en inglés** (`hablarEn`, Web Speech API) que usa el ahorcado. Centraliza la lógica que antes estaba en cada `src/modos/*.js`. Ver `docs/ESQUEMA_CONTENIDO.md`. |
+| `src/core/contenido.js` | `Contenido` | **Runner genérico de contenido**. `Contenido.montar("<modo>")` lee `DATOS.contenido[<modo>]` (de `data/contenido/<modo>.json`) y arma las rondas según el `tipo` de cada tema (clasificar/emparejar/ordenar/silabas/alfabetico/vf/definir/sujeto/signos/formas/escena/senala/problema/terminos/**ahorcado**/**lectura**; motor `mc`: mc), devolviendo un `Actividad`/`MC`. Incluye el helper de **voz en inglés** (`hablarEn`, Web Speech API) que usa el ahorcado. Centraliza la lógica que antes estaba en cada `src/modos/*.js`. Ver `docs/ESQUEMA_CONTENIDO.md`. |
 | `data/contenido/<modo>.json` | `DATOS.contenido[<modo>]` | **Contenido de las 30 actividades del runner** (Lengua: clases, familia, sinonimos, refranes, ordena, alfabetico, silabas, sujeto, signos, formas, lectura, vocabulario; Ciencias: animales, invertebrados, cuidafauna, plantas, vidaplantas, cuerpo, materia, ambiente, cicloagua, senala; Sociales: epoca, regiones, incas, riosygente; Mate: problemas, terminos, propmult; Inglés: ahorcado) + `quiz.json` (bancos de texto del Quiz). **No tienen `src/modos/*.js`** (su lógica vive en el runner). Editar el JSON + `build.py`. |
 | `src/modos/ortografia.js` | `Ortografia` | Ejercicios desde `DATOS.ortografia` (loader propio). |
 | `src/modos/secuencias.js` | `Secuencias` | Secuencias numéricas. |
@@ -180,12 +180,17 @@ por 3 niveles `[básico, intermedio, avanzado]`; hereda leaderboard y niveles.
   según el nivel). **familia** — familias de palabras (`clasificar`: derivadas a su raíz).
 - **sinonimos** — sinónimos y antónimos (`emparejar`). **refranes** — refranes y adivinanzas (`emparejar`).
 - **ordena** — ordena la oración (`ordenar`). **alfabetico** — orden alfabético (tipo `alfabetico`: orden
-  calculado, tolerante a tildes). **silabas** — separa en sílabas (tipo `silabas`, separadas a mano).
+  calculado con el alfabeto español: ignora tildes y pone la **ñ después de la n**). **silabas** — separa en sílabas (tipo `silabas`, separadas a mano).
 - **sujeto** — sujeto y predicado: toca dónde empieza el predicado (`corte` puesto a mano).
-- **signos** — pon el signo en el hueco ▢ (CSS `.signo-*`). **formas** — diminutivos, aumentativos, género y
+- **signos** — pon el signo en el hueco ▢ (CSS `.signo-*`); al acertar un `?` o `!` de cierre aparece también su
+  pareja de apertura (`¿`, `¡`). **formas** — diminutivos, aumentativos, género y
   número (elige la forma).
-- **lectura** — comprensión lectora (motor `MC`, tipo `lectura`: se lee un texto y se responden seguidas
-  todas sus preguntas).
+- **lectura** — comprensión lectora (tipo `lectura`, motor `Actividad`, sin reloj): el texto queda **siempre a
+  la vista** en una tarjeta (`.lec-texto`) con la pregunta al lado; una sesión = un texto y sus 5 preguntas, de
+  tres clases: elegir (si falla, se ilumina en el texto la oración de la `pista`), **tocar en el texto** la
+  oración que lo dice (`toca`) y **ordenar** lo que pasó (`ordena`). 5 textos por nivel (informativo, cuento,
+  leyenda, fábula, receta, carta, noticia). La caja se ensancha (`.caja-ancha`) y la mascota se achica
+  (`body.act-ancha`). CSS `.lec-*`.
 - **vocabulario** — ver "Segundo trimestre de Quinto".
 
 ### Matemáticas
@@ -477,8 +482,8 @@ están en `banco.js` y **deben permanecer alineadas** con las claves que lee `or
 ## Pruebas y validación
 - `python herramientas/validar.py` — contenido: respuestas fuera de las opciones, palabras en dos cestas,
   casillas que regalan la respuesta, partes sin dibujo, ortografía sin la letra de su categoría, cantones
-  mal escritos, plan de trimestres incoherente (`revisar_curriculo`), `.js` sin regenerar. **Debe dar
-  0 errores.**
+  mal escritos, lecturas cuya `pista`/`toca` no está en una sola oración del texto, plan de trimestres
+  incoherente (`revisar_curriculo`), `.js` sin regenerar. **Debe dar 0 errores.**
 - `python herramientas/humo.py [--todos] [--nivel X] [página…]` — abre cada página en Chrome/Edge sin
   ventana (perfil temporal: no toca el progreso real), entra varias veces a cada tema y reporta errores de
   JavaScript, rondas vacías y actividades que no caben en pantalla. Antes recorre el inicio (grado →
@@ -494,6 +499,12 @@ están en `banco.js` y **deben permanecer alineadas** con las claves que lee `or
 
 ## Estado y pendientes
 **Hecho (lo más reciente primero):**
+- **Revisión de Lengua (oct-2026)**: Comprensión lectora rehecha (antes el "texto" eran una o dos oraciones
+  pequeñas bajo la pregunta: ahora son textos de verdad, siempre a la vista, con preguntas de elegir, tocar la
+  oración y ordenar). Orden alfabético ya no rechaza el orden correcto con ñ; "jabalís"/"rubís" dejaron de ser
+  opciones "malas" (son plurales válidos); signos con su pareja de apertura y oraciones con punto final; comas
+  que faltaban en "Ordena la oración"; fuera palabras ambiguas de "Clases de palabras" y "solito" de la familia
+  de "sol"; sinónimos que se podían cruzar.
 - **Segundo trimestre de Quinto (oct-2026)**, según el Classroom del colegio: geometría (rectas, ángulos con
   graduador, cuadriláteros, perímetro), multiplicación (hasta 3 cifras, términos y propiedades), concurso de
   vocabulario, la vida de las plantas, señoríos/Incas/Conquista y ríos/gente. Ver "Segundo trimestre de

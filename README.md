@@ -140,7 +140,7 @@ Contenido.montar("<modo>")   →   motor Actividad (manipulativo) ó MC (opción
 
 Los **tipos de juego** que entiende el runner incluyen `clasificar`, `emparejar`, `ordenar`,
 `silabas`, `alfabetico`, `vf` (verdadero/falso), `definir`, `sujeto`, `signos`, `formas`,
-`escena`, `senala`, `problema`, `terminos` y `ahorcado` (motor *actividad*), más `mc` y `lectura`
+`escena`, `senala`, `problema`, `terminos`, `ahorcado` y `lectura` (motor *actividad*), más `mc`
 (motor *mc*).
 El esquema completo y los campos de cada tipo están en **[`docs/ESQUEMA_CONTENIDO.md`](docs/ESQUEMA_CONTENIDO.md)**.
 

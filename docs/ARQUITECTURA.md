@@ -95,10 +95,11 @@ en `docs/ESQUEMA_CONTENIDO.md`.
   rondas para uno de los dos motores existentes:
   - **`motor: "actividad"`** (manipulativo, `src/core/actividad.js`): cada tema se traduce a una `ronda(host, ctrl)`
     a partir de su `tipo`. Tipos soportados: `clasificar`, `emparejar`, `ordenar`, `silabas`, `alfabetico`,
-    `vf`, `definir`, `sujeto`, `signos`, `formas`, `escena`, `senala`, `problema`, `terminos`, `ahorcado`.
+    `vf`, `definir`, `sujeto`, `signos`, `formas`, `escena`, `senala`, `problema`, `terminos`, `ahorcado`,
+    `lectura` (comprensión lectora: texto siempre a la vista + preguntas de elegir, tocar la oración u ordenar).
     Muchos de ellos usan `src/core/arrastrar.js` para el arrastrar-y-soltar; `senala`, `escena` y
     `clasificar` (con `dibujo`) pueden montar además un **modelo 3D** (ver abajo).
-  - **`motor: "mc"`** (opción múltiple, `src/core/mc.js`): tipos `mc` y `lectura` (comprensión lectora).
+  - **`motor: "mc"`** (opción múltiple, `src/core/mc.js`): tipo `mc` (repasos rápidos; hoy ninguna actividad lo usa).
 - **Enrutado del dato**: `src/core/datos.js` coloca cada `contenido/<modo>` en `DATOS.contenido[<modo>]`
   (regla por prefijo, ver arriba).
 - **Página por actividad**: cada `paginas/<modo>.html` carga su `data/contenido/<modo>.js`, luego `datos.js`,

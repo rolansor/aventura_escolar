@@ -263,6 +263,7 @@
   border-bottom: 3px solid var(--azul); color: var(--azul); font-weight: bold;
 }
 .signo-hueco.signo-ok { border-bottom-color: var(--verde); color: var(--verde); }
+.signo-abre.signo-ok { color: var(--verde); font-weight: bold; }   /* el ¿ o ¡ que aparece al acertar su pareja */
 .signo-opciones { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
 
 /* Quiz del Ecuador: imagen de bandera en la pregunta */
@@ -637,6 +638,40 @@
 .prob-ok { font-family: var(--fuente); font-weight: bold; font-size: 1rem; padding: 10px 16px;
   border: none; border-radius: 12px; background: var(--azul); color: #fff; cursor: pointer; }
 
+/* ---------- Comprensión lectora (tipo "lectura"): el texto siempre a la vista, la pregunta al lado ---------- */
+.caja-juego.caja-ancha { max-width: 1000px; }
+.lec-zona { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 18px; align-items: start; text-align: left; }
+.lec-texto { background: #fffdf3; border: 2px solid #f0e2b6; border-left: 8px solid var(--amarillo); border-radius: 16px;
+  padding: 12px 18px 10px; max-height: min(64vh, 480px); overflow-y: auto; box-shadow: var(--sombra); }
+.lec-clase { display: inline-block; padding: 2px 10px; border-radius: 999px; background: #fff1c4; color: #7a5600;
+  font-size: .72rem; font-weight: bold; letter-spacing: .5px; text-transform: uppercase; }
+.lec-titulo { margin: 6px 0 8px; color: var(--azul-osc); font-size: 1.25rem; line-height: 1.25; }
+.lec-texto p { margin: 0 0 9px; color: #1d2440; font-size: 1.04rem; line-height: 1.6; }
+.lec-or { border-radius: 6px; transition: background .2s, box-shadow .2s; }
+.lec-or.pista { background: #fff3a8; box-shadow: 0 0 0 2px #fff3a8; }
+.lec-or.ok { background: #c9f5df; box-shadow: 0 0 0 2px #c9f5df; }
+.lec-or.mal { background: #fdd3d0; box-shadow: 0 0 0 2px #fdd3d0; }
+.lec-zona.tocando .lec-or { cursor: pointer; }
+.lec-zona.tocando .lec-or:hover { background: #e4ecff; box-shadow: 0 0 0 2px #e4ecff; }
+.lec-lado { display: flex; flex-direction: column; gap: 8px; }
+.lec-n { margin: 0; color: #6c7590; font-size: .8rem; font-weight: bold; letter-spacing: .5px; text-transform: uppercase; }
+.lec-q { margin: 0 0 4px; color: var(--azul-osc); font-size: 1.2rem; font-weight: bold; line-height: 1.3; }
+.lec-resp { display: flex; flex-direction: column; gap: 8px; }
+.lec-op { padding: 11px 14px; border: 3px solid var(--azul); border-radius: 14px; background: #fff; color: var(--azul-osc);
+  font-family: var(--fuente); font-size: 1.02rem; font-weight: bold; text-align: left; cursor: pointer; transition: transform .12s; }
+.lec-op:hover:not(:disabled) { transform: translateX(4px); background: #eef3ff; }
+.lec-op.ok { background: var(--verde); border-color: var(--verde); color: #fff; }
+.lec-op.mal { background: #fdecea; border-color: var(--rojo); color: #9b2c25; opacity: .75; cursor: default; }
+.lec-ayuda { margin: 0; padding: 10px 12px; border: 2px dashed #6aa9e0; border-radius: 14px; background: #f3f8ff; color: #2a4a6a; font-weight: bold; }
+/* "Ordena lo que pasó": las fichas del ordenar, en columna y con letra de lectura */
+.lec-resp .ord-destino { flex-direction: column; align-items: stretch; margin-bottom: 4px; min-height: 48px; }
+.lec-resp .ord-fuente { flex-direction: column; align-items: stretch; }
+.lec-resp .ord-chip { font-size: 1rem; text-align: left; padding: 8px 12px; }
+@media (max-width: 760px) {
+  .lec-zona { grid-template-columns: 1fr; }
+  .lec-texto { max-height: 42vh; }
+}
+
 /* ---------- Geometría (src/modos/geometria.js): rectas, ángulos, graduador, cuadriláteros, perímetro ---------- */
 .geo-svg { display: block; width: min(100%, 440px); height: auto; margin: 0 auto; touch-action: none;
   background: #fff; border-radius: 16px; box-shadow: inset 0 0 0 2px #dfe6f7; transition: filter .3s; }
@@ -712,6 +747,14 @@
 
 /* ---------- Pantallas bajas (laptop de 768 px de alto): todo un poco más compacto ---------- */
 @media (max-height: 820px) {
+  /* un texto de ~130 palabras debe caber entero, sin barra, junto a su pregunta */
+  .caja-juego.caja-ancha .pregunta { font-size: 1.12rem; margin: 0 0 8px; }
+  .lec-zona { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 16px; }
+  .lec-texto { max-height: 68vh; padding: 10px 16px 6px; }
+  .lec-texto p { font-size: 1rem; line-height: 1.5; margin-bottom: 7px; }
+  .lec-titulo { font-size: 1.15rem; margin: 4px 0 6px; }
+  .lec-q { font-size: 1.12rem; }
+  .lec-op { padding: 9px 12px; font-size: .98rem; }
   .geo-svg { width: min(100%, 52vh, 440px); }
   .geo-svg.geo-grande { width: min(100%, 66vh, 520px); }
   .geo-peri { width: min(100%, 44vh, 400px); }

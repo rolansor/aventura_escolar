@@ -137,7 +137,7 @@
       "desc": "niño → niña, gato → gatos",
       "items": [
         [
-          { "base": "niño", "instr": "Cámbiala a femenino", "correcto": "niña", "opciones": ["niña", "niñe", "niños"] },
+          { "base": "niño", "instr": "Cámbiala a femenino", "correcto": "niña", "opciones": ["niña", "niñito", "niños"] },
           { "base": "gato", "instr": "Ponla en plural", "correcto": "gatos", "opciones": ["gatos", "gata", "gatito"] },
           { "base": "perra", "instr": "Cámbiala a masculino", "correcto": "perro", "opciones": ["perro", "perras", "perrito"] },
           { "base": "flor", "instr": "Ponla en plural", "correcto": "flores", "opciones": ["flores", "flora", "florcita"] },
@@ -178,7 +178,7 @@
           { "base": "caballo", "instr": "Cámbiala a femenino", "correcto": "yegua", "opciones": ["yegua", "caballa", "caballos"] },
           { "base": "lunes", "instr": "Ponla en plural", "correcto": "lunes", "opciones": ["lunes", "luneses", "lunás"] },
           { "base": "emperador", "instr": "Cámbiala a femenino", "correcto": "emperatriz", "opciones": ["emperatriz", "emperadora", "emperadores"] },
-          { "base": "jabalí", "instr": "Ponla en plural", "correcto": "jabalíes", "opciones": ["jabalíes", "jabalís", "jabalices"] },
+          { "base": "jabalí", "instr": "Ponla en plural", "correcto": "jabalíes", "opciones": ["jabalíes", "jabalises", "jabalices"] },
           { "base": "héroe", "instr": "Cámbiala a femenino", "correcto": "heroína", "opciones": ["heroína", "heroesa", "héroes"] },
           { "base": "príncipe", "instr": "Cámbiala a femenino", "correcto": "princesa", "opciones": ["princesa", "príncipes", "principito"] },
           { "base": "avestruz", "instr": "Ponla en plural", "correcto": "avestruces", "opciones": ["avestruces", "avestruzes", "avestrucito"] },
@@ -186,7 +186,7 @@
           { "base": "carnero", "instr": "Cámbiala a femenino", "correcto": "oveja", "opciones": ["oveja", "carneros", "carnerito"] },
           { "base": "lombriz", "instr": "Ponla en plural", "correcto": "lombrices", "opciones": ["lombrices", "lombrizes", "lombricita"] },
           { "base": "padrino", "instr": "Cámbiala a femenino", "correcto": "madrina", "opciones": ["madrina", "padrinos", "padrinito"] },
-          { "base": "rubí", "instr": "Ponla en plural", "correcto": "rubíes", "opciones": ["rubíes", "rubís", "rubices"] },
+          { "base": "rubí", "instr": "Ponla en plural", "correcto": "rubíes", "opciones": ["rubíes", "rubises", "rubices"] },
           { "base": "macho", "instr": "Cámbiala a femenino", "correcto": "hembra", "opciones": ["hembra", "machos", "machito"] },
           { "base": "caballero", "instr": "Cámbiala a femenino", "correcto": "dama", "opciones": ["dama", "caballeros", "caballerito"] }
         ]

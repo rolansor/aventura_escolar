@@ -58,16 +58,17 @@ Cada tema lleva `tipo`, `icono`, `nombre`, `desc`, `total?` (rondas, def. 6) y s
 | `emparejar` | `pregunta`, `pares:[ [ {a,b} ], [i], [a] ]`, `porRonda:[b,i,a]?` | unir izquierda↔derecha. La pareja se acepta por **texto**: dos `a` pueden compartir el mismo `b` (cóndor y oso → "Sierra"). En una misma ronda no salen dos parejas donde la respuesta de una es la palabra de la otra ("poblamiento → asentamiento" con "asentamiento → poblado") |
 | `ordenar` | `pregunta`, `secuencias:[ [ ["a","b"] ], [i], [a] ]` | tocar en orden (elige 1 secuencia/ronda). Se compara el **texto**: dos fichas iguales son intercambiables |
 | `silabas` | `items:[ [ ["ma","ri","po","sa"] ], [i], [a] ]` | ordenar las sílabas (muestra la palabra) |
-| `alfabetico` | `pregunta?`, `grupos:[ [ ["pato","ave"] ], [i], [a] ]` | ordenar A→Z (orden calculado, sin tildes) |
+| `alfabetico` | `pregunta?`, `grupos:[ [ ["pato","ave"] ], [i], [a] ]` | ordenar A→Z (orden calculado con el alfabeto español: ignora tildes; la ñ va después de la n) |
 | `vf` | `preguntas:[ [ {t,c,exp} ], [i], [a] ]` | ¿verdadero o falso? (`c`=bool, `exp` al fallar). El runner sortea **mitad verdaderas, mitad falsas**: pon al menos 3–4 falsas por nivel para que no se repitan |
 | `definir` | `preguntas:[ [ {q,c,d:[…]} ], [i], [a] ]` | elige la definición correcta |
 | `sujeto` | `pregunta?`, `items:[ [ {palabras:[…],corte} ], [i], [a] ]` | toca dónde empieza el predicado |
-| `signos` | `pregunta?`, `pista?` (mensaje al fallar), `items:[ [ {antes,despues,correcto,opciones:[…]} ], [i], [a] ]` | toca lo que va en el hueco ▢ (un signo, o la letra/tilde que falta en una palabra) |
+| `signos` | `pregunta?`, `pista?` (mensaje al fallar), `items:[ [ {antes,despues,correcto,opciones:[…]} ], [i], [a] ]` | toca lo que va en el hueco ▢ (un signo, o la letra/tilde que falta en una palabra). Si `correcto` es `?` o `!` y `antes` no trae su apertura, al acertar aparece también `¿` / `¡` al inicio |
 | `formas` | `pista?` (mensaje al fallar), `items:[ [ {base,instr,correcto,opciones:[…]} ], [i], [a] ]` | elige la forma correcta (también sirve para completar una igualdad: `base` = "6 × 8 = 8 × ▢") |
 | `escena` | `escena?(svg)`, `modelo?`, `slots:[{id,txt?,left?,top?}]`, `fichas:[{id,txt?,ficha?}]` | arrastrar fichas a zonas (sobre un SVG o en fila). Con **`modelo`** (p. ej. `"cicloagua"`) las casillas "?" flotan sobre una maqueta 3D animada, ancladas al punto del modelo con el mismo `id`. **No pongas en `txt` la respuesta** (la casilla la regalaría) |
 | `senala` | `svg`, `modelo?`, `partes:[{id,nombre}]` | tocar la parte correcta. Con **`modelo`** (p. ej. `"planta"`, `"flor"`) se usa el modelo 3D y el `svg` queda de respaldo sin WebGL. El `nombre` lleva su **artículo** ("la raíz", "los pétalos"): de ahí sale la concordancia ("¿Dónde **están** los pétalos?") |
 | `problema` | `ops:[…]` (filtra el `banco` del archivo, ítems `{t,op,a,b,u}`) | problema verbal: elige operación y escribe la respuesta |
 | `terminos` | `suma:bool` **o** `op:"mult"` (+ `rangosB?` para el 2.º factor y `factores?:bool`), `rangos:[[b],[i],[a]]` | paramétrico: genera a±b o a×b y arrastra los nombres (sumando/suma, minuendo/sustraendo/diferencia, multiplicando/multiplicador/producto o factor/factor/producto) |
+| `lectura` | `total` (= preguntas por texto), `lecturas:[ [ {titulo, clase?, texto:[párrafos], preguntas:[…]} ], [i], [a] ]`. Cada pregunta es de UNA clase: `{q, c, d:[…], pista?}` (elegir), `{q, toca}` (tocar la oración) u `{q, ordena:[…]}` (ordenar los hechos) | comprensión lectora: el texto queda **siempre a la vista** en una tarjeta y sus preguntas salen una por una (una sesión = un texto). `pista` y `toca` son un trozo literal del texto que cabe en **una** oración: con `pista`, si el niño falla se ilumina esa oración; con `toca`, el niño debe tocarla. Sin reloj |
 | `ahorcado` | `palabras:[ [ {en,es,emoji} ], [i], [a] ]`, `vidas?` (def. 6), `pistas?:[b,i,a]` (letras regaladas), `mostrarEs?:[b,i,a]` | adivina la palabra en inglés letra por letra (teclado en pantalla **y** teclado real); el emoji + la traducción son la pista, y al terminar la voz del navegador la pronuncia en inglés |
 
 > `escena`/`senala`/`dibujo`: el SVG puede ir como cadena o, mejor, como archivo aparte con `$archivo`
@@ -82,7 +83,6 @@ Cada tema lleva `tipo`, `icono`, `nombre`, `desc`, `total?` (rondas, def. 6) y s
 | `tipo` | Campos | Notas |
 |---|---|---|
 | `mc` | `banco:[ {p,c,d:[…],pista?} ]` | quiz; el runner garantiza que `c` esté entre las opciones |
-| `lectura` | `lecturas:[ [ {texto,preguntas:[{q,opciones,correcta}]} ], [i], [a] ]` | comprensión lectora: se lee **un** texto y se responden seguidas todas sus preguntas |
 
 ## Reglas de oro (no romper nada)
 - Edita **solo datos**; no toques `px`, ni los IDs de la página, ni el runner.
@@ -90,7 +90,10 @@ Cada tema lleva `tipo`, `icono`, `nombre`, `desc`, `total?` (rondas, def. 6) y s
 - En `clasificar`, un ítem va en **una sola cesta por tema** (ojo con palabras como "lo" o "rápido", que
   caben en dos grupos: `validar.py` las detecta).
 - En `escena`, la casilla **no** debe traer escrita la respuesta.
-- En `definir`/`mc`, la **correcta** no se repite en los distractores.
+- En `definir`/`mc`/`lectura`, la **correcta** no se repite en los distractores.
+- En `lectura`, escribe textos de verdad (unas 60 palabras en básico, 100 en intermedio y 120 en avanzado), sin
+  abreviaturas con punto (el runner parte el texto en oraciones por `.`, `?`, `!`), y mezcla preguntas literales
+  con inferenciales. Todos los textos de un tema llevan el mismo número de preguntas (`total`).
 - En `silabas`, separa a mano; en `clasificar` de ortografía, clasifica a mano (ejemplos claros).
 - Español del Ecuador, ~9 años, textos cortos, datos correctos.
 

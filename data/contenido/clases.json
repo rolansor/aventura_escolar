@@ -33,9 +33,9 @@
           ["libertad", "amistad", "Ecuador", "alegría", "esperanza", "naturaleza", "justicia", "valentía", "sabiduría", "honestidad", "tristeza", "bondad", "igualdad", "paciencia", "imaginación", "gratitud"]
         ],
         "adjetivo": [
-          ["grande", "rojo", "feliz", "alto", "bonito", "frío", "pequeño", "azul", "suave", "dulce", "limpio", "nuevo", "corto", "largo", "gordo", "flaco"],
+          ["grande", "rojo", "feliz", "alto", "bonito", "lindo", "pequeño", "azul", "suave", "sabroso", "limpio", "nuevo", "corto", "largo", "gordo", "flaco"],
           ["valiente", "amarillo", "curioso", "enorme", "tranquilo", "rápido", "simpático", "redondo", "peludo", "brillante", "salado", "delgado", "verdoso", "ruidoso", "alegre", "oscuro"],
-          ["transparente", "silencioso", "gigantesco", "amable", "misterioso", "generoso", "increíble", "asombroso", "maravilloso", "resplandeciente", "inteligente", "trabajador", "responsable", "afortunado"]
+          ["transparente", "silencioso", "gigantesco", "amable", "misterioso", "generoso", "increíble", "asombroso", "maravilloso", "resplandeciente", "inteligente", "cuidadoso", "responsable", "afortunado"]
         ],
         "verbo": [
           ["correr", "saltar", "comer", "jugar", "dormir", "cantar", "beber", "reír", "mirar", "abrir", "caminar", "leer", "lavar", "soñar", "llorar", "cerrar"],
@@ -55,7 +55,7 @@
         "adverbio": [
           [],
           [],
-          ["ahora", "aquí", "siempre", "rápidamente", "ayer", "muy", "nunca", "despacio", "hoy", "mañana", "allí", "bien", "mal", "cerca", "lejos", "temprano"]
+          ["ahora", "aquí", "siempre", "rápidamente", "ayer", "muy", "nunca", "despacio", "hoy", "después", "allí", "bien", "también", "jamás", "lejos", "temprano"]
         ]
       }
     }

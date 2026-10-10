@@ -10,7 +10,7 @@
    Cada tema: { tipo, icono, nombre, desc, total?, …contenido por nivel [b,i,a]… }
    Tipos: clasificar | emparejar | ordenar | silabas | alfabetico | vf | definir
           | sujeto | signos | formas | escena | senala | problema | terminos
-          | ahorcado (Inglés) | (motor mc:) lectura | mc
+          | ahorcado (Inglés) | lectura (comprensión lectora) | (motor mc:) mc
    ============================================================ */
 window.Contenido = (function () {
   function esc(s) { const d = document.createElement("div"); d.textContent = String(s == null ? "" : s); return d.innerHTML; }
@@ -40,6 +40,15 @@ window.Contenido = (function () {
   }
   // Siguiente ítem del nivel (con fallback al nivel inferior), sin repetir.
   function itemDe(niveles, niv) { return sacar(nivelArr(niveles, niv)); }
+  // Parte un párrafo en oraciones sin perder ni un carácter (para tocarlas o iluminarlas).
+  function oraciones(p) {
+    const out = [], re = /[.!?…]+["»”)]*\s+/g;
+    let ini = 0, corte;
+    p = String(p);
+    while ((corte = re.exec(p))) { out.push(p.slice(ini, corte.index + corte[0].length)); ini = corte.index + corte[0].length; }
+    if (ini < p.length) out.push(p.slice(ini));
+    return out;
+  }
 
   /* Voz en inglés (Web Speech API, sin librerías). Si el navegador no tiene voz,
      simplemente no suena: la actividad sigue funcionando igual. */
@@ -199,7 +208,9 @@ window.Contenido = (function () {
     // Ordenar alfabéticamente (orden calculado en runtime, tolerante a tildes).
     alfabetico: (t) => (host, ctrl) => {
       const grupo = itemDe(t.grupos, Juego.nivelIdx());
-      const correcto = grupo.slice().sort((a, b) => norm(a).localeCompare(norm(b)));
+      // Orden del alfabeto español: sin fijarse en tildes, pero con la ñ DESPUÉS de la n
+      // (con norm() la ñ se volvía n, y "piña" quedaba antes que "pino").
+      const correcto = grupo.slice().sort((a, b) => a.localeCompare(b, "es", { sensitivity: "base" }));
       Arrastrar.ordenar(host, ctrl, { pregunta: t.pregunta || "Toca las palabras en orden alfabético (A → Z) 👇", correcto: correcto });
     },
     // ¿Verdadero o falso?  (concepto)
@@ -241,14 +252,19 @@ window.Contenido = (function () {
     signos: (t) => (host, ctrl) => {
       const q = itemDe(t.items, Juego.nivelIdx());
       ctrl.pregunta(t.pregunta || "¿Qué signo va en el ▢? Tócalo 👇");
-      host.innerHTML = '<div class="signo-frase">' + esc(q.antes) + '<span class="signo-hueco">▢</span>' + esc(q.despues) + '</div><div class="ord-fuente"></div>';
+      host.innerHTML = '<div class="signo-frase"><span class="signo-abre"></span>' + esc(q.antes) + '<span class="signo-hueco">▢</span>' + esc(q.despues) + '</div><div class="ord-fuente"></div>';
       const cont = host.querySelector(".ord-fuente");
+      // En español ? y ! van en pareja: al acertar el de cierre aparece también el de apertura.
+      const pareja = { "?": "¿", "!": "¡" }[q.correcto];
       ctrl.mezclar(q.opciones.slice()).forEach((op) => {
         const b = document.createElement("button");
         b.className = "ord-chip"; b.textContent = op;
         b.onclick = () => {
           if (op === q.correcto) {
             const h = host.querySelector(".signo-hueco"); h.textContent = op; h.classList.add("signo-ok");
+            if (pareja && q.antes.indexOf(pareja) < 0) {
+              const a = host.querySelector(".signo-abre"); a.textContent = pareja; a.classList.add("signo-ok");
+            }
             ctrl.ganar();
           } else ctrl.reintento(t.pista || "Ese no; fíjate en la entonación 👀");
         };
@@ -570,6 +586,92 @@ window.Contenido = (function () {
         const unicas = ctrl.mezclar(letras.filter(esLetra).filter((c, k, a) => a.indexOf(c) === k));
         unicas.slice(0, Math.min(nPistas, Math.max(0, unicas.length - 1))).forEach((L) => probar(L, true));
       };
+    },
+    // Comprensión lectora: se lee UN texto, que queda siempre a la vista, y se responden sus
+    // preguntas una por una (una sesión = un texto). Tres clases de pregunta:
+    //   { q, c, d:[…], pista? }  elegir la respuesta (pista = trozo del texto que la sostiene)
+    //   { q, toca }              tocar en el texto la oración que lo dice (toca = trozo de esa oración)
+    //   { q, ordena:[…] }        ordenar lo que pasó
+    // Si el niño falla, el propio texto ayuda: se ilumina la oración de la pista.
+    // { lecturas:[[{titulo, clase?, texto:[párrafos], preguntas:[…]}],[i],[a]] }
+    lectura: (t) => (host, ctrl) => {
+      const m = ctrl.memo;                       // se vacía al entrar al tema: siempre arranca un texto nuevo
+      if (!m.pend || !m.pend.length) { m.lec = itemDe(t.lecturas, Juego.nivelIdx()); m.pend = m.lec.preguntas.slice(); m.n = 0; }
+      const lec = m.lec, q = m.pend.shift();
+      m.n++;
+      // La caja se ensancha para que quepan el texto y la pregunta lado a lado.
+      const caja = host.closest ? host.closest(".caja-juego") : null;
+      // (y la mascota se achica: ver body.act-ancha en efectos.css)
+      if (caja && !m.ancha) {
+        m.ancha = true;
+        caja.classList.add("caja-ancha"); document.body.classList.add("act-ancha");
+        ctrl.alTerminar(() => { caja.classList.remove("caja-ancha"); document.body.classList.remove("act-ancha"); });
+      }
+
+      let k = 0;
+      const cuerpo = [].concat(lec.texto).map((p) =>
+        "<p>" + oraciones(p).map((o) => '<span class="lec-or" data-k="' + (k++) + '">' + esc(o) + "</span>").join("") + "</p>").join("");
+      ctrl.pregunta("📖 Lee el texto y responde");
+      host.innerHTML =
+        '<div class="lec-zona">' +
+          '<article class="lec-texto">' +
+            (lec.clase ? '<span class="lec-clase">' + esc(lec.clase) + "</span>" : "") +
+            '<h3 class="lec-titulo">' + esc(lec.titulo || "") + "</h3>" + cuerpo +
+          "</article>" +
+          '<div class="lec-lado">' +
+            '<p class="lec-n">Pregunta ' + m.n + " de " + lec.preguntas.length + "</p>" +
+            '<p class="lec-q">' + esc(q.q) + "</p>" +
+            '<div class="lec-resp"></div>' +
+          "</div>" +
+        "</div>";
+      const zona = host.querySelector(".lec-zona"), resp = host.querySelector(".lec-resp");
+      const ors = Array.prototype.slice.call(host.querySelectorAll(".lec-or"));
+      const dice = (el, trozo) => norm(el.textContent).indexOf(norm(trozo)) >= 0;
+      // Ilumina en el texto la oración que contiene `trozo` y la trae a la vista.
+      function marcar(trozo, clase) {
+        if (!trozo) return;
+        ors.forEach((el) => {
+          if (!dice(el, trozo)) return;
+          el.classList.add(clase);
+          if (el.scrollIntoView) el.scrollIntoView({ block: "nearest" });
+        });
+      }
+      let listo = false;
+
+      if (q.ordena) {
+        Arrastrar.ordenar(resp, ctrl, { pregunta: "📖 Lee el texto y responde", correcto: q.ordena.slice() });
+        return;
+      }
+      if (q.toca) {
+        resp.innerHTML = '<p class="lec-ayuda">👆 Búscala en el texto y tócala</p>';
+        zona.classList.add("tocando");
+        ors.forEach((el) => {
+          el.onclick = () => {
+            if (listo) return;
+            if (dice(el, q.toca)) { listo = true; zona.classList.remove("tocando"); el.classList.add("ok"); ctrl.ganar(1400); }
+            else { el.classList.add("mal"); setTimeout(() => el.classList.remove("mal"), 500); ctrl.reintento("Esa oración no lo dice. Sigue buscando 👀"); }
+          };
+        });
+        return;
+      }
+      ctrl.mezclar([q.c].concat(q.d)).forEach((o) => {
+        const b = document.createElement("button");
+        b.type = "button"; b.className = "lec-op"; b.textContent = o;
+        b.onclick = () => {
+          if (listo) return;
+          if (o === q.c) {
+            listo = true; b.classList.add("ok");
+            ors.forEach((el) => el.classList.remove("pista"));
+            marcar(q.pista, "ok");
+            ctrl.ganar(1400);
+          } else {
+            b.classList.add("mal"); b.disabled = true;
+            marcar(q.pista, "pista");
+            ctrl.reintento(q.pista ? "Mira la parte del texto que se iluminó 👀" : "Vuelve a leer con calma 👀");
+          }
+        };
+        resp.appendChild(b);
+      });
     }
   };
 
@@ -582,17 +684,6 @@ window.Contenido = (function () {
   function gensDe(t) {
     if (t.tipo === "mc") {
       return [function () { const x = sacar(t.banco); return mcPregunta(t.nombre, x.p, x.c, x.d, x.pista); }];
-    }
-    if (t.tipo === "lectura") {
-      // Se lee UN texto y se responden seguidas todas sus preguntas; luego otro texto.
-      // (Antes cada pregunta traía un texto distinto al azar y había que releer todo.)
-      let lect = null, pendientes = [];
-      return [function () {
-        if (!pendientes.length) { lect = itemDe(t.lecturas, Juego.nivelIdx()); pendientes = lect.preguntas.slice().reverse(); }
-        const pr = pendientes.pop();
-        return { tema: t.nombre || "Lee con atención", html: '<div class="lectura-texto">' + esc(lect.texto) + "</div>",
-                 pregunta: pr.q, opciones: pr.opciones, correcta: pr.correcta, tiempo: 2 };
-      }];
     }
     return [];
   }

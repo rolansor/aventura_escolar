@@ -55,24 +55,24 @@
           { "antes": "", "despues": "Quién apagó la luz?", "correcto": "¿", "opciones": ["¿", "¡", "-"] }
         ],
         [
-          { "antes": "Compré manzanas", "despues": "peras y uvas", "correcto": ",", "opciones": [",", ".", ";"] },
-          { "antes": "Nelson", "despues": "ven a comer", "correcto": ",", "opciones": [",", ".", "!"] },
-          { "antes": "En el zoológico vi monos", "despues": "tigres y loros", "correcto": ",", "opciones": [",", ".", ";"] },
-          { "antes": "Mamá", "despues": "ya terminé la tarea", "correcto": ",", "opciones": [",", ".", "?"] },
-          { "antes": "Necesito lápices", "despues": "cuadernos y borradores", "correcto": ",", "opciones": [",", ";", "."] },
-          { "antes": "Profe", "despues": "puedo pasar al baño", "correcto": ",", "opciones": [",", ".", "?"] },
-          { "antes": "Ecuador tiene costa", "despues": "sierra y oriente", "correcto": ",", "opciones": [",", ".", ";"] },
-          { "antes": "Tengo cuadernos", "despues": "lápices y reglas", "correcto": ",", "opciones": [",", ".", ";"] },
-          { "antes": "Abuelita", "despues": "ya llegamos a casa", "correcto": ",", "opciones": [",", ".", "!"] },
-          { "antes": "En el mercado venden papas", "despues": "choclos y habas", "correcto": ",", "opciones": [",", ".", ";"] },
-          { "antes": "Carlos", "despues": "trae la pelota", "correcto": ",", "opciones": [",", ".", "?"] },
-          { "antes": "Vi gallinas", "despues": "patos y chanchos", "correcto": ",", "opciones": [",", ".", ";"] },
-          { "antes": "Doctor", "despues": "me duele la cabeza", "correcto": ",", "opciones": [",", ".", "?"] },
-          { "antes": "Comimos arroz", "despues": "menestra y carne", "correcto": ",", "opciones": [",", ".", ";"] },
-          { "antes": "Mariana", "despues": "ven a almorzar", "correcto": ",", "opciones": [",", ".", "!"] },
-          { "antes": "Llevé pan", "despues": "queso y mermelada", "correcto": ",", "opciones": [",", ".", ";"] },
-          { "antes": "Abuelo", "despues": "cuéntame un cuento", "correcto": ",", "opciones": [",", ".", "?"] },
-          { "antes": "Vi loros", "despues": "guacamayos y tucanes", "correcto": ",", "opciones": [",", ".", ";"] }
+          { "antes": "Compré manzanas", "despues": "peras y uvas.", "correcto": ",", "opciones": [",", ".", ";"] },
+          { "antes": "Nelson", "despues": "ven a comer.", "correcto": ",", "opciones": [",", ".", "!"] },
+          { "antes": "En el zoológico vi monos", "despues": "tigres y loros.", "correcto": ",", "opciones": [",", ".", ";"] },
+          { "antes": "Mamá", "despues": "ya terminé la tarea.", "correcto": ",", "opciones": [",", ".", "?"] },
+          { "antes": "Necesito lápices", "despues": "cuadernos y borradores.", "correcto": ",", "opciones": [",", ";", "."] },
+          { "antes": "Profe", "despues": "¿puedo pasar al baño?", "correcto": ",", "opciones": [",", ".", "?"] },
+          { "antes": "Ecuador tiene costa", "despues": "sierra y oriente.", "correcto": ",", "opciones": [",", ".", ";"] },
+          { "antes": "Tengo cuadernos", "despues": "lápices y reglas.", "correcto": ",", "opciones": [",", ".", ";"] },
+          { "antes": "Abuelita", "despues": "ya llegamos a casa.", "correcto": ",", "opciones": [",", ".", "!"] },
+          { "antes": "En el mercado venden papas", "despues": "choclos y habas.", "correcto": ",", "opciones": [",", ".", ";"] },
+          { "antes": "Carlos", "despues": "trae la pelota.", "correcto": ",", "opciones": [",", ".", "?"] },
+          { "antes": "Vi gallinas", "despues": "patos y chanchos.", "correcto": ",", "opciones": [",", ".", ";"] },
+          { "antes": "Doctor", "despues": "me duele la cabeza.", "correcto": ",", "opciones": [",", ".", "?"] },
+          { "antes": "Comimos arroz", "despues": "menestra y carne.", "correcto": ",", "opciones": [",", ".", ";"] },
+          { "antes": "Mariana", "despues": "ven a almorzar.", "correcto": ",", "opciones": [",", ".", "!"] },
+          { "antes": "Llevé pan", "despues": "queso y mermelada.", "correcto": ",", "opciones": [",", ".", ";"] },
+          { "antes": "Abuelo", "despues": "cuéntame un cuento.", "correcto": ",", "opciones": [",", ".", "?"] },
+          { "antes": "Vi loros", "despues": "guacamayos y tucanes.", "correcto": ",", "opciones": [",", ".", ";"] }
         ]
       ]
     }

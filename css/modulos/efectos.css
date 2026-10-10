@@ -68,6 +68,11 @@
 
 @keyframes flotar { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
+/* Con una actividad ancha (lectura: texto + pregunta lado a lado) la mascota se achica hacia
+   su esquina para no tapar las respuestas. En pantallas grandes no hace falta. */
+@media (max-width: 1280px) {
+  body.act-ancha #luna { transform: scale(0.6); transform-origin: 100% 100%; }
+}
 @media (max-width: 900px) {
   #luna { width: 120px; height: 162px; }
   #luna-canvas { width: 120px; height: 132px; }

@@ -15,32 +15,38 @@ No hay carpeta `dist/`: ambos modos usan exactamente los mismos archivos.
 ## Estructura de carpetas
 
 ```
-index.html                 menú principal (grado y trimestre → materias → actividades)
-paginas/                   1 HTML por módulo (ortografia, copia, mapas, cantones, editor, contenido… + ~24 del runner)
+index.html                 perfiles → grado y trimestre → materias → actividades
+paginas/                   1 HTML por actividad (53: 30 del runner, 21 con lógica propia y las 2 de adultos)
 data/                      *.json canónicos (editables) + *.js generados por build.py
-  contenido/               1 JSON por actividad migrada al runner (data/contenido/<modo>.json) + sus .js
+  curriculo.json           grados, trimestres y plan (qué actividad se ve en cada trimestre)
+  materias.json            catálogo de materias y actividades
+  contenido/               1 JSON por actividad del runner (data/contenido/<modo>.json) + sus .js
+  mapas/                   geografía: provincias, regiones, detalle, cantones, mapa-ec
 src/
-  core/                    juego.js (API compartida), datos.js (cargador), menu.js,
-                           contenido.js (runner genérico), mc.js / actividad.js (motores), arrastrar.js
-  modos/                   los que NO usan el runner: ortografia.js, copia.js, editor.js (Ajustes),
-                           banco.js (Banco de contenido), mapas.js, mapacantones.js …  (las ~24 migradas YA NO viven aquí)
+  core/                    juego.js (API compartida), datos.js (cargador), perfiles.js, curriculo.js,
+                           menu.js, contenido.js (runner genérico), mc.js / actividad.js (motores),
+                           arrastrar.js
+  modos/                   los que NO usan el runner: ortografia.js, copia.js, los generadores de
+                           Matemáticas, geometria.js, mapas.js, mapacantones.js, donde.js, quiz.js,
+                           editor.js (Ajustes) y banco.js (Banco de contenido)
   efectos/                 escena3d.js (fondo three.js), luna.js (mascota),
                            modelo3d.js (escenario 3D de las actividades)
     modelos/               1 archivo por modelo 3D: planta, flor, cicloagua, bloques, fraccion
 css/modulos/               base, menu, ejercicios, editor, mapas, cantones, efectos (.css)
 lib/                       three.min.js (r128, copia local: el 3D no depende de internet)
-recursos/                  ecuador_1.0/2.0.svg, banderas/EC-*.svg, senala/*.svg (dibujos de "Señala la parte")
+recursos/                  ecuador_1.0/2.0.svg, gadm41_ECU_2.json (fuente de cantones), banderas/EC-*.svg,
+                           senala/*.svg (dibujos de "Señala la parte")
 herramientas/              Python, sin instalar nada (NO Node):
-  build.py                 precompila data/*.json -> data/*.js (recursivo; incrusta {"$archivo": …})
+  build.py                 precompila data/**/*.json -> data/**/*.js (incrusta {"$archivo": …})
   validar.py               revisa que el contenido no tenga trampas (sale con 1 si hay errores)
-  humo.py + cdp.py         prueba de humo en Chrome/Edge sin ventana (todas las páginas y temas)
+  humo.py + cdp.py         prueba de humo en Chrome/Edge sin ventana (inicio, todas las páginas y temas)
   corregir_cantones.py     corrige los nombres de cantones que trae la fuente GADM
-docs/                      ARQUITECTURA.md, ESQUEMA_CONTENIDO.md, capturas/
+docs/                      ARQUITECTURA.md, ESQUEMA_CONTENIDO.md
 ```
 
-> Nota sobre `src/modos/`: "**un módulo por actividad**" sigue siendo cierto **solo** para lo que NO usa
-> el runner (ver "Capa de contenido"). Las ~24 actividades migradas al runner **ya no tienen** un
-> `src/modos/<modo>.js` propio: su lógica vive de forma centralizada en `src/core/contenido.js`.
+> Nota sobre `src/modos/`: "**un módulo por actividad**" es cierto **solo** para lo que NO usa el runner
+> (ver "Capa de contenido"). Las 30 actividades del runner **no tienen** un `src/modos/<modo>.js` propio:
+> su lógica vive de forma centralizada en `src/core/contenido.js`.
 
 ## Datos: `.json` canónico → `.js` generado
 
@@ -80,7 +86,7 @@ internas; `data/mapas/*.json` ya existen para de-duplicarlas más adelante.)
 
 Casi **todas** las actividades ya no tienen un módulo propio en `src/modos/`: guardan su contenido en
 `data/contenido/<modo>.json` y lo ejecuta un **runner genérico**, `src/core/contenido.js`
-(`window.Contenido`). Cada JSON está categorizado por **materia** (lengua/matemáticas/sociales/ciencias),
+(`window.Contenido`). Cada JSON está categorizado por **materia** (lengua/matemáticas/sociales/ciencias/inglés),
 por **tipo de juego** (el campo `tipo` de cada tema) y por **3 niveles** de dificultad
 (`[ básico, intermedio, avanzado ]`; un nivel `[]` "cae" al inferior). El esquema completo del JSON está
 en `docs/ESQUEMA_CONTENIDO.md`.
@@ -119,14 +125,33 @@ Actividad(px, temas)   ó   MC(px, temas)
 
 ### Qué NO usa el runner
 
-Algunas piezas conservan su **loader / lógica propia** en `src/modos/` y no pasan por `Contenido.montar`:
+Algunas piezas conservan su **lógica propia** en `src/modos/` y no pasan por `Contenido.montar`:
 
-- **Lengua**: ortografía (`ortografia.js`, generadores por `estrategia`) y copia/párrafos (`copia.js`).
-- **Repasos**: el quiz de opción múltiple cuando se arma a mano (motor `MC` directo).
-- **Estudios Sociales**: mapas (`mapas.js`), cantones (`mapacantones.js`) y el quiz `donde`.
-- **Matemáticas**: los generadores numéricos (aritmética, tablas, multiplicación, división, etc.).
+- **Lengua**: ortografía (`ortografia.js`, generadores por `estrategia`) y Corregir/Dictado (`copia.js`).
+- **Estudios Sociales**: mapa de provincias (`mapas.js`), mapa por cantones (`mapacantones.js`),
+  "¿Dónde está?" (`donde.js`) y el Quiz (`quiz.js`: la geografía se genera desde `DATOS.mapas`; sus bancos
+  de texto sí están en `data/contenido/quiz.json`).
+- **Matemáticas**: los generadores numéricos (aritmética, tablas, multiplicación, división, etc.) y la
+  geometría (`geometria.js`: un archivo con dos actividades —rectas y ángulos, cuadriláteros y perímetro—
+  hechas en SVG con eventos de puntero sobre el motor `Actividad`).
 - **Zona de adultos**: ⚙️ Ajustes (`editor.js`) y 📚 Banco de contenido (`src/modos/banco.js`,
   global **`window.BancoContenido`** — no confundir con el runner `window.Contenido` de `src/core/`).
+
+## Grado y trimestre (`src/core/curriculo.js`)
+
+`window.Curriculo` lee `DATOS.curriculo` (`data/curriculo.json`): la lista de **trimestres**, la de **grados**
+y, por cada grado, su **plan** (`plan[trimestre][materia] = [modo, …]`). Un grado sin plan sale "en
+construcción"; un trimestre sin plan, también.
+
+- `Curriculo.materias(gradoId, triId)` devuelve las materias del catálogo, cada una **solo** con las
+  actividades de ese trimestre (en el orden del plan). `src/core/menu.js` pinta con eso las tres
+  sub-pantallas del índice: `pantalla-curso` → `pantalla-menu` → `pantalla-materia`.
+- `Curriculo.abrirMapa(gradoId, alIr)` pinta la ayuda: un mapa conceptual con una columna por trimestre y
+  una fila por materia; marca qué actividades se repiten y deja saltar a un trimestre o a una actividad.
+- El curso elegido se guarda en el perfil (`Juego.curso()` / `Juego.fijarCurso(grado, trimestre)`), así al
+  volver de una actividad (`index.html?materia=<id>`) se cae en la misma materia y trimestre.
+- Las actividades no saben en qué trimestre están: el plan solo decide desde dónde se enlazan. Por eso
+  repetir una actividad en otro trimestre es añadir su `modo` a otra lista.
 
 ## Modelos 3D de las actividades (`src/efectos/modelo3d.js`)
 

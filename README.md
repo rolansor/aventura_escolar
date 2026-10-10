@@ -1,7 +1,8 @@
 # 🚀 La Aventura de Nelson
 
-> Juego educativo de Lengua, Matemáticas, Estudios Sociales y Ciencias Naturales para un niño
-> de ~9 años, en **español del Ecuador**. Sin instalar nada: se juega con doble clic o servido.
+> Juego educativo de Lengua, Matemáticas, Estudios Sociales, Ciencias Naturales e Inglés para un niño
+> de ~9 años (Quinto de básica), en **español del Ecuador**, organizado por **grado y trimestre**.
+> Sin instalar nada: se juega con doble clic o servido.
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
@@ -21,8 +22,8 @@ Está pensado para acompañar el aprendizaje de un niño de unos 9 años, con vo
 del **Ecuador** (mercado, regiones, fauna, monedas en USD). Las actividades buscan ser
 **manipulativas** —arrastrar, tocar, construir, ordenar, emparejar— más que de "pregunta y
 respuesta", inspiradas en **Piaget y Montessori**: aprender haciendo, con material concreto y
-control del error inmediato. Lo acompaña **Luna**, una mascota 3D arrastrable que salta cuando
-acierta, se entristece cuando falla y **sugiere las pistas** desde su globo.
+control del error inmediato. Lo acompaña **Perchita**, una mascota 3D arrastrable (cada niño le pone
+nombre) que salta cuando acierta, se entristece cuando falla y **sugiere las pistas** desde su globo.
 
 Todo el progreso, los perfiles y el contenido creado por los adultos se guardan automáticamente
 en el navegador (`localStorage`).
@@ -66,25 +67,31 @@ vida de las plantas, señoríos étnicos, Incas y Conquista, y los ríos y la ge
 
 ### 📖 Lengua
 Ortografía (10 reglas: B/V, C-S-Z, G/J, H muda, LL/Y, tildes, mayúsculas, M antes de P/B,
-agudas-llanas-esdrújulas, diptongo-triptongo-hiato), Copia y Dictado, sinónimos, refranes,
-sujeto y predicado, signos de puntuación, formas verbales, orden alfabético, sílabas, ordenar
-oraciones y comprensión lectora.
+agudas-llanas-esdrújulas, diptongo-triptongo-hiato), Corregir y Dictado, clases de palabras, familias de
+palabras, sinónimos y antónimos, diminutivos y aumentativos, sílabas, ordenar oraciones, sujeto y
+predicado, signos de puntuación, orden alfabético, comprensión lectora, refranes y adivinanzas, y el
+concurso de vocabulario.
 
 ### 🔢 Matemáticas
-Secuencias, tablas, sumas y restas, multiplicación y división paso a paso, valor posicional con
-**bloques base-10**, comparar (balanza), dinero (armar el monto con billetes y monedas), la hora
-(reloj con manecillas), redondeo, números, medidas, fracciones, problemas verbales y términos de
-la suma/resta.
+Secuencias, tablas, sumas y restas, multiplicación (hasta 3 cifras en el multiplicador) y división paso a
+paso, términos de la suma y la resta, términos y propiedades de la multiplicación, problemas verbales,
+valor posicional con **bloques base 10 en 3D**, comparar (balanza), redondeo (recta numérica), números,
+dinero (armar el monto con billetes y monedas), medidas, la hora (reloj con manecillas), fracciones
+(pizza y barra en 3D), **rectas y ángulos** (con un graduador que se arrastra) y **cuadriláteros y
+perímetro**.
 
 ### 🗺️ Estudios Sociales
-Mapa del Ecuador por **provincias** (SVG coloreado por las 4 regiones naturales), mapa por
-**cantones** con la provincia en **3D rotable** (three.js), quiz del Ecuador, "¿Dónde está?",
-regiones, épocas históricas y familia.
+Época Aborigen, regiones y relieves, mapa del Ecuador por **provincias** (SVG coloreado por las 4
+regiones naturales), mapa por **cantones** con la provincia en **3D rotable** (three.js), quiz del
+Ecuador, "¿Dónde está?", señoríos étnicos, Incas y Conquista, y ríos y gente del Ecuador.
 
 ### 🌱 Ciencias Naturales
-"Señala la parte" (diagramas SVG interactivos), las plantas, el cuerpo humano, los animales,
-**los invertebrados** (clasificar en sus grupos), el ciclo del agua, la materia, ecosistemas y
-ambiente, y el cuidado de la fauna.
+"Señala la parte" (planta y flor en **3D**; cuerpo, cara y órganos en ilustraciones animadas), las
+plantas, la vida de las plantas, el cuerpo humano, los animales, los invertebrados, el cuidado de la
+fauna, el ciclo del agua (maqueta 3D), la materia, y ecosistemas y ambiente.
+
+### 🗣️ Inglés
+El ahorcado de las frutas: adivinar la palabra en inglés letra por letra, con su pronunciación por voz.
 
 ---
 
@@ -92,7 +99,8 @@ ambiente, y el cuidado de la fauna.
 
 - **Perfiles por niño**: cada uno tiene nombre, mascota, género y nivel. Al abrir `index.html`
   aparece el selector de perfiles; un chip en la barra permite cambiar de perfil. El progreso
-  (estrellas, racha) es **independiente por perfil**.
+  (estrellas, racha) es **independiente por perfil**, y cada perfil recuerda el **grado y trimestre**
+  en que se quedó.
 - **3 niveles de dificultad**: **básico**, **intermedio** y **avanzado**. Cada actividad ajusta
   su rango o sus contenidos según el nivel del perfil activo.
 - **Leaderboard** por **actividad y perfil**: guarda las 5 mejores marcas (aciertos y tiempo) y
@@ -132,13 +140,17 @@ Contenido.montar("<modo>")   →   motor Actividad (manipulativo) ó MC (opción
 
 Los **tipos de juego** que entiende el runner incluyen `clasificar`, `emparejar`, `ordenar`,
 `silabas`, `alfabetico`, `vf` (verdadero/falso), `definir`, `sujeto`, `signos`, `formas`,
-`escena`, `senala`, `problema` y `terminos` (motor *actividad*), más `mc` y `lectura` (motor *mc*).
+`escena`, `senala`, `problema`, `terminos` y `ahorcado` (motor *actividad*), más `mc` y `lectura`
+(motor *mc*).
 El esquema completo y los campos de cada tipo están en **[`docs/ESQUEMA_CONTENIDO.md`](docs/ESQUEMA_CONTENIDO.md)**.
 
-**Excepciones** que conservan su propio loader (no usan el runner): **ortografía**
-(`data/ortografia.json`), **Copia/Dictado** (`data/parrafos.json`), **quiz**, los **mapas**
-(`data/mapas/*`, `data/cantones.js`) y los **generadores numéricos** de Matemáticas (que crean los
-problemas al vuelo en vez de leerlos de un banco).
+**Excepciones** con lógica propia (no usan el runner): **ortografía** (`data/ortografia.json`),
+**Corregir/Dictado** (`data/parrafos.json`), **quiz**, los **mapas** (`data/mapas/*`), los
+**generadores numéricos** de Matemáticas (crean los ejercicios al vuelo en vez de leerlos de un banco)
+y la **geometría** (`src/modos/geometria.js`: rectas, ángulos, cuadriláteros y perímetro en SVG).
+
+Qué se ve en cada **grado y trimestre** lo decide el plan de **`data/curriculo.json`**; el catálogo
+de materias y actividades está en `data/materias.json`.
 
 > Todos los datos canónicos viven en `data/**/*.json`; `herramientas/build.py` genera junto a cada
 > uno un `.js` que rellena `window.__DATOS__`, y `src/core/datos.js` los coloca en los globales que
@@ -151,36 +163,44 @@ problemas al vuelo en vez de leerlos de un banco).
 
 ```
 .
-├── index.html                  # menú principal + selector de perfiles
-├── paginas/                    # un HTML por actividad
+├── index.html                  # perfiles → grado y trimestre → materias → actividades
+├── paginas/                    # un HTML por actividad (+ editor.html y contenido.html, zona de adultos)
 ├── src/
 │   ├── core/                   # motores y API compartida:
-│   │   ├── juego.js            #   marcador, sonido, localStorage, perfiles, niveles, leaderboard
+│   │   ├── juego.js            #   marcador, sonido, localStorage, perfiles, niveles, curso, leaderboard
 │   │   ├── actividad.js        #   motor de actividades manipulativas
 │   │   ├── mc.js               #   motor de opción múltiple (repasos rápidos)
 │   │   ├── arrastrar.js        #   arrastrar y soltar (mouse + dedo)
 │   │   ├── contenido.js        #   RUNNER genérico: monta cada modo desde su JSON
 │   │   ├── datos.js            #   cargador (window.__DATOS__ → globales)
-│   │   ├── menu.js             #   menú de materias + modal de clave (zona de adultos)
+│   │   ├── curriculo.js        #   grados, trimestres, plan y mapa conceptual de ayuda
+│   │   ├── menu.js             #   pantallas del índice + modal de clave (zona de adultos)
 │   │   └── perfiles.js         #   selector de perfiles
 │   ├── modos/                  # lo que NO usa el runner:
 │   │   ├── (Matemáticas)       #   generadores: aritmetica, tablas, multiplicacion, division,
 │   │   │                       #   secuencias, comparar, redondeo, numeros, medidas, hora,
 │   │   │                       #   dinero, valorposicional, fracciones
+│   │   ├── geometria.js        #   rectas y ángulos + cuadriláteros y perímetro (SVG)
 │   │   ├── ortografia.js, copia.js
 │   │   ├── quiz.js, mapas.js, mapacantones.js, donde.js
 │   │   ├── banco.js            #   banco de contenido (zona de adultos)
 │   │   └── editor.js           #   ajustes (zona de adultos)
-│   └── efectos/                # escena3d.js (fondo 3D) y luna.js (mascota)
+│   └── efectos/                # escena3d.js (fondo 3D), luna.js (mascota),
+│                               # modelo3d.js + modelos/ (planta, flor, cicloagua, bloques, fraccion)
 ├── data/
+│   ├── curriculo.json          # grados, trimestres y plan (qué actividad va en qué trimestre)
+│   ├── materias.json           # catálogo de materias y actividades
 │   ├── contenido/<modo>.json   # contenido de las actividades del runner (+ .js generado)
-│   ├── mapas/                  # geometría de mapas
-│   └── *.json (+ *.js)         # ortografia, parrafos, materias, cantones, etc.
+│   ├── mapas/                  # geografía: provincias, regiones, detalle, cantones, mapa-ec
+│   └── *.json (+ *.js)         # ortografia, parrafos, secuencias, nino, generador-parrafos
 ├── css/modulos/                # estilos modulares
 ├── lib/three.min.js            # three.js r128 local (3D offline)
-├── recursos/                   # SVG del mapa + banderas (recursos/banderas/EC-*.svg)
-├── herramientas/build.py       # precompila data/**/*.json → data/**/*.js
-└── docs/                        # ARQUITECTURA.md, ESQUEMA_CONTENIDO.md
+├── recursos/                   # SVG del mapa, banderas, dibujos de "Señala la parte", fuente de cantones
+├── herramientas/               # Python, sin instalar nada:
+│   ├── build.py                #   precompila data/**/*.json → data/**/*.js
+│   ├── validar.py              #   revisa que el contenido no tenga trampas
+│   └── humo.py + cdp.py        #   prueba de humo en Chrome/Edge sin ventana
+└── docs/                       # ARQUITECTURA.md, ESQUEMA_CONTENIDO.md
 ```
 
 ---
@@ -198,7 +218,11 @@ problemas al vuelo en vez de leerlos de un banco).
 
 1. Crea `data/contenido/<modo>.json` siguiendo el esquema → `python herramientas/build.py`.
 2. Crea `paginas/<modo>.html` copiando una página del mismo motor (p. ej. `paginas/animales.html`).
-3. Regístrala en `src/core/menu.js` (`PAGINA`) y en `data/materias.json` → `build.py`.
+3. Regístrala en `src/core/menu.js` (`PAGINA`) y en `data/materias.json`.
+4. Ponla en el plan de al menos un trimestre en `data/curriculo.json` → `build.py` y `validar.py`.
+
+**Para mover una actividad de trimestre, o repetirla en otro:** edita el plan en
+`data/curriculo.json` → `build.py`.
 
 Guías detalladas: el esquema y los tipos (y las excepciones con loader propio) en
 **[`docs/ESQUEMA_CONTENIDO.md`](docs/ESQUEMA_CONTENIDO.md)**, la organización de los datos en
@@ -216,7 +240,8 @@ contribución en **[`CONTRIBUTING.md`](CONTRIBUTING.md)**.
   `python -c "import json; json.load(open('data/contenido/<modo>.json', encoding='utf-8'))"`
 - **Regenerar los datos**: `python herramientas/build.py`.
 - **Contenido sin trampas**: `python herramientas/validar.py` (respuestas que no están entre las
-  opciones, palabras en dos grupos, casillas con la respuesta escrita, `.js` sin regenerar…).
+  opciones, palabras en dos grupos, casillas con la respuesta escrita, actividades fuera de todo
+  trimestre, `.js` sin regenerar…).
 - **Prueba de humo en un navegador real**: `python herramientas/humo.py --todos` abre todas las páginas
   en Chrome/Edge **sin ventana**, entra a cada tema en los tres niveles y avisa de errores de
   JavaScript, rondas vacías o actividades que no caben en pantalla. No necesita Node ni instalar nada.

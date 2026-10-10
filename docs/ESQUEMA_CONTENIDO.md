@@ -34,7 +34,7 @@ el texto del archivo al generar el `.js` (y `validar.py` lo resuelve igual). Eje
 ```jsonc
 {
   "modo": "animales",            // id (= nombre de archivo)
-  "materia": "ciencias",         // lengua | matematicas | sociales | ciencias
+  "materia": "ciencias",         // lengua | matematicas | sociales | ciencias | ingles
   "px": "ani",                   // prefijo de los IDs en la página (<px>-selector, <px>-extra, …)
   "titulo": "Los animales",
   "icono": "🐾",
@@ -99,7 +99,9 @@ Cada tema lleva `tipo`, `icono`, `nombre`, `desc`, `total?` (rondas, def. 6) y s
 2. Crea `paginas/<modo>.html` copiando una página del runner (p. ej. `paginas/animales.html`): carga
    `data/contenido/<modo>.js`, `datos.js`, el motor (`actividad.js`/`mc.js`), `arrastrar.js`,
    `contenido.js`, y monta con `Datos.cargar(["contenido/<modo>"]).then(()=> Contenido.montar("<modo>").init())`.
-3. Registra el modo en `src/core/menu.js` (`PAGINA`) y en `data/materias.json` → `build.py`.
+3. Registra el modo en `src/core/menu.js` (`PAGINA`) y en `data/materias.json`.
+4. Ponlo en el plan de al menos un trimestre en `data/curriculo.json` (si no, no se puede abrir desde
+   el menú y `validar.py` lo marca) → `build.py`.
 
 ## Excepciones — actividades con loader propio (NO usan el runner)
 Estas guardan su contenido en JSON pero las consume su propio módulo (no `Contenido.montar`). Se editan
@@ -117,6 +119,9 @@ en su archivo y, tras editar, se corre `python herramientas/build.py`.
   están en `data/contenido/quiz.json` → `bancos.aborigen` / `bancos.territorio` (`{p,c,d,pista?}`).
 - **Mapas** (`data/mapas/*`): geografía (ver `data/README.md`). **Matemáticas** (aritmetica, tablas, etc.):
   **generan** los ejercicios; no hay banco de preguntas (su "config" son rangos por nivel en el módulo).
+  Igual la **geometría** (`src/modos/geometria.js`: rectas, ángulos, cuadriláteros y perímetro).
+- **Grados y trimestres** (`data/curriculo.json`, lo lee `src/core/curriculo.js`): no es contenido de una
+  actividad, sino el reparto de las actividades por trimestre (`plan[trimestre][materia] = [modos]`).
 
 ## Verificación
 - `python herramientas/build.py` — regenera los `data/*.js`.

@@ -1,7 +1,7 @@
 /* ============================================================
    MODO MAPAS — Estudios Sociales
    Mapa interactivo del Ecuador (provincias) a partir de un SVG
-   real (window.ECUADOR_SVG, cargado de data/mapa-ec.json).
+   real (window.ECUADOR_SVG, de data/mapas/mapa-ec.json).
 
    Interacción:
    - HOVER sobre una provincia -> tooltip + panel inferior con

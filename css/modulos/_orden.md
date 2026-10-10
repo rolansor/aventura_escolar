@@ -27,7 +27,7 @@ Estos archivos reparten los estilos por sección (sustituyen al antiguo
 |---|---|---|
 | `base.css` | Variables, reset, layout raíz, barra/marcador, pantallas, botones genéricos, animaciones y responsive global | `:root`, `*`, `html, body`, `#lienzo3d`, `#interfaz`, `#barra-superior`, `.grupo-barra`, `.grupo-der`, `.boton-icono`, `#marcador`, `.pantalla`, `.pantalla.activa`, `.oculto`, `.boton-grande`, `.boton-secundario`, `.btn-volver`, `@keyframes latido/temblor/caer`, `@media (max-width:520px)` (marcador/caja-juego/boton-icono) |
 | `menu.css` | Título del juego, grado y trimestre, mapa conceptual de ayuda y menú de materias (tarjetas) | `.titulo-juego`, `.subtitulo`, `.tarjetas-menu`, `.tarjeta`, `.emoji-grande`, `.titulo-tarjeta`, `.desc-tarjeta`, `.curso-*`, `.cmapa-*` |
-| `ejercicios.css` | Estilos compartidos de ortografía/secuencias/copia | `.selector-categorias`, `.chip-categoria`, `.caja-juego`, `.titulo-seccion`, `.aviso-adulto`, `.regla-ayuda`, `.fila-timer`, `.timer`, `.progreso`, `.progreso-barra`, `.pregunta`, `.secuencia-numeros`, `.pista`, `.opciones`, `.opcion`, `.zona-respuesta-libre`, `.entrada-texto`, `.entrada-area`, `.retro`, `.texto-modelo`, `.resultado-copia`, `.toggle-modo`, `.opcion-modo`, `#copia-pista` |
+| `ejercicios.css` | Estilos compartidos de todas las actividades (selector de temas, caja de juego, fichas, cestas, parejas, modelos 3D, geometría…) | `.selector-categorias`, `.chip-categoria`, `.caja-juego`, `.titulo-seccion`, `.aviso-adulto`, `.regla-ayuda`, `.fila-timer`, `.timer`, `.progreso`, `.progreso-barra`, `.pregunta`, `.secuencia-numeros`, `.pista`, `.opciones`, `.opcion`, `.zona-respuesta-libre`, `.entrada-texto`, `.entrada-area`, `.retro`, `.texto-modelo`, `.resultado-copia`, `.toggle-modo`, `.opcion-modo`, `#copia-pista` |
 | `editor.css` | Zona de adultos (crear/configurar) | `.acordeon`, `.campos-grid`, `.bloque`, `.vista-previa`, `.fila-botones`, `.lista-guardados`, `.item-guardado`, `.borrar` |
 | `mapas.css` | Mapa SVG de provincias del Ecuador (Sociales) | `.mapa-svg-cont`, `.mapa-ec` (`.prov`, `.sel`, `.pop`, `.atenuada`, `.region-on`), `.mapa-zona`, `.mapa-col-mapa`, `.mapa-detalle`, `@keyframes detalleEntra`, `.mapa-det-cab`, `.mapa-cerrar`, `.mapa-slide`, `.mapa-slider-nav`, `.mapa-nav-btn`, `.mapa-dots`, `.mapa-tooltip`, `.mapa-leyenda`, `.mapa-chip`, `.mapa-info`, `.mapa-falta` |
 | `cantones.css` | Mapa por cantones (GeoJSON) y vista "foco" 3D | `.mapac` (`.prov`), `.mapac-foco`, `.foco-3d`, `#mapac-canvas`, `.foco-svg`, `.foco-hint`, `.foco-canton`, `.foco-bandera`, `#mapac-datos h4` |
@@ -41,6 +41,15 @@ Estos archivos reparten los estilos por sección (sustituyen al antiguo
   `.blq2d*` (bloques base 10), `.usd-*` (billetes y monedas dibujados), `.frac-simbolo`, animaciones de los
   dibujos SVG (`.late`, `.respira`, `.parpadea`) y un bloque `@media (max-height: 820px)` para laptops bajas.
 - `efectos.css`: `#luna.lado-der/.lado-izq/.arriba` (hacia dónde se abre el globo de la mascota).
+
+## Añadidos de grado/trimestre y del segundo trimestre (octubre de 2026)
+- `menu.css`: `.curso-*` (pantalla de grado y trimestre: fichas de grado, tarjetas de trimestre, aviso
+  "en construcción", botón de ayuda) y `.cmapa-*` (mapa conceptual: raíz, columnas por trimestre, nodos
+  de materia con su color en `--c` / `--f`, fichas de actividad y conectores hechos con `::before` /
+  `::after`; en pantallas angostas las columnas se apilan).
+- `ejercicios.css`: `.geo-*` (lienzo SVG de geometría, rectas, lados, perilla para girar, calles del
+  barrio, figuras, perímetro) y `.grad-*` (el graduador). Tienen su ajuste en el bloque
+  `@media (max-height: 820px)`.
 
 ## Notas
 - `@keyframes caer` está en `base.css` (junto a `latido`/`temblor`), pero su consumidor

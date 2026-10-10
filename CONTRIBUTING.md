@@ -46,9 +46,12 @@ genérico** (`src/core/contenido.js`). No hace falta escribir lógica nueva.
      `src/core/mc.js` (en vez de `actividad.js`) si el `motor` del JSON es `"mc"`.
 3. **Registra el modo** en `src/core/menu.js` (mapa `PAGINA`) y en `data/materias.json` (dentro de
    las `actividades` de su materia).
-4. Corre **`python herramientas/build.py`** para regenerar los `data/*.js`.
+4. **Ponlo en un trimestre**: añade el modo al plan del grado en `data/curriculo.json` (en la lista de
+   su materia, dentro del trimestre que corresponda; puede repetirse en varios). Una actividad que no
+   está en ningún trimestre no se puede abrir desde el menú, y `validar.py` lo marca como error.
+5. Corre **`python herramientas/build.py`** para regenerar los `data/*.js`.
 
-El menú, el submenú y el leaderboard se heredan solos.
+El menú, el mapa conceptual de trimestres y el leaderboard se heredan solos.
 
 ## Cómo EDITAR el contenido de una actividad existente
 
@@ -64,8 +67,11 @@ están en `docs/ESQUEMA_CONTENIDO.md`.
 Estas actividades se editan en su propio archivo, **no** en `data/contenido/`:
 
 - **Ortografía y párrafos**: `data/ortografia.json` y `data/parrafos.json` → `python herramientas/build.py`.
-- **Quiz, mapas** (provincias/cantones) y **generadores numéricos de Matemáticas** (aritmética,
-  tablas, multiplicación, división, etc.): su lógica y datos viven en su propio `src/modos/<X>.js`.
+- **Quiz, mapas** (provincias/cantones), **generadores numéricos de Matemáticas** (aritmética,
+  tablas, multiplicación, división, etc.) y **geometría** (`geometria.js`: rectas, ángulos,
+  cuadriláteros y perímetro): su lógica vive en su propio `src/modos/<X>.js`. La geografía de los
+  mapas está en `data/mapas/*.json`.
+- **Grados y trimestres**: `data/curriculo.json` (qué actividad se ve en cada trimestre).
 
 ## Verificación obligatoria
 

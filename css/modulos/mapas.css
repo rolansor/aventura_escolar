@@ -15,7 +15,7 @@
   box-shadow: var(--sombra);
   padding: 16px;
 }
-.mapa-ec { width: 100%; height: auto; max-height: 72vh; display: block; }
+.mapa-ec { width: 100%; height: auto; max-height: min(58vh, 620px); display: block; }
 /* El SVG de simplemaps trae puntos de capitales y anclas de etiquetas:
    los ocultamos (las capitales se muestran en el panel al tocar). */
 .mapa-ec #points, .mapa-ec #label_points { display: none; }

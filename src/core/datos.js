@@ -19,6 +19,7 @@ window.Datos = (function () {
     "parrafos":            (v) => (DATOS.parrafos = v),
     "generador-parrafos":  (v) => (DATOS.frasesGenerador = v),
     "materias":            (v) => (DATOS.materias = v),
+    "curriculo":           (v) => (DATOS.curriculo = v),
     "nino":                (v) => (window.NINO = (v && v.nombre) || "Nelson"),
     "mapas/cantones":      (v) => (window.ECUADOR_CANTONES = v),
     "mapas/mapa-ec":       (v) => (window.ECUADOR_SVG = v),

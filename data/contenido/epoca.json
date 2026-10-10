@@ -77,19 +77,19 @@
       "pregunta": "Ordena de la sociedad más simple a la más compleja 👇",
       "secuencias": [
         [
-          ["Incipientes: primeras aldeas agrícolas", "Superiores: terrazas y canales de riego", "Supracomunales: señoríos étnicos"],
-          ["Incipientes: primeras chacras y aldeas", "Superiores: riego con canales y terrazas", "Supracomunales: señoríos con un cacique"],
-          ["Incipientes: pequeñas aldeas que siembran", "Superiores: terrazas y andenes de cultivo", "Supracomunales: varios pueblos unidos por un jefe"]
+          ["Incipientes: primeras aldeas agrícolas", "Superiores: mejores cosechas y cerámica fina", "Supracomunales: varias aldeas unidas"],
+          ["Incipientes: primeras chacras y aldeas", "Superiores: sobra comida para guardar", "Supracomunales: aldeas unidas y centros ceremoniales"],
+          ["Incipientes: pequeñas aldeas que siembran", "Superiores: aparecen los artesanos", "Supracomunales: varios pueblos unidos"]
         ],
         [
-          ["Incipientes: primeras aldeas agrícolas", "Superiores: terrazas y canales de riego", "Supracomunales: señoríos y comercio"],
-          ["Incipientes: primeras aldeas agrícolas", "Superiores: canales de riego y terrazas", "Supracomunales: señoríos étnicos y comercio"],
-          ["Incipientes: aldeas que empiezan a cultivar", "Superiores: agricultura con riego avanzado", "Supracomunales: confederaciones de señoríos"]
+          ["Incipientes: primeras aldeas agrícolas", "Superiores: cosechas que sobran y artesanos", "Supracomunales: varias aldeas unidas", "Señoríos étnicos: pueblos con un cacique"],
+          ["Incipientes: primeras aldeas agrícolas", "Superiores: mejores técnicas de cultivo", "Supracomunales: centros ceremoniales y orfebrería", "Señoríos étnicos: cacicazgos y comercio"],
+          ["Incipientes: aldeas que empiezan a cultivar", "Superiores: agricultura que deja excedentes", "Supracomunales: unión de varias comunidades", "Señoríos étnicos: confederaciones antes de los incas"]
         ],
         [
-          ["Incipientes: primeras aldeas agrícolas", "Superiores: terrazas y canales de riego", "Supracomunales: señoríos y comercio"],
-          ["Incipientes: aldeas agrícolas iniciales", "Superiores: terrazas, andenes y canales", "Supracomunales: grandes señoríos y cacicazgos"],
-          ["Incipientes: primeras comunidades de cultivo", "Superiores: ingeniería de riego y terrazas", "Supracomunales: señoríos con comercio a larga distancia"]
+          ["Incipientes: primeras aldeas agrícolas (Valdivia)", "Superiores: excedentes y artesanos (Chorrera)", "Supracomunales: orfebrería y centros ceremoniales (La Tolita)", "Señoríos étnicos: cacicazgos mayores (cañaris, caranquis)"],
+          ["Incipientes: aldeas agrícolas iniciales", "Superiores: técnicas agrícolas mejoradas", "Supracomunales: unión de varias comunidades", "Señoríos étnicos: grandes cacicazgos y alianzas"],
+          ["Incipientes: primeras comunidades de cultivo", "Superiores: empiezan las diferencias sociales", "Supracomunales: comercio regional y orfebrería", "Señoríos étnicos: comercio a larga distancia"]
         ]
       ]
     },
@@ -207,17 +207,21 @@
           { "t": "La teoría costera dice que navegaron bordeando la orilla del Pacífico.", "c": true, "exp": "Avanzaban pegados a la costa en barcas." },
           { "t": "Al volverse sedentarios, los pobladores dejaron de moverse y crearon aldeas.", "c": true, "exp": "Se quedaron en un lugar y desarrollaron la agricultura." },
           { "t": "Valdivia es una cultura de la Costa del Ecuador.", "c": true, "exp": "En la actual provincia de Santa Elena." },
-          { "t": "El Cápac Ñan era un río de la Amazonía.", "c": false, "exp": "Era la gran red de caminos incas." }
+          { "t": "El Cápac Ñan era un río de la Amazonía.", "c": false, "exp": "Era la gran red de caminos incas." },
+          { "t": "Paul Rivet dijo que los primeros pobladores nacieron en América.", "c": false, "exp": "Rivet propuso que llegaron desde la Polinesia." },
+          { "t": "Los nómadas vivían siempre en la misma aldea.", "c": false, "exp": "Los nómadas se movían de un lugar a otro." }
         ],
         [
           { "t": "En la glaciación el mar bajó y se formó un puente de tierra (Beringia).", "c": true, "exp": "Por ahí pasaron desde Asia." },
-          { "t": "Las sociedades supracomunales formaron señoríos étnicos.", "c": true, "exp": "Con un jefe o cacique." },
+          { "t": "Después de las sociedades supracomunales surgieron los señoríos étnicos.", "c": true, "exp": "Cada señorío tenía un cacique." },
           { "t": "La cultura La Tolita es famosa por su 'sol de oro'.", "c": true, "exp": "Grandes orfebres." },
           { "t": "El periodo Formativo es posterior al de Integración.", "c": false, "exp": "El Formativo es mucho más antiguo." },
           { "t": "La cultura Manteño-Huancavilca comerciaba en balsas por el mar.", "c": true, "exp": "Grandes navegantes y comerciantes." },
           { "t": "La teoría autóctona de Ameghino sigue aceptada por la ciencia.", "c": false, "exp": "Fue descartada hace tiempo." },
           { "t": "El periodo de Desarrollo Regional está entre el Formativo y la Integración.", "c": true, "exp": "" },
-          { "t": "Los señoríos étnicos eran dirigidos por un cacique.", "c": true, "exp": "Un jefe que gobernaba el grupo." }
+          { "t": "Los señoríos étnicos eran dirigidos por un cacique.", "c": true, "exp": "Un jefe que gobernaba el grupo." },
+          { "t": "La cultura Valdivia pertenece al periodo de Integración.", "c": false, "exp": "Valdivia es del periodo Formativo." },
+          { "t": "Los señoríos étnicos eran dirigidos por un presidente elegido.", "c": false, "exp": "Los dirigía un cacique." }
         ]
       ]
     },

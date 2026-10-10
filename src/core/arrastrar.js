@@ -3,18 +3,21 @@
    Ayudante para "arrastrar y soltar" con eventos de PUNTERO, así
    funciona igual con mouse y con el dedo (tablet). Sin librerías.
 
-   Arrastrar.hacer(item, zonas, alSoltar)
+   Arrastrar.hacer(item, zonas, alSoltar, opts?)
      - item: elemento que se arrastra.
      - zonas: arreglo de elementos "destino" (drop). Mientras se arrastra,
        la zona bajo el dedo recibe la clase .zona-hover.
-     - alSoltar(item, zona): se llama al soltar; `zona` es el destino
-       (o null si se soltó fuera). El item vuelve a su sitio salvo que
-       quien escucha decida moverlo.
+     - alSoltar(item, zona, ev): se llama al soltar; `zona` es el destino
+       (o null si se soltó fuera) y `ev` el evento de puntero (para destinos
+       que no son elementos, p. ej. una parte de un modelo 3D). El item
+       vuelve a su sitio salvo que quien escucha decida moverlo.
+     - opts.alMover(ev, zona): opcional, se llama en cada movimiento.
    ============================================================ */
 window.Arrastrar = (function () {
 
-  function hacer(item, zonas, alSoltar) {
+  function hacer(item, zonas, alSoltar, opts) {
     zonas = zonas || [];
+    opts = opts || {};
     item.style.touchAction = "none";       // evita el scroll del navegador al arrastrar
     item.classList.add("arrastrable");
 
@@ -47,6 +50,7 @@ window.Arrastrar = (function () {
         item.style.top = (ev.clientY - dy) + "px";
         const z = zonaBajo(ev);
         zonas.forEach((q) => q.classList.toggle("zona-hover", q === z));
+        if (opts.alMover) opts.alMover(ev, z);
       }
       function soltar(ev) {
         item.removeEventListener("pointermove", mover);
@@ -55,11 +59,11 @@ window.Arrastrar = (function () {
         try { item.releasePointerCapture(e.pointerId); } catch (_) {}
         item.classList.remove("arrastrando");
         zonas.forEach((q) => q.classList.remove("zona-hover"));
-        const z = zonaBajo(ev);
+        const z = ev.type === "pointercancel" ? null : zonaBajo(ev);
         // devolver el item a su estilo original (quien escucha decide si lo recoloca)
         item.style.position = prev.pos; item.style.left = prev.left; item.style.top = prev.top;
         item.style.zIndex = prev.z; item.style.width = prev.w; item.style.height = prev.h;
-        if (alSoltar) alSoltar(item, z);
+        if (alSoltar) alSoltar(item, z, ev);
       }
       item.addEventListener("pointermove", mover);
       item.addEventListener("pointerup", soltar);
@@ -104,6 +108,9 @@ window.Arrastrar = (function () {
   // y luego su pareja de la derecha. opts = { pregunta, pares:[{a,b}] }
   // Pensada para una ronda() del motor Actividad (ctrl). Toque (no arrastre),
   // así es fácil con el dedo.
+  // La pareja se acepta por su TEXTO, no por su posición: si dos de la izquierda
+  // comparten respuesta (cóndor y oso de anteojos → "Sierra"), vale cualquiera de
+  // los dos botones "Sierra".
   function emparejar(host, ctrl, opts) {
     ctrl.pregunta(opts.pregunta || "Une cada pareja 👇");
     const pares = opts.pares || [];
@@ -124,8 +131,8 @@ window.Arrastrar = (function () {
     function elegir(b) {
       if (b.disabled) return;
       if (b.dataset.lado === "izq") { limpiarSel(); sel = b; b.classList.add("sel"); return; }
-      if (!sel) { ctrl.reintento("Primero toca una palabra de la izquierda 👈"); return; }
-      if (b.dataset.k === sel.dataset.k) {
+      if (!sel) { ctrl.retro("Primero toca una de la izquierda 👈", ""); return; }
+      if (pares[b.dataset.k].b === pares[sel.dataset.k].b) {
         b.classList.add("ok"); sel.classList.add("ok"); b.disabled = true; sel.disabled = true;
         limpiarSel(); faltan--;
         if (faltan === 0) ctrl.ganar(); else ctrl.retro("¡Bien! Faltan " + faltan + " 👇", "bien");
@@ -140,11 +147,15 @@ window.Arrastrar = (function () {
   // Actividad "ponlas en orden": fichas desordenadas que se tocan en el orden
   // correcto (armar la oración / orden alfabético / sílabas). opts =
   // { pregunta, correcto:[..en orden..] }. Pensada para una ronda() de Actividad.
+  // Se compara el TEXTO de cada posición: dos fichas iguales (las dos "ra" de
+  // re-fri-ge-ra-do-ra) son intercambiables.
   function ordenar(host, ctrl, opts) {
     ctrl.pregunta(opts.pregunta || "Tócalas en el orden correcto 👇");
     const correcto = opts.correcto || [];
     const fuenteArr = ctrl.mezclar(correcto.map((t, i) => ({ t: t, i: i })));
-    host.innerHTML = '<div class="ord-destino" id="ord-dest"></div><div class="ord-fuente" id="ord-fuente"></div>';
+    // Que nunca salgan ya ordenadas (no habría nada que hacer).
+    if (correcto.length > 1 && fuenteArr.every((o, idx) => o.t === correcto[idx])) fuenteArr.push(fuenteArr.shift());
+    host.innerHTML = '<div class="ord-destino"></div><div class="ord-fuente"></div>';
     const dest = host.querySelector(".ord-destino"), fuente = host.querySelector(".ord-fuente");
     let puestos = [];
     function pintarFuente() {
@@ -167,9 +178,15 @@ window.Arrastrar = (function () {
     function poner(o) { puestos.push(o); pintarDest(); pintarFuente(); if (puestos.length === correcto.length) revisar(); }
     function quitar(o) { puestos = puestos.filter((x) => x !== o); pintarDest(); pintarFuente(); }
     function revisar() {
-      const bien = puestos.every((o, idx) => o.i === idx);
-      if (bien) { dest.querySelectorAll(".ord-chip").forEach((c) => c.classList.add("ok")); ctrl.ganar(); }
-      else { dest.querySelectorAll(".ord-chip").forEach((c) => c.classList.add("rojo")); ctrl.reintento("Ese orden aún no; quita alguna y prueba 👀"); }
+      const bien = puestos.every((o, idx) => o.t === correcto[idx]);
+      if (bien) {
+        dest.querySelectorAll(".ord-chip").forEach((c) => { c.classList.add("ok"); c.onclick = null; });
+        ctrl.ganar();
+      } else {
+        // Marca en rojo solo las que están fuera de lugar: el material dice dónde mirar.
+        dest.querySelectorAll(".ord-chip").forEach((c, idx) => { if (puestos[idx].t !== correcto[idx]) c.classList.add("rojo"); });
+        ctrl.reintento("Ese orden aún no; quita las rojas y prueba 👀");
+      }
     }
     pintarFuente();
   }

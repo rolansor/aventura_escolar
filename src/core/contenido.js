@@ -22,8 +22,24 @@ window.Contenido = (function () {
     for (let k = niv; k >= 0 && (!arr || !arr.length); k--) arr = niveles[k];
     return arr || [];
   }
-  // Un ítem al azar del nivel (con fallback).
-  function itemDe(niveles, niv) { return Juego.azarEl(nivelArr(niveles, niv)); }
+  /* Barajas: cada banco se reparte como un mazo barajado, así una pregunta no
+     vuelve a salir hasta que hayan pasado todas las demás (antes se elegía al azar
+     con repetición y la misma podía salir dos veces seguidas). */
+  const MAZOS = new Map();          // arreglo del banco -> { cola, ultimo }
+  function sacar(banco) {
+    if (!banco || !banco.length) return undefined;
+    let m = MAZOS.get(banco);
+    if (!m) { m = { cola: [], ultimo: undefined }; MAZOS.set(banco, m); }
+    if (!m.cola.length) {
+      m.cola = Juego.mezclar(banco.slice());
+      // que al rebarajar no repita justo la última que salió
+      if (m.cola.length > 1 && m.cola[m.cola.length - 1] === m.ultimo) m.cola.unshift(m.cola.pop());
+    }
+    m.ultimo = m.cola.pop();
+    return m.ultimo;
+  }
+  // Siguiente ítem del nivel (con fallback al nivel inferior), sin repetir.
+  function itemDe(niveles, niv) { return sacar(nivelArr(niveles, niv)); }
 
   /* Voz en inglés (Web Speech API, sin librerías). Si el navegador no tiene voz,
      simplemente no suena: la actividad sigue funcionando igual. */
@@ -63,23 +79,108 @@ window.Contenido = (function () {
     return cont;
   }
 
+  const VF_LADOS = new Map();       // banco de V/F -> { v:[verdaderas], f:[falsas] }
+
+  /* Clasificar soltando cada ficha SOBRE la parte que corresponde de un dibujo SVG
+     (grupos data-parte) o de un modelo 3D. { dibujo: { modelo?, svg } } y los id de
+     las cestas deben ser los id de las partes. */
+  function sobreDibujo(t, host, ctrl, cestas, items) {
+    ctrl.pregunta(t.pregunta || "Arrastra cada ficha a su parte 👇");
+    const meta = {}; cestas.forEach((c) => (meta[c.id] = c));
+    host.innerHTML = '<div class="dib-zona"><div class="dib-dibujo"></div><div class="dib-lado"><div class="fila-fichas"></div><div class="dib-hechas"></div></div></div>';
+    const marco = host.querySelector(".dib-dibujo"), fila = host.querySelector(".fila-fichas"), hechas = host.querySelector(".dib-hechas");
+    let m = null, zonas;
+    if (t.dibujo.modelo && window.Modelo3D && Modelo3D.disponible(t.dibujo.modelo)) {
+      m = ctrl.memo.m3d;
+      if (m) { marco.appendChild(m.el); m.limpiarEtiquetas(); m.apagar(); }
+      else {
+        m = ctrl.memo.m3d = Modelo3D.crear(marco, t.dibujo.modelo, { clase: "compacto", pista: "🔄 Gírala · suelta cada ficha en su parte" });
+        ctrl.alTerminar(() => m.destruir());
+      }
+      m.alTocar = null;
+      zonas = [m.el];
+    } else {
+      marco.innerHTML = '<div class="sen-mapa compacto">' + t.dibujo.svg + "</div>";
+      zonas = Array.prototype.slice.call(marco.querySelectorAll("[data-parte]"));
+      zonas.forEach((z) => z.classList.add("parte"));
+    }
+    function destello(id, tipo) {
+      if (m) { m.resaltar(id, tipo); return; }
+      zonas.forEach((z) => { if (z.getAttribute("data-parte") === id) { z.classList.add(tipo); setTimeout(() => z.classList.remove(tipo), 800); } });
+    }
+    let faltan = items.length;
+    items.forEach((it) => {
+      const chip = document.createElement("button");
+      chip.className = "ficha-arr"; chip.textContent = it.txt;
+      fila.appendChild(chip);
+      Arrastrar.hacer(chip, zonas, (item, zona, ev) => {
+        if (m) m.sobre(null);
+        if (!zona) return;
+        let id, cerca = [];
+        if (m) { id = m.parteEn(ev.clientX, ev.clientY); cerca = m.partesCerca(ev.clientX, ev.clientY, 16); }
+        else id = zona.getAttribute("data-parte");
+        if (!id && !cerca.length) return;                     // cayó en el fondo: no cuenta
+        if (id === it.cesta || cerca.indexOf(it.cesta) >= 0) {
+          destello(it.cesta, "ok");
+          item.remove();
+          const d = document.createElement("div");
+          d.className = "dib-hecha";
+          d.innerHTML = (meta[it.cesta].emoji || "✅") + " <b>" + esc(meta[it.cesta].nombre) + ":</b> " + esc(it.txt);
+          hechas.appendChild(d);
+          faltan--;
+          if (faltan === 0) ctrl.ganar(1500); else ctrl.retro("¡Bien! Faltan " + faltan + " 👇", "bien");
+        } else {
+          const tocada = id || cerca[0];
+          destello(tocada, "mal");
+          ctrl.reintento(meta[tocada] ? "Eso es <b>" + esc(meta[tocada].nombre) + "</b>. ¿Qué parte hace ese trabajo? 👀" : "Ahí no. ¿Qué parte hace ese trabajo? 👀");
+        }
+      }, { alMover: (ev) => { if (m) m.sobre(m.parteEn(ev.clientX, ev.clientY)); } });
+    });
+  }
+
   /* ---------------- Builders por tipo de juego ---------------- */
   const BUILDERS = {
-    // Arrastrar cada ficha a su cesta.
+    // Arrastrar cada ficha a su cesta. Salen MÁS fichas que cestas y repartidas al
+    // azar (una cesta puede recibir dos o ninguna): así no se resuelve por descarte.
+    // { cestas:[{id,nombre,emoji}], cestasPorNivel?, items:{id:[b,i,a]}, fichas?:[b,i,a] }
     clasificar: (t) => (host, ctrl) => {
       const niv = Juego.nivelIdx();
       const ids = t.cestasPorNivel ? Juego.porNivel(t.cestasPorNivel) : t.cestas.map((c) => c.id);
       const meta = {}; t.cestas.forEach((c) => (meta[c.id] = c));
       const cestas = ids.map((id) => meta[id]);
-      const items = ids.map((id) => ({ txt: itemDe(t.items[id], niv), cesta: id }));
-      Arrastrar.clasificar(host, ctrl, { pregunta: t.pregunta, cestas: cestas, items: ctrl.mezclar(items) });
+      const n = t.fichas ? Juego.porNivel(t.fichas) : Math.min(6, Math.max(4, ids.length + 1));
+      const tope = Math.max(2, Math.ceil(n / ids.length) + 1);     // máximo de fichas por cesta
+      const cuenta = {}, usados = {}, items = [];
+      let intentos = 0;
+      while (items.length < n && intentos++ < 80) {
+        const id = ctrl.azarEl(ids);
+        if ((cuenta[id] || 0) >= tope) continue;
+        const txt = itemDe(t.items[id], niv);
+        if (txt == null || usados[txt]) continue;
+        usados[txt] = 1; cuenta[id] = (cuenta[id] || 0) + 1;
+        items.push({ txt: txt, cesta: id });
+      }
+      // Con "dibujo", las cestas son las PARTES de un dibujo o modelo 3D: la ficha se
+      // suelta sobre la raíz, la hoja, el corazón… (manipular > elegir).
+      if (t.dibujo) { sobreDibujo(t, host, ctrl, cestas, items); return; }
+      Arrastrar.clasificar(host, ctrl, { pregunta: t.pregunta, cestas: cestas, items: items });
     },
     // Unir parejas (izquierda↔derecha). Toma un SUBCONJUNTO al azar del banco del
     // nivel (por defecto 3/4/5 parejas por ronda; configurable con "porRonda").
     emparejar: (t) => (host, ctrl) => {
-      const pool = Juego.porNivel(t.pares) || [];
+      const pool = nivelArr(t.pares, Juego.nivelIdx());
       const n = Math.min(Juego.porNivel(t.porRonda || [3, 4, 5]), pool.length);
-      const pares = ctrl.mezclar(pool.slice()).slice(0, n).map((p) => ({ a: p.a, b: p.b }));
+      // Primero parejas con respuestas distintas a la derecha; si no alcanzan, se
+      // completan con repetidas (el motor las acepta por texto).
+      // Tampoco salen juntas dos parejas donde la respuesta de una es la palabra de la
+      // otra ("poblamiento → asentamiento" con "asentamiento → poblado"): confundiría.
+      const vistos = {}, pares = [], resto = [];
+      const choca = (p) => pares.some((q) => norm(q.a) === norm(p.b) || norm(q.b) === norm(p.a));
+      ctrl.mezclar(pool.slice()).forEach((p) => {
+        if (pares.length < n && !vistos[p.b] && !choca(p)) { vistos[p.b] = 1; pares.push({ a: p.a, b: p.b }); }
+        else resto.push({ a: p.a, b: p.b });
+      });
+      resto.forEach((p) => { if (pares.length < n && !choca(p)) pares.push(p); });
       Arrastrar.emparejar(host, ctrl, { pregunta: t.pregunta || "Une cada pareja 👇", pares: pares });
     },
     // Ordenar una secuencia (tócalas en orden).
@@ -102,8 +203,15 @@ window.Contenido = (function () {
       Arrastrar.ordenar(host, ctrl, { pregunta: t.pregunta || "Toca las palabras en orden alfabético (A → Z) 👇", correcto: correcto });
     },
     // ¿Verdadero o falso?  (concepto)
+    // Se sortea primero si toca una verdadera o una falsa (50/50) y luego la
+    // afirmación: así "decir siempre Verdadero" no funciona aunque el banco tenga
+    // más verdaderas que falsas.
     vf: (t) => (host, ctrl) => {
-      const q = itemDe(t.preguntas, Juego.nivelIdx());
+      const banco = nivelArr(t.preguntas, Juego.nivelIdx());
+      let lados = VF_LADOS.get(banco);
+      if (!lados) { lados = { v: banco.filter((x) => x.c === true), f: banco.filter((x) => x.c === false) }; VF_LADOS.set(banco, lados); }
+      const quiere = Math.random() < 0.5 ? lados.v : lados.f;
+      const q = sacar(quiere.length ? quiere : banco);
       ctrl.pregunta("🤔 ¿Es verdad?<br><b>" + esc(q.t) + "</b>");
       pintarBotones(host, [{ txt: "✅ Verdadero", v: true }, { txt: "❌ Falso", v: false }], (et) => {
         if (et.v === q.c) ctrl.ganar();
@@ -142,7 +250,7 @@ window.Contenido = (function () {
           if (op === q.correcto) {
             const h = host.querySelector(".signo-hueco"); h.textContent = op; h.classList.add("signo-ok");
             ctrl.ganar();
-          } else ctrl.reintento("Ese no; fíjate en la entonación 👀");
+          } else ctrl.reintento(t.pista || "Ese no; fíjate en la entonación 👀");
         };
         cont.appendChild(b);
       });
@@ -152,7 +260,7 @@ window.Contenido = (function () {
       const q = itemDe(t.items, Juego.nivelIdx());
       ctrl.pregunta((q.instr || "Cambia la palabra") + ": <b>" + esc(q.base) + "</b>");
       const ops = ctrl.mezclar(q.opciones.slice()).map((o) => ({ txt: o, ok: o === q.correcto }));
-      pintarBotones(host, ops, (et) => { if (et.ok) ctrl.ganar(); else ctrl.reintento("Casi; fíjate en la terminación 👀"); });
+      pintarBotones(host, ops, (et) => { if (et.ok) ctrl.ganar(); else ctrl.reintento(t.pista || "Casi; fíjate en la terminación 👀"); });
     },
     // Escena: arrastrar fichas a sus zonas (sobre un SVG con posiciones, o en fila).
     // { escena?, slots:[{id,txt?,left?,top?}], fichas:[{id,txt?,ficha?}] }
@@ -160,6 +268,37 @@ window.Contenido = (function () {
       ctrl.pregunta(t.pregunta || "Arrastra cada ficha a su lugar 👇");
       const slots = t.slots || [], fichas = t.fichas || [];
       const abs = slots.some((s) => s.left != null);
+      // Con WebGL y "modelo": las casillas "?" flotan sobre una maqueta 3D animada y,
+      // al acertar una, esa etapa se anima más fuerte (el material responde).
+      const m3d = t.modelo && window.Modelo3D && Modelo3D.disponible(t.modelo);
+      if (m3d) {
+        host.innerHTML = '<div class="zona-arrastre con-modelo"></div><div class="fila-fichas"></div>';
+        let m = ctrl.memo.m3d;
+        const marco = host.querySelector(".con-modelo");
+        if (m) { marco.appendChild(m.el); m.limpiarAnclados(); }
+        else { m = ctrl.memo.m3d = Modelo3D.crear(marco, t.modelo, { pista: "" }); ctrl.alTerminar(() => m.destruir()); }
+        const zonasM = slots.map((s) => {
+          const d = document.createElement("div");
+          d.className = "slot"; d.dataset.id = s.id; d.innerHTML = '<span class="slot-q">?</span>';
+          return m.anclar(d, s.id);
+        });
+        let quedan = slots.length;
+        ctrl.mezclar(fichas.slice()).forEach((fi) => {
+          const chip = document.createElement("button");
+          chip.className = "ficha-arr"; chip.textContent = fi.ficha || fi.txt; chip.dataset.id = fi.id;
+          host.querySelector(".fila-fichas").appendChild(chip);
+          Arrastrar.hacer(chip, zonasM, (item, zona) => {
+            if (!zona || zona.dataset.lleno === "1") return;
+            if (zona.dataset.id === item.dataset.id) {
+              zona.dataset.lleno = "1"; zona.classList.add("ok"); zona.textContent = item.textContent;
+              item.remove();
+              m.activar(zona.dataset.id);
+              quedan--; if (quedan === 0) ctrl.ganar(2400); else ctrl.retro("¡Bien! Faltan " + quedan + " 👇", "bien");
+            } else { zona.classList.add("rojo"); setTimeout(() => zona.classList.remove("rojo"), 450); ctrl.reintento("Ahí no. Mira bien qué hace el agua en ese lugar 👀"); }
+          });
+        });
+        return;
+      }
       host.innerHTML =
         '<div class="zona-arrastre ' + (abs ? "con-escena" : "en-fila") + '">' +
           (t.escena ? '<div class="escena">' + t.escena + "</div>" : "") +
@@ -188,16 +327,42 @@ window.Contenido = (function () {
     },
     // Señala la parte: toca la región correcta sobre un SVG. { svg, partes:[{id,nombre}] }
     senala: (t) => (host, ctrl) => {
-      const parte = ctrl.azarEl(t.partes);
-      ctrl.pregunta("¿Dónde está <b>" + esc(parte.nombre) + "</b>? 👆");
-      host.innerHTML = t.svg;
+      const parte = sacar(t.partes);
+      // "¿Dónde ESTÁN las rodillas?" / "¿Dónde ESTÁ la raíz?" (el nombre trae su artículo).
+      const plural = /^(los|las)\s/i.test(parte.nombre);
+      ctrl.pregunta("¿Dónde " + (plural ? "están" : "está") + " <b>" + esc(parte.nombre) + "</b>? 👆");
+      const nombreDe = (id) => { const p = t.partes.find((x) => x.id === id); return p ? p.nombre : ""; };
+      // El error es información: se le dice QUÉ tocó, no solo que falló.
+      const casi = (id) => {
+        const n = nombreDe(id), art = (n.split(" ")[0] || "").toLowerCase();
+        const dem = { el: "Ese es", la: "Esa es", los: "Esos son", las: "Esas son" }[art] || "Eso es";
+        return dem + " <b>" + esc(n) + "</b>. Busca <b>" + esc(parte.nombre) + "</b> 👀";
+      };
+
+      // Con WebGL: el modelo 3D (se gira con el dedo y cada parte se ilumina).
+      if (t.modelo && window.Modelo3D && Modelo3D.disponible(t.modelo)) {
+        let m = ctrl.memo.m3d;
+        if (m) { host.appendChild(m.el); m.limpiarEtiquetas(); m.apagar(); }      // el mismo modelo sirve para toda la ronda
+        else { m = ctrl.memo.m3d = Modelo3D.crear(host, t.modelo); ctrl.alTerminar(() => m.destruir()); }
+        m.alTocar = (id, cerca) => {
+          // Vale si tocó la parte o quedó pegadito a ella (dedos pequeños, piezas finas).
+          if (id === parte.id || (cerca || []).indexOf(parte.id) >= 0) {
+            m.resaltar(parte.id, "ok", true); m.etiquetar(parte.id, parte.nombre, "ok"); ctrl.ganar(1700);
+          } else if (id) { m.resaltar(id, "mal"); ctrl.reintento(casi(id)); }
+        };
+        return;
+      }
+
+      // Sin WebGL (o temas sin modelo): el dibujo SVG.
+      host.innerHTML = '<div class="sen-mapa">' + t.svg + "</div>";
       host.querySelectorAll("[data-parte]").forEach((el) => {
         el.classList.add("parte");
         el.addEventListener("click", () => {
-          if (el.getAttribute("data-parte") === parte.id) {
+          const id = el.getAttribute("data-parte");
+          if (id === parte.id) {
             host.querySelectorAll('[data-parte="' + parte.id + '"]').forEach((e) => e.classList.add("ok"));
-            ctrl.ganar();
-          } else { el.classList.add("mal"); setTimeout(() => el.classList.remove("mal"), 700); ctrl.reintento("¡Casi! Esa es otra parte, inténtalo 👇"); }
+            ctrl.ganar(1400);
+          } else { el.classList.add("mal"); setTimeout(() => el.classList.remove("mal"), 700); ctrl.reintento(casi(id)); }
         });
       });
     },
@@ -243,17 +408,21 @@ window.Contenido = (function () {
         host.querySelector(".prob-input").addEventListener("keydown", (e) => { if (e.key === "Enter") comprobar(); });
       };
     },
-    // Términos de la suma/resta (Mate, paramétrico): genera a±b según rangos por nivel
-    // y arrastra cada nombre a su número. { suma:bool, rangos:[[b],[i],[a]] }
+    // Términos de la suma/resta/multiplicación (Mate, paramétrico): genera la operación
+    // según rangos por nivel y arrastra cada nombre a su número.
+    // { suma:bool | op:"mult", rangos:[[b],[i],[a]], rangosB?:[[b],[i],[a]] (2.º factor), factores?:bool }
     terminos: (t) => (host, ctrl) => {
       const rg = Juego.porNivel(t.rangos || [[2, 20], [20, 200], [200, 2000]]);
-      const suma = !!t.suma;
-      let a = ctrl.azar(rg[0], rg[1]), b = ctrl.azar(rg[0], rg[1]);
-      if (!suma && a < b) { const x = a; a = b; b = x; }
-      const c = suma ? a + b : a - b, signo = suma ? "+" : "−";
-      const partes = suma ? [{ n: a, rol: "sumando" }, { n: b, rol: "sumando" }, { n: c, rol: "suma" }]
-                          : [{ n: a, rol: "minuendo" }, { n: b, rol: "sustraendo" }, { n: c, rol: "diferencia" }];
-      const etiquetas = suma ? ["sumando", "sumando", "suma"] : ["minuendo", "sustraendo", "diferencia"];
+      const op = t.op || (t.suma ? "suma" : "resta");
+      const rb = op === "mult" ? Juego.porNivel(t.rangosB || [[2, 9], [2, 9], [11, 99]]) : rg;
+      let a = ctrl.azar(rg[0], rg[1]), b = ctrl.azar(rb[0], rb[1]);
+      if (op === "resta" && a < b) { const x = a; a = b; b = x; }
+      const c = op === "suma" ? a + b : op === "mult" ? a * b : a - b;
+      const signo = { suma: "+", resta: "−", mult: "×" }[op];
+      const etiquetas = op === "suma" ? ["sumando", "sumando", "suma"]
+        : op === "mult" ? (t.factores ? ["factor", "factor", "producto"] : ["multiplicando", "multiplicador", "producto"])
+        : ["minuendo", "sustraendo", "diferencia"];
+      const partes = [a, b, c].map((n, k) => ({ n: n, rol: etiquetas[k] }));
       const numHTML = (p) => '<div class="term-num" data-rol="' + p.rol + '"><b>' + p.n + '</b><span class="term-slot"></span></div>';
       ctrl.pregunta("Arrastra cada nombre a su número 👇");
       host.innerHTML = '<div class="term-op">' + numHTML(partes[0]) + '<span class="term-sig">' + signo + "</span>" +
@@ -394,6 +563,7 @@ window.Contenido = (function () {
         }
         document.addEventListener("keydown", alTeclear);
         quitarTeclas = function () { document.removeEventListener("keydown", alTeclear); quitarTeclas = null; };
+        ctrl.alSalir(() => { if (quitarTeclas) quitarTeclas(); });
 
         // Regalo inicial: unas letras ya puestas (más en básico, ninguna en avanzado).
         const nPistas = Juego.porNivel(t.pistas || [2, 1, 0]) || 0;
@@ -411,14 +581,17 @@ window.Contenido = (function () {
   }
   function gensDe(t) {
     if (t.tipo === "mc") {
-      return [function () { const x = Juego.azarEl(t.banco); return mcPregunta(t.nombre, x.p, x.c, x.d, x.pista); }];
+      return [function () { const x = sacar(t.banco); return mcPregunta(t.nombre, x.p, x.c, x.d, x.pista); }];
     }
     if (t.tipo === "lectura") {
+      // Se lee UN texto y se responden seguidas todas sus preguntas; luego otro texto.
+      // (Antes cada pregunta traía un texto distinto al azar y había que releer todo.)
+      let lect = null, pendientes = [];
       return [function () {
-        const lect = itemDe(t.lecturas, Juego.nivelIdx());
-        const pr = Juego.azarEl(lect.preguntas);
+        if (!pendientes.length) { lect = itemDe(t.lecturas, Juego.nivelIdx()); pendientes = lect.preguntas.slice().reverse(); }
+        const pr = pendientes.pop();
         return { tema: t.nombre || "Lee con atención", html: '<div class="lectura-texto">' + esc(lect.texto) + "</div>",
-                 pregunta: pr.q, opciones: pr.opciones, correcta: pr.correcta };
+                 pregunta: pr.q, opciones: pr.opciones, correcta: pr.correcta, tiempo: 2 };
       }];
     }
     return [];

@@ -1,0 +1,363 @@
+{
+  "modo": "incas",
+  "materia": "sociales",
+  "px": "inca",
+  "titulo": "Señoríos, Incas y Conquista",
+  "icono": "👑",
+  "motor": "actividad",
+  "destrezas": ["CS.3.1.2", "CS.3.1.3", "CS.3.1.4", "CS.3.1.5", "CS.3.1.7"],
+  "temas": [
+    {
+      "tipo": "clasificar",
+      "icono": "🏺",
+      "nombre": "¿De qué época es?",
+      "desc": "de las primeras aldeas a los señoríos",
+      "total": 6,
+      "pregunta": "¿A qué sociedad pertenece cada pista? Arrástrala 👇",
+      "cestas": [
+        { "id": "incipientes", "nombre": "Incipientes", "emoji": "🌱" },
+        { "id": "superiores", "nombre": "Superiores", "emoji": "🌽" },
+        { "id": "supracomunales", "nombre": "Supracomunales", "emoji": "🏘️" },
+        { "id": "senorios", "nombre": "Señoríos étnicos", "emoji": "🤝" }
+      ],
+      "cestasPorNivel": [
+        ["incipientes", "superiores", "supracomunales"],
+        ["incipientes", "superiores", "supracomunales", "senorios"],
+        ["incipientes", "superiores", "supracomunales", "senorios"]
+      ],
+      "fichas": [4, 5, 6],
+      "items": {
+        "incipientes": [
+          ["Cultura Valdivia", "Primeras aldeas", "Empiezan a sembrar", "Primera cerámica", "Venus de Valdivia", "Dejan de ser nómadas", "Aldeas muy pequeñas", "Primeras chacras"],
+          ["Cultura Valdivia", "Primeras aldeas agrícolas", "Inicio de la agricultura", "Primeras vasijas de barro", "Venus de Valdivia", "Se vuelven sedentarios", "Todos trabajan por igual", "Aldeas de pocas familias"],
+          ["Cultura Valdivia", "Primeras aldeas agrícolas", "Inicio de la agricultura", "La cerámica más antigua", "Figurillas llamadas Venus", "Paso de nómadas a sedentarios", "Sin diferencias sociales", "Aldeas de pocas familias"]
+        ],
+        "superiores": [
+          ["Cultura Chorrera", "Cultura Machalilla", "Botellas-silbato", "Cosechas más grandes", "Sobra comida para guardar", "Cerámica fina y brillante", "Mejores formas de sembrar"],
+          ["Cultura Chorrera", "Cultura Machalilla", "Botellas-silbato", "Botellas con asa de estribo", "Cosechas que sobran", "Aparecen los artesanos", "Mejores técnicas de cultivo", "Cerámica fina y brillante"],
+          ["Cultura Chorrera", "Cultura Machalilla", "Botellas-silbato de Chorrera", "Asa de estribo de Machalilla", "Excedentes de alimentos", "Artesanos especializados", "Técnicas agrícolas mejoradas", "Empiezan las diferencias sociales"]
+        ],
+        "supracomunales": [
+          ["Cultura La Tolita", "Sol de oro", "Trabajan el oro", "Cultura Bahía", "Cultura Jama-Coaque", "Varias aldeas se unen", "Centros ceremoniales"],
+          ["Cultura La Tolita", "Sol de oro", "Trabajan oro y platino", "Cultura Bahía", "Cultura Jama-Coaque", "Cultura Guangala", "Varias aldeas unidas", "Grandes centros ceremoniales"],
+          ["Cultura La Tolita", "Máscara del sol de oro", "Orfebrería en oro y platino", "Cultura Bahía", "Cultura Jama-Coaque", "Cultura Guangala", "Unión de varias comunidades", "Grandes centros ceremoniales"]
+        ],
+        "senorios": [
+          ["Caranquis", "Cañaris", "Puruháes", "Manteños", "Huancavilcas", "Cacicazgos mayores"],
+          ["Caranquis", "Cañaris", "Puruháes", "Manteños", "Huancavilcas", "Cacicazgos mayores", "Alianzas entre pueblos", "Vivían al llegar los incas"],
+          ["Señorío Caranqui", "Señorío Cañari", "Señorío Puruhá", "Manteños", "Huancavilcas", "Cacicazgos mayores", "Alianzas y guerras", "Mercaderes mindalaes", "Resistieron a los incas"]
+        ]
+      }
+    },
+    {
+      "tipo": "emparejar",
+      "icono": "🗺️",
+      "nombre": "Señoríos y su tierra",
+      "desc": "dónde vivía cada señorío étnico",
+      "total": 5,
+      "pregunta": "Une cada señorío con el lugar donde vivía 👇",
+      "pares": [
+        [
+          { "a": "Caranquis", "b": "Imbabura" },
+          { "a": "Quitus", "b": "Donde hoy está Quito" },
+          { "a": "Puruháes", "b": "Chimborazo" },
+          { "a": "Cañaris", "b": "Azuay y Cañar" },
+          { "a": "Paltas", "b": "Loja" },
+          { "a": "Manteños", "b": "Manabí" },
+          { "a": "Huancavilcas", "b": "Santa Elena y Guayas" },
+          { "a": "Punáes", "b": "Isla Puná" }
+        ],
+        [
+          { "a": "Pastos", "b": "Carchi, en el norte" },
+          { "a": "Caranquis", "b": "Imbabura" },
+          { "a": "Quitus", "b": "Pichincha (zona de Quito)" },
+          { "a": "Panzaleos", "b": "Cotopaxi" },
+          { "a": "Puruháes", "b": "Chimborazo" },
+          { "a": "Cañaris", "b": "Azuay y Cañar" },
+          { "a": "Paltas", "b": "Loja, en el sur" },
+          { "a": "Manteños", "b": "Costa de Manabí" },
+          { "a": "Huancavilcas", "b": "Santa Elena y Guayas" },
+          { "a": "Punáes", "b": "Isla Puná, en el golfo" }
+        ],
+        [
+          { "a": "Pastos", "b": "Sierra norte: Carchi" },
+          { "a": "Caranquis", "b": "Sierra norte: Imbabura" },
+          { "a": "Cayambis", "b": "Norte de Pichincha" },
+          { "a": "Quitus", "b": "Valle de Quito" },
+          { "a": "Panzaleos", "b": "Sierra centro: Cotopaxi" },
+          { "a": "Puruháes", "b": "Sierra centro: Chimborazo" },
+          { "a": "Cañaris", "b": "Sierra sur: Azuay y Cañar" },
+          { "a": "Paltas", "b": "Sierra sur: Loja" },
+          { "a": "Manteños", "b": "Costa: Manabí" },
+          { "a": "Huancavilcas", "b": "Costa: península de Santa Elena" },
+          { "a": "Punáes", "b": "Isla Puná, golfo de Guayaquil" },
+          { "a": "Chonos", "b": "Costa: cuenca del río Guayas" },
+          { "a": "Quijos", "b": "Amazonía norte (Napo)" }
+        ]
+      ]
+    },
+    {
+      "tipo": "clasificar",
+      "icono": "🔄",
+      "nombre": "El trueque",
+      "desc": "qué traía cada región",
+      "total": 6,
+      "pregunta": "¿De qué región venía cada producto del trueque? 👇",
+      "cestas": [
+        { "id": "costa", "nombre": "Costa", "emoji": "🏖️" },
+        { "id": "sierra", "nombre": "Sierra", "emoji": "⛰️" },
+        { "id": "amazonia", "nombre": "Amazonía", "emoji": "🌳" }
+      ],
+      "fichas": [4, 5, 6],
+      "items": {
+        "costa": [
+          ["Concha Spondylus", "Sal del mar", "Pescado seco", "Perlas", "Caracoles de mar", "Camarones", "Collares de conchas"],
+          ["Concha Spondylus", "Sal marina", "Pescado seco", "Pescado salado", "Perlas", "Caracoles marinos", "Mariscos", "Collares de conchas"],
+          ["Mullu (concha Spondylus)", "Sal marina", "Pescado seco y salado", "Perlas", "Caracoles marinos", "Mariscos", "Cuentas de concha", "Caracoles para trompetas"]
+        ],
+        "sierra": [
+          ["Papas", "Mellocos", "Ocas", "Quinua", "Chochos", "Lana de llama", "Cuyes"],
+          ["Papas", "Mellocos", "Ocas", "Quinua", "Chochos", "Tejidos de lana", "Llamas de carga", "Cuyes"],
+          ["Papas y mellocos", "Ocas y mashuas", "Quinua", "Chochos", "Tejidos de lana de llama", "Obsidiana", "Llamas de carga", "Cuyes"]
+        ],
+        "amazonia": [
+          ["Canela", "Guayusa", "Plumas de aves de la selva", "Cerbatanas", "Plantas de la selva que curan", "Lanzas de chonta"],
+          ["Canela", "Guayusa", "Plumas de colores de la selva", "Cerbatanas", "Plantas medicinales de la selva", "Lanzas de chonta", "Flor de canela (ishpingo)"],
+          ["Canela", "Ishpingo (flor de canela)", "Guayusa", "Plumas de aves amazónicas", "Cerbatanas", "Plantas medicinales de la selva", "Lanzas de chonta", "Pieles de animales de la selva"]
+        ]
+      }
+    },
+    {
+      "tipo": "emparejar",
+      "icono": "👑",
+      "nombre": "El Imperio Inca",
+      "desc": "palabras del Tahuantinsuyo",
+      "total": 5,
+      "pregunta": "Une cada palabra inca con su significado 👇",
+      "pares": [
+        [
+          { "a": "Tahuantinsuyo", "b": "El imperio de los incas" },
+          { "a": "Cusco", "b": "La capital del imperio" },
+          { "a": "Sapa Inca", "b": "El emperador" },
+          { "a": "Inti", "b": "El dios Sol" },
+          { "a": "Chasqui", "b": "Mensajero que corría" },
+          { "a": "Quipu", "b": "Cuerdas con nudos para contar" },
+          { "a": "Qhapaq Ñan", "b": "El gran camino inca" },
+          { "a": "Ayllu", "b": "Grupo de familias" },
+          { "a": "Pachamama", "b": "La Madre Tierra" },
+          { "a": "Minga", "b": "Trabajo entre todos" }
+        ],
+        [
+          { "a": "Tahuantinsuyo", "b": "Imperio de las cuatro regiones" },
+          { "a": "Cusco", "b": "Capital, en el actual Perú" },
+          { "a": "Sapa Inca", "b": "Emperador, hijo del Sol" },
+          { "a": "Ayllu", "b": "Familias que compartían la tierra" },
+          { "a": "Mita", "b": "Trabajo por turnos para el imperio" },
+          { "a": "Minga", "b": "Trabajo de toda la comunidad" },
+          { "a": "Quipu", "b": "Nudos para llevar las cuentas" },
+          { "a": "Chasqui", "b": "Mensajero que corría por relevos" },
+          { "a": "Qhapaq Ñan", "b": "Red de caminos del imperio" },
+          { "a": "Tambo", "b": "Posada para descansar en el camino" },
+          { "a": "Mitimaes", "b": "Familias llevadas a otra tierra" },
+          { "a": "Curaca", "b": "Jefe de un ayllu" }
+        ],
+        [
+          { "a": "Chinchaysuyo", "b": "Región norte, con el actual Ecuador" },
+          { "a": "Suyo", "b": "Cada una de las cuatro regiones" },
+          { "a": "Sapa Inca", "b": "Máxima autoridad del imperio" },
+          { "a": "Coya", "b": "Esposa principal del Inca" },
+          { "a": "Curaca", "b": "Jefe de un ayllu" },
+          { "a": "Amautas", "b": "Sabios que enseñaban" },
+          { "a": "Mita", "b": "Turnos de trabajo en obras del imperio" },
+          { "a": "Mitimaes", "b": "Pueblos trasladados a otras regiones" },
+          { "a": "Quipu", "b": "Registro de cuentas con nudos" },
+          { "a": "Tambo", "b": "Posada para viajeros en el camino" },
+          { "a": "Collcas", "b": "Bodegas para guardar alimentos" },
+          { "a": "Chasqui", "b": "Correo a pie por relevos" },
+          { "a": "Tomebamba", "b": "Ciudad inca donde hoy está Cuenca" },
+          { "a": "Ingapirca", "b": "Ruinas incas en la provincia de Cañar" }
+        ]
+      ]
+    },
+    {
+      "tipo": "ordenar",
+      "icono": "⏳",
+      "nombre": "De los Incas a la Conquista",
+      "desc": "ordena la línea de tiempo",
+      "total": 5,
+      "pregunta": "Ordena del hecho MÁS ANTIGUO al más reciente 👇",
+      "secuencias": [
+        [
+          ["Señoríos étnicos", "Llegan los incas", "Guerra entre Huáscar y Atahualpa", "Los españoles capturan a Atahualpa"],
+          ["Gobierna Huayna Cápac", "Pelean Huáscar y Atahualpa", "Capturan a Atahualpa (1532)", "Muere Atahualpa (1533)"],
+          ["Capturan a Atahualpa (1532)", "Muere Atahualpa (1533)", "Rumiñahui defiende Quito", "Fundan la Quito española (1534)"]
+        ],
+        [
+          ["Llega Túpac Yupanqui con los incas", "Gobierna Huayna Cápac", "Guerra entre Huáscar y Atahualpa", "Captura de Atahualpa en Cajamarca", "Fundación española de Quito"],
+          ["Muere Huayna Cápac", "Huáscar y Atahualpa pelean por el poder", "Atahualpa vence a Huáscar", "Pizarro captura a Atahualpa", "Muere Atahualpa"],
+          ["Captura de Atahualpa (1532)", "Atahualpa paga un rescate en oro", "Muerte de Atahualpa (1533)", "Rumiñahui resiste en Quito", "Fundación española de Quito (1534)"]
+        ],
+        [
+          ["Túpac Yupanqui inicia la conquista inca", "Huayna Cápac vence a los caranquis", "Muere Huayna Cápac", "Guerra civil entre Huáscar y Atahualpa", "Captura de Atahualpa en Cajamarca", "Muerte de Atahualpa"],
+          ["Muere Huayna Cápac", "Guerra civil por el poder", "Atahualpa vence a Huáscar", "Pizarro captura a Atahualpa", "Muere Atahualpa", "Rumiñahui organiza la resistencia"],
+          ["Pizarro captura a Atahualpa", "Atahualpa paga un gran rescate", "Muere Atahualpa", "Rumiñahui resiste en el norte", "Benalcázar funda Quito", "Empieza la época colonial"],
+          ["Sociedades agrícolas", "Señoríos étnicos", "Conquista inca", "Guerra civil inca", "Conquista española", "Época colonial"]
+        ]
+      ]
+    },
+    {
+      "tipo": "emparejar",
+      "icono": "🧑‍🤝‍🧑",
+      "nombre": "¿Quién fue?",
+      "desc": "personaje y su hecho",
+      "total": 5,
+      "pregunta": "Une cada personaje con lo que hizo 👇",
+      "pares": [
+        [
+          { "a": "Atahualpa", "b": "El último Inca" },
+          { "a": "Huáscar", "b": "Hermano y rival de Atahualpa" },
+          { "a": "Huayna Cápac", "b": "Padre de Huáscar y Atahualpa" },
+          { "a": "Túpac Yupanqui", "b": "Trajo a los incas a estas tierras" },
+          { "a": "Rumiñahui", "b": "Defendió Quito de los españoles" },
+          { "a": "Francisco Pizarro", "b": "Capturó a Atahualpa" },
+          { "a": "Sebastián de Benalcázar", "b": "Fundó la Quito española" },
+          { "a": "Cristóbal Colón", "b": "Llegó a América en 1492" }
+        ],
+        [
+          { "a": "Túpac Yupanqui", "b": "Inició la conquista inca del norte" },
+          { "a": "Huayna Cápac", "b": "Padre de Huáscar y Atahualpa" },
+          { "a": "Huáscar", "b": "Perdió la guerra civil" },
+          { "a": "Atahualpa", "b": "Ganó la guerra civil" },
+          { "a": "Rumiñahui", "b": "General que resistió en Quito" },
+          { "a": "Francisco Pizarro", "b": "Jefe español en Cajamarca" },
+          { "a": "Diego de Almagro", "b": "Socio de Pizarro" },
+          { "a": "Sebastián de Benalcázar", "b": "Fundó San Francisco de Quito" },
+          { "a": "Manco Cápac", "b": "Primer Inca, según la leyenda" },
+          { "a": "Cristóbal Colón", "b": "Llegó a América en 1492" }
+        ],
+        [
+          { "a": "Pachacútec", "b": "Convirtió al Cusco en un imperio" },
+          { "a": "Túpac Yupanqui", "b": "Sometió a los cañaris" },
+          { "a": "Huayna Cápac", "b": "Venció a los caranquis en Yahuarcocha" },
+          { "a": "Huáscar", "b": "Heredero apoyado por el Cusco" },
+          { "a": "Atahualpa", "b": "Capturado en Cajamarca en 1532" },
+          { "a": "Quizquiz y Calicuchima", "b": "Generales que vencieron a Huáscar" },
+          { "a": "Rumiñahui", "b": "Dirigió la resistencia en Quito" },
+          { "a": "Francisco Pizarro", "b": "Dirigió la conquista del Tahuantinsuyo" },
+          { "a": "Diego de Almagro", "b": "Socio de Pizarro en la conquista" },
+          { "a": "Sebastián de Benalcázar", "b": "Fundó San Francisco de Quito en 1534" },
+          { "a": "Vicente de Valverde", "b": "Fraile que acompañaba a Pizarro" },
+          { "a": "Manco Cápac y Mama Ocllo", "b": "Fundadores del Cusco en la leyenda" }
+        ]
+      ]
+    },
+    {
+      "tipo": "vf",
+      "icono": "🤔",
+      "nombre": "¿Verdadero o falso?",
+      "desc": "señoríos, incas y conquista",
+      "total": 6,
+      "preguntas": [
+        [
+          { "t": "La capital del Imperio Inca era Cusco.", "c": true, "exp": "" },
+          { "t": "Los incas adoraban al Sol y lo llamaban Inti.", "c": true, "exp": "" },
+          { "t": "Atahualpa fue capturado en Cajamarca en 1532.", "c": true, "exp": "" },
+          { "t": "Los chasquis eran mensajeros que corrían por los caminos.", "c": true, "exp": "" },
+          { "t": "Cada señorío étnico tenía un cacique.", "c": true, "exp": "" },
+          { "t": "En el trueque se cambia un producto por otro.", "c": true, "exp": "" },
+          { "t": "La concha Spondylus venía del mar.", "c": true, "exp": "" },
+          { "t": "En el trueque se cambiaban maíz, papas, yuca y conchas.", "c": true, "exp": "" },
+          { "t": "La capital del Imperio Inca era Guayaquil.", "c": false, "exp": "Era Cusco, en el actual Perú." },
+          { "t": "En el trueque se pagaba con billetes.", "c": false, "exp": "Se cambiaba un producto por otro, sin dinero." },
+          { "t": "Los incas contaban con calculadoras.", "c": false, "exp": "Usaban quipus: cuerdas con nudos." },
+          { "t": "Huáscar y Atahualpa nunca pelearon.", "c": false, "exp": "Eran hermanos y pelearon por el poder." },
+          { "t": "Los españoles llegaron antes que los incas.", "c": false, "exp": "Primero llegaron los incas y después los españoles." },
+          { "t": "Los chasquis viajaban en bicicleta.", "c": false, "exp": "Corrían a pie por los caminos." },
+          { "t": "Rumiñahui fue un conquistador español.", "c": false, "exp": "Fue un general indígena que defendió Quito." }
+        ],
+        [
+          { "t": "El Tahuantinsuyo tenía cuatro grandes regiones llamadas suyos.", "c": true, "exp": "" },
+          { "t": "Túpac Yupanqui y Huayna Cápac extendieron el imperio hasta el actual Ecuador.", "c": true, "exp": "" },
+          { "t": "La mita era un trabajo por turnos para el imperio.", "c": true, "exp": "" },
+          { "t": "Los señoríos hacían alianzas y también guerras.", "c": true, "exp": "" },
+          { "t": "Los cañaris y los caranquis resistieron a los incas.", "c": true, "exp": "" },
+          { "t": "Atahualpa murió en 1533.", "c": true, "exp": "" },
+          { "t": "La guerra entre Huáscar y Atahualpa debilitó al imperio.", "c": true, "exp": "" },
+          { "t": "La Quito española se fundó en 1534.", "c": true, "exp": "" },
+          { "t": "Los manteños navegaban en balsas para comerciar.", "c": true, "exp": "" },
+          { "t": "El quipu era un arma de guerra.", "c": false, "exp": "Eran cuerdas con nudos para llevar cuentas." },
+          { "t": "Francisco Pizarro era un general inca.", "c": false, "exp": "Era un conquistador español." },
+          { "t": "Huáscar ganó la guerra civil.", "c": false, "exp": "La ganó Atahualpa." },
+          { "t": "Atahualpa fue capturado en Quito.", "c": false, "exp": "Fue capturado en Cajamarca, en el actual Perú." },
+          { "t": "El Qhapaq Ñan era un templo del Sol.", "c": false, "exp": "Era la gran red de caminos del imperio." },
+          { "t": "Los señoríos étnicos no comerciaban entre sí.", "c": false, "exp": "Intercambiaban productos con el trueque." },
+          { "t": "En el ayllu cada familia trabajaba sola, sin ayudar a nadie.", "c": false, "exp": "Trabajaban juntos, por ejemplo en la minga." },
+          { "t": "Los cañaris vivían en la actual provincia de Manabí.", "c": false, "exp": "Vivían en Azuay y Cañar." }
+        ],
+        [
+          { "t": "El actual Ecuador formó parte del Chinchaysuyo.", "c": true, "exp": "Era la región norte del Tahuantinsuyo." },
+          { "t": "Los mitimaes eran pueblos trasladados por los incas a otras tierras.", "c": true, "exp": "" },
+          { "t": "Los mindalaes eran mercaderes que viajaban lejos para intercambiar.", "c": true, "exp": "" },
+          { "t": "Huayna Cápac venció a los caranquis en Yahuarcocha.", "c": true, "exp": "" },
+          { "t": "La guerra civil inca ocurrió poco antes de la llegada de Pizarro.", "c": true, "exp": "" },
+          { "t": "Atahualpa pagó un gran rescate, pero no lo liberaron.", "c": true, "exp": "" },
+          { "t": "Rumiñahui organizó la resistencia tras la muerte de Atahualpa.", "c": true, "exp": "" },
+          { "t": "Tomebamba fue una ciudad inca donde hoy está Cuenca.", "c": true, "exp": "" },
+          { "t": "Las alianzas entre señoríos a veces se hacían con matrimonios.", "c": true, "exp": "" },
+          { "t": "Los incas dominaron el actual Ecuador durante mil años.", "c": false, "exp": "Fue menos de cien años." },
+          { "t": "Los españoles vencieron porque eran muchos más que los incas.", "c": false, "exp": "Eran pocos: les ayudaron sus armas, sus caballos y la división del imperio." },
+          { "t": "El Sapa Inca era elegido por votación del pueblo.", "c": false, "exp": "El cargo pasaba a un hijo del Inca." },
+          { "t": "Benalcázar fundó Quito en 1492.", "c": false, "exp": "Fue en 1534. En 1492 Colón llegó a América." },
+          { "t": "Los incas escribían sus leyes en libros de papel.", "c": false, "exp": "No usaban libros: llevaban cuentas con quipus." },
+          { "t": "Atahualpa murió antes de la guerra civil.", "c": false, "exp": "Murió después, en 1533." },
+          { "t": "El Tahuantinsuyo ocupaba solo el actual Ecuador.", "c": false, "exp": "Era enorme: llegaba hasta Chile y Argentina." },
+          { "t": "Los señoríos étnicos aparecieron después de los incas.", "c": false, "exp": "Ya existían cuando llegaron los incas." }
+        ]
+      ]
+    },
+    {
+      "tipo": "definir",
+      "icono": "📖",
+      "nombre": "¿Qué es cada cosa?",
+      "desc": "elige la respuesta",
+      "total": 6,
+      "preguntas": [
+        [
+          { "q": "¿Qué es el trueque?", "c": "Cambiar un producto por otro", "d": ["Pagar con monedas", "Guardar toda la cosecha"] },
+          { "q": "¿Quién mandaba en un señorío étnico?", "c": "El cacique", "d": ["El alcalde", "El presidente"] },
+          { "q": "¿Cómo se llamaba el imperio de los incas?", "c": "Tahuantinsuyo", "d": ["Spondylus", "Cajamarca"] },
+          { "q": "¿Cuál era la capital del Imperio Inca?", "c": "Cusco", "d": ["Guayaquil", "Cajamarca"] },
+          { "q": "¿Qué era un chasqui?", "c": "Un mensajero que corría", "d": ["Un dios inca", "Una vasija de barro"] },
+          { "q": "¿Qué era un quipu?", "c": "Cuerdas con nudos para contar", "d": ["Un camino de piedra", "Una fiesta del Sol"] },
+          { "q": "¿Quién era Inti?", "c": "El dios Sol", "d": ["Un río sagrado", "Un general inca"] },
+          { "q": "¿Dónde capturaron a Atahualpa?", "c": "En Cajamarca", "d": ["En Quito", "En Cuenca"] },
+          { "q": "¿Qué concha del mar era muy valiosa en el trueque?", "c": "La concha Spondylus", "d": ["El caracol de jardín", "La cáscara de coco"] }
+        ],
+        [
+          { "q": "¿Para qué hacían alianzas los señoríos?", "c": "Para ser más fuertes y comerciar", "d": ["Para dejar de sembrar", "Para volverse nómadas"] },
+          { "q": "¿Qué era la mita?", "c": "Trabajo por turnos para el imperio", "d": ["Una fiesta de la cosecha", "Un instrumento musical"] },
+          { "q": "¿Qué era un ayllu?", "c": "Familias que compartían la tierra", "d": ["Un templo de piedra", "Un camino del imperio"] },
+          { "q": "¿Qué era un tambo?", "c": "Una posada en el camino", "d": ["Un tambor de guerra", "Un tejido de lana"] },
+          { "q": "¿Quiénes eran los mitimaes?", "c": "Familias llevadas a otra tierra", "d": ["Mensajeros del Inca", "Sacerdotes del Sol"] },
+          { "q": "¿Qué significa Tahuantinsuyo?", "c": "Las cuatro regiones unidas", "d": ["La ciudad del oro", "El camino del Sol"] },
+          { "q": "¿Quién era el Sapa Inca?", "c": "El emperador de los incas", "d": ["Un mensajero", "Un mercader de la Costa"] },
+          { "q": "¿Por qué pelearon Huáscar y Atahualpa?", "c": "Por el gobierno del imperio", "d": ["Por una cosecha de papas", "Por una balsa manteña"] },
+          { "q": "¿Quién defendió Quito de los españoles?", "c": "Rumiñahui", "d": ["Francisco Pizarro", "Huáscar"] },
+          { "q": "¿En qué año capturaron a Atahualpa?", "c": "En 1532", "d": ["En 1492", "En 1822"] }
+        ],
+        [
+          { "q": "¿Quiénes eran los mindalaes?", "c": "Mercaderes que viajaban lejos", "d": ["Soldados del Inca", "Sacerdotes del Sol"] },
+          { "q": "¿Qué región del imperio incluía al actual Ecuador?", "c": "El Chinchaysuyo", "d": ["El Collasuyo", "El Contisuyo"] },
+          { "q": "¿Por qué la guerra civil ayudó a los españoles?", "c": "Dejó al imperio dividido y débil", "d": ["Dejó a los incas sin caminos", "Hizo que se acabara el oro"] },
+          { "q": "¿Qué ofreció Atahualpa a cambio de su libertad?", "c": "Un rescate en oro y plata", "d": ["Todas sus llamas", "La ciudad de Tomebamba"] },
+          { "q": "¿Qué ventaja tenían los españoles en la conquista?", "c": "Caballos y armas de acero y fuego", "d": ["Eran muchos más que los incas", "Conocían mejor los caminos"] },
+          { "q": "¿Qué eran las collcas?", "c": "Bodegas para guardar alimentos", "d": ["Collares de oro", "Balsas de carga"] },
+          { "q": "¿Qué ciudad inca estuvo donde hoy está Cuenca?", "c": "Tomebamba", "d": ["Cajamarca", "Machu Picchu"] },
+          { "q": "¿Quién fundó San Francisco de Quito en 1534?", "c": "Sebastián de Benalcázar", "d": ["Francisco de Orellana", "Cristóbal Colón"] },
+          { "q": "¿Qué era la minga?", "c": "Trabajo comunitario para el bien de todos", "d": ["Un impuesto pagado en oro", "Una bodega de alimentos"] },
+          { "q": "¿Qué era un cacicazgo mayor?", "c": "Un señorío con varios pueblos y un cacique", "d": ["Una aldea de pocas familias", "Un camino entre dos regiones"] }
+        ]
+      ]
+    }
+  ]
+}

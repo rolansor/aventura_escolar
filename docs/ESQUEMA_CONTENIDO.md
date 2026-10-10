@@ -20,7 +20,15 @@ DATOS.contenido[<modo>]
         ▼
 Actividad(px, temas)  ó  MC(px, temas)   (motores existentes)
 ```
-**Tras editar un JSON:** `python herramientas/build.py`. **Tras tocar JS:** `bun build --no-bundle`.
+**Tras editar un JSON:** `python herramientas/build.py` y luego `python herramientas/validar.py`
+(revisa que el contenido no tenga trampas). **Tras tocar JS:** `python herramientas/humo.py` (abre el juego
+en un navegador sin ventana y prueba todas las páginas).
+
+### Archivos incrustados (`$archivo`)
+Un dibujo SVG grande no se escribe como cadena escapada dentro del JSON: se guarda como un `.svg` normal y
+el JSON lo referencia con `{ "$archivo": "ruta/desde/la/raíz.svg" }`. `build.py` sustituye ese objeto por
+el texto del archivo al generar el `.js` (y `validar.py` lo resuelve igual). Ejemplo en `senala.json`:
+`"svg": { "$archivo": "recursos/senala/cuerpo.svg" }`. Tras editar el `.svg` hay que correr `build.py`.
 
 ## Cabecera del archivo
 ```jsonc
@@ -46,35 +54,42 @@ Cada tema lleva `tipo`, `icono`, `nombre`, `desc`, `total?` (rondas, def. 6) y s
 
 | `tipo` | Campos de contenido | Interacción |
 |---|---|---|
-| `clasificar` | `pregunta`, `cestas:[{id,nombre,emoji}]`, `cestasPorNivel:[[ids],…]?`, `items:{ id:[[b],[i],[a]] }` | arrastrar a cestas (1 ítem por cesta/ronda) |
-| `emparejar` | `pregunta`, `pares:[ [ {a,b} ], [i], [a] ]` | unir izquierda↔derecha |
-| `ordenar` | `pregunta`, `secuencias:[ [ ["a","b"] ], [i], [a] ]` | tocar en orden (elige 1 secuencia/ronda) |
+| `clasificar` | `pregunta`, `cestas:[{id,nombre,emoji}]`, `cestasPorNivel:[[ids],…]?`, `items:{ id:[[b],[i],[a]] }`, `fichas:[b,i,a]?` (cuántas fichas por ronda; def. 4–6), `dibujo?:{ modelo?, svg }` | arrastrar a cestas. Salen **más fichas que cestas** y repartidas al azar (una cesta puede recibir dos o ninguna): no se resuelve por descarte. Con **`dibujo`**, las cestas son las **partes** de un dibujo SVG o de un modelo 3D (los `id` de las cestas = `data-parte` / partes del modelo) y la ficha se suelta sobre la parte |
+| `emparejar` | `pregunta`, `pares:[ [ {a,b} ], [i], [a] ]`, `porRonda:[b,i,a]?` | unir izquierda↔derecha. La pareja se acepta por **texto**: dos `a` pueden compartir el mismo `b` (cóndor y oso → "Sierra"). En una misma ronda no salen dos parejas donde la respuesta de una es la palabra de la otra ("poblamiento → asentamiento" con "asentamiento → poblado") |
+| `ordenar` | `pregunta`, `secuencias:[ [ ["a","b"] ], [i], [a] ]` | tocar en orden (elige 1 secuencia/ronda). Se compara el **texto**: dos fichas iguales son intercambiables |
 | `silabas` | `items:[ [ ["ma","ri","po","sa"] ], [i], [a] ]` | ordenar las sílabas (muestra la palabra) |
 | `alfabetico` | `pregunta?`, `grupos:[ [ ["pato","ave"] ], [i], [a] ]` | ordenar A→Z (orden calculado, sin tildes) |
-| `vf` | `preguntas:[ [ {t,c,exp} ], [i], [a] ]` | ¿verdadero o falso? (`c`=bool, `exp` al fallar) |
+| `vf` | `preguntas:[ [ {t,c,exp} ], [i], [a] ]` | ¿verdadero o falso? (`c`=bool, `exp` al fallar). El runner sortea **mitad verdaderas, mitad falsas**: pon al menos 3–4 falsas por nivel para que no se repitan |
 | `definir` | `preguntas:[ [ {q,c,d:[…]} ], [i], [a] ]` | elige la definición correcta |
 | `sujeto` | `pregunta?`, `items:[ [ {palabras:[…],corte} ], [i], [a] ]` | toca dónde empieza el predicado |
-| `signos` | `pregunta?`, `items:[ [ {antes,despues,correcto,opciones:[…]} ], [i], [a] ]` | toca el signo del hueco ▢ |
-| `formas` | `items:[ [ {base,instr,correcto,opciones:[…]} ], [i], [a] ]` | elige la forma correcta |
-| `escena` | `escena?(svg)`, `slots:[{id,txt?,left?,top?}]`, `fichas:[{id,txt?,ficha?}]` | arrastrar fichas a zonas (sobre un SVG o en fila) |
-| `senala` | `svg`, `partes:[{id,nombre}]` | tocar la región correcta sobre un SVG |
+| `signos` | `pregunta?`, `pista?` (mensaje al fallar), `items:[ [ {antes,despues,correcto,opciones:[…]} ], [i], [a] ]` | toca lo que va en el hueco ▢ (un signo, o la letra/tilde que falta en una palabra) |
+| `formas` | `pista?` (mensaje al fallar), `items:[ [ {base,instr,correcto,opciones:[…]} ], [i], [a] ]` | elige la forma correcta (también sirve para completar una igualdad: `base` = "6 × 8 = 8 × ▢") |
+| `escena` | `escena?(svg)`, `modelo?`, `slots:[{id,txt?,left?,top?}]`, `fichas:[{id,txt?,ficha?}]` | arrastrar fichas a zonas (sobre un SVG o en fila). Con **`modelo`** (p. ej. `"cicloagua"`) las casillas "?" flotan sobre una maqueta 3D animada, ancladas al punto del modelo con el mismo `id`. **No pongas en `txt` la respuesta** (la casilla la regalaría) |
+| `senala` | `svg`, `modelo?`, `partes:[{id,nombre}]` | tocar la parte correcta. Con **`modelo`** (p. ej. `"planta"`, `"flor"`) se usa el modelo 3D y el `svg` queda de respaldo sin WebGL. El `nombre` lleva su **artículo** ("la raíz", "los pétalos"): de ahí sale la concordancia ("¿Dónde **están** los pétalos?") |
 | `problema` | `ops:[…]` (filtra el `banco` del archivo, ítems `{t,op,a,b,u}`) | problema verbal: elige operación y escribe la respuesta |
-| `terminos` | `suma:bool`, `rangos:[[b],[i],[a]]` | paramétrico: genera a±b y arrastra los nombres |
+| `terminos` | `suma:bool` **o** `op:"mult"` (+ `rangosB?` para el 2.º factor y `factores?:bool`), `rangos:[[b],[i],[a]]` | paramétrico: genera a±b o a×b y arrastra los nombres (sumando/suma, minuendo/sustraendo/diferencia, multiplicando/multiplicador/producto o factor/factor/producto) |
 | `ahorcado` | `palabras:[ [ {en,es,emoji} ], [i], [a] ]`, `vidas?` (def. 6), `pistas?:[b,i,a]` (letras regaladas), `mostrarEs?:[b,i,a]` | adivina la palabra en inglés letra por letra (teclado en pantalla **y** teclado real); el emoji + la traducción son la pista, y al terminar la voz del navegador la pronuncia en inglés |
 
-> `escena`/`senala`: el SVG va embebido como **una cadena JSON** (escapar las comillas). `problema` lee un
-> campo **`banco`** a nivel de archivo (no por tema); cada tema `problema` lo filtra por sus `ops`.
+> `escena`/`senala`/`dibujo`: el SVG puede ir como cadena o, mejor, como archivo aparte con `$archivo`
+> (ver arriba). Cada parte tocable es un `<g data-parte="id">` (el mismo id puede repetirse en varios
+> grupos). `problema` lee un campo **`banco`** a nivel de archivo (no por tema); cada tema `problema` lo
+> filtra por sus `ops`.
+>
+> **Sin repeticiones:** el runner reparte cada banco como un mazo barajado; una pregunta no vuelve a salir
+> hasta que pasaron todas las demás.
 
 ## Tipos de tema — motor "mc"
 | `tipo` | Campos | Notas |
 |---|---|---|
 | `mc` | `banco:[ {p,c,d:[…],pista?} ]` | quiz; el runner garantiza que `c` esté entre las opciones |
-| `lectura` | `lecturas:[ [ {texto,preguntas:[{q,opciones,correcta}]} ], [i], [a] ]` | comprensión lectora |
+| `lectura` | `lecturas:[ [ {texto,preguntas:[{q,opciones,correcta}]} ], [i], [a] ]` | comprensión lectora: se lee **un** texto y se responden seguidas todas sus preguntas |
 
 ## Reglas de oro (no romper nada)
 - Edita **solo datos**; no toques `px`, ni los IDs de la página, ni el runner.
 - Mantén `[ básico, intermedio, avanzado ]`. `[]` = cae al nivel inferior.
-- En `clasificar`, un ítem va en **una sola cesta por tema**.
+- En `clasificar`, un ítem va en **una sola cesta por tema** (ojo con palabras como "lo" o "rápido", que
+  caben en dos grupos: `validar.py` las detecta).
+- En `escena`, la casilla **no** debe traer escrita la respuesta.
 - En `definir`/`mc`, la **correcta** no se repite en los distractores.
 - En `silabas`, separa a mano; en `clasificar` de ortografía, clasifica a mano (ejemplos claros).
 - Español del Ecuador, ~9 años, textos cortos, datos correctos.
@@ -104,7 +119,10 @@ en su archivo y, tras editar, se corre `python herramientas/build.py`.
   **generan** los ejercicios; no hay banco de preguntas (su "config" son rangos por nivel en el módulo).
 
 ## Verificación
-- `python -c "import json; json.load(open('data/contenido/<modo>.json',encoding='utf-8'))"`.
-- `python herramientas/build.py` y `bun build --no-bundle src/core/contenido.js`.
-- Smoke test headless (`scratchpad/test_*.js`): montan vía `Contenido.montar` y "tocan" la ronda en
-  básico y avanzado.
+- `python herramientas/build.py` — regenera los `data/*.js`.
+- `python herramientas/validar.py` — contenido sin trampas: respuestas que no están entre las opciones,
+  palabras en dos cestas, casillas con la respuesta escrita, partes sin dibujo, ortografía sin la letra de
+  su categoría, cantones mal escritos, `.js` sin regenerar. Sale con código 1 si hay errores.
+- `python herramientas/humo.py [--todos] [página…]` — abre cada página en Chrome/Edge sin ventana, entra a
+  cada tema varias veces y avisa de errores de JavaScript, rondas vacías o actividades que no caben en
+  pantalla.

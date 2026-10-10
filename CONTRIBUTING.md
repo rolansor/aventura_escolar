@@ -8,7 +8,7 @@ para proponer cambios.
 
 - **Vanilla, sin dependencias**: no introduzcas frameworks, bundlers ni paquetes de npm; no uses
   `import/export` de ES modules ni `fetch` a archivos locales. La única dependencia externa es
-  **three.js** (por CDN, con copia local en `lib/three.min.js`).
+  **three.js** (copia local en `lib/three.min.js`; no se carga de internet).
 - **Debe funcionar con doble clic (`file://`) y servido**: nada que rompa la versión que se abre
   directamente desde `index.html`. El contenido se embebe vía `<script src="data/…js">`, no se carga
   con `fetch`. Sin rutas absolutas.
@@ -69,11 +69,10 @@ Estas actividades se editan en su propio archivo, **no** en `data/contenido/`:
 
 ## Verificación obligatoria
 
-- Tras tocar **JS**: `bun build --no-bundle <archivo>.js` (silencio = OK; imprime el error de
-  sintaxis si lo hay). Servir con 200 NO garantiza que el JS parsee.
-- Tras tocar **`data/*.json`**: `python herramientas/build.py` para regenerar los `data/*.js`.
-- Si existen **smoke tests headless** (happy-dom, p. ej. `scratchpad/test_*.js`), córrelos: montan la
-  actividad vía `Contenido.montar` y "tocan" la ronda en básico y avanzado.
+- Tras tocar **`data/*.json`** (o un `.svg` incrustado): `python herramientas/build.py` para regenerar
+  los `data/*.js` y `python herramientas/validar.py` (debe decir **0 errores**).
+- Tras tocar **JS o CSS**: `python herramientas/humo.py` (o `--todos` para los tres niveles). Abre el
+  juego en Chrome/Edge sin ventana y prueba todas las páginas; debe terminar con **0 errores**.
 - Prueba en **Chrome, Edge o Firefox** y recarga con **Ctrl + Shift + R** (recarga forzada). No hay
   Node ni linters: valida también a ojo en el navegador.
 

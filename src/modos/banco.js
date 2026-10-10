@@ -134,6 +134,11 @@ const Contenido = (function () {
     const inp = document.getElementById("ed-orto-palabra");
     const palabra = inp.value.trim();
     if (!palabra) { alert("Escribe una palabra para agregar."); return; }
+    // Que no se guarde una palabra que nunca podría salir (o que rompería el ejercicio).
+    if (window.Ortografia && Ortografia.sirve) {
+      const v = Ortografia.sirve(cat, palabra, grupo);
+      if (!v.ok) { alert(v.error); inp.focus(); return; }
+    }
     const claveC = claveBancoCustom(cat, grupo);
     const customs = Juego.cargar(claveC, []);
     const defaults = bancoDefaultOrto(cat, grupo);

@@ -1,0 +1,119 @@
+<!-- El cuerpo — dibujo de "Señala la parte" (se incrusta en data/contenido/senala.json con {"$archivo": ...}).
+     Cada parte tocable es un <g data-parte="id">; puede repetirse el mismo id en varios grupos.
+     Clases de animación (css/modulos/ejercicios.css): parpadea, respira, saluda. -->
+<svg viewBox="0 0 300 440" class="sen-svg sen-cuerpo" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cu-piel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4c8a0"/><stop offset="1" stop-color="#dba171"/>
+    </linearGradient>
+    <linearGradient id="cu-camisa" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffbd4a"/><stop offset="1" stop-color="#ff8f3c"/>
+    </linearGradient>
+    <linearGradient id="cu-short" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4f8df7"/><stop offset="1" stop-color="#2f62d6"/>
+    </linearGradient>
+    <linearGradient id="cu-zapato" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ef5b5b"/><stop offset="1" stop-color="#c93838"/>
+    </linearGradient>
+  </defs>
+
+  <ellipse cx="150" cy="427" rx="96" ry="9" fill="#1b3a8a" opacity="0.13"/>
+
+  <!-- PIERNAS (el pantalón corto y la pierna) -->
+  <g data-parte="pierna">
+    <path d="M112 258 H149 V306 Q131 314 112 306 Z" fill="url(#cu-short)" stroke="#2552b8" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M151 258 H188 V306 Q169 314 151 306 Z" fill="url(#cu-short)" stroke="#2552b8" stroke-width="2" stroke-linejoin="round"/>
+    <rect x="116" y="302" width="28" height="36" rx="9" fill="url(#cu-piel)"/>
+    <rect x="156" y="302" width="28" height="36" rx="9" fill="url(#cu-piel)"/>
+    <rect x="117" y="344" width="26" height="50" rx="11" fill="url(#cu-piel)"/>
+    <rect x="157" y="344" width="26" height="50" rx="11" fill="url(#cu-piel)"/>
+  </g>
+
+  <!-- RODILLAS -->
+  <g data-parte="rodilla">
+    <circle cx="130" cy="341" r="15" fill="#e8b185" stroke="#c98a5c" stroke-width="2"/>
+    <path d="M123 344 q7 5 14 0" fill="none" stroke="#b9794c" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="170" cy="341" r="15" fill="#e8b185" stroke="#c98a5c" stroke-width="2"/>
+    <path d="M163 344 q7 5 14 0" fill="none" stroke="#b9794c" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- PIES (media y zapato) -->
+  <g data-parte="pie">
+    <rect x="117" y="386" width="26" height="16" rx="5" fill="#ffffff" stroke="#d5dbea" stroke-width="1.5"/>
+    <rect x="157" y="386" width="26" height="16" rx="5" fill="#ffffff" stroke="#d5dbea" stroke-width="1.5"/>
+    <path d="M98 414 Q98 398 122 398 H144 Q148 398 148 404 V414 Q148 420 142 420 H104 Q98 420 98 414 Z" fill="url(#cu-zapato)" stroke="#9c2a2a" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M100 414 H148" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+    <path d="M118 403 l8 5 M127 402 l8 5" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+    <path d="M202 414 Q202 398 178 398 H156 Q152 398 152 404 V414 Q152 420 158 420 H196 Q202 420 202 414 Z" fill="url(#cu-zapato)" stroke="#9c2a2a" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M200 414 H152" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+    <path d="M182 403 l-8 5 M173 402 l-8 5" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- CUELLO -->
+  <g data-parte="cuello">
+    <path d="M136 108 H164 V136 Q150 146 136 136 Z" fill="#dba171" stroke="#c98a5c" stroke-width="2" stroke-linejoin="round"/>
+  </g>
+
+  <!-- TRONCO (camiseta) -->
+  <g data-parte="tronco">
+    <path d="M110 136 Q150 152 190 136 L196 150 Q200 210 192 262 H108 Q100 210 104 150 Z" fill="url(#cu-camisa)" stroke="#e0762a" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M134 135 Q150 152 166 135" fill="none" stroke="#e0762a" stroke-width="3" stroke-linecap="round"/>
+    <path d="M150 178 l5.6 11.6 12.8 1.8 -9.2 9 2.2 12.6 -11.4 -6 -11.4 6 2.2 -12.6 -9.2 -9 12.8 -1.8z" fill="#fff6c9" stroke="#f5c542" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M108 252 H192" stroke="#e0762a" stroke-width="2" opacity="0.6"/>
+  </g>
+
+  <!-- BRAZOS (manga corta, brazo y antebrazo) -->
+  <g data-parte="brazo">
+    <path d="M101 152 L82 214" stroke="url(#cu-piel)" stroke-width="23" stroke-linecap="round" fill="none"/>
+    <path d="M82 214 L76 268" stroke="url(#cu-piel)" stroke-width="20" stroke-linecap="round" fill="none"/>
+    <path d="M103 150 L93 182" stroke="#ff9d40" stroke-width="29" stroke-linecap="round" fill="none"/>
+    <path d="M199 152 L218 214" stroke="url(#cu-piel)" stroke-width="23" stroke-linecap="round" fill="none"/>
+    <path d="M218 214 L224 268" stroke="url(#cu-piel)" stroke-width="20" stroke-linecap="round" fill="none"/>
+    <path d="M197 150 L207 182" stroke="#ff9d40" stroke-width="29" stroke-linecap="round" fill="none"/>
+  </g>
+
+  <!-- CODOS -->
+  <g data-parte="codo">
+    <circle cx="82" cy="215" r="13.5" fill="#e8b185" stroke="#c98a5c" stroke-width="2"/>
+    <path d="M76 218 q6 4 12 0" fill="none" stroke="#b9794c" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="218" cy="215" r="13.5" fill="#e8b185" stroke="#c98a5c" stroke-width="2"/>
+    <path d="M212 218 q6 4 12 0" fill="none" stroke="#b9794c" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- MANOS -->
+  <g data-parte="mano">
+    <ellipse cx="74" cy="288" rx="13" ry="16" fill="url(#cu-piel)" stroke="#c98a5c" stroke-width="2"/>
+    <ellipse cx="87" cy="282" rx="5.5" ry="8.5" transform="rotate(-28 87 282)" fill="#f0c098" stroke="#c98a5c" stroke-width="2"/>
+    <path d="M67 296 v7 M73 298 v7 M79 297 v7" stroke="#c98a5c" stroke-width="2" stroke-linecap="round"/>
+    <ellipse cx="226" cy="288" rx="13" ry="16" fill="url(#cu-piel)" stroke="#c98a5c" stroke-width="2"/>
+    <ellipse cx="213" cy="282" rx="5.5" ry="8.5" transform="rotate(28 213 282)" fill="#f0c098" stroke="#c98a5c" stroke-width="2"/>
+    <path d="M233 296 v7 M227 298 v7 M221 297 v7" stroke="#c98a5c" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- HOMBROS -->
+  <g data-parte="hombro">
+    <circle cx="106" cy="148" r="16" fill="#ffa23f" stroke="#e0762a" stroke-width="2"/>
+    <path d="M97 143 q9 -8 18 0" fill="none" stroke="#ffd08a" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="194" cy="148" r="16" fill="#ffa23f" stroke="#e0762a" stroke-width="2"/>
+    <path d="M185 143 q9 -8 18 0" fill="none" stroke="#ffd08a" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- CABEZA (con su cara y su pelo) -->
+  <g data-parte="cabeza">
+    <ellipse cx="103" cy="74" rx="8.5" ry="11.5" fill="#e8b185" stroke="#c98a5c" stroke-width="2"/>
+    <ellipse cx="197" cy="74" rx="8.5" ry="11.5" fill="#e8b185" stroke="#c98a5c" stroke-width="2"/>
+    <circle cx="150" cy="68" r="46" fill="url(#cu-piel)" stroke="#c98a5c" stroke-width="2"/>
+    <path d="M102 72 Q94 12 150 12 Q206 12 198 72 Q193 50 174 46 Q163 58 150 46 Q137 58 126 47 Q108 50 102 72 Z" fill="#33231a" stroke="#1f140e" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M128 60 q7 -5 14 0 M158 60 q7 -5 14 0" fill="none" stroke="#33231a" stroke-width="3" stroke-linecap="round"/>
+    <g class="parpadea">
+      <ellipse cx="134" cy="75" rx="8" ry="9.5" fill="#ffffff" stroke="#33231a" stroke-width="1.5"/>
+      <circle cx="135" cy="76" r="4.8" fill="#3a2414"/><circle cx="136.6" cy="74" r="1.6" fill="#ffffff"/>
+      <ellipse cx="166" cy="75" rx="8" ry="9.5" fill="#ffffff" stroke="#33231a" stroke-width="1.5"/>
+      <circle cx="165" cy="76" r="4.8" fill="#3a2414"/><circle cx="166.6" cy="74" r="1.6" fill="#ffffff"/>
+    </g>
+    <circle cx="120" cy="91" r="7.5" fill="#ff8d8d" opacity="0.45"/>
+    <circle cx="180" cy="91" r="7.5" fill="#ff8d8d" opacity="0.45"/>
+    <path d="M146 85 q4 4 8 0" fill="none" stroke="#c98a5c" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M134 95 Q150 110 166 95 Q150 101 134 95 Z" fill="#b8402f" stroke="#8f2e21" stroke-width="2" stroke-linejoin="round"/>
+  </g>
+</svg>

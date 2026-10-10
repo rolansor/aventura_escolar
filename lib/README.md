@@ -7,14 +7,16 @@
 | **Origen** | <https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js> |
 | **Licencia** | MIT — [three.js](https://threejs.org) |
 
-Esta copia local **reemplaza la carga por CDN** para que el 3D (fondo, la mascota Luna y el
-mapa de cantones en 3D) funcione **también sin internet** (offline / `file://`).
-
-Cada página lo carga antes de los scripts del juego, con un respaldo automático al CDN:
+Todas las páginas cargan **esta copia local** (ya no se pide a internet): así el 3D —el fondo, la
+mascota, el mapa de cantones y los modelos de las actividades— funciona igual **sin conexión** y con
+doble clic (`file://`), y la página no se queda esperando a un CDN.
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script>window.THREE || document.write('<scr'+'ipt src="lib/three.min.js"></scr'+'ipt>');</script>
+<script src="lib/three.min.js"></script>
 ```
 
-(Ajusta la ruta relativa según la ubicación de cada HTML.)
+(Las páginas de `paginas/` usan `<base href="../">`, así que la ruta es la misma en todas.)
+
+**¿Por qué r128 y no una versión nueva?** Desde r160 three.js ya no publica el archivo clásico
+`three.min.js` (solo módulos ES), y los módulos ES no funcionan con `file://`. r128 tiene todo lo que
+el juego usa (geometrías, materiales, instancias, raycasting).

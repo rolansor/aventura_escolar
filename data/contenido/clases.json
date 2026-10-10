@@ -44,18 +44,18 @@
         ],
         "articulo": [
           [],
-          ["el", "la", "los", "las", "un", "una", "lo", "unos", "unas", "al", "del"],
-          ["el", "la", "los", "las", "lo", "un", "una", "unos", "unas", "al", "del"]
+          ["el", "la", "los", "las", "un", "una", "unos", "unas", "al", "del"],
+          ["el", "la", "los", "las", "un", "una", "unos", "unas", "al", "del"]
         ],
         "pronombre": [
           [],
           [],
-          ["yo", "tú", "él", "ella", "usted", "nosotros", "nosotras", "ustedes", "ellos", "ellas", "me", "te", "nos", "se", "lo", "le", "mí", "ti"]
+          ["yo", "tú", "él", "ella", "usted", "nosotros", "nosotras", "ustedes", "ellos", "ellas", "me", "te", "nos", "se", "le", "mí", "ti"]
         ],
         "adverbio": [
           [],
           [],
-          ["ahora", "aquí", "siempre", "rápido", "ayer", "muy", "nunca", "despacio", "hoy", "mañana", "allí", "bien", "mal", "cerca", "lejos", "temprano"]
+          ["ahora", "aquí", "siempre", "rápidamente", "ayer", "muy", "nunca", "despacio", "hoy", "mañana", "allí", "bien", "mal", "cerca", "lejos", "temprano"]
         ]
       }
     }

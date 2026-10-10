@@ -1,0 +1,67 @@
+<!-- La flor por dentro — dibujo de respaldo de "Señala la parte" (se usa cuando no hay WebGL;
+     con WebGL se muestra el modelo 3D src/efectos/modelos/flor.js).
+     Vista de lado y abierta, como en los libros: los sépalos van DEBAJO de los pétalos,
+     el pistilo al centro (ovario, estilo y estigma) y los estambres a su alrededor.
+     Partes: petalo, pistilo, estambre, sepalo, tallo, hoja. -->
+<svg viewBox="0 0 300 340" class="sen-svg sen-flor" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="fl-petalo" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#fff3c4"/><stop offset="0.45" stop-color="#e9a6f5"/><stop offset="1" stop-color="#b24fe8"/>
+    </linearGradient>
+    <linearGradient id="fl-hoja" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7fd66b"/><stop offset="1" stop-color="#2f8f3f"/>
+    </linearGradient>
+  </defs>
+
+  <!-- TALLO -->
+  <g data-parte="tallo">
+    <path d="M150 336 C146 300 156 270 150 232" fill="none" stroke="#3f9d4b" stroke-width="11" stroke-linecap="round"/>
+    <path d="M136 232 Q150 244 164 232 L160 222 H140 Z" fill="#3f9d4b" stroke="#2a7d39" stroke-width="2" stroke-linejoin="round"/>
+  </g>
+
+  <!-- HOJA -->
+  <g data-parte="hoja">
+    <path d="M152 300 C176 270 222 266 244 284 C226 312 180 322 152 300 Z" fill="url(#fl-hoja)" stroke="#2a7d39" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M154 299 C184 290 214 286 240 285" fill="none" stroke="#d6f2c2" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- PÉTALOS (los de atrás primero) -->
+  <g data-parte="petalo" fill="url(#fl-petalo)" stroke="#9a3fd0" stroke-width="2" stroke-linejoin="round">
+    <path d="M150 222 C112 190 100 110 150 56 C200 110 188 190 150 222 Z"/>
+    <path d="M146 224 C96 214 44 166 44 96 C100 100 140 160 146 224 Z"/>
+    <path d="M154 224 C204 214 256 166 256 96 C200 100 160 160 154 224 Z"/>
+    <path d="M144 226 C96 236 40 222 14 176 C62 162 120 186 144 226 Z"/>
+    <path d="M156 226 C204 236 260 222 286 176 C238 162 180 186 156 226 Z"/>
+  </g>
+
+  <!-- ESTAMBRES (filamento + antera con polen) -->
+  <g data-parte="estambre">
+    <g fill="none" stroke="#f1e6a4" stroke-width="4" stroke-linecap="round">
+      <path d="M144 214 C132 180 112 160 98 138"/>
+      <path d="M147 212 C140 174 128 150 124 118"/>
+      <path d="M153 212 C160 174 172 150 176 118"/>
+      <path d="M156 214 C168 180 188 160 202 138"/>
+    </g>
+    <g fill="#f2a007" stroke="#c97f00" stroke-width="1.5">
+      <ellipse cx="95" cy="132" rx="7" ry="12" transform="rotate(-38 95 132)"/>
+      <ellipse cx="123" cy="110" rx="7" ry="12" transform="rotate(-12 123 110)"/>
+      <ellipse cx="177" cy="110" rx="7" ry="12" transform="rotate(12 177 110)"/>
+      <ellipse cx="205" cy="132" rx="7" ry="12" transform="rotate(38 205 132)"/>
+    </g>
+  </g>
+
+  <!-- PISTILO (ovario abajo, estilo y estigma arriba) -->
+  <g data-parte="pistilo">
+    <path d="M150 190 V92" fill="none" stroke="#9ccc55" stroke-width="7" stroke-linecap="round"/>
+    <ellipse cx="150" cy="204" rx="15" ry="20" fill="#9ccc55" stroke="#6f9f2c" stroke-width="2"/>
+    <g fill="#c9e88f"><circle cx="146" cy="200" r="3"/><circle cx="154" cy="206" r="3"/><circle cx="148" cy="212" r="3"/></g>
+    <path d="M138 90 Q150 74 162 90 Q150 98 138 90 Z" fill="#ffe066" stroke="#d6b100" stroke-width="2" stroke-linejoin="round"/>
+  </g>
+
+  <!-- SÉPALOS (debajo de los pétalos) -->
+  <g data-parte="sepalo" fill="#3fa34d" stroke="#2a7d39" stroke-width="2" stroke-linejoin="round">
+    <path d="M142 228 C116 230 92 244 80 262 C108 262 132 250 146 236 Z"/>
+    <path d="M158 228 C184 230 208 244 220 262 C192 262 168 250 154 236 Z"/>
+    <path d="M150 232 C142 246 142 258 150 270 C158 258 158 246 150 232 Z"/>
+  </g>
+</svg>

@@ -6,8 +6,11 @@
    Misma mecánica que Ortografía: selector de temas -> ronda de 10.
    ============================================================ */
 const Quiz = (function () {
-  let cola = [], indice = 0, aciertos = 0, temporizador = null;
+  let cola = [], indice = 0, aciertos = 0, temporizador = null, tInicio = 0, ultimoTema = "mixto";
   const TOTAL_RONDA = 10;
+  const PX = "quiz";               // clave del leaderboard
+  // Opciones por pregunta según el nivel del perfil: 3 en básico, 4 en los demás.
+  const nDist = () => Juego.porNivel([2, 3, 3]);
 
   const elSelector = () => document.getElementById("quiz-selector");
   const elJuego = () => document.getElementById("quiz-juego");
@@ -22,16 +25,20 @@ const Quiz = (function () {
   const detalle = (iso) => (DATOS.mapas && DATOS.mapas.detalle && DATOS.mapas.detalle[iso]) || {};
   const gent = (iso) => detalle(iso).gentilicio;
 
-  let cantPorIso = {}, nCantPorIso = {};
+  let cantPorIso = {}, nCantPorIso = {}, vecesCanton = {};
   function indexarCantones() {
-    cantPorIso = {}; nCantPorIso = {};
+    cantPorIso = {}; nCantPorIso = {}; vecesCanton = {};
     const d = window.ECUADOR_CANTONES;
     if (!d || !d.provincias) return;
     d.provincias.forEach((p) => {
       cantPorIso[p.iso] = (p.cantones || []).map((c) => c.nombre);
       nCantPorIso[p.iso] = p.nCantones || (p.cantones || []).length;
+      cantPorIso[p.iso].forEach((n) => { vecesCanton[n] = (vecesCanton[n] || 0) + 1; });
     });
   }
+  // Hay nombres de cantón que existen en dos provincias (Bolívar, Olmedo): no sirven
+  // para preguntar "¿de qué provincia es?" porque habría dos respuestas buenas.
+  const cantonUnico = (n) => vecesCanton[n] === 1;
   const cantonesDe = (iso) => cantPorIso[iso] || [];
   const nCant = (iso) => nCantPorIso[iso] || 0;
 
@@ -53,13 +60,13 @@ const Quiz = (function () {
   function gCapitalDe() {
     const p = azarEl(provs());
     return pregunta("🏛️ Capitales", "¿Cuál es la capital de " + p.n + "?",
-      p.cap, otros(provs().map((x) => x.cap), p.cap, 3),
+      p.cap, otros(provs().map((x) => x.cap), p.cap, nDist()),
       { pista: "Piensa en la ciudad principal de " + p.n + "." });
   }
   function gProvDeCapital() {
     const p = azarEl(provs());
     return pregunta("🏛️ Capitales", p.cap + " es la capital de…",
-      p.n, otros(provs().map((x) => x.n), p.n, 3));
+      p.n, otros(provs().map((x) => x.n), p.n, nDist()));
   }
   function gRegionDe() {
     const p = azarEl(provs());
@@ -75,31 +82,34 @@ const Quiz = (function () {
     const fuera = provs().filter((p) => p.reg !== k);
     const correcta = azarEl(dentro).n;
     return pregunta("🗺️ Regiones", "¿Cuál de estas provincias es de la región " + regNombre(k) + "?",
-      correcta, otros(fuera.map((x) => x.n), correcta, 3));
+      correcta, otros(fuera.map((x) => x.n), correcta, nDist()));
   }
   function gGentilicio() {
     const lista = provs().filter((p) => gent(p.iso));
     const p = azarEl(lista);
     const g = gent(p.iso);
     return pregunta("🙋 Gentilicios", "¿Cómo se llama a quien nace en " + p.n + "?",
-      g, otros(lista.map((x) => gent(x.iso)), g, 3),
+      g, otros(lista.map((x) => gent(x.iso)), g, nDist()),
       { pista: "Gentilicio de " + p.n + "." });
   }
   function gCantonDe() {
     const conC = provs().filter((x) => cantonesDe(x.iso).length);
     const p = azarEl(conC);
-    const c = azarEl(cantonesDe(p.iso));
+    const propios = cantonesDe(p.iso);
+    const c = azarEl(propios);
     const ajenos = [];
-    provs().forEach((x) => { if (x.iso !== p.iso) ajenos.push.apply(ajenos, cantonesDe(x.iso)); });
+    // Los distractores no pueden llamarse igual que un cantón de esta provincia.
+    provs().forEach((x) => { if (x.iso !== p.iso) cantonesDe(x.iso).forEach((n) => { if (propios.indexOf(n) < 0) ajenos.push(n); }); });
     return pregunta("🏘️ Cantones", "¿Cuál de estos es un cantón de " + p.n + "?",
-      c, otros(ajenos, c, 3));
+      c, otros(ajenos, c, nDist()));
   }
   function gProvDeCanton() {
     const conC = provs().filter((x) => cantonesDe(x.iso).length);
     const p = azarEl(conC);
-    const c = azarEl(cantonesDe(p.iso));
+    const unicos = cantonesDe(p.iso).filter(cantonUnico);
+    const c = azarEl(unicos.length ? unicos : cantonesDe(p.iso));
     return pregunta("🏘️ Cantones", "¿A qué provincia pertenece el cantón " + c + "?",
-      p.n, otros(provs().map((x) => x.n), p.n, 3));
+      p.n, otros(provs().map((x) => x.n), p.n, nDist()));
   }
   function gCuantosCantones() {
     const conC = provs().filter((x) => nCant(x.iso) > 0);
@@ -108,7 +118,7 @@ const Quiz = (function () {
     const set = {}; set[n] = 1;
     const ops = [n];
     let intentos = 0;
-    while (ops.length < 4 && intentos++ < 40) {
+    while (ops.length < nDist() + 1 && intentos++ < 40) {
       const d = n + Juego.azar(-5, 5);
       if (d > 0 && !set[d]) { set[d] = 1; ops.push(d); }
     }
@@ -118,7 +128,7 @@ const Quiz = (function () {
   function gBandera() {
     const p = azarEl(provs());
     return pregunta("🚩 Banderas", "¿De qué provincia es esta bandera?",
-      p.n, otros(provs().map((x) => x.n), p.n, 3),
+      p.n, otros(provs().map((x) => x.n), p.n, nDist()),
       { imagen: "recursos/banderas/" + p.iso + ".svg" });
   }
 
@@ -130,15 +140,20 @@ const Quiz = (function () {
   }
 
   /* ---------- Época Aborigen (Taller 1) ---------- */
+  const mazos = {};
+  function siguiente(k) {            // reparte el banco sin repetir hasta agotarlo
+    if (!mazos[k] || !mazos[k].length) mazos[k] = mezclar(bancoQuiz(k));
+    return mazos[k].pop();
+  }
   function gAborigen() {
-    const x = azarEl(bancoQuiz("aborigen"));
-    return pregunta("🏺 Época Aborigen", x.p, x.c, x.d, x.pista ? { pista: x.pista } : null);
+    const x = siguiente("aborigen");
+    return pregunta("🏺 Época Aborigen", x.p, x.c, mezclar(x.d).slice(0, nDist()), x.pista ? { pista: x.pista } : null);
   }
 
   /* ---------- Territorio y relieves ---------- */
   function gTerritorio() {
-    const x = azarEl(bancoQuiz("territorio"));
-    return pregunta("🧭 Territorio y relieves", x.p, x.c, x.d, x.pista ? { pista: x.pista } : null);
+    const x = siguiente("territorio");
+    return pregunta("🧭 Territorio y relieves", x.p, x.c, mezclar(x.d).slice(0, nDist()), x.pista ? { pista: x.pista } : null);
   }
 
   const GEN = {
@@ -177,17 +192,21 @@ const Quiz = (function () {
       b.onclick = () => empezar(t.id);
       cont.appendChild(b);
     });
+    Juego.pintarMejores(cont, PX); // 🏆 mejores de esta actividad
   }
 
   function empezar(catId) {
     const gens = GEN[catId] || GEN.mixto;
-    aciertos = 0; indice = 0; cola = [];
-    let previo = "";
+    ultimoTema = catId;
+    aciertos = 0; indice = 0; cola = []; tInicio = Date.now();
+    Juego.quitarBotonesFin(document.getElementById("quiz-retro"));
+    // Ninguna pregunta se repite dentro de la ronda.
+    const vistas = {};
     for (let i = 0; i < TOTAL_RONDA; i++) {
       let q, firma, intentos = 0;
       do { q = azarEl(gens)(); firma = q.pregunta + "|" + q.correcta; intentos++; }
-      while (firma === previo && intentos < 8);
-      previo = firma;
+      while (vistas[firma] && intentos < 14);
+      vistas[firma] = 1;
       cola.push(q);
     }
     elSelector().classList.add("oculto");
@@ -200,8 +219,9 @@ const Quiz = (function () {
     document.getElementById("quiz-progreso").style.width = (indice / cola.length) * 100 + "%";
     document.getElementById("quiz-retro").textContent = "";
     document.getElementById("quiz-retro").className = "retro";
-    document.getElementById("quiz-tema").textContent = "💡 " + q.tema;
-    document.getElementById("quiz-pista").textContent = q.pista || "";
+    document.getElementById("quiz-tema").textContent = "";
+    document.getElementById("quiz-pista").textContent = "";
+    Juego.tip(q.pista || q.tema);
     const img = document.getElementById("quiz-imagen");
     img.innerHTML = q.imagen
       ? '<img class="quiz-bandera" src="' + q.imagen + '" alt="" onerror="this.style.display=\'none\'">'
@@ -247,7 +267,7 @@ const Quiz = (function () {
   function arrancarTimer() {
     const c = Juego.config();
     const el = document.getElementById("quiz-timer");
-    if (c.timerOn) { el.classList.remove("oculto"); Juego.cronIniciar(c.timerSeg, "quiz-timer", tiempoAgotado); }
+    if (c.timerOn) { el.classList.remove("oculto"); Juego.cronIniciar(Juego.tiempo(1), "quiz-timer", tiempoAgotado); }
     else { el.classList.add("oculto"); Juego.cronDetener(); }
   }
   function tiempoAgotado() {
@@ -280,17 +300,20 @@ const Quiz = (function () {
     document.getElementById("quiz-pregunta").textContent =
       "¡Terminaste, " + Juego.jugador() + "! " + aciertos + " de " + cola.length + " ⭐";
     document.getElementById("quiz-pista").textContent = "";
-    document.getElementById("quiz-opciones").innerHTML = "";
+    Juego.registrarResultado(PX, { aciertos: aciertos, total: cola.length, ms: Date.now() - tInicio });
+    document.getElementById("quiz-opciones").innerHTML = Juego.tablaMejoresHTML(PX);
     const retro = document.getElementById("quiz-retro");
-    retro.textContent = aciertos === cola.length ? "¡Perfecto! 🏆" : "¡Muy bien! Toca otra ronda para seguir.";
+    retro.textContent = aciertos === cola.length ? "¡Perfecto! 🏆" : "¡Muy bien! ¿Otra ronda para mejorar?";
     retro.className = "retro bien";
     if (aciertos >= cola.length - 1) Juego.granPremio();
-    temporizador = setTimeout(volverSelector, 2600);
+    Juego.botonesFin(retro, () => empezar(ultimoTema), volverSelector);
   }
 
   function volverSelector() {
     if (temporizador) { clearTimeout(temporizador); temporizador = null; }
     Juego.cronDetener();
+    Juego.quitarBotonesFin(document.getElementById("quiz-retro"));
+    pintarSelector();   // refresca el 🏆
     elJuego().classList.add("oculto");
     elSelector().classList.remove("oculto");
   }

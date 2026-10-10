@@ -1,0 +1,74 @@
+<!-- Los órganos — dibujo de "Señala la parte" (se incrusta en data/contenido/senala.json con {"$archivo": ...}).
+     Silueta del cuerpo con cada órgano EN SU SITIO: cerebro en la cabeza; pulmones a los
+     lados del pecho con el corazón entre ellos (un poco a la izquierda de la persona, o sea
+     a NUESTRA derecha); estómago bajo las costillas; intestinos en el vientre.
+     Animaciones (css/modulos/ejercicios.css): late (corazón), respira (pulmones). -->
+<svg viewBox="0 0 300 430" class="sen-svg sen-organos" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="or-piel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe6cf"/><stop offset="1" stop-color="#f9d2b1"/>
+    </linearGradient>
+    <radialGradient id="or-cerebro" cx="0.4" cy="0.35" r="0.8">
+      <stop offset="0" stop-color="#ffc3d6"/><stop offset="1" stop-color="#f08fb0"/>
+    </radialGradient>
+    <linearGradient id="or-pulmon" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffb0bd"/><stop offset="1" stop-color="#f27d92"/>
+    </linearGradient>
+    <radialGradient id="or-corazon" cx="0.38" cy="0.32" r="0.8">
+      <stop offset="0" stop-color="#ff6b5e"/><stop offset="1" stop-color="#c62828"/>
+    </radialGradient>
+    <linearGradient id="or-estomago" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffc57a"/><stop offset="1" stop-color="#f29a3a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- silueta del cuerpo (no es una parte) -->
+  <g fill="url(#or-piel)" stroke="#e7b48c" stroke-width="2.5" stroke-linejoin="round">
+    <path d="M60 162 Q36 176 30 230 L26 300 Q26 314 40 314 Q52 314 54 300 L62 236 Z"/>
+    <path d="M240 162 Q264 176 270 230 L274 300 Q274 314 260 314 Q248 314 246 300 L238 236 Z"/>
+    <path d="M132 112 H168 V140 Q214 142 238 160 Q246 250 232 330 Q228 400 212 420 H88 Q72 400 68 330 Q54 250 62 160 Q86 142 132 140 Z"/>
+    <circle cx="150" cy="64" r="54"/>
+  </g>
+  <path d="M132 138 Q150 150 168 138" fill="none" stroke="#e7b48c" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- CEREBRO -->
+  <g data-parte="cerebro">
+    <path d="M150 26 C128 20 108 34 108 52 C98 58 98 78 110 84 C114 98 136 102 150 96 C164 102 186 98 190 84 C202 78 202 58 192 52 C192 34 172 20 150 26 Z" fill="url(#or-cerebro)" stroke="#d76a92" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M150 28 V94" fill="none" stroke="#d76a92" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M120 44 q10 -8 20 0 M116 62 q12 8 24 0 M124 80 q8 -8 18 0 M160 44 q10 -8 20 0 M160 62 q12 8 24 0 M158 80 q10 -8 18 0" fill="none" stroke="#d76a92" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- PULMONES (con la tráquea por donde entra el aire) -->
+  <g data-parte="pulmones">
+    <path d="M150 128 V176 M150 176 Q138 182 128 192 M150 176 Q162 182 172 192" fill="none" stroke="#e79aa9" stroke-width="9" stroke-linecap="round"/>
+    <g class="respira">
+      <path d="M130 172 C104 172 84 204 84 244 C84 268 96 276 112 272 C128 268 138 258 138 240 V182 C138 176 136 172 130 172 Z" fill="url(#or-pulmon)" stroke="#d95f77" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M170 172 C196 172 216 204 216 244 C216 268 204 276 188 272 C172 268 162 258 162 240 V182 C162 176 164 172 170 172 Z" fill="url(#or-pulmon)" stroke="#d95f77" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M92 230 q18 6 40 -6 M196 222 q-14 10 -30 4 M208 248 q-18 2 -38 -10" fill="none" stroke="#d95f77" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+    </g>
+  </g>
+
+  <!-- CORAZÓN (entre los pulmones, un poco hacia nuestra derecha) -->
+  <g data-parte="corazon">
+    <g class="late">
+      <path d="M158 204 q-2 -10 6 -14 M170 204 q4 -10 12 -8" fill="none" stroke="#b71c1c" stroke-width="6" stroke-linecap="round"/>
+      <path d="M163 250 C150 240 140 228 142 216 C144 204 158 202 164 212 C170 202 186 204 188 216 C190 228 178 240 163 250 Z" fill="url(#or-corazon)" stroke="#8e1414" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M152 216 q4 -6 9 -2" fill="none" stroke="#ffb3ab" stroke-width="3" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <!-- ESTÓMAGO (bajo las costillas, hacia nuestra derecha) -->
+  <g data-parte="estomago">
+    <path d="M150 262 V280" fill="none" stroke="#f0a04a" stroke-width="10" stroke-linecap="round"/>
+    <path d="M148 280 C150 272 176 268 190 280 C204 292 200 316 180 322 C160 328 140 318 128 320 C120 322 118 312 126 308 C140 302 146 296 148 280 Z" fill="url(#or-estomago)" stroke="#d07a1e" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M160 292 q14 -6 24 6" fill="none" stroke="#fff0d2" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+  </g>
+
+  <!-- INTESTINOS (en el vientre: el grueso rodea al delgado) -->
+  <g data-parte="intestinos">
+    <path d="M104 398 V346 Q104 334 116 334 H186 Q198 334 198 346 V392 Q198 402 186 402 H170" fill="none" stroke="#d98a6a" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M104 398 V346 Q104 334 116 334 H186 Q198 334 198 346 V392 Q198 402 186 402 H170" fill="none" stroke="#f0b39a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 12"/>
+    <path d="M124 354 H176 Q184 354 184 361 Q184 368 176 368 H128 Q120 368 120 375 Q120 382 128 382 H174 Q182 382 182 388" fill="none" stroke="#f6b9a6" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M124 354 H176 Q184 354 184 361 Q184 368 176 368 H128 Q120 368 120 375 Q120 382 128 382 H174 Q182 382 182 388" fill="none" stroke="#e29480" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+  </g>
+</svg>

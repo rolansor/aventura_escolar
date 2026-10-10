@@ -1,10 +1,13 @@
 /* ============================================================
-   MENÚ DE MATERIAS — src/core/menu.js  (solo en index.html)
-   Pinta las materias desde DATOS.materias y, al elegir una
-   actividad, NAVEGA a su página (paginas/<modo>.html).
-   El índice tiene dos sub-pantallas: el menú y el submenú de
-   materia (se alternan); las actividades son enlaces a otras
-   páginas.
+   MENÚ — src/core/menu.js  (solo en index.html)
+   Tres sub-pantallas que se alternan:
+     1. pantalla-curso    grado (1.º…7.º de básica; los que no tienen
+                          plan salen "en construcción") + trimestre.
+     2. pantalla-menu     materias de ese grado y trimestre.
+     3. pantalla-materia  actividades de la materia en ese trimestre.
+   Qué materias/actividades tocan en cada trimestre lo decide el plan
+   de data/curriculo.json (ver src/core/curriculo.js). Al elegir una
+   actividad NAVEGA a su página (paginas/<modo>.html).
    ============================================================ */
 const Menu = (function () {
   // modo -> página
@@ -53,19 +56,133 @@ const Menu = (function () {
     donde:      "paginas/donde.html",
     epoca:      "paginas/epoca.html",
     regiones:   "paginas/regiones.html",
+    vocabulario: "paginas/vocabulario.html",
+    rectas:     "paginas/rectas.html",
+    cuadrilateros: "paginas/cuadrilateros.html",
+    propmult:   "paginas/propmult.html",
+    incas:      "paginas/incas.html",
+    riosygente: "paginas/riosygente.html",
+    vidaplantas: "paginas/vidaplantas.html",
     editor:     "paginas/editor.html",
     contenido:  "paginas/contenido.html"
   };
 
+  let gradoVisto = null;    // grado resaltado en pantalla-curso (puede estar en construcción)
+  let gradoSel = null;      // curso en el que se está jugando: grado con plan + trimestre
+  let triSel = null;
+  let recienCargada = true; // ?materia= solo se atiende al cargar la página
+
   function init() {
-    pintarMenu();
+    // El curso se recuerda en el perfil: se retoma si sigue siendo válido.
+    const c = Juego.curso();
+    const g = Curriculo.grado(c.grado);
+    const valido = Curriculo.disponible(g) && !!Curriculo.trimestre(c.trimestre) &&
+      Curriculo.materias(g.id, c.trimestre).length > 0;
+    gradoSel = valido ? g.id : null;
+    triSel = valido ? c.trimestre : null;
+    gradoVisto = gradoSel || (Curriculo.porDefecto() || {}).id || null;
+    pintarCurso();
+    document.querySelectorAll(".curso-ayuda").forEach((b) => {
+      b.onclick = () => Curriculo.abrirMapa(gradoVisto, irDesdeMapa);
+    });
     // Si volvemos desde una actividad (?materia=lengua), abre ese submenú directamente.
-    const mat = new URLSearchParams(location.search).get("materia");
-    if (mat && (DATOS.materias || []).some(function (m) { return m.id === mat; })) irAMateria(mat);
-    else mostrar("pantalla-menu");
-    // El botón "Volver" del menú regresa del submenú de materia al menú.
+    const mat = recienCargada ? new URLSearchParams(location.search).get("materia") : null;
+    recienCargada = false;
+    if (mat && valido) { pintarMenu(); if (!irAMateria(mat)) mostrar("pantalla-menu"); }
+    else mostrar("pantalla-curso");
+    // El botón "Volver" sube un nivel: actividades → materias → grado y trimestre.
     const bv = document.getElementById("btn-volver-global");
-    if (bv) bv.onclick = function () { mostrar("pantalla-menu"); };
+    if (bv) bv.onclick = function () {
+      if (document.getElementById("pantalla-materia").classList.contains("activa")) mostrar("pantalla-menu");
+      else { pintarCurso(); mostrar("pantalla-curso"); }
+    };
+  }
+
+  /* ---------- 1. Grado y trimestre ---------- */
+  function pintarCurso() {
+    const cont = document.getElementById("curso-grados");
+    if (!cont) return;
+    cont.innerHTML = "";
+    Curriculo.grados().forEach((g) => {
+      const listo = Curriculo.disponible(g);
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "curso-grado" + (listo ? "" : " en-obra") + (g.id === gradoVisto ? " activa" : "");
+      b.title = g.nombre + (listo ? "" : " — en construcción");
+      b.innerHTML =
+        '<span class="curso-grado-num">' + g.numero + "</span>" +
+        '<span class="curso-grado-txt">de básica</span>' +
+        '<span class="curso-grado-tag">' + (listo ? "🎮" : "🚧") +
+          ' <span class="curso-tag-txt">' + (listo ? "¡A jugar!" : "En construcción") + "</span></span>";
+      b.onclick = () => {
+        gradoVisto = g.id;
+        pintarCurso();
+        if (!listo) Juego.tip("🚧 " + g.nombre + " está en construcción. ¡Muy pronto!");
+      };
+      cont.appendChild(b);
+    });
+    pintarTrimestres();
+  }
+
+  function pintarTrimestres() {
+    const cont = document.getElementById("curso-trimestres");
+    const g = Curriculo.grado(gradoVisto);
+    const listo = Curriculo.disponible(g);
+    cont.innerHTML = "";
+    document.getElementById("curso-paso-tri").classList.toggle("oculto", !listo);
+    document.getElementById("curso-ayuda").classList.toggle("oculto", !listo);
+    if (!listo) {
+      const hay = Curriculo.porDefecto();
+      const d = document.createElement("div");
+      d.className = "curso-obra";
+      d.innerHTML =
+        '<span class="emoji-grande">🚧</span>' +
+        '<span class="titulo-tarjeta">' + (g ? g.nombre : "Este grado") + " está en construcción</span>" +
+        '<span class="desc-tarjeta">¡Muy pronto habrá aventuras aquí!' +
+          (hay ? " Por ahora puedes jugar en <b>" + hay.nombre + "</b>." : "") + "</span>";
+      cont.appendChild(d);
+      return;
+    }
+    const c = Juego.curso();
+    Curriculo.trimestres().forEach((t) => {
+      const mats = Curriculo.materias(g.id, t.id);
+      if (!mats.length) {   // trimestre todavía sin plan
+        const v = crearTarjeta(t.icono, t.nombre, "🚧 En construcción",
+          () => Juego.tip("🚧 El " + t.nombre.toLowerCase() + " está en construcción. ¡Muy pronto!"));
+        v.classList.add("en-obra");
+        cont.appendChild(v);
+        return;
+      }
+      const nAct = mats.reduce((s, m) => s + m.actividades.length, 0);
+      const b = crearTarjeta(t.icono, t.nombre,
+        '<span class="curso-tri-iconos">' + mats.map((m) => m.icono).join(" ") + "</span>" +
+        mats.length + (mats.length === 1 ? " materia" : " materias") + " · " + nAct + " actividades",
+        () => entrar(g.id, t.id));
+      // Marca dónde se quedó el niño la última vez.
+      if (String(c.grado) === String(g.id) && String(c.trimestre) === String(t.id)) {
+        b.classList.add("tarjeta-actual");
+        b.insertAdjacentHTML("afterbegin", '<span class="curso-aqui">📌 Estabas aquí</span>');
+      }
+      cont.appendChild(b);
+    });
+  }
+
+  function entrar(gradoId, triId) {
+    gradoSel = gradoVisto = gradoId; triSel = triId;
+    Juego.fijarCurso(gradoId, triId);
+    pintarMenu();
+    mostrar("pantalla-menu");
+  }
+
+  // Desde el mapa conceptual: tocar un trimestre entra a él; una actividad, la abre.
+  function irDesdeMapa(triId, materiaId, modo) {
+    const t = Curriculo.trimestre(triId);
+    if (!t || !Curriculo.materias(gradoVisto, t.id).length) return;
+    gradoSel = gradoVisto; triSel = t.id;
+    Juego.fijarCurso(gradoSel, triSel);
+    if (modo && PAGINA[modo]) { location.href = PAGINA[modo]; return; }
+    pintarMenu();
+    if (!materiaId || !irAMateria(materiaId)) mostrar("pantalla-menu");
   }
 
   function crearTarjeta(icono, titulo, desc, onClick) {
@@ -79,12 +196,19 @@ const Menu = (function () {
     return b;
   }
 
+  /* ---------- 2. Materias del trimestre ---------- */
   function pintarMenu() {
     const cont = document.getElementById("tarjetas-menu");
     if (!cont) return;
+    const g = Curriculo.grado(gradoSel), t = Curriculo.trimestre(triSel);
+    document.getElementById("menu-titulo").textContent = t.icono + " " + t.nombre;
+    document.getElementById("menu-sub").textContent = g.nombre + " · Elige una materia";
     cont.innerHTML = "";
-    (DATOS.materias || []).forEach((m) => {
-      cont.appendChild(crearTarjeta(m.icono, m.nombre, m.desc, () => irAMateria(m.id)));
+    Curriculo.materias(gradoSel, triSel).forEach((m) => {
+      // La descripción cuenta lo que toca ESTE trimestre, no lo genérico de la materia.
+      const nombres = m.actividades.slice(0, 3).map((a) => a.nombre).join(", ");
+      cont.appendChild(crearTarjeta(m.icono, m.nombre, nombres + (m.actividades.length > 3 ? "…" : ""),
+        () => irAMateria(m.id)));
     });
     cont.appendChild(crearTarjeta("⚙️", "Ajustes", "Temporizador y progreso",
       () => pedirClave(PAGINA.editor)));
@@ -138,34 +262,32 @@ const Menu = (function () {
     });
   }
 
+  /* ---------- 3. Actividades de una materia ---------- */
+  // Devuelve false si esa materia no toca en el trimestre elegido.
   function irAMateria(id) {
-    const m = (DATOS.materias || []).find((x) => x.id === id);
-    if (!m) return;
+    const m = Curriculo.materias(gradoSel, triSel).find((x) => x.id === id);
+    if (!m) return false;
     document.getElementById("materia-titulo").textContent = m.icono + " " + m.nombre;
+    document.getElementById("materia-sub").textContent = Curriculo.trimestre(triSel).nombre + " · Elige una actividad";
     const cont = document.getElementById("materia-actividades");
-    const sub = document.getElementById("materia-sub");
     cont.innerHTML = "";
-    if (!m.actividades || !m.actividades.length) {
-      sub.textContent = m.proximamente || "¡Muy pronto habrá actividades aquí!";
-    } else {
-      sub.textContent = "Elige una actividad";
-      m.actividades.forEach((a) => {
-        cont.appendChild(crearTarjeta(a.icono, a.nombre, a.desc, () => {
-          const p = PAGINA[a.modo];
-          if (p) location.href = p;
-        }));
-      });
-    }
+    m.actividades.forEach((a) => {
+      cont.appendChild(crearTarjeta(a.icono, a.nombre, a.desc, () => {
+        const p = PAGINA[a.modo];
+        if (p) location.href = p;
+      }));
+    });
     mostrar("pantalla-materia");
+    return true;
   }
 
-  // Alterna entre las dos sub-pantallas del índice y el botón Volver.
+  // Alterna entre las sub-pantallas del índice y el botón Volver.
   function mostrar(id) {
     document.querySelectorAll(".pantalla").forEach((p) => p.classList.remove("activa"));
     const el = document.getElementById(id);
     if (el) el.classList.add("activa");
     const volver = document.getElementById("btn-volver-global");
-    if (volver) volver.classList.toggle("oculto", id === "pantalla-menu");
+    if (volver) volver.classList.toggle("oculto", id === "pantalla-curso");
   }
 
   return { init };

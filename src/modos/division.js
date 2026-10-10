@@ -1,6 +1,6 @@
 /* División (con/sin residuo) con explicación — Matemáticas */
 const Division = (function () {
-  let cola = [], i = 0, ac = 0, act = null, t = null, re = false, tInicio = 0;
+  let cola = [], i = 0, ac = 0, act = null, t = null, re = false, tInicio = 0, ultimo = null;
   const TOTAL = 10;
   const $ = (id) => document.getElementById(id);
   const elSel = () => $("div-selector"), elJuego = () => $("div-juego");
@@ -22,6 +22,7 @@ const Division = (function () {
     Juego.pintarMejores(cc, "div"); // 🏆 mejores de esta actividad
   }
   function empezar(exact) {
+    ultimo = exact; Juego.quitarBotonesFin($("div-retro"));
     ac = 0; i = 0; cola = []; tInicio = Date.now(); const f = {};
     for (let k = 0; k < TOTAL; k++) { let q, fi, tr = 0; do { q = gen(exact); fi = q.a + "/" + q.b; tr++; } while (f[fi] && tr < 12); f[fi] = 1; cola.push(q); }
     elSel().classList.add("oculto"); elJuego().classList.remove("oculto"); mostrar();
@@ -37,7 +38,9 @@ const Division = (function () {
   }
   function comprobar() {
     if (!act) return; const c = $("div-coc").value.trim(), rr = $("div-res").value.trim();
-    if (c === "" || rr === "") return;
+    // Antes, con una casilla vacía el botón no hacía nada y el niño no sabía por qué.
+    if (c === "") { const r0 = $("div-retro"); r0.textContent = "Escribe el cociente 👀"; r0.className = "retro"; $("div-coc").focus(); return; }
+    if (rr === "") { const r0 = $("div-retro"); r0.textContent = "Falta el residuo. Si no sobra nada, escribe 0 👀"; r0.className = "retro"; $("div-res").focus(); return; }
     Juego.cronDetener(); $("div-coc").disabled = true; $("div-res").disabled = true;
     const ok = parseInt(c, 10) === act.c && parseInt(rr, 10) === act.res; const r = $("div-retro");
     if (ok) { r.textContent = Juego.frasePositiva(); r.className = "retro bien"; if (!re) { ac++; Juego.acierto(); } t = setTimeout(siguiente, 1050); }
@@ -58,18 +61,20 @@ const Division = (function () {
     const r = $("div-retro"); r.textContent = "¡Inténtalo de nuevo!"; r.className = "retro"; $("div-coc").focus(); timer();
   }
   function siguiente() { if (t) { clearTimeout(t); t = null; } i++; if (i >= cola.length) terminar(); else mostrar(); }
-  function timer() { const c = Juego.config(); const el = $("div-timer"); if (c.timerOn) { el.classList.remove("oculto"); Juego.cronIniciar(c.timerSeg, "div-timer", tag); } else { el.classList.add("oculto"); Juego.cronDetener(); } }
+  function timer() { const c = Juego.config(); const el = $("div-timer"); if (c.timerOn) { el.classList.remove("oculto"); Juego.cronIniciar(Juego.tiempo(act.c > 12 ? 3 : 1.5), "div-timer", tag); } else { el.classList.add("oculto"); Juego.cronDetener(); } }
   function tag() { $("div-coc").disabled = true; $("div-res").disabled = true; const r = $("div-retro"); r.textContent = "⏰ ¡Tiempo! Mira cómo se hace 👇"; r.className = "retro mal"; if (!re) Juego.error(); fallo(); }
   function terminar() {
     Juego.cronDetener(); $("div-timer").classList.add("oculto"); $("div-progreso").style.width = "100%";
     Juego.registrarResultado("div", { aciertos: ac, total: cola.length, ms: Date.now() - tInicio });
     $("div-pregunta").innerHTML = "¡Terminaste, " + Juego.jugador() + "! " + ac + " de " + cola.length + " ⭐" + Juego.tablaMejoresHTML("div");
     ["div-resp", "div-explica", "div-reintentar", "div-siguiente"].forEach((id) => $(id).classList.add("oculto"));
-    const r = $("div-retro"); r.textContent = ac === cola.length ? "¡Perfecto! 🏆" : "¡Muy bien! Toca otra ronda para seguir."; r.className = "retro bien";
-    if (ac >= cola.length - 1) Juego.granPremio(); t = setTimeout(volverSelector, 2500);
+    const r = $("div-retro"); r.textContent = ac === cola.length ? "¡Perfecto! 🏆" : "¡Muy bien! ¿Otra ronda para mejorar?"; r.className = "retro bien";
+    if (ac >= cola.length - 1) Juego.granPremio();
+    Juego.botonesFin(r, () => empezar(ultimo), volverSelector);
   }
   function volverSelector() {
     if (t) { clearTimeout(t); t = null; } Juego.cronDetener();
+    Juego.quitarBotonesFin($("div-retro")); pint();   // refresca el 🏆
     ["div-explica", "div-reintentar", "div-siguiente"].forEach((id) => $(id).classList.add("oculto"));
     $("div-resp").classList.remove("oculto"); elJuego().classList.add("oculto"); elSel().classList.remove("oculto");
   }

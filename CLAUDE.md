@@ -41,9 +41,11 @@ Reglas concretas (en orden de preferencia):
 6. **Accesible para 9 años, sin lectura pesada.** Enunciados muy cortos, íconos que guían, objetivo
    obvio de un vistazo. Si necesita un párrafo de instrucciones, rediséñalo.
 
-Patrón de referencia ya en el repo: el modo **"Señala la parte"** (`src/modos/senala.js`, SVG clicable)
-y **Valor posicional** (bloques base-10) encarnan esto. Al crear un modo nuevo, **parte de la
-interacción física**, no del cuestionario. Si caes en opción-múltiple, deja un comentario `// TODO:
+Patrones de referencia ya en el repo: **"Señala la parte"** (tipo `senala` del runner: la planta y la flor
+son **modelos 3D** que se giran y se tocan; cuerpo, cara y órganos son ilustraciones SVG animadas),
+**Valor posicional** (`src/modos/valorposicional.js`: bloques base 10 en 3D con sus tamaños reales, que se
+ponen, se quitan y se canjean) y **El ciclo del agua** (maqueta 3D animada). Al crear un modo nuevo,
+**parte de la interacción física**, no del cuestionario. Si caes en opción-múltiple, deja un comentario `// TODO:
 volver manipulativo` explicando qué objeto faltaría. El motor `MC` (`src/core/mc.js`) sirve para
 *cerrar* repasos rápidos, pero **no debe ser el molde por defecto** de las actividades nuevas.
 
@@ -52,11 +54,12 @@ volver manipulativo` explicando qué objeto faltaría. El motor `MC` (`src/core/
 - **Servido**: `python -m http.server` y abrir http://localhost:8000.
 - Tras editar JS/CSS recargar con **Ctrl + Shift + R**. Tras editar un `data/*.json`, ejecutar
   `python herramientas/build.py` para regenerar los `data/*.js`.
-- **No hay Node** (no `node --check`), pero **sí hay `bun`**: para parse-checkear un módulo sin
-  ejecutarlo usar `bun build --no-bundle <archivo.js>` (silencio = OK; imprime el error de sintaxis si
-  lo hay). Útil porque servir con 200 NO garantiza que el JS parsee (p. ej. comillas mal anidadas).
-- Sí hay **Python** (con `shapely` y `json5` instalados, usados para generar los datos de mapas).
-- three.js r128 con copia local en `lib/three.min.js` (el 3D funciona offline).
+- **Pruebas (sin Node ni instalar nada; ver "Pruebas y validación" más abajo):**
+  `python herramientas/validar.py` (contenido sin trampas) y `python herramientas/humo.py --todos`
+  (abre TODAS las páginas en Chrome/Edge sin ventana y prueba cada tema). **Correr las dos antes de dar
+  algo por terminado.** No asumas que hay `bun` ni `node`: en la máquina del usuario no están.
+- Sí hay **Python** (con `shapely`, `json5` y `PIL` instalados).
+- three.js r128, **siempre la copia local** `lib/three.min.js` (ya no se carga del CDN; ver `lib/README.md`).
 - Persistencia: **todo en `localStorage`** (progreso, config, contenido del editor).
 
 ## Arquitectura
@@ -68,10 +71,11 @@ página en `paginas/` que el menú enlaza. Las páginas de `paginas/` usan `<bas
 | Archivo | Global | Rol |
 |---|---|---|
 | `data/*.json` (+ `*.js` generados por `build.py`) | `DATOS.*`, `NINO`, `ECUADOR_SVG`, `ECUADOR_CANTONES` | **Datos** (ver `data/README.md`): **`data/contenido/<modo>.json`** (contenido de actividades, lo usa el runner), **`data/mapas/*`** (geografía: provincias, regiones, detalle, cantones, mapa-ec), y de sistema/loader propio (materias, nino, ortografia, parrafos, generador-parrafos, secuencias). Editar el `.json` y correr `herramientas/build.py`. |
-| `src/core/juego.js` | `Juego` | Núcleo: marcador, sonido, `localStorage`, temporizador, utilidades (`azar/azarEl/mezclar/cargar/guardar/frasePositiva/construirSecuencia`, `acierto/error/granPremio`, `cron*`, `jugador`, `aplicarIdentidad`) e `iniciarBase()`. **Perfiles** (`perfiles/perfilActivo/crearPerfil/seleccionarPerfil/actualizarPerfil/borrarPerfil`), **nivel de dificultad** (`nivel/nivelIdx/porNivel`) y **leaderboard** (`registrarResultado/mejores/fmtTiempo/tablaMejoresHTML`). Ver "Perfiles, Niveles y Leaderboard". |
+| `src/core/juego.js` | `Juego` | Núcleo: marcador, sonido, `localStorage`, temporizador, utilidades (`azar/azarEl/mezclar/cargar/guardar/frasePositiva/construirSecuencia`, `acierto/error/granPremio`, `cron*`, `jugador`, `aplicarIdentidad`) e `iniciarBase()`. **Perfiles** (`perfiles/perfilActivo/crearPerfil/seleccionarPerfil/actualizarPerfil/borrarPerfil`), **nivel de dificultad** (`nivel/nivelIdx/porNivel`), **curso** (`curso/fijarCurso`: grado y trimestre recordados en el perfil) y **leaderboard** (`registrarResultado/mejores/fmtTiempo/tablaMejoresHTML`). Ver "Perfiles, Niveles y Leaderboard". |
 | `src/core/perfiles.js` | `Perfiles` | **Selector de perfiles** (solo en `index.html`): pantalla `pantalla-perfiles` con una tarjeta por niño (botones **✏️ editar** y **🗑️ borrar**) + "➕ Nuevo perfil". El modal `abrirForm(perfil?)` sirve para **crear y editar** (nombre del niño, **sexo del niño** = `genero` —emoji 👧/👦 de su tarjeta—, **nombre de la mascota** = `avatar` —por defecto "Perchita"—, **sexo de la mascota** = `generoMascota` —construye a la mascota niña/niño— y nivel; precarga al editar y guarda con `Juego.actualizarPerfil`, que aplica la identidad en vivo a la mascota). **Valida** ambos nombres con `validarNombre` (solo letras, sin números/símbolos/groserías; listas `SOECES_PALABRA`/`SOECES_FUERTE`). Chip de perfil en la barra para cambiar. `Perfiles.init/abrir/actualizarChip`. |
 | `src/core/datos.js` | `Datos` | `Datos.cargar([...])` lee `window.__DATOS__` y rellena los globales. |
-| `src/core/menu.js` | `Menu` | Menú de materias (tarjetas desde `DATOS.materias`, enlaza a `paginas/<modo>.html`). **Modal de clave** (`pedirClave(destino)`) que se abre ANTES de ir a la zona de adultos; sin clave válida no se navega. Dos tarjetas de adultos: **⚙️ Ajustes** (`editor.html`) y **📚 Banco de contenido** (`contenido.html`). |
+| `src/core/curriculo.js` | `Curriculo` | **Grados, trimestres y plan** (solo en `index.html`): lee `DATOS.curriculo` (`data/curriculo.json`). `grados()/trimestres()/grado(id)/trimestre(id)/disponible(g)/porDefecto()`, `materias(gradoId, triId)` (las materias del catálogo, cada una SOLO con las actividades de su plan) y `abrirMapa(gradoId, alIr)` (la "ayudita": mapa conceptual grado → trimestres → materias → actividades). Ver "Grado y trimestre". |
+| `src/core/menu.js` | `Menu` | Menú del índice en 3 sub-pantallas: **grado + trimestre** (`pantalla-curso`), **materias** del trimestre (`pantalla-menu`) y **actividades** (`pantalla-materia`); las tarjetas salen de `Curriculo.materias(...)` y enlazan a `paginas/<modo>.html`. **Modal de clave** (`pedirClave(destino)`) que se abre ANTES de ir a la zona de adultos; sin clave válida no se navega. Dos tarjetas de adultos: **⚙️ Ajustes** (`editor.html`) y **📚 Banco de contenido** (`contenido.html`). |
 | `src/core/mc.js` | `MC` | Motor de **opción múltiple** (repasos rápidos). Fábrica `MC(px, temas)`; ronda de 10. Al terminar registra el resultado en el leaderboard (`Juego.registrarResultado(px,…)`). **No es el patrón por defecto** (ver Filosofía de diseño). |
 | `src/core/actividad.js` | `Actividad` | Motor de **actividades manipulativas** (hermano de `MC`). Fábrica `Actividad(px, temas, opts)`; cada tema tiene `ronda(host, ctrl)` que arma la interacción en `#<px>-extra` y resuelve con `ctrl.ganar()/fallar()/reintento()`. Sin temporizador (autocorrectivo). Al terminar registra el leaderboard. Reutiliza la misma estructura de página por prefijo que `MC`. |
 | `src/core/arrastrar.js` | `Arrastrar` | Arrastrar-y-soltar con eventos de **puntero** (mouse + dedo). `Arrastrar.hacer(item, zonas, alSoltar)` (marca `.zona-hover`, devuelve la zona destino o null) y `Arrastrar.clasificar(host, ctrl, {pregunta, cestas, items})` (actividad "clasifica en cestas"). Además dos ayudantes de **toque** para `ronda()` de `Actividad`: `Arrastrar.emparejar(host, ctrl, {pregunta, pares:[{a,b}]})` (une parejas: toca izquierda→derecha; CSS `.emp-*`) y `Arrastrar.ordenar(host, ctrl, {pregunta, correcto:[...]})` (toca fichas en orden; CSS `.ord-*`). |
@@ -82,9 +86,12 @@ página en `paginas/` que el menú enlaza. Las páginas de `paginas/` usan `<bas
 | `src/modos/copia.js` | `Copia` | **Corregir / Dictado** (dos sub-modos manipulativos). *Corregir*: el texto sale con errores y el niño **toca la palabra mala** → mini-modal con opciones (dificultad por `Juego.nivelIdx()`: básico = errores marcados y opciones obvias; intermedio = marcados, opciones más parecidas; avanzado = sin marcar, el niño los **busca** y al final pulsa Comprobar). *Dictado*: la voz del navegador (**Web Speech API**, sin librerías; degrada a mostrar el texto si no hay voz) lee y el niño escribe. Puntaje = palabras correctas/total → leaderboard `"copia"`. Conserva `generarErrores` (lo usa `banco.js`). |
 | `src/modos/editor.js` | `Editor` | Zona de adultos — **⚙️ Ajustes** (clave **24861793**): solo temporizador y reinicio de progreso. La identidad y el nivel viven en el perfil; el contenido, en `banco.js`. |
 | `src/modos/banco.js` | `BancoContenido` | Zona de adultos — **📚 Banco de contenido** (misma clave): administra palabras de ortografía (editor universal), secuencias propias y párrafos. Mantiene `claveBancoCustom/claveOcultasOrto/bancoDefaultOrto` alineadas con `ortografia.js`. **Global `BancoContenido`** (distinto del runner `Contenido` de `src/core/contenido.js`). |
-| `src/modos/{aritmetica,tablas,multiplicacion,division,comparar,redondeo,numeros,valorposicional,dinero,medidas,hora,fracciones,secuencias}.js` | varios | **Matemáticas** (generadores numéricos): producen los ejercicios por nivel; no usan el runner (no hay banco de texto). |
+| `src/modos/{aritmetica,tablas,multiplicacion,division,comparar,redondeo,numeros,valorposicional,dinero,medidas,hora,fracciones,secuencias}.js` | varios | **Matemáticas** (generadores numéricos): producen los ejercicios por nivel; no usan el runner (no hay banco de texto). **`valorposicional`** usa el motor `Actividad` con el modelo 3D `bloques` (armar el número, leer los bloques y repaso con la tabla); **`fracciones`** usa el modelo 3D `fraccion` (pizza/barra); **`dinero`** dibuja billetes y monedas con CSS (`.usd-*`). |
+| `src/modos/geometria.js` | `Rectas`, `Cuadri` | **Geometría del 2.º trimestre** (motor `Actividad`, SVG + eventos de puntero): un archivo, dos actividades — `paginas/rectas.html` (rectas, ángulos y graduador) y `paginas/cuadrilateros.html` (familias de cuadriláteros y perímetro). Ver "Segundo trimestre de Quinto". Estilos `.geo-*` / `.grad-*` en `ejercicios.css`. |
 | `src/modos/{mapas,mapacantones,donde}.js` + `quiz.js` | `Mapas`/`MapaCantones`/`Donde`/`Quiz` | **Mapas** (SVG/GeoJSON desde `data/mapas/*`) y **Quiz** (geografía de `DATOS.mapas` + bancos de texto en `data/contenido/quiz.json`). Loader propio. |
-| `src/efectos/escena3d.js` / `luna.js` | `ESCENA` / `Luna` | Fondo 3D y mascota. `Luna` (niño/niña según `genero`) tiene gestos espontáneos (saludo/pensar), reacciones (feliz/triste/fiesta) y **`Luna.tip(texto)` / `Luna.decir(texto)`** para hablar por su globo. **Si NO hay perfil creado** saluda en genérico ("¡Hola! Soy Luna") y omite el nombre en sus frases (`hayPerfil()` consulta `Juego.perfilActivo()`), para no decir "Nelson" en el selector. |
+| `src/efectos/escena3d.js` / `luna.js` | `ESCENA` / `Luna` | Fondo 3D y mascota. `ESCENA.ahorro(bool)` baja el ritmo del fondo mientras una actividad muestra su modelo. `Luna` (niño/niña según `generoMascota`) respira, parpadea, **sigue el cursor con la mirada**, tiene gestos espontáneos (saludo/pensar), reacciones (feliz/triste/fiesta) y **`Luna.tip(texto)` / `Luna.decir(texto)`** para hablar por su globo. Por defecto vive **abajo a la derecha** (no tapa el ejercicio); solo guarda su posición si el niño la ARRASTRA (clave `luna_pos2`). **Si NO hay perfil creado** saluda en genérico y omite el nombre (`hayPerfil()`). |
+| `src/efectos/modelo3d.js` + `src/efectos/modelos/*.js` | `Modelo3D` | **Escenario 3D de las actividades** (ver "Modelos 3D y dibujos"). `Modelo3D.registrar(nombre, fn)` / `disponible(nombre)` / `crear(host, nombre, opts)`. Modelos: `planta`, `flor`, `cicloagua`, `bloques`, `fraccion`. |
+| `herramientas/*.py` | — | `build.py` (genera los `data/*.js`; incrusta `{"$archivo": …}`), `validar.py` (contenido), `humo.py` + `cdp.py` (prueba de humo en navegador sin ventana), `corregir_cantones.py` (nombres de cantones). |
 | `css/modulos/*.css` | — | Estilos modulares (orden en `css/modulos/_orden.md`). |
 | `recursos/ecuador_1.0/2.0.svg`, `recursos/banderas/EC-*.svg` | — | SVG original/horneado + banderas provinciales. |
 | `paginas/*.html` | — | Una por módulo; incluye sus `data/*.js`, core, su modo, y arranca con `Datos.cargar(...).then(() => { Juego.iniciarBase(); Modo.init(); })`. |
@@ -96,15 +103,51 @@ cada modo** (sigue igual; solo cambió la ubicación: `js/X.js` → `src/modos/X
 El menú está organizado en **materias** (asignaturas). Definidas en `DATOS.materias` (`datos.js`):
 ```js
 { id, icono, nombre, desc,
-  actividades: [ { modo, icono, nombre, desc }, ... ],   // modo = pantalla existente
-  proximamente: "texto" }                                 // solo si actividades está vacío
+  actividades: [ { modo, icono, nombre, desc }, ... ] }  // modo = pantalla existente
 ```
+`DATOS.materias` es el **catálogo** (cada actividad se define UNA vez). Qué se ve en cada grado y
+trimestre lo decide el **plan** de `data/curriculo.json` (ver "Grado y trimestre").
+Del **segundo trimestre** (ver "Segundo trimestre de Quinto"): Lengua `vocabulario`; Matemáticas `rectas`,
+`cuadrilateros`, `propmult`; Sociales `incas`, `riosygente`; Ciencias `vidaplantas`.
 Materias actuales: **Lengua** (ortografia, copia, **clases, familia, sinonimos, formas, silabas,
 ordena, sujeto, signos, alfabetico, lectura, refranes**), **Matemáticas** (secuencias, aritmetica/tablas/
 multiplicacion/division/comparar/redondeo/numeros/valorposicional/dinero/medidas/hora/fracciones),
 **Estudios Sociales** (**epoca, regiones**, `mapas`, `cantones`, `quiz`, `donde`), **Ciencias Naturales**
 (senala, plantas, cuerpo, **animales, invertebrados, cuidafauna**, cicloagua, materia, ambiente),
 **Inglés** (**ahorcado**).
+
+### Segundo trimestre de Quinto (NUEVO — sacado del Classroom del colegio)
+El 2.º trimestre va del 20-jul a mediados de octubre. Su plan (`"2"` en `data/curriculo.json`) **repite**
+actividades que ya existían y calzan (Lengua: clases, sinonimos, lectura; Mate: tablas, multiplicacion;
+Ciencias: plantas, senala, ambiente) y añade estas nuevas:
+- **rectas** — "Rectas y ángulos" (`src/modos/geometria.js`, global `Rectas`, px `rec`; motor `Actividad`,
+  todo SVG con eventos de puntero): **Gira la recta** (se gira la recta roja hasta que sea paralela /
+  secante perpendicular / secante oblicua a la azul y se pulsa "¡Listo!"; el material responde con la
+  esquina recta, las rayitas de paralelas o el punto de cruce), **El plano del barrio** (tocar la calle
+  que es paralela/perpendicular/oblicua a la roja), **Abre el ángulo** (se gira un lado: en básico se pide
+  la clase —agudo, recto, obtuso—; en intermedio/avanzado, los grados, con un graduador fijo) y **Mide
+  con el graduador** (el graduador se ARRASTRA hasta la punta del ángulo, encaja y entonces se elige la
+  medida; en avanzado el ángulo puede abrirse desde la izquierda y hay que usar la escala interior).
+- **cuadrilateros** — "Cuadriláteros y perímetro" (mismo archivo, global `Cuadri`, px `cua`): **Familias**
+  (arrastrar cada figura a paralelogramos / trapecios / trapezoides; catálogo `FIGURAS`, giradas según el
+  nivel), **¿Cómo se llama?** (tocar el rombo, el romboide…), **Camina el contorno** (se toca cada lado
+  para sumarlo: P = l + l + l + l, y se elige o escribe el total) y **Problemas de perímetro** (cercar,
+  hallar el lado que falta, costo, vueltas; generados, con su dibujo).
+- **propmult** — "Propiedades de la multiplicación" (runner, px `pmul`): términos (tipo `terminos` con
+  `op:"mult"`), ¿qué propiedad es? (`clasificar`: conmutativa, asociativa, distributiva, elemento neutro
+  y absorbente), completa la igualdad (`formas`), V/F y definiciones. `multiplicacion` ahora llega a
+  3 cifras en el multiplicador en todos los niveles.
+- **vocabulario** — "Concurso de vocabulario" (Lengua, runner, px `voc`): las **40 palabras del banco del
+  colegio** (10 por materia) con su significado (`definir`), sinónimo y antónimo (`emparejar`) y escritura
+  (`signos`: la letra o tilde que falta). El JSON se generó desde una tabla; si el colegio cambia el
+  banco, se edita `data/contenido/vocabulario.json`.
+- **vidaplantas** — "La vida de las plantas" (Ciencias, runner, px `vpl`): plantas con y sin semilla,
+  musgo y helecho, fotosíntesis/respiración/nutrición, de la flor al fruto, polinizadores, partes de la
+  hoja, ecosistemas (productores/consumidores/descomponedores, clases) y adaptaciones.
+- **incas** — "Señoríos, Incas y Conquista" y **riosygente** — "Ríos y gente del Ecuador" (Sociales,
+  runner, px `inca` / `ryg`): periodización aborigen, señoríos étnicos, trueque, Imperio Inca, Atahualpa
+  y Huáscar, Conquista; vertientes y ríos, usos del agua y diversidad de la población.
+Inglés aún no tiene nada del 2.º trimestre (verbos regulares en pasado): en el mapa sale con 💤.
 
 ### Inglés — módulo nuevo (materia `ingles`)
 Primera actividad: **El ahorcado** (`ahorcado`, px `ahor`, `data/contenido/ahorcado.json`, tipo nuevo
@@ -137,7 +180,10 @@ región (CN.3.1.4), reproducción de vertebrados (CN.3.1.6) e invertebrados (CN.
 **Conceptos en TODO Ciencias** (no solo clasificar — ver [[mezclar-conceptos-no-solo-clasificar]]): los módulos
 del motor `Actividad` (**plantas, cuerpo, materia, ambiente, cicloagua**, además de animales/invertebrados)
 incorporan los temas **🤔 ¿Verdadero o falso?** y **📖 ¿Qué es cada cosa?** (definición con opciones), por 3
-niveles, vía `rondaVF`/`rondaDef` (botones `.ord-chip`). `senala` se mantiene como motor SVG de "señalar".
+niveles (tipos `vf`/`definir` del runner). `senala` es "señalar la parte": planta y flor en **3D**, y
+cuerpo, cara y órganos como ilustraciones SVG. En `plantas` y `cuerpo`, el tema de "trabajos" se juega
+soltando la ficha **sobre la parte** (planta 3D / dibujo de órganos). `cicloagua` → "Arma el ciclo" es una
+**maqueta 3D animada** con casillas "?", y "Estados del agua" es un `clasificar` con contenido por nivel.
 
 ### Estudios Sociales — adaptación al Taller 1 de Quinto ("Época Aborigen" + territorio)
 Dos módulos nuevos manipulativos (`Actividad` + `Arrastrar`, catálogo INLINE por 3 niveles, página copia
@@ -145,7 +191,8 @@ de `epoca.html`, `MODO_VOLVER`→`materia=sociales`) y la ampliación del Quiz:
 - **epoca** (`Epoca`) — Historia "Época Aborigen", 4 temas: **¿Cómo llegaron?** (teorías del poblamiento de
   América: Bering/Hrdlička, Polinésica/Rivet, Australiana/Méndez Correa, Autóctona/Ameghino — `emparejar`),
   **Línea de tiempo** (Paleoindio→Formativo→Desarrollo Regional→Integración — `ordenar`), **Sociedades
-  agrícolas** (Incipientes→Superiores→Supracomunales — `ordenar`), **Pueblos y culturas** (Valdivia, Las
+  agrícolas** (Incipientes→Superiores→Supracomunales→Señoríos étnicos, como cuatro etapas separadas igual
+  que en el Taller 2 del colegio; los señoríos entran desde intermedio — `ordenar`), **Pueblos y culturas** (Valdivia, Las
   Vegas, La Tolita, Cañari, Manteño-Huancavilca… — `emparejar`).
 - **regiones** (`Regiones`) — Geografía, 3 temas: **Regiones naturales** (Costa/Sierra/Amazonía/Insular —
   `clasificar`), **Relieves** (volcán/río/cordillera/llanura — `clasificar`), **Organización territorial**
@@ -173,18 +220,44 @@ de `clases.html`) y su contenido en el propio módulo (sin `data/*.json`). Hered
 **Antes del menú va el selector de perfiles** (`index.html`): al abrir, si no hay perfil activo se
 muestra `pantalla-perfiles`; al elegir uno se entra al menú. Ver "Perfiles, Niveles y Leaderboard".
 
-Flujo de pantallas (todo en `app.js`):
-`pantalla-menu` (materias, render dinámico con `pintarMenu`) → `irAMateria(id)` →
-`pantalla-materia` (submenú de actividades, o aviso "próximamente" si está vacía) →
-`irAModo(modo)` → pantalla del modo (`pantalla-ortografia`/`-secuencias`/`-copia`) → ejercicio.
-La tarjeta **⚙️ Crear y Configurar** vive en el menú raíz (no es materia) y abre `pantalla-editor`
-con clave. `volverAtras` sube un nivel: ejercicio → selector → submenú materia → menú.
-`materiaActual` recuerda la materia de origen para el botón Volver.
+Flujo de pantallas del índice (`src/core/menu.js`): `pantalla-perfiles` (si no hay perfil) →
+`pantalla-curso` (grado + trimestre) → `pantalla-menu` (materias de ese trimestre + las dos tarjetas de
+adultos) → `pantalla-materia` (actividades) → `paginas/<modo>.html`. El botón ↩️ sube un nivel y 🏠
+vuelve a `pantalla-curso`. Al regresar de una actividad (`index.html?materia=<id>`) se abre esa materia
+en el curso recordado.
+
+### Grado y trimestre (NUEVO — `data/curriculo.json` + `src/core/curriculo.js`)
+Lo primero que se elige al entrar. `data/curriculo.json` tiene:
+```js
+{ trimestres: [ { id: 1, icono, nombre, corto }, ... ],
+  grados: [ { id: "5", numero: "5.º", nombre: "Quinto de básica",
+              plan: { "1": { lengua: ["ortografia", ...], matematicas: [...], ... }, "2": {...}, "3": {...} } },
+            { id: "1", numero: "1.º", nombre: "Primero de básica" }, ... ] }   // sin `plan` = en construcción
+```
+- **Grados** 1.º a 7.º de básica; solo **5.º** tiene `plan`. Los demás salen con el cartel
+  "🚧 En construcción" (se pueden tocar: muestran el aviso en vez de los trimestres).
+- **Plan** = por trimestre y por materia, la lista de `modo` del catálogo, en el orden en que se muestran.
+  Una actividad puede estar en **varios** trimestres (se repite) o en **uno** solo; una materia que no
+  aparece en un trimestre no sale en su menú. **Para mover/repetir algo: editar el plan + `build.py`.**
+  **Hoy TODO el contenido de 5.º es del primer trimestre** (decisión del usuario): el plan solo tiene `"1"`.
+  Un trimestre sin plan sale "🚧 En construcción" (tarjeta y columna del mapa) y no se puede entrar.
+- **Curso recordado**: `Juego.curso()` → `{grado, trimestre}` y `Juego.fijarCurso(g, t)`; se guarda en el
+  propio perfil (campos `grado`/`trimestre`), y sin perfil en la clave suelta `curso`. La tarjeta del
+  trimestre donde se quedó el niño lleva "📌 Estabas aquí".
+- **Ayudita** (`Curriculo.abrirMapa`, botón "🗺️ ¿Qué hay en cada trimestre?" en `pantalla-curso` y
+  `pantalla-menu`): **mapa conceptual** con el grado arriba, una columna por trimestre y una fila por
+  materia (alineadas entre columnas, un color por materia). Tocar una materia abre sus actividades en los
+  tres trimestres a la vez (🔁 = se repite en otro trimestre, ⭐ = solo en ese, 💤 = la materia no toca);
+  "👁️ Ver todo" abre todas. Tocar un trimestre entra a él; tocar una actividad la abre. CSS `.curso-*`
+  y `.cmapa-*` en `menu.css`.
+- `validar.py` (`revisar_curriculo`) falla si el plan nombra una materia/actividad que no existe o si una
+  actividad del catálogo **no está en ningún trimestre** (no se podría abrir desde el menú).
 
 **Para añadir una actividad nueva** (modelo multipágina): crea `paginas/<modo>.html` (copiando una
 página del mismo motor, p.ej. `animales.html` para `Actividad`) y `src/modos/<modo>.js`; añade el modo
-al mapa `PAGINA` de `src/core/menu.js`; y regístralo en las `actividades` de su materia en
-`data/materias.json` y corre `python herramientas/build.py`. El menú y el submenú se pintan solos.
+al mapa `PAGINA` de `src/core/menu.js`; regístralo en las `actividades` de su materia en
+`data/materias.json`, **ponlo en el plan de al menos un trimestre en `data/curriculo.json`** y corre
+`python herramientas/build.py`. El menú y el submenú se pintan solos.
 Ejemplo reciente: **`invertebrados`** (ver fila en la tabla). El leaderboard se hereda gratis si el
 modo usa los motores `MC`/`Actividad`.
 
@@ -360,7 +433,13 @@ están en `banco.js` y **deben permanecer alineadas** con las claves que lee `or
 - **Zona de adultos**: la clave (**24861793**) se pide en un **modal del menú** (`Menu.pedirClave(destino)`);
   `editor.html` (⚙️ Ajustes) y `contenido.html` (📚 Banco de contenido) solo entran con el permiso de
   sesión (`sessionStorage ads_editor_ok`) y, sin él, rebotan al menú sin mostrar nada. No usar `window.prompt`.
-- **Sin dependencias** salvo three.js por CDN. No introducir build tools ni paquetes npm.
+- **Sin dependencias** salvo three.js (copia local en `lib/`). No introducir build tools ni paquetes npm.
+- **Marcador honesto**: en el motor `Actividad` una ronda cuenta como acierto solo si salió **a la primera**
+  (sin `ctrl.reintento`). Al terminar una ronda NO se vuelve solo al selector: `Juego.botonesFin(...)` deja
+  "🔁 Otra ronda" y "↩️ Elegir otra". El temporizador se pide con `Juego.tiempo(factor)` (las operaciones
+  escritas reciben más tiempo que una opción múltiple).
+- **Aceptar por texto, no por posición**: `Arrastrar.emparejar` y `Arrastrar.ordenar` comparan textos (dos
+  fichas iguales son intercambiables; dos izquierdas pueden compartir la misma derecha).
 - **Compatibilidad `file://`**: nada de `fetch` a archivos locales, módulos ES, ni rutas absolutas.
 - **Bancos de palabras**: español de Ecuador, vocabulario apropiado para ~9 años. Nombre del niño: Nelson.
 - Claves de `localStorage` (todas con prefijo real `ads_` que añade `Juego.guardar/cargar`):
@@ -371,7 +450,7 @@ están en `banco.js` y **deben permanecer alineadas** con las claves que lee `or
   - `orto_pares_<id>` — pares ✅/❌ definidos por el adulto.
   - `orto_ocultas_<id>` (y `_<grupo>` en mayúsculas/clasificar) — palabras del juego ocultadas.
   - `secuencias_propias`, `parrafos_propios`, `config` — banco/ajustes **compartidos** (no por perfil).
-  - **Perfiles**: `perfiles` (lista `[{id,nombre,genero,avatar,generoMascota,nivel}]`), `perfil_activo` (id).
+  - **Perfiles**: `perfiles` (lista `[{id,nombre,genero,avatar,generoMascota,nivel,grado,trimestre}]`), `perfil_activo` (id).
   - **Por perfil**: `estado__<id>` (estrellas/racha/nivel) y `lb_<juego>__<id>` (leaderboard, top-5).
   - Heredadas (un solo perfil, fallback): `jugador`, `avatar`, `genero`, `estado`.
 - **Importante**: las claves de "custom" y "ocultas" están duplicadas entre `contenido.js` (escribe) y
@@ -384,8 +463,64 @@ están en `banco.js` y **deben permanecer alineadas** con las claves que lee `or
 - Rama principal: `main`. Identidad local: rolansor / rolansor@hotmail.com.
 - El archivo fuente `ec.svg` (mapa de simplemaps) está versionado; `js/mapadata.js` se genera de él.
 
+## Modelos 3D y dibujos (NUEVO — leer antes de tocar gráficos)
+- **Escenario** `src/efectos/modelo3d.js` (`Modelo3D`): canvas three.js dentro de la caja de juego. Da luces,
+  sombra de contacto, **encuadre automático** (proyecta la caja del modelo en los giros permitidos),
+  giro con el dedo, `alTocar(id, cerca)` con **tolerancia** para dedos pequeños, `resaltar(id, "ok"|"mal")`,
+  `etiquetar(id, texto)`, `anclar(el, id, {abajo})` (elementos DOM que siguen a un punto del modelo),
+  `parteEn(x, y)` (para soltar fichas encima) y `destruir()`.
+- **Modelos** en `src/efectos/modelos/<nombre>.js`, construidos **por código** (nada de `.glb`: `file://` no
+  deja cargarlos) con los ayudantes `api.tubo` (tallos, raíces), `api.lamina` (hojas/pétalos curvos),
+  `api.torno`, `api.mat` y `api.parte(obj, id)`. Devuelven `{ objeto, animar(t,dt), limites, vista, anclas,
+  forma: "vertical"|"ancha"|"cuadrada", … }`. El escenario solo toca la **escala** de la raíz de cada parte.
+- **Uso desde una actividad**: se crea una vez por tema y se reutiliza entre rondas con `ctrl.memo`;
+  `ctrl.alTerminar(() => m.destruir())` lo libera. **Siempre con respaldo**: si `Modelo3D.disponible(n)` es
+  falso (sin WebGL) se usa el SVG / el dibujo 2D.
+- **Dónde se usa**: `senala` (planta y flor), `clasificar` con `dibujo` (plantas: soltar el trabajo sobre la
+  parte), `escena` con `modelo` (ciclo del agua), `valorposicional` (bloques) y `fracciones` (pizza/barra).
+- **Dibujos SVG** de "Señala la parte" en `recursos/senala/*.svg` (planta, flor, cuerpo, cara, órganos),
+  incrustados con `{"$archivo": …}`. Partes = `<g data-parte="id">`. Animaciones por clase CSS: `late`
+  (corazón), `respira` (pulmones), `parpadea` (ojos). El de órganos también es destino de fichas en
+  `cuerpo` → "¿Para qué sirve?".
+- **Páginas**: la que use un modelo carga `src/efectos/modelo3d.js` y su `src/efectos/modelos/<n>.js`
+  después de `luna.js` (ver `paginas/senala.html`).
+
+## Pruebas y validación (NUEVO)
+- `python herramientas/validar.py` — contenido: respuestas fuera de las opciones, palabras en dos cestas,
+  casillas que regalan la respuesta, partes sin dibujo, ortografía sin la letra de su categoría, cantones
+  mal escritos, `.js` sin regenerar. **Debe dar 0 errores.**
+- `python herramientas/humo.py [--todos] [--nivel X] [página…]` — abre cada página en Chrome/Edge sin
+  ventana (perfil temporal: no toca el progreso real), entra varias veces a cada tema y reporta errores de
+  JavaScript, rondas vacías y actividades que no caben en pantalla. **Debe dar 0 errores.**
+- `herramientas/cdp.py` — cliente mínimo de DevTools (solo librería estándar) para escribir más pruebas:
+  `c.js(...)`, `c.shot(...)`, `c.clic(x, y)`, `c.arrastrar(a, b)`, `c.movil()`.
+- Ojo: `Actividad.ronda()` atrapa los errores de una ronda para no trabar el juego, pero los escribe con
+  `console.error` (así `humo.py` los ve).
+- **Ortografía**: el generador no propone como "mal escrita" una palabra que también existe (casa/caza,
+  vaca/baca, hola/ola, pollo/poyo…): ver `HOMOFONAS` y `huecos()` en `ortografia.js`. El Banco de contenido
+  valida con `Ortografia.sirve(cat, palabra)` antes de guardar una palabra propia.
+
 ## Estado / próximos pasos posibles
 - Hecho recientemente:
+  - **Grado y trimestre (oct-2026).** Al entrar se elige el grado (1.º–7.º de básica; solo 5.º está listo,
+    el resto "en construcción") y el trimestre; las materias y actividades se filtran por el plan de
+    `data/curriculo.json`. Ayudita con mapa conceptual. Todo lo que existe hoy está en el **primer
+    trimestre** y el tercero está "en construcción". **Segundo trimestre armado** con lo que se vio en el
+    Classroom del colegio (ver "Segundo trimestre de Quinto"): geometría (rectas, ángulos con graduador,
+    cuadriláteros, perímetro), multiplicación (hasta 3 cifras, términos y propiedades), concurso de
+    vocabulario, plantas y ecosistemas, señoríos/Incas/Conquista y ríos/gente. Pendiente del 2.º: Lengua
+    (sustantivos concretos/abstractos y contables, artículos, adjetivos, tipos de texto, paratextos),
+    Inglés (pasado con -ed), un tangram y confirmar con el cuaderno los nombres de las propiedades.
+  - **Revisión general (oct-2026): errores + gráficos.** *Errores:* parejas y órdenes aceptados por texto
+    (antes se rechazaban respuestas correctas), concordancia "¿Dónde están…?", casillas del ciclo del agua
+    sin la respuesta escrita, ortografía sin homófonos ni ejercicios rotos, nombres de cantones corregidos
+    (221), mascota que ya no tapa el ejercicio, todo cabe en una laptop de 768 px, división que avisa si
+    falta el residuo, marcador "a la primera", verdadero/falso equilibrado, leaderboard en Ortografía, Quiz,
+    Secuencias y ¿Dónde está?, temporizador por tipo de pregunta, fin de ronda con botones, dictado alineado
+    palabra por palabra, three.js local. *Gráficos:* escenario `Modelo3D` con planta, flor, ciclo del agua,
+    bloques base 10 y pizza/barra; ilustraciones SVG animadas de cuerpo, cara y órganos; mascota nueva;
+    dinero dibujado; mapa 3D de provincias en relieve. *Herramientas:* `validar.py` y `humo.py`.
+  - Siguen sin nivel de dificultad propio: Ortografía y La hora (esta se gradúa por temas).
   - **Materia nueva: Inglés** con su primer juego, **El ahorcado de las frutas** (tipo `ahorcado` en el
     runner + `data/contenido/ahorcado.json`, temas *Fruits* y *Fruits of Ecuador*, vocabulario español
     del Ecuador: guineo, verde, uvilla, limón sutil, tomate riñón…). Incluye pronunciación en inglés por

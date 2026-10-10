@@ -155,18 +155,22 @@ const MapaCantones = (function () {
     const [mnx, mny, mxx, mxy] = bboxRings(parseRings(p.borde));
     const cx = (mnx + mxx) / 2, cy = (mny + mxy) / 2;
     const s = 3 / Math.max(mxx - mnx, mxy - mny, 1);
-    const DEP = 0.5, TOP = DEP / 2;
+    // Una placa delgada, como un mapa en relieve. (Con 0,5 de grosor las islas
+    // pequeñas de Galápagos salían como palitos más altos que anchos.)
+    const DEP = 0.16, TOP = DEP / 2;
 
     const grupo = new THREE.Group();
-    const cap = new THREE.MeshLambertMaterial({ color: color, side: THREE.DoubleSide });
-    const wall = new THREE.MeshLambertMaterial({ color: oscurecer(color, 0.72), side: THREE.DoubleSide });
+    const wall = new THREE.MeshLambertMaterial({ color: oscurecer(color, 0.66), side: THREE.DoubleSide });
     const lineMat = new THREE.LineBasicMaterial({ color: 0x2b2b2b });
-    R3.meshes = [];
+    R3.meshes = []; R3.sobre = null;
+    // Cada cantón lleva un tono un poco distinto del color de su región: se distinguen de un vistazo.
+    const TONOS = [1.0, 0.9, 1.08, 0.84, 0.96, 1.14];
 
     // Cada CANTÓN es su propio bloque extruido (con su nombre) + su borde arriba.
-    p.cantones.forEach((c) => {
+    p.cantones.forEach((c, n) => {
       const rings = parseRings(c.d);
       if (!rings.length) return;
+      const cap = new THREE.MeshLambertMaterial({ color: tono(color, TONOS[n % TONOS.length]), side: THREE.DoubleSide });
       const shapes = rings.map((r) => {
         const sh = new THREE.Shape();
         r.forEach((q, i) => {
@@ -192,11 +196,35 @@ const MapaCantones = (function () {
     R3.scene.add(grupo);
     if (!R3.raf) animate3D();
   }
-  function disposeObj(o) { o.traverse(function (c) { if (c.geometry) c.geometry.dispose(); }); }
+  function disposeObj(o) {
+    o.traverse(function (c) {
+      if (c.geometry) c.geometry.dispose();
+      if (c.material) (Array.isArray(c.material) ? c.material : [c.material]).forEach(function (m) { m.dispose(); });
+    });
+  }
+  // Aclara u oscurece un color "#rrggbb" (f > 1 aclara).
+  function tono(hex, f) {
+    const n = parseInt(hex.slice(1), 16);
+    const k = function (v) { return Math.max(0, Math.min(255, Math.round(f > 1 ? v + (255 - v) * (f - 1) * 2 : v * f))); };
+    return (k((n >> 16) & 255) << 16) | (k((n >> 8) & 255) << 8) | k(n & 255);
+  }
+  // Ilumina el cantón señalado y devuelve su nombre (o null).
+  function senalar(e, canvas) {
+    const rect = canvas.getBoundingClientRect();
+    R3.m2.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+    R3.m2.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+    R3.ray.setFromCamera(R3.m2, R3.camera);
+    const hits = R3.meshes.length ? R3.ray.intersectObjects(R3.meshes, false) : [];
+    const m = hits.length ? hits[0].object : null;
+    if (R3.sobre && R3.sobre !== m) R3.sobre.material[0].emissive.setHex(0x000000);
+    if (m) m.material[0].emissive.setHex(0x3a3000);
+    R3.sobre = m;
+    return m ? m.userData.nombre : null;
+  }
 
   function init3D(canvas) {
     R3.renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
-    R3.renderer.setPixelRatio(window.devicePixelRatio || 1);
+    R3.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     R3.scene = new THREE.Scene();
     R3.camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
     R3.camera.position.set(0, 0, 6.2);
@@ -204,32 +232,35 @@ const MapaCantones = (function () {
     const d1 = new THREE.DirectionalLight(0xffffff, 0.6); d1.position.set(3, 5, 6); R3.scene.add(d1);
     const d2 = new THREE.DirectionalLight(0xffffff, 0.25); d2.position.set(-4, -2, 3); R3.scene.add(d2);
     canvas.addEventListener("pointerdown", (e) => {
-      R3.dragging = true; R3.lx = e.clientX; R3.ly = e.clientY;
+      R3.dragging = true; R3.lx = e.clientX; R3.ly = e.clientY; R3.x0 = e.clientX; R3.y0 = e.clientY; R3.movido = false;
       try { canvas.setPointerCapture(e.pointerId); } catch (x) {}
     });
     R3.ray = new THREE.Raycaster();
     R3.m2 = new THREE.Vector2();
     canvas.addEventListener("pointermove", (e) => {
       if (R3.dragging) {
+        if (!R3.movido && Math.abs(e.clientX - R3.x0) + Math.abs(e.clientY - R3.y0) < 7) return;   // un toque no es un giro
+        R3.movido = true;
         if (R3.mesh) {
           R3.mesh.rotation.y += (e.clientX - R3.lx) * 0.01;
-          R3.mesh.rotation.x += (e.clientY - R3.ly) * 0.01;
+          // con tope: el mapa no se voltea de cabeza
+          R3.mesh.rotation.x = Math.max(-1.35, Math.min(0.1, R3.mesh.rotation.x + (e.clientY - R3.ly) * 0.01));
         }
         R3.lx = e.clientX; R3.ly = e.clientY;
         ocultarCantonLabel();
         return;
       }
       // Hover sin arrastrar: detecta el cantón bajo el cursor y muestra su nombre.
-      const rect = canvas.getBoundingClientRect();
-      R3.m2.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-      R3.m2.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
-      R3.ray.setFromCamera(R3.m2, R3.camera);
-      const hits = R3.meshes.length ? R3.ray.intersectObjects(R3.meshes, false) : [];
-      if (hits.length) mostrarCantonLabel(hits[0].object.userData.nombre, e);
-      else ocultarCantonLabel();
+      const nombre = senalar(e, canvas);
+      if (nombre) mostrarCantonLabel(nombre, e); else ocultarCantonLabel();
     });
     canvas.addEventListener("pointerenter", () => { R3.hovering = true; });
-    canvas.addEventListener("pointerup", () => { R3.dragging = false; });
+    canvas.addEventListener("pointerup", (e) => {
+      const fueToque = R3.dragging && !R3.movido;
+      R3.dragging = false;
+      // En tablet no hay "pasar el cursor": un TOQUE también dice el nombre del cantón.
+      if (fueToque) { const nombre = senalar(e, canvas); if (nombre) mostrarCantonLabel(nombre, e); else ocultarCantonLabel(); }
+    });
     canvas.addEventListener("pointerleave", () => { R3.dragging = false; R3.hovering = false; ocultarCantonLabel(); });
   }
   function animate3D() {

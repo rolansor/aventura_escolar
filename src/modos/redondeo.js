@@ -6,7 +6,9 @@
 
   function jugar(u, nombre) {
     return function (host, ctrl) {
-      let N; do { N = ctrl.azar(u * 2 + 1, u * 99); } while (N % u === 0);
+      // El nivel del perfil decide el tamaño del número (básico: hasta 9 veces la unidad).
+      const tope = Juego.porNivel([9, 99, 999]);
+      let N; do { N = ctrl.azar(u + 1, u * tope); } while (N % u === 0);
       const lower = Math.floor(N / u) * u, upper = lower + u, mid = lower + u / 2;
       const correcta = (N % u) >= u / 2 ? upper : lower;
       const pos = ((N - lower) / u) * 100;

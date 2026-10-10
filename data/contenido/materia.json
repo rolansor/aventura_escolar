@@ -84,7 +84,9 @@
           { "t": "Una piedra es un sólido.", "c": true, "exp": "" },
           { "t": "El humo es un gas.", "c": true, "exp": "" },
           { "t": "La leche es un líquido.", "c": true, "exp": "" },
-          { "t": "Una mesa de madera es un líquido.", "c": false, "exp": "Es un sólido." }
+          { "t": "Una mesa de madera es un líquido.", "c": false, "exp": "Es un sólido." },
+          { "t": "El agua es un sólido.", "c": false, "exp": "El agua es un líquido." },
+          { "t": "El aire es un líquido.", "c": false, "exp": "El aire es un gas." }
         ],
         [
           { "t": "Los sólidos tienen forma fija.", "c": true, "exp": "" },
@@ -94,7 +96,9 @@
           { "t": "Los gases no tienen forma fija.", "c": true, "exp": "" },
           { "t": "El agua puede ser sólida, líquida o gaseosa.", "c": true, "exp": "" },
           { "t": "La madera viene de los árboles.", "c": true, "exp": "" },
-          { "t": "Un líquido siempre tiene forma fija.", "c": false, "exp": "Toma la forma del recipiente." }
+          { "t": "Un líquido siempre tiene forma fija.", "c": false, "exp": "Toma la forma del recipiente." },
+          { "t": "Los gases tienen forma fija.", "c": false, "exp": "Los gases no tienen forma fija." },
+          { "t": "La madera viene de las piedras.", "c": false, "exp": "Viene de los árboles." }
         ],
         [
           { "t": "Si calientas el hielo se derrite.", "c": true, "exp": "Se vuelve líquido." },
@@ -104,7 +108,9 @@
           { "t": "Si enfrías mucho el agua se congela.", "c": true, "exp": "Se vuelve hielo." },
           { "t": "El humo y el vapor son sólidos.", "c": false, "exp": "Son gases." },
           { "t": "Derretir un metal lo convierte en líquido.", "c": true, "exp": "" },
-          { "t": "Un gas siempre pesa más que un sólido.", "c": false, "exp": "Casi siempre el gas pesa muy poco." }
+          { "t": "Un gas siempre pesa más que un sólido.", "c": false, "exp": "Casi siempre el gas pesa muy poco." },
+          { "t": "Si calientas el hielo se pone más duro.", "c": false, "exp": "Se derrite y se vuelve líquido." },
+          { "t": "Cuando el agua se congela se convierte en gas.", "c": false, "exp": "Se convierte en sólido (hielo)." }
         ]
       ]
     },

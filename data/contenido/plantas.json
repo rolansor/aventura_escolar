@@ -11,7 +11,9 @@
       "icono": "🌿",
       "nombre": "Partes y su trabajo",
       "desc": "¿qué hace cada parte?",
-      "pregunta": "Arrastra cada trabajo a la parte que lo hace 👇",
+      "pregunta": "Arrastra cada trabajo hasta la parte que lo hace 👇",
+      "dibujo": { "modelo": "planta", "svg": { "$archivo": "recursos/senala/planta.svg" } },
+      "fichas": [4, 4, 5],
       "cestas": [
         { "id": "raiz", "nombre": "Raíz", "emoji": "🌱" },
         { "id": "tallo", "nombre": "Tallo", "emoji": "🌿" },
@@ -78,7 +80,9 @@
           { "t": "La flor se convierte en fruto.", "c": true, "exp": "Del fruto salen las semillas." },
           { "t": "Las plantas necesitan agua para vivir.", "c": true, "exp": "" },
           { "t": "Las plantas dan oxígeno al aire.", "c": true, "exp": "Por eso limpian el aire." },
-          { "t": "La raíz crece hacia arriba, fuera de la tierra.", "c": false, "exp": "La raíz crece hacia abajo, en la tierra." }
+          { "t": "La raíz crece hacia arriba, fuera de la tierra.", "c": false, "exp": "La raíz crece hacia abajo, en la tierra." },
+          { "t": "Las plantas pueden vivir sin luz del sol.", "c": false, "exp": "Necesitan la luz para fabricar su alimento." },
+          { "t": "Las hojas chupan el agua del suelo.", "c": false, "exp": "Eso lo hace la raíz." }
         ],
         [
           { "t": "Las flores pueden convertirse en frutos.", "c": true, "exp": "De la flor, ya polinizada, nace el fruto." },
@@ -88,7 +92,9 @@
           { "t": "Las abejas ayudan a las flores llevando el polen.", "c": true, "exp": "Eso se llama polinización." },
           { "t": "El tallo lleva el agua desde la raíz hasta las hojas.", "c": true, "exp": "" },
           { "t": "Las plantas respiran y también fabrican su alimento.", "c": true, "exp": "Respiran de día y de noche." },
-          { "t": "Solo los animales necesitan el oxígeno.", "c": false, "exp": "Las plantas también respiran oxígeno." }
+          { "t": "Solo los animales necesitan el oxígeno.", "c": false, "exp": "Las plantas también respiran oxígeno." },
+          { "t": "La raíz hace la fotosíntesis.", "c": false, "exp": "La fotosíntesis ocurre en las hojas." },
+          { "t": "Las abejas dañan a las flores.", "c": false, "exp": "Las ayudan llevando el polen." }
         ],
         [
           { "t": "Las plantas fabrican su alimento con la luz del sol.", "c": true, "exp": "Se llama fotosíntesis." },
@@ -98,7 +104,10 @@
           { "t": "Las plantas también respiran de noche.", "c": true, "exp": "Toman oxígeno y botan dióxido de carbono." },
           { "t": "La savia bruta sube de la raíz al resto de la planta.", "c": true, "exp": "Lleva agua y minerales." },
           { "t": "La clorofila da el color verde a las hojas.", "c": true, "exp": "" },
-          { "t": "Las plantas no necesitan dióxido de carbono.", "c": false, "exp": "Lo necesitan para hacer la fotosíntesis." }
+          { "t": "Las plantas no necesitan dióxido de carbono.", "c": false, "exp": "Lo necesitan para hacer la fotosíntesis." },
+          { "t": "La fotosíntesis ocurre en la raíz.", "c": false, "exp": "Ocurre en las hojas." },
+          { "t": "En la fotosíntesis las plantas botan dióxido de carbono.", "c": false, "exp": "En la fotosíntesis botan oxígeno." },
+          { "t": "La clorofila da el color rojo a las flores.", "c": false, "exp": "Da el color verde a las hojas." }
         ]
       ]
     },

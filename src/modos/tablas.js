@@ -4,7 +4,7 @@
    de tabla (o mixtas) -> ronda de 10; el niño escribe el resultado.
    ============================================================ */
 const Tablas = (function () {
-  let cola = [], indice = 0, aciertos = 0, actual = null, temporizador = null, tInicio = 0;
+  let cola = [], indice = 0, aciertos = 0, actual = null, temporizador = null, tInicio = 0, ultima = null;
   const TOTAL = 10;
   const TABLAS = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   const elSel = () => document.getElementById("tablas-selector");
@@ -33,8 +33,10 @@ const Tablas = (function () {
   }
 
   function empezar(t) {
+    ultima = t;
     aciertos = 0; indice = 0; cola = []; tInicio = Date.now();
-    let previo = "";
+    // Ninguna multiplicación se repite dentro de la ronda.
+    const vistas = {};
     for (let i = 0; i < TOTAL; i++) {
       let a, b, firma, intentos = 0;
       do {
@@ -42,10 +44,11 @@ const Tablas = (function () {
         b = Juego.azar(1, 12);
         firma = a + "x" + b;
         intentos++;
-      } while (firma === previo && intentos < 6);
-      previo = firma;
+      } while (vistas[firma] && intentos < 20);
+      vistas[firma] = 1;
       cola.push({ a: a, b: b, r: a * b });
     }
+    Juego.quitarBotonesFin(document.getElementById("tablas-retro"));
     elSel().classList.add("oculto");
     elJuego().classList.remove("oculto");
     mostrar();
@@ -80,7 +83,7 @@ const Tablas = (function () {
   function arrancarTimer() {
     const c = Juego.config();
     const el = document.getElementById("tablas-timer");
-    if (c.timerOn) { el.classList.remove("oculto"); Juego.cronIniciar(c.timerSeg, "tablas-timer", tiempoAgotado); }
+    if (c.timerOn) { el.classList.remove("oculto"); Juego.cronIniciar(Juego.tiempo(1), "tablas-timer", tiempoAgotado); }
     else { el.classList.add("oculto"); Juego.cronDetener(); }
   }
   function tiempoAgotado() {
@@ -101,16 +104,18 @@ const Tablas = (function () {
       "¡Terminaste, " + Juego.jugador() + "! " + aciertos + " de " + cola.length + " ⭐" + Juego.tablaMejoresHTML("tablas");
     const inp = document.getElementById("tablas-input"); inp.value = ""; inp.disabled = true;
     const retro = document.getElementById("tablas-retro");
-    retro.textContent = aciertos === cola.length ? "¡Perfecto! 🏆" : "¡Muy bien! Toca otra ronda para seguir.";
+    retro.textContent = aciertos === cola.length ? "¡Perfecto! 🏆" : "¡Muy bien! ¿Otra ronda para mejorar?";
     retro.className = "retro bien";
     if (aciertos >= cola.length - 1) Juego.granPremio();
-    temporizador = setTimeout(volverSelector, 2400);
+    Juego.botonesFin(retro, () => empezar(ultima), volverSelector);
   }
   function volverSelector() {
     if (temporizador) { clearTimeout(temporizador); temporizador = null; }
     Juego.cronDetener();
+    Juego.quitarBotonesFin(document.getElementById("tablas-retro"));
     elJuego().classList.add("oculto");
     elSel().classList.remove("oculto");
+    pintarSelector();   // refresca el 🏆
   }
 
   return { init, comprobar, volverSelector };

@@ -21,7 +21,8 @@
   /* ---------- ¿Qué unidad? — arrastra el objeto a su medida ---------- */
   function rondaUnidad(host, ctrl) {
     const cosa = ctrl.azarEl(COSAS);
-    const otras = ctrl.mezclar(UNIDADES.filter((u) => u !== cosa.unidad)).slice(0, 3);
+    // El nivel del perfil decide entre cuántas medidas hay que escoger (3, 4 o 5).
+    const otras = ctrl.mezclar(UNIDADES.filter((u) => u !== cosa.unidad)).slice(0, Juego.porNivel([2, 3, 4]));
     const units = ctrl.mezclar(otras.concat([cosa.unidad]));
     ctrl.pregunta("¿En qué se mide <b>" + cosa.nombre + "</b>? Arrastra " + cosa.emoji + " a su medida 👇");
     host.innerHTML =
@@ -54,13 +55,16 @@
   ];
   function rondaOrdena(host, ctrl) {
     const dim = ctrl.azarEl(DIMS);
-    let cs = ctrl.mezclar(dim.items.slice()).slice(0, 3);
-    while (cs[0].val < cs[1].val && cs[1].val < cs[2].val) cs = ctrl.mezclar(cs);
+    // Tarjetas a ordenar según el nivel: 3, 4 o 5.
+    const n = Math.min(Juego.porNivel([3, 4, 5]), dim.items.length);
+    let cs = ctrl.mezclar(dim.items.slice()).slice(0, n);
+    const enOrden = (a) => a.every((c, i) => i === 0 || a[i - 1].val < c.val);
+    while (enOrden(cs)) cs = ctrl.mezclar(cs);                 // que NO empiece ya ordenado
     ctrl.pregunta("Ordena de <b>MENOR a MAYOR</b> (" + dim.nombre + "). Toca dos tarjetas ↔️");
     host.innerHTML = '<div class="fila-orden"></div><div class="orden-guia">⬅️ menos &nbsp;·&nbsp; más ➡️</div>';
     const fila = host.querySelector(".fila-orden");
     let sel = -1, listo = false;
-    const ordenado = () => cs[0].val < cs[1].val && cs[1].val < cs[2].val;
+    const ordenado = () => enOrden(cs);
     function pinta() {
       fila.innerHTML = "";
       cs.forEach((c, idx) => {

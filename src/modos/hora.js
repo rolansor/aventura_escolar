@@ -38,6 +38,7 @@
     if (m === 15) return "las " + h + " y cuarto";
     if (m === 30) return "las " + h + " y media";
     if (m === 45) return "las " + ((h % 12) + 1) + " menos cuarto";
+    if (m > 30) return "las " + ((h % 12) + 1) + " menos " + (60 - m);
     return "las " + h + " y " + m;
   }
 
@@ -93,6 +94,7 @@
 
   window.Hora = Actividad("hora", [
     { icono: "🕐", nombre: "En punto y media", desc: "horas y medias", ronda: jugar([0, 30]) },
-    { icono: "🕓", nombre: "Los cuartos", desc: "y cuarto, menos cuarto", ronda: jugar([0, 15, 30, 45]) }
+    { icono: "🕓", nombre: "Los cuartos", desc: "y cuarto, menos cuarto", ronda: jugar([0, 15, 30, 45]) },
+    { icono: "🕙", nombre: "De 5 en 5", desc: "todos los minutos", ronda: jugar([5, 10, 20, 25, 35, 40, 50, 55]) }
   ]);
 })();

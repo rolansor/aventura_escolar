@@ -7,7 +7,7 @@
    paso (llevando/prestando), y puede "Volver a intentar".
    ============================================================ */
 const Aritmetica = (function () {
-  let cola = [], indice = 0, aciertos = 0, actual = null, temporizador = null, reintento = false, tInicio = 0;
+  let cola = [], indice = 0, aciertos = 0, actual = null, temporizador = null, reintento = false, tInicio = 0, ultimas = 3;
   const TOTAL = 10;
   const CIFRAS = [3, 4, 5, 6, 7, 8, 9, 10];
   const ORDEN = ["unidades", "decenas", "centenas", "unidades de mil", "decenas de mil",
@@ -38,6 +38,8 @@ const Aritmetica = (function () {
   }
 
   function empezar(cifras) {
+    ultimas = cifras;
+    Juego.quitarBotonesFin($("arit-retro"));
     aciertos = 0; indice = 0; cola = []; tInicio = Date.now();
     const firmas = {};
     for (let i = 0; i < TOTAL; i++) {
@@ -205,7 +207,8 @@ const Aritmetica = (function () {
 
   function arrancarTimer() {
     const c = Juego.config(); const el = $("arit-timer");
-    if (c.timerOn) { el.classList.remove("oculto"); Juego.cronIniciar(c.timerSeg, "arit-timer", tiempoAgotado); }
+    // Operación ESCRITA: el tiempo crece con las cifras (3 cifras ≈ 2,5×, 10 cifras ≈ 6× el ajuste).
+    if (c.timerOn) { el.classList.remove("oculto"); Juego.cronIniciar(Juego.tiempo(1 + String(actual.a).length * 0.5), "arit-timer", tiempoAgotado); }
     else { el.classList.add("oculto"); Juego.cronDetener(); }
   }
   function tiempoAgotado() {
@@ -229,14 +232,16 @@ const Aritmetica = (function () {
     $("arit-siguiente").classList.add("oculto");
     $("arit-enviar").classList.add("oculto");
     const retro = $("arit-retro");
-    retro.textContent = aciertos === cola.length ? "¡Perfecto! 🏆" : "¡Muy bien! Toca otra ronda para seguir.";
+    retro.textContent = aciertos === cola.length ? "¡Perfecto! 🏆" : "¡Muy bien! ¿Otra ronda para mejorar?";
     retro.className = "retro bien";
     if (aciertos >= cola.length - 1) Juego.granPremio();
-    temporizador = setTimeout(volverSelector, 2600);
+    Juego.botonesFin(retro, () => empezar(ultimas), volverSelector);
   }
   function volverSelector() {
     if (temporizador) { clearTimeout(temporizador); temporizador = null; }
     Juego.cronDetener();
+    Juego.quitarBotonesFin($("arit-retro"));
+    pintarSelector();   // refresca el 🏆
     ["arit-explica", "arit-solucion", "arit-reintentar", "arit-siguiente"].forEach((id) => $(id).classList.add("oculto"));
     $("arit-enviar").classList.remove("oculto");
     elJuego().classList.add("oculto");

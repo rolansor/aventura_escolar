@@ -11,7 +11,9 @@
       "icono": "❤️",
       "nombre": "¿Para qué sirve?",
       "desc": "el trabajo de cada órgano",
-      "pregunta": "Arrastra cada trabajo a su órgano 👇",
+      "pregunta": "Arrastra cada trabajo hasta su órgano 👇",
+      "dibujo": { "svg": { "$archivo": "recursos/senala/organos.svg" } },
+      "fichas": [4, 4, 5],
       "cestas": [
         { "id": "pulmones", "nombre": "Pulmones", "emoji": "🫁" },
         { "id": "corazon", "nombre": "Corazón", "emoji": "❤️" },
@@ -96,7 +98,10 @@
           { "t": "El estómago digiere la comida.", "c": true, "exp": "Deshace los alimentos." },
           { "t": "El cerebro sirve para pensar.", "c": true, "exp": "Y manda órdenes al cuerpo." },
           { "t": "Olemos con la nariz.", "c": true, "exp": "" },
-          { "t": "El corazón está en el pecho.", "c": true, "exp": "" }
+          { "t": "El corazón está en el pecho.", "c": true, "exp": "" },
+          { "t": "Respiramos con el estómago.", "c": false, "exp": "Respiramos con los pulmones." },
+          { "t": "Oímos con la nariz.", "c": false, "exp": "Oímos con los oídos." },
+          { "t": "El corazón está en la cabeza.", "c": false, "exp": "Está en el pecho." }
         ],
         [
           { "t": "El cerebro controla el cuerpo.", "c": true, "exp": "Piensa y manda órdenes." },
@@ -106,7 +111,10 @@
           { "t": "El corazón late más rápido cuando corremos.", "c": true, "exp": "El cuerpo necesita más oxígeno." },
           { "t": "Respiramos por los pulmones.", "c": true, "exp": "Tomamos oxígeno y botamos dióxido de carbono." },
           { "t": "Los músculos nos ayudan a movernos.", "c": true, "exp": "" },
-          { "t": "El cerebro no sirve para nada.", "c": false, "exp": "Controla todo el cuerpo." }
+          { "t": "El cerebro no sirve para nada.", "c": false, "exp": "Controla todo el cuerpo." },
+          { "t": "Los huesos son blandos como la gelatina.", "c": false, "exp": "Son duros y sostienen el cuerpo." },
+          { "t": "Saboreamos con los dedos.", "c": false, "exp": "Saboreamos con la lengua." },
+          { "t": "El corazón late más despacio cuando corremos.", "c": false, "exp": "Late más rápido." }
         ],
         [
           { "t": "El corazón sirve para pensar.", "c": false, "exp": "Para eso está el cerebro." },
@@ -116,7 +124,9 @@
           { "t": "El cerebro es el centro del sistema nervioso.", "c": true, "exp": "Manda órdenes por los nervios." },
           { "t": "En los pulmones, la sangre toma oxígeno.", "c": true, "exp": "Y suelta el dióxido de carbono." },
           { "t": "El estómago forma parte del sistema digestivo.", "c": true, "exp": "" },
-          { "t": "La sangre vuelve al corazón por las arterias.", "c": false, "exp": "Vuelve al corazón por las venas." }
+          { "t": "La sangre vuelve al corazón por las arterias.", "c": false, "exp": "Vuelve al corazón por las venas." },
+          { "t": "Los pulmones forman parte del sistema digestivo.", "c": false, "exp": "Son del sistema respiratorio." },
+          { "t": "Los músculos forman el esqueleto.", "c": false, "exp": "El esqueleto está formado por huesos." }
         ]
       ]
     },

@@ -10,7 +10,7 @@
    Cada fn devuelve: { tema, pregunta, opciones, correcta, html?, pista? }
    ============================================================ */
 window.MC = function (px, temas) {
-  let cola = [], i = 0, ac = 0, t = null, tInicio = 0;
+  let cola = [], i = 0, ac = 0, t = null, tInicio = 0, actual = null;
   const TOTAL = 10;
   const $ = (s) => document.getElementById(px + "-" + s);
   const elSel = () => $("selector"), elJuego = () => $("juego");
@@ -29,16 +29,19 @@ window.MC = function (px, temas) {
     Juego.pintarMejores(c, px); // 🏆 leaderboard de esta actividad bajo los temas
   }
   function empezar(tm) {
-    ac = 0; i = 0; cola = []; tInicio = Date.now();
-    let prev = "";
+    actual = tm; ac = 0; i = 0; cola = []; tInicio = Date.now();
+    // Ninguna pregunta se repite dentro de la ronda (mientras el banco alcance).
+    const vistas = {};
     for (let k = 0; k < TOTAL; k++) {
       let q, f, tr = 0;
-      do { q = tm.gens[Math.floor(Math.random() * tm.gens.length)](); f = (q.pregunta || "") + "|" + q.correcta; tr++; }
-      while (f === prev && tr < 8);
-      prev = f; cola.push(q);
+      do { q = tm.gens[Math.floor(Math.random() * tm.gens.length)](); f = (q.html || "") + "|" + (q.pregunta || "") + "|" + q.correcta; tr++; }
+      while (vistas[f] && tr < 14);
+      vistas[f] = 1; cola.push(q);
     }
+    Juego.quitarBotonesFin($("retro"));
     elSel().classList.add("oculto");
     elJuego().classList.remove("oculto");
+    elJuego().classList.remove("modo-actividad");
     mostrar();
   }
   function mostrar() {
@@ -78,7 +81,8 @@ window.MC = function (px, temas) {
   }
   function timer(q) {
     const c = Juego.config(); const el = $("timer"); if (!el) return;
-    if (c.timerOn) { el.classList.remove("oculto"); Juego.cronIniciar(c.timerSeg, px + "-timer", () => tAgotado(q)); }
+    // q.tiempo: factor opcional (p. ej. una lectura necesita más que tocar una opción).
+    if (c.timerOn) { el.classList.remove("oculto"); Juego.cronIniciar(Juego.tiempo(q.tiempo || 1), px + "-timer", () => tAgotado(q)); }
     else { el.classList.add("oculto"); Juego.cronDetener(); }
   }
   function tAgotado(q) {
@@ -86,7 +90,7 @@ window.MC = function (px, temas) {
     const r = $("retro"); r.textContent = "⏰ ¡Se acabó el tiempo! Era: " + planoTexto(q.correcta); r.className = "retro mal";
     marcarCorrecta(); Juego.error(); avanzar(1900);
   }
-  function avanzar(ms) { t = setTimeout(() => { i++; if (i >= cola.length) terminar(); else mostrar(); }, ms); }
+  function avanzar(ms) { t = setTimeout(() => { t = null; i++; if (i >= cola.length) terminar(); else mostrar(); }, ms); }
   function terminar() {
     Juego.cronDetener(); if ($("timer")) $("timer").classList.add("oculto");
     Juego.registrarResultado(px, { aciertos: ac, total: cola.length, ms: Date.now() - tInicio });
@@ -96,15 +100,18 @@ window.MC = function (px, temas) {
     $("pregunta").textContent = "¡Terminaste, " + Juego.jugador() + "! " + ac + " de " + cola.length + " ⭐";
     if ($("pista")) $("pista").textContent = "";
     $("opciones").innerHTML = "";
-    const r = $("retro"); r.textContent = ac === cola.length ? "¡Perfecto! 🏆" : "¡Muy bien! Toca otra ronda para seguir."; r.className = "retro bien";
+    const r = $("retro"); r.textContent = ac === cola.length ? "¡Perfecto! 🏆" : "¡Muy bien! ¿Otra ronda para mejorar?"; r.className = "retro bien";
     if (ac >= cola.length - 1) Juego.granPremio();
-    t = setTimeout(volverSelector, 2600);
+    // El resumen se queda hasta que el niño decida (antes se iba solo a los 2,6 s).
+    Juego.botonesFin(r, () => empezar(actual), volverSelector);
   }
   function volverSelector() {
     if (t) { clearTimeout(t); t = null; }
     Juego.cronDetener();
+    Juego.quitarBotonesFin($("retro"));
     elJuego().classList.add("oculto");
     elSel().classList.remove("oculto");
+    pintar();   // refresca el 🏆 con la ronda recién jugada
   }
   return { init, volverSelector };
 };

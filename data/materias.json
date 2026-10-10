@@ -82,6 +82,12 @@
         "icono": "📜",
         "nombre": "Refranes y adivinanzas",
         "desc": "Une el refrán con su final"
+      },
+      {
+        "modo": "vocabulario",
+        "icono": "🥇",
+        "nombre": "Concurso de vocabulario",
+        "desc": "Significado, sinónimos, antónimos y escritura"
       }
     ]
   },
@@ -131,7 +137,7 @@
         "modo": "multiplicacion",
         "icono": "✖️",
         "nombre": "Multiplicación",
-        "desc": "2–3 cifras × 1–2 cifras, con explicación"
+        "desc": "Hasta 3 cifras en el multiplicador, con explicación"
       },
       {
         "modo": "division",
@@ -180,6 +186,24 @@
         "icono": "🍕",
         "nombre": "Fracciones",
         "desc": "Leer fracciones con dibujos"
+      },
+      {
+        "modo": "rectas",
+        "icono": "📐",
+        "nombre": "Rectas y ángulos",
+        "desc": "Paralelas, perpendiculares y el graduador"
+      },
+      {
+        "modo": "cuadrilateros",
+        "icono": "🔷",
+        "nombre": "Cuadriláteros y perímetro",
+        "desc": "Familias de figuras y su contorno"
+      },
+      {
+        "modo": "propmult",
+        "icono": "🏷️",
+        "nombre": "Propiedades de la multiplicación",
+        "desc": "Términos, conmutativa, asociativa, distributiva"
       }
     ]
   },
@@ -224,6 +248,18 @@
         "icono": "📍",
         "nombre": "¿Dónde está?",
         "desc": "Toca la provincia en el mapa"
+      },
+      {
+        "modo": "incas",
+        "icono": "👑",
+        "nombre": "Señoríos, Incas y Conquista",
+        "desc": "Señoríos étnicos, Imperio Inca y llegada española"
+      },
+      {
+        "modo": "riosygente",
+        "icono": "🏞️",
+        "nombre": "Ríos y gente del Ecuador",
+        "desc": "Ríos, usos del agua y diversidad de la población"
       }
     ]
   },
@@ -265,7 +301,7 @@
       },
       {
         "modo": "cuidafauna",
-        "icono": "🐾",
+        "icono": "🦅",
         "nombre": "Cuida la fauna",
         "desc": "Animales en peligro y cómo cuidarlos"
       },
@@ -286,6 +322,12 @@
         "icono": "♻️",
         "nombre": "Ecosistemas y ambiente",
         "desc": "Regiones del Ecuador y cuidar el planeta"
+      },
+      {
+        "modo": "vidaplantas",
+        "icono": "🌿",
+        "nombre": "La vida de las plantas",
+        "desc": "Sin semilla, fotosíntesis, polinizadores y ecosistemas"
       }
     ]
   },

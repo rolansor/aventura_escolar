@@ -1,0 +1,2109 @@
+{
+ "modo": "vocabulario",
+ "materia": "lengua",
+ "px": "voc",
+ "titulo": "Concurso de vocabulario",
+ "icono": "🥇",
+ "motor": "actividad",
+ "destrezas": [
+  "vocabulario de las materias básicas: escritura, significado, sinónimos y antónimos"
+ ],
+ "temas": [
+  {
+   "tipo": "definir",
+   "icono": "📖",
+   "nombre": "¿Qué significa?",
+   "desc": "el significado de cada palabra",
+   "total": 8,
+   "preguntas": [
+    [
+     {
+      "q": "¿Qué significa «Consigna»?",
+      "c": "Instrucción que se da a los miembros de un grupo",
+      "d": [
+       "Deducir una conclusión a partir de datos conocidos",
+       "Objetivo que nos impulsa a alcanzar una meta"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Análisis»?",
+      "c": "Examinar un tema parte por parte para comprenderlo",
+      "d": [
+       "Organizar elementos en categorías según un criterio",
+       "Normas y reglas para escribir correctamente"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Información»?",
+      "c": "Conjunto organizado de datos que tienen sentido",
+      "d": [
+       "Lo que rodea a un mensaje o a un acontecimiento",
+       "Influir en alguien con argumentos para que crea o actúe"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Inferir»?",
+      "c": "Deducir una conclusión a partir de datos conocidos",
+      "d": [
+       "Objetivo que nos impulsa a alcanzar una meta",
+       "Defender una idea con razonamientos para convencer"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Clasificación»?",
+      "c": "Organizar elementos en categorías según un criterio",
+      "d": [
+       "Normas y reglas para escribir correctamente",
+       "Instrucción que se da a los miembros de un grupo"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Contexto»?",
+      "c": "Lo que rodea a un mensaje o a un acontecimiento",
+      "d": [
+       "Influir en alguien con argumentos para que crea o actúe",
+       "Examinar un tema parte por parte para comprenderlo"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Propósito»?",
+      "c": "Objetivo que nos impulsa a alcanzar una meta",
+      "d": [
+       "Defender una idea con razonamientos para convencer",
+       "Conjunto organizado de datos que tienen sentido"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Ortografía»?",
+      "c": "Normas y reglas para escribir correctamente",
+      "d": [
+       "Instrucción que se da a los miembros de un grupo",
+       "Deducir una conclusión a partir de datos conocidos"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Persuadir»?",
+      "c": "Influir en alguien con argumentos para que crea o actúe",
+      "d": [
+       "Examinar un tema parte por parte para comprenderlo",
+       "Organizar elementos en categorías según un criterio"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Argumentación»?",
+      "c": "Defender una idea con razonamientos para convencer",
+      "d": [
+       "Conjunto organizado de datos que tienen sentido",
+       "Lo que rodea a un mensaje o a un acontecimiento"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Sucesión»?",
+      "c": "Conjunto ordenado de números que siguen una regla o patrón",
+      "d": [
+       "Operación de quitar una cantidad de un total",
+       "Medida del contorno de una figura plana"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Medir»?",
+      "c": "Comparar una cantidad con una unidad de referencia",
+      "d": [
+       "Operación de sumar un número tantas veces como indica otro",
+       "Punto exacto donde se cruzan dos líneas"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Razonamiento»?",
+      "c": "Capacidad de organizar ideas y usar la lógica para resolver",
+      "d": [
+       "Unir elementos de forma ordenada para formar un todo",
+       "Uso práctico de lo aprendido para resolver problemas"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Sustracción»?",
+      "c": "Operación de quitar una cantidad de un total",
+      "d": [
+       "Medida del contorno de una figura plana",
+       "Plan de acción para alcanzar un objetivo"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Multiplicación»?",
+      "c": "Operación de sumar un número tantas veces como indica otro",
+      "d": [
+       "Punto exacto donde se cruzan dos líneas",
+       "Conjunto ordenado de números que siguen una regla o patrón"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Composición»?",
+      "c": "Unir elementos de forma ordenada para formar un todo",
+      "d": [
+       "Uso práctico de lo aprendido para resolver problemas",
+       "Comparar una cantidad con una unidad de referencia"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Perímetro»?",
+      "c": "Medida del contorno de una figura plana",
+      "d": [
+       "Plan de acción para alcanzar un objetivo",
+       "Capacidad de organizar ideas y usar la lógica para resolver"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Intersección»?",
+      "c": "Punto exacto donde se cruzan dos líneas",
+      "d": [
+       "Conjunto ordenado de números que siguen una regla o patrón",
+       "Operación de quitar una cantidad de un total"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Aplicación»?",
+      "c": "Uso práctico de lo aprendido para resolver problemas",
+      "d": [
+       "Comparar una cantidad con una unidad de referencia",
+       "Operación de sumar un número tantas veces como indica otro"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Estrategia»?",
+      "c": "Plan de acción para alcanzar un objetivo",
+      "d": [
+       "Capacidad de organizar ideas y usar la lógica para resolver",
+       "Unir elementos de forma ordenada para formar un todo"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Nómada»?",
+      "c": "Persona o pueblo sin hogar fijo que va de un lugar a otro",
+      "d": [
+       "Administración de recursos limitados para satisfacer necesidades",
+       "Espacio físico donde se establece una persona o comunidad"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Poblamiento»?",
+      "c": "Proceso en que un grupo humano ocupa un territorio",
+      "d": [
+       "Que pertenece a los antepasados; de origen muy antiguo",
+       "Acuerdo entre dos o más partes para un beneficio común"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Opinión»?",
+      "c": "Juicio o punto de vista que alguien tiene sobre algo",
+      "d": [
+       "Proceso ordenado para ampliar el conocimiento o resolver un problema",
+       "Que está en sus primeras etapas o apenas comienza"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Economía»?",
+      "c": "Administración de recursos limitados para satisfacer necesidades",
+      "d": [
+       "Espacio físico donde se establece una persona o comunidad",
+       "Señal que queda de algo que ocurrió o dejó de existir"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Ancestral»?",
+      "c": "Que pertenece a los antepasados; de origen muy antiguo",
+      "d": [
+       "Acuerdo entre dos o más partes para un beneficio común",
+       "Persona o pueblo sin hogar fijo que va de un lugar a otro"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Investigación»?",
+      "c": "Proceso ordenado para ampliar el conocimiento o resolver un problema",
+      "d": [
+       "Que está en sus primeras etapas o apenas comienza",
+       "Proceso en que un grupo humano ocupa un territorio"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Asentamiento»?",
+      "c": "Espacio físico donde se establece una persona o comunidad",
+      "d": [
+       "Señal que queda de algo que ocurrió o dejó de existir",
+       "Juicio o punto de vista que alguien tiene sobre algo"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Alianza»?",
+      "c": "Acuerdo entre dos o más partes para un beneficio común",
+      "d": [
+       "Persona o pueblo sin hogar fijo que va de un lugar a otro",
+       "Administración de recursos limitados para satisfacer necesidades"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Incipiente»?",
+      "c": "Que está en sus primeras etapas o apenas comienza",
+      "d": [
+       "Proceso en que un grupo humano ocupa un territorio",
+       "Que pertenece a los antepasados; de origen muy antiguo"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Vestigio»?",
+      "c": "Señal que queda de algo que ocurrió o dejó de existir",
+      "d": [
+       "Juicio o punto de vista que alguien tiene sobre algo",
+       "Proceso ordenado para ampliar el conocimiento o resolver un problema"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Reproducción»?",
+      "c": "Proceso por el que los seres vivos crean nuevos organismos semejantes",
+      "d": [
+       "Proceso en que una sustancia penetra en el interior de otra",
+       "Captar oxígeno del medio y expulsar dióxido de carbono"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Nutrición»?",
+      "c": "Proceso de ingerir y aprovechar los nutrientes de los alimentos",
+      "d": [
+       "Transformar elementos del entorno para generar sustancias propias",
+       "Proceso de repartir los nutrientes en un ser vivo"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Función»?",
+      "c": "Actividad específica de una estructura para mantener la vida",
+      "d": [
+       "Asimilación de sustancias o energía por un organismo",
+       "Capa superficial de la corteza terrestre que sustenta la vida"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Absorción»?",
+      "c": "Proceso en que una sustancia penetra en el interior de otra",
+      "d": [
+       "Captar oxígeno del medio y expulsar dióxido de carbono",
+       "Proceso de eliminar una sustancia hacia el exterior"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Fabricación»?",
+      "c": "Transformar elementos del entorno para generar sustancias propias",
+      "d": [
+       "Proceso de repartir los nutrientes en un ser vivo",
+       "Proceso por el que los seres vivos crean nuevos organismos semejantes"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Captación»?",
+      "c": "Asimilación de sustancias o energía por un organismo",
+      "d": [
+       "Capa superficial de la corteza terrestre que sustenta la vida",
+       "Proceso de ingerir y aprovechar los nutrientes de los alimentos"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Respiración»?",
+      "c": "Captar oxígeno del medio y expulsar dióxido de carbono",
+      "d": [
+       "Proceso de eliminar una sustancia hacia el exterior",
+       "Actividad específica de una estructura para mantener la vida"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Distribución»?",
+      "c": "Proceso de repartir los nutrientes en un ser vivo",
+      "d": [
+       "Proceso por el que los seres vivos crean nuevos organismos semejantes",
+       "Proceso en que una sustancia penetra en el interior de otra"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Suelo»?",
+      "c": "Capa superficial de la corteza terrestre que sustenta la vida",
+      "d": [
+       "Proceso de ingerir y aprovechar los nutrientes de los alimentos",
+       "Transformar elementos del entorno para generar sustancias propias"
+      ]
+     },
+     {
+      "q": "¿Qué significa «Expulsión»?",
+      "c": "Proceso de eliminar una sustancia hacia el exterior",
+      "d": [
+       "Actividad específica de una estructura para mantener la vida",
+       "Asimilación de sustancias o energía por un organismo"
+      ]
+     }
+    ],
+    [
+     {
+      "q": "¿Qué palabra es? «Instrucción que se da a los miembros de un grupo»",
+      "c": "Consigna",
+      "d": [
+       "Inferir",
+       "Propósito",
+       "Persuadir"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Examinar un tema parte por parte para comprenderlo»",
+      "c": "Análisis",
+      "d": [
+       "Clasificación",
+       "Ortografía",
+       "Argumentación"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Conjunto organizado de datos que tienen sentido»",
+      "c": "Información",
+      "d": [
+       "Contexto",
+       "Persuadir",
+       "Consigna"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Deducir una conclusión a partir de datos conocidos»",
+      "c": "Inferir",
+      "d": [
+       "Propósito",
+       "Argumentación",
+       "Análisis"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Organizar elementos en categorías según un criterio»",
+      "c": "Clasificación",
+      "d": [
+       "Ortografía",
+       "Consigna",
+       "Información"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Lo que rodea a un mensaje o a un acontecimiento»",
+      "c": "Contexto",
+      "d": [
+       "Persuadir",
+       "Análisis",
+       "Inferir"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Objetivo que nos impulsa a alcanzar una meta»",
+      "c": "Propósito",
+      "d": [
+       "Argumentación",
+       "Información",
+       "Clasificación"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Normas y reglas para escribir correctamente»",
+      "c": "Ortografía",
+      "d": [
+       "Consigna",
+       "Inferir",
+       "Contexto"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Influir en alguien con argumentos para que crea o actúe»",
+      "c": "Persuadir",
+      "d": [
+       "Análisis",
+       "Clasificación",
+       "Propósito"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Defender una idea con razonamientos para convencer»",
+      "c": "Argumentación",
+      "d": [
+       "Información",
+       "Contexto",
+       "Ortografía"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Conjunto ordenado de números que siguen una regla o patrón»",
+      "c": "Sucesión",
+      "d": [
+       "Sustracción",
+       "Perímetro",
+       "Aplicación"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Comparar una cantidad con una unidad de referencia»",
+      "c": "Medir",
+      "d": [
+       "Multiplicación",
+       "Intersección",
+       "Estrategia"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Capacidad de organizar ideas y usar la lógica para resolver»",
+      "c": "Razonamiento",
+      "d": [
+       "Composición",
+       "Aplicación",
+       "Sucesión"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Operación de quitar una cantidad de un total»",
+      "c": "Sustracción",
+      "d": [
+       "Perímetro",
+       "Estrategia",
+       "Medir"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Operación de sumar un número tantas veces como indica otro»",
+      "c": "Multiplicación",
+      "d": [
+       "Intersección",
+       "Sucesión",
+       "Razonamiento"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Unir elementos de forma ordenada para formar un todo»",
+      "c": "Composición",
+      "d": [
+       "Aplicación",
+       "Medir",
+       "Sustracción"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Medida del contorno de una figura plana»",
+      "c": "Perímetro",
+      "d": [
+       "Estrategia",
+       "Razonamiento",
+       "Multiplicación"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Punto exacto donde se cruzan dos líneas»",
+      "c": "Intersección",
+      "d": [
+       "Sucesión",
+       "Sustracción",
+       "Composición"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Uso práctico de lo aprendido para resolver problemas»",
+      "c": "Aplicación",
+      "d": [
+       "Medir",
+       "Multiplicación",
+       "Perímetro"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Plan de acción para alcanzar un objetivo»",
+      "c": "Estrategia",
+      "d": [
+       "Razonamiento",
+       "Composición",
+       "Intersección"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Persona o pueblo sin hogar fijo que va de un lugar a otro»",
+      "c": "Nómada",
+      "d": [
+       "Economía",
+       "Asentamiento",
+       "Incipiente"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Proceso en que un grupo humano ocupa un territorio»",
+      "c": "Poblamiento",
+      "d": [
+       "Ancestral",
+       "Alianza",
+       "Vestigio"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Juicio o punto de vista que alguien tiene sobre algo»",
+      "c": "Opinión",
+      "d": [
+       "Investigación",
+       "Incipiente",
+       "Nómada"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Administración de recursos limitados para satisfacer necesidades»",
+      "c": "Economía",
+      "d": [
+       "Asentamiento",
+       "Vestigio",
+       "Poblamiento"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Que pertenece a los antepasados; de origen muy antiguo»",
+      "c": "Ancestral",
+      "d": [
+       "Alianza",
+       "Nómada",
+       "Opinión"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Proceso ordenado para ampliar el conocimiento o resolver un problema»",
+      "c": "Investigación",
+      "d": [
+       "Incipiente",
+       "Poblamiento",
+       "Economía"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Espacio físico donde se establece una persona o comunidad»",
+      "c": "Asentamiento",
+      "d": [
+       "Vestigio",
+       "Opinión",
+       "Ancestral"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Acuerdo entre dos o más partes para un beneficio común»",
+      "c": "Alianza",
+      "d": [
+       "Nómada",
+       "Economía",
+       "Investigación"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Que está en sus primeras etapas o apenas comienza»",
+      "c": "Incipiente",
+      "d": [
+       "Poblamiento",
+       "Ancestral",
+       "Asentamiento"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Señal que queda de algo que ocurrió o dejó de existir»",
+      "c": "Vestigio",
+      "d": [
+       "Opinión",
+       "Investigación",
+       "Alianza"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Proceso por el que los seres vivos crean nuevos organismos semejantes»",
+      "c": "Reproducción",
+      "d": [
+       "Absorción",
+       "Respiración",
+       "Suelo"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Proceso de ingerir y aprovechar los nutrientes de los alimentos»",
+      "c": "Nutrición",
+      "d": [
+       "Fabricación",
+       "Distribución",
+       "Expulsión"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Actividad específica de una estructura para mantener la vida»",
+      "c": "Función",
+      "d": [
+       "Captación",
+       "Suelo",
+       "Reproducción"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Proceso en que una sustancia penetra en el interior de otra»",
+      "c": "Absorción",
+      "d": [
+       "Respiración",
+       "Expulsión",
+       "Nutrición"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Transformar elementos del entorno para generar sustancias propias»",
+      "c": "Fabricación",
+      "d": [
+       "Distribución",
+       "Reproducción",
+       "Función"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Asimilación de sustancias o energía por un organismo»",
+      "c": "Captación",
+      "d": [
+       "Suelo",
+       "Nutrición",
+       "Absorción"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Captar oxígeno del medio y expulsar dióxido de carbono»",
+      "c": "Respiración",
+      "d": [
+       "Expulsión",
+       "Función",
+       "Fabricación"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Proceso de repartir los nutrientes en un ser vivo»",
+      "c": "Distribución",
+      "d": [
+       "Reproducción",
+       "Absorción",
+       "Captación"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Capa superficial de la corteza terrestre que sustenta la vida»",
+      "c": "Suelo",
+      "d": [
+       "Nutrición",
+       "Fabricación",
+       "Respiración"
+      ]
+     },
+     {
+      "q": "¿Qué palabra es? «Proceso de eliminar una sustancia hacia el exterior»",
+      "c": "Expulsión",
+      "d": [
+       "Función",
+       "Captación",
+       "Distribución"
+      ]
+     }
+    ],
+    []
+   ]
+  },
+  {
+   "tipo": "emparejar",
+   "icono": "🤝",
+   "nombre": "Sinónimos",
+   "desc": "palabras que significan lo mismo",
+   "total": 6,
+   "pregunta": "Une cada palabra con su sinónimo 👇",
+   "porRonda": [
+    4,
+    5,
+    5
+   ],
+   "pares": [
+    [
+     {
+      "a": "Consigna",
+      "b": "orden"
+     },
+     {
+      "a": "Análisis",
+      "b": "estudio"
+     },
+     {
+      "a": "Información",
+      "b": "dato"
+     },
+     {
+      "a": "Inferir",
+      "b": "deducir"
+     },
+     {
+      "a": "Clasificación",
+      "b": "categorización"
+     },
+     {
+      "a": "Contexto",
+      "b": "entorno"
+     },
+     {
+      "a": "Propósito",
+      "b": "intención"
+     },
+     {
+      "a": "Ortografía",
+      "b": "corrección"
+     },
+     {
+      "a": "Persuadir",
+      "b": "convencer"
+     },
+     {
+      "a": "Argumentación",
+      "b": "justificación"
+     },
+     {
+      "a": "Sucesión",
+      "b": "secuencia"
+     },
+     {
+      "a": "Medir",
+      "b": "calcular"
+     },
+     {
+      "a": "Razonamiento",
+      "b": "argumento"
+     },
+     {
+      "a": "Sustracción",
+      "b": "resta"
+     },
+     {
+      "a": "Multiplicación",
+      "b": "producto"
+     },
+     {
+      "a": "Composición",
+      "b": "estructura"
+     },
+     {
+      "a": "Perímetro",
+      "b": "contorno"
+     },
+     {
+      "a": "Intersección",
+      "b": "cruce"
+     },
+     {
+      "a": "Aplicación",
+      "b": "práctica"
+     },
+     {
+      "a": "Estrategia",
+      "b": "planificación"
+     },
+     {
+      "a": "Nómada",
+      "b": "errante"
+     },
+     {
+      "a": "Poblamiento",
+      "b": "asentamiento"
+     },
+     {
+      "a": "Opinión",
+      "b": "juicio"
+     },
+     {
+      "a": "Economía",
+      "b": "ahorro"
+     },
+     {
+      "a": "Ancestral",
+      "b": "antiguo"
+     },
+     {
+      "a": "Investigación",
+      "b": "indagación"
+     },
+     {
+      "a": "Asentamiento",
+      "b": "poblado"
+     },
+     {
+      "a": "Alianza",
+      "b": "pacto"
+     },
+     {
+      "a": "Incipiente",
+      "b": "naciente"
+     },
+     {
+      "a": "Vestigio",
+      "b": "huella"
+     },
+     {
+      "a": "Reproducción",
+      "b": "procreación"
+     },
+     {
+      "a": "Nutrición",
+      "b": "alimentación"
+     },
+     {
+      "a": "Función",
+      "b": "actividad"
+     },
+     {
+      "a": "Absorción",
+      "b": "filtración"
+     },
+     {
+      "a": "Fabricación",
+      "b": "elaboración"
+     },
+     {
+      "a": "Captación",
+      "b": "captura"
+     },
+     {
+      "a": "Respiración",
+      "b": "oxigenación"
+     },
+     {
+      "a": "Distribución",
+      "b": "asignación"
+     },
+     {
+      "a": "Suelo",
+      "b": "sustrato"
+     },
+     {
+      "a": "Expulsión",
+      "b": "eliminación"
+     }
+    ],
+    [
+     {
+      "a": "Consigna",
+      "b": "orden"
+     },
+     {
+      "a": "Análisis",
+      "b": "estudio"
+     },
+     {
+      "a": "Información",
+      "b": "dato"
+     },
+     {
+      "a": "Inferir",
+      "b": "deducir"
+     },
+     {
+      "a": "Clasificación",
+      "b": "categorización"
+     },
+     {
+      "a": "Contexto",
+      "b": "entorno"
+     },
+     {
+      "a": "Propósito",
+      "b": "intención"
+     },
+     {
+      "a": "Ortografía",
+      "b": "corrección"
+     },
+     {
+      "a": "Persuadir",
+      "b": "convencer"
+     },
+     {
+      "a": "Argumentación",
+      "b": "justificación"
+     },
+     {
+      "a": "Sucesión",
+      "b": "secuencia"
+     },
+     {
+      "a": "Medir",
+      "b": "calcular"
+     },
+     {
+      "a": "Razonamiento",
+      "b": "argumento"
+     },
+     {
+      "a": "Sustracción",
+      "b": "resta"
+     },
+     {
+      "a": "Multiplicación",
+      "b": "producto"
+     },
+     {
+      "a": "Composición",
+      "b": "estructura"
+     },
+     {
+      "a": "Perímetro",
+      "b": "contorno"
+     },
+     {
+      "a": "Intersección",
+      "b": "cruce"
+     },
+     {
+      "a": "Aplicación",
+      "b": "práctica"
+     },
+     {
+      "a": "Estrategia",
+      "b": "planificación"
+     },
+     {
+      "a": "Nómada",
+      "b": "errante"
+     },
+     {
+      "a": "Poblamiento",
+      "b": "asentamiento"
+     },
+     {
+      "a": "Opinión",
+      "b": "juicio"
+     },
+     {
+      "a": "Economía",
+      "b": "ahorro"
+     },
+     {
+      "a": "Ancestral",
+      "b": "antiguo"
+     },
+     {
+      "a": "Investigación",
+      "b": "indagación"
+     },
+     {
+      "a": "Asentamiento",
+      "b": "poblado"
+     },
+     {
+      "a": "Alianza",
+      "b": "pacto"
+     },
+     {
+      "a": "Incipiente",
+      "b": "naciente"
+     },
+     {
+      "a": "Vestigio",
+      "b": "huella"
+     },
+     {
+      "a": "Reproducción",
+      "b": "procreación"
+     },
+     {
+      "a": "Nutrición",
+      "b": "alimentación"
+     },
+     {
+      "a": "Función",
+      "b": "actividad"
+     },
+     {
+      "a": "Absorción",
+      "b": "filtración"
+     },
+     {
+      "a": "Fabricación",
+      "b": "elaboración"
+     },
+     {
+      "a": "Captación",
+      "b": "captura"
+     },
+     {
+      "a": "Respiración",
+      "b": "oxigenación"
+     },
+     {
+      "a": "Distribución",
+      "b": "asignación"
+     },
+     {
+      "a": "Suelo",
+      "b": "sustrato"
+     },
+     {
+      "a": "Expulsión",
+      "b": "eliminación"
+     }
+    ],
+    [
+     {
+      "a": "Consigna",
+      "b": "orden"
+     },
+     {
+      "a": "Análisis",
+      "b": "estudio"
+     },
+     {
+      "a": "Información",
+      "b": "dato"
+     },
+     {
+      "a": "Inferir",
+      "b": "deducir"
+     },
+     {
+      "a": "Clasificación",
+      "b": "categorización"
+     },
+     {
+      "a": "Contexto",
+      "b": "entorno"
+     },
+     {
+      "a": "Propósito",
+      "b": "intención"
+     },
+     {
+      "a": "Ortografía",
+      "b": "corrección"
+     },
+     {
+      "a": "Persuadir",
+      "b": "convencer"
+     },
+     {
+      "a": "Argumentación",
+      "b": "justificación"
+     },
+     {
+      "a": "Sucesión",
+      "b": "secuencia"
+     },
+     {
+      "a": "Medir",
+      "b": "calcular"
+     },
+     {
+      "a": "Razonamiento",
+      "b": "argumento"
+     },
+     {
+      "a": "Sustracción",
+      "b": "resta"
+     },
+     {
+      "a": "Multiplicación",
+      "b": "producto"
+     },
+     {
+      "a": "Composición",
+      "b": "estructura"
+     },
+     {
+      "a": "Perímetro",
+      "b": "contorno"
+     },
+     {
+      "a": "Intersección",
+      "b": "cruce"
+     },
+     {
+      "a": "Aplicación",
+      "b": "práctica"
+     },
+     {
+      "a": "Estrategia",
+      "b": "planificación"
+     },
+     {
+      "a": "Nómada",
+      "b": "errante"
+     },
+     {
+      "a": "Poblamiento",
+      "b": "asentamiento"
+     },
+     {
+      "a": "Opinión",
+      "b": "juicio"
+     },
+     {
+      "a": "Economía",
+      "b": "ahorro"
+     },
+     {
+      "a": "Ancestral",
+      "b": "antiguo"
+     },
+     {
+      "a": "Investigación",
+      "b": "indagación"
+     },
+     {
+      "a": "Asentamiento",
+      "b": "poblado"
+     },
+     {
+      "a": "Alianza",
+      "b": "pacto"
+     },
+     {
+      "a": "Incipiente",
+      "b": "naciente"
+     },
+     {
+      "a": "Vestigio",
+      "b": "huella"
+     },
+     {
+      "a": "Reproducción",
+      "b": "procreación"
+     },
+     {
+      "a": "Nutrición",
+      "b": "alimentación"
+     },
+     {
+      "a": "Función",
+      "b": "actividad"
+     },
+     {
+      "a": "Absorción",
+      "b": "filtración"
+     },
+     {
+      "a": "Fabricación",
+      "b": "elaboración"
+     },
+     {
+      "a": "Captación",
+      "b": "captura"
+     },
+     {
+      "a": "Respiración",
+      "b": "oxigenación"
+     },
+     {
+      "a": "Distribución",
+      "b": "asignación"
+     },
+     {
+      "a": "Suelo",
+      "b": "sustrato"
+     },
+     {
+      "a": "Expulsión",
+      "b": "eliminación"
+     }
+    ]
+   ]
+  },
+  {
+   "tipo": "emparejar",
+   "icono": "↔️",
+   "nombre": "Antónimos",
+   "desc": "palabras que significan lo contrario",
+   "total": 6,
+   "pregunta": "Une cada palabra con su antónimo 👇",
+   "porRonda": [
+    4,
+    5,
+    5
+   ],
+   "pares": [
+    [
+     {
+      "a": "Consigna",
+      "b": "desorden"
+     },
+     {
+      "a": "Análisis",
+      "b": "síntesis"
+     },
+     {
+      "a": "Información",
+      "b": "ignorancia"
+     },
+     {
+      "a": "Inferir",
+      "b": "descartar"
+     },
+     {
+      "a": "Clasificación",
+      "b": "desorganización"
+     },
+     {
+      "a": "Contexto",
+      "b": "descontextual"
+     },
+     {
+      "a": "Propósito",
+      "b": "desistimiento"
+     },
+     {
+      "a": "Ortografía",
+      "b": "cacografía"
+     },
+     {
+      "a": "Persuadir",
+      "b": "disuadir"
+     },
+     {
+      "a": "Argumentación",
+      "b": "refutación"
+     },
+     {
+      "a": "Sucesión",
+      "b": "interrupción"
+     },
+     {
+      "a": "Medir",
+      "b": "desmedir"
+     },
+     {
+      "a": "Razonamiento",
+      "b": "irracionalidad"
+     },
+     {
+      "a": "Sustracción",
+      "b": "adición"
+     },
+     {
+      "a": "Multiplicación",
+      "b": "división"
+     },
+     {
+      "a": "Composición",
+      "b": "descomposición"
+     },
+     {
+      "a": "Perímetro",
+      "b": "interior / centro"
+     },
+     {
+      "a": "Intersección",
+      "b": "divergencia"
+     },
+     {
+      "a": "Aplicación",
+      "b": "inoperancia"
+     },
+     {
+      "a": "Estrategia",
+      "b": "improvisación"
+     },
+     {
+      "a": "Nómada",
+      "b": "sedentario"
+     },
+     {
+      "a": "Poblamiento",
+      "b": "despoblamiento"
+     },
+     {
+      "a": "Opinión",
+      "b": "hecho"
+     },
+     {
+      "a": "Economía",
+      "b": "despilfarro"
+     },
+     {
+      "a": "Ancestral",
+      "b": "reciente"
+     },
+     {
+      "a": "Investigación",
+      "b": "ignorancia"
+     },
+     {
+      "a": "Asentamiento",
+      "b": "marcha"
+     },
+     {
+      "a": "Alianza",
+      "b": "desacuerdo"
+     },
+     {
+      "a": "Incipiente",
+      "b": "acabado"
+     },
+     {
+      "a": "Vestigio",
+      "b": "totalidad"
+     },
+     {
+      "a": "Reproducción",
+      "b": "esterilidad"
+     },
+     {
+      "a": "Nutrición",
+      "b": "desnutrición"
+     },
+     {
+      "a": "Función",
+      "b": "disfunción"
+     },
+     {
+      "a": "Absorción",
+      "b": "secreción"
+     },
+     {
+      "a": "Fabricación",
+      "b": "destrucción"
+     },
+     {
+      "a": "Captación",
+      "b": "liberación"
+     },
+     {
+      "a": "Respiración",
+      "b": "fotosíntesis"
+     },
+     {
+      "a": "Distribución",
+      "b": "acumulación"
+     },
+     {
+      "a": "Suelo",
+      "b": "atmósfera"
+     },
+     {
+      "a": "Expulsión",
+      "b": "absorción"
+     }
+    ],
+    [
+     {
+      "a": "Consigna",
+      "b": "desorden"
+     },
+     {
+      "a": "Análisis",
+      "b": "síntesis"
+     },
+     {
+      "a": "Información",
+      "b": "ignorancia"
+     },
+     {
+      "a": "Inferir",
+      "b": "descartar"
+     },
+     {
+      "a": "Clasificación",
+      "b": "desorganización"
+     },
+     {
+      "a": "Contexto",
+      "b": "descontextual"
+     },
+     {
+      "a": "Propósito",
+      "b": "desistimiento"
+     },
+     {
+      "a": "Ortografía",
+      "b": "cacografía"
+     },
+     {
+      "a": "Persuadir",
+      "b": "disuadir"
+     },
+     {
+      "a": "Argumentación",
+      "b": "refutación"
+     },
+     {
+      "a": "Sucesión",
+      "b": "interrupción"
+     },
+     {
+      "a": "Medir",
+      "b": "desmedir"
+     },
+     {
+      "a": "Razonamiento",
+      "b": "irracionalidad"
+     },
+     {
+      "a": "Sustracción",
+      "b": "adición"
+     },
+     {
+      "a": "Multiplicación",
+      "b": "división"
+     },
+     {
+      "a": "Composición",
+      "b": "descomposición"
+     },
+     {
+      "a": "Perímetro",
+      "b": "interior / centro"
+     },
+     {
+      "a": "Intersección",
+      "b": "divergencia"
+     },
+     {
+      "a": "Aplicación",
+      "b": "inoperancia"
+     },
+     {
+      "a": "Estrategia",
+      "b": "improvisación"
+     },
+     {
+      "a": "Nómada",
+      "b": "sedentario"
+     },
+     {
+      "a": "Poblamiento",
+      "b": "despoblamiento"
+     },
+     {
+      "a": "Opinión",
+      "b": "hecho"
+     },
+     {
+      "a": "Economía",
+      "b": "despilfarro"
+     },
+     {
+      "a": "Ancestral",
+      "b": "reciente"
+     },
+     {
+      "a": "Investigación",
+      "b": "ignorancia"
+     },
+     {
+      "a": "Asentamiento",
+      "b": "marcha"
+     },
+     {
+      "a": "Alianza",
+      "b": "desacuerdo"
+     },
+     {
+      "a": "Incipiente",
+      "b": "acabado"
+     },
+     {
+      "a": "Vestigio",
+      "b": "totalidad"
+     },
+     {
+      "a": "Reproducción",
+      "b": "esterilidad"
+     },
+     {
+      "a": "Nutrición",
+      "b": "desnutrición"
+     },
+     {
+      "a": "Función",
+      "b": "disfunción"
+     },
+     {
+      "a": "Absorción",
+      "b": "secreción"
+     },
+     {
+      "a": "Fabricación",
+      "b": "destrucción"
+     },
+     {
+      "a": "Captación",
+      "b": "liberación"
+     },
+     {
+      "a": "Respiración",
+      "b": "fotosíntesis"
+     },
+     {
+      "a": "Distribución",
+      "b": "acumulación"
+     },
+     {
+      "a": "Suelo",
+      "b": "atmósfera"
+     },
+     {
+      "a": "Expulsión",
+      "b": "absorción"
+     }
+    ],
+    [
+     {
+      "a": "Consigna",
+      "b": "desorden"
+     },
+     {
+      "a": "Análisis",
+      "b": "síntesis"
+     },
+     {
+      "a": "Información",
+      "b": "ignorancia"
+     },
+     {
+      "a": "Inferir",
+      "b": "descartar"
+     },
+     {
+      "a": "Clasificación",
+      "b": "desorganización"
+     },
+     {
+      "a": "Contexto",
+      "b": "descontextual"
+     },
+     {
+      "a": "Propósito",
+      "b": "desistimiento"
+     },
+     {
+      "a": "Ortografía",
+      "b": "cacografía"
+     },
+     {
+      "a": "Persuadir",
+      "b": "disuadir"
+     },
+     {
+      "a": "Argumentación",
+      "b": "refutación"
+     },
+     {
+      "a": "Sucesión",
+      "b": "interrupción"
+     },
+     {
+      "a": "Medir",
+      "b": "desmedir"
+     },
+     {
+      "a": "Razonamiento",
+      "b": "irracionalidad"
+     },
+     {
+      "a": "Sustracción",
+      "b": "adición"
+     },
+     {
+      "a": "Multiplicación",
+      "b": "división"
+     },
+     {
+      "a": "Composición",
+      "b": "descomposición"
+     },
+     {
+      "a": "Perímetro",
+      "b": "interior / centro"
+     },
+     {
+      "a": "Intersección",
+      "b": "divergencia"
+     },
+     {
+      "a": "Aplicación",
+      "b": "inoperancia"
+     },
+     {
+      "a": "Estrategia",
+      "b": "improvisación"
+     },
+     {
+      "a": "Nómada",
+      "b": "sedentario"
+     },
+     {
+      "a": "Poblamiento",
+      "b": "despoblamiento"
+     },
+     {
+      "a": "Opinión",
+      "b": "hecho"
+     },
+     {
+      "a": "Economía",
+      "b": "despilfarro"
+     },
+     {
+      "a": "Ancestral",
+      "b": "reciente"
+     },
+     {
+      "a": "Investigación",
+      "b": "ignorancia"
+     },
+     {
+      "a": "Asentamiento",
+      "b": "marcha"
+     },
+     {
+      "a": "Alianza",
+      "b": "desacuerdo"
+     },
+     {
+      "a": "Incipiente",
+      "b": "acabado"
+     },
+     {
+      "a": "Vestigio",
+      "b": "totalidad"
+     },
+     {
+      "a": "Reproducción",
+      "b": "esterilidad"
+     },
+     {
+      "a": "Nutrición",
+      "b": "desnutrición"
+     },
+     {
+      "a": "Función",
+      "b": "disfunción"
+     },
+     {
+      "a": "Absorción",
+      "b": "secreción"
+     },
+     {
+      "a": "Fabricación",
+      "b": "destrucción"
+     },
+     {
+      "a": "Captación",
+      "b": "liberación"
+     },
+     {
+      "a": "Respiración",
+      "b": "fotosíntesis"
+     },
+     {
+      "a": "Distribución",
+      "b": "acumulación"
+     },
+     {
+      "a": "Suelo",
+      "b": "atmósfera"
+     },
+     {
+      "a": "Expulsión",
+      "b": "absorción"
+     }
+    ]
+   ]
+  },
+  {
+   "tipo": "signos",
+   "icono": "✍️",
+   "nombre": "¿Cómo se escribe?",
+   "desc": "la letra o la tilde que falta",
+   "total": 8,
+   "pregunta": "¿Qué va en el ▢ para que quede bien escrita? Tócalo 👇",
+   "pista": "Así no se escribe; mírala otra vez 👀",
+   "items": [
+    [
+     {
+      "antes": "Con",
+      "despues": "igna",
+      "correcto": "s",
+      "opciones": [
+       "s",
+       "c",
+       "z"
+      ]
+     },
+     {
+      "antes": "An",
+      "despues": "lisis",
+      "correcto": "á",
+      "opciones": [
+       "á",
+       "a"
+      ]
+     },
+     {
+      "antes": "Informa",
+      "despues": "ión",
+      "correcto": "c",
+      "opciones": [
+       "c",
+       "s",
+       "z"
+      ]
+     },
+     {
+      "antes": "Infe",
+      "despues": "ir",
+      "correcto": "r",
+      "opciones": [
+       "r",
+       "rr"
+      ]
+     },
+     {
+      "antes": "Cla",
+      "despues": "ificación",
+      "correcto": "s",
+      "opciones": [
+       "s",
+       "c",
+       "z"
+      ]
+     },
+     {
+      "antes": "Conte",
+      "despues": "to",
+      "correcto": "x",
+      "opciones": [
+       "x",
+       "s",
+       "c"
+      ]
+     },
+     {
+      "antes": "Prop",
+      "despues": "sito",
+      "correcto": "ó",
+      "opciones": [
+       "ó",
+       "o"
+      ]
+     },
+     {
+      "antes": "Ortograf",
+      "despues": "a",
+      "correcto": "í",
+      "opciones": [
+       "í",
+       "i"
+      ]
+     },
+     {
+      "antes": "Per",
+      "despues": "uadir",
+      "correcto": "s",
+      "opciones": [
+       "s",
+       "c",
+       "z"
+      ]
+     },
+     {
+      "antes": "Argumenta",
+      "despues": "ión",
+      "correcto": "c",
+      "opciones": [
+       "c",
+       "s",
+       "z"
+      ]
+     },
+     {
+      "antes": "Suce",
+      "despues": "ión",
+      "correcto": "s",
+      "opciones": [
+       "s",
+       "c",
+       "z"
+      ]
+     },
+     {
+      "antes": "Me",
+      "despues": "ir",
+      "correcto": "d",
+      "opciones": [
+       "d",
+       "t"
+      ]
+     },
+     {
+      "antes": "Ra",
+      "despues": "onamiento",
+      "correcto": "z",
+      "opciones": [
+       "z",
+       "s",
+       "c"
+      ]
+     },
+     {
+      "antes": "Sustra",
+      "despues": "ión",
+      "correcto": "cc",
+      "opciones": [
+       "cc",
+       "c",
+       "x"
+      ]
+     },
+     {
+      "antes": "Multiplica",
+      "despues": "ión",
+      "correcto": "c",
+      "opciones": [
+       "c",
+       "s",
+       "z"
+      ]
+     },
+     {
+      "antes": "Compo",
+      "despues": "ición",
+      "correcto": "s",
+      "opciones": [
+       "s",
+       "c",
+       "z"
+      ]
+     },
+     {
+      "antes": "Per",
+      "despues": "metro",
+      "correcto": "í",
+      "opciones": [
+       "í",
+       "i"
+      ]
+     },
+     {
+      "antes": "Interse",
+      "despues": "ión",
+      "correcto": "cc",
+      "opciones": [
+       "cc",
+       "c",
+       "x"
+      ]
+     },
+     {
+      "antes": "Aplica",
+      "despues": "ión",
+      "correcto": "c",
+      "opciones": [
+       "c",
+       "s",
+       "z"
+      ]
+     },
+     {
+      "antes": "Estrate",
+      "despues": "ia",
+      "correcto": "g",
+      "opciones": [
+       "g",
+       "j"
+      ]
+     },
+     {
+      "antes": "N",
+      "despues": "mada",
+      "correcto": "ó",
+      "opciones": [
+       "ó",
+       "o"
+      ]
+     },
+     {
+      "antes": "Po",
+      "despues": "lamiento",
+      "correcto": "b",
+      "opciones": [
+       "b",
+       "v"
+      ]
+     },
+     {
+      "antes": "Opini",
+      "despues": "n",
+      "correcto": "ó",
+      "opciones": [
+       "ó",
+       "o"
+      ]
+     },
+     {
+      "antes": "Econom",
+      "despues": "a",
+      "correcto": "í",
+      "opciones": [
+       "í",
+       "i"
+      ]
+     },
+     {
+      "antes": "An",
+      "despues": "estral",
+      "correcto": "c",
+      "opciones": [
+       "c",
+       "s",
+       "z"
+      ]
+     },
+     {
+      "antes": "In",
+      "despues": "estigación",
+      "correcto": "v",
+      "opciones": [
+       "v",
+       "b"
+      ]
+     },
+     {
+      "antes": "A",
+      "despues": "entamiento",
+      "correcto": "s",
+      "opciones": [
+       "s",
+       "c",
+       "z"
+      ]
+     },
+     {
+      "antes": "Alian",
+      "despues": "a",
+      "correcto": "z",
+      "opciones": [
+       "z",
+       "s",
+       "c"
+      ]
+     },
+     {
+      "antes": "In",
+      "despues": "ipiente",
+      "correcto": "c",
+      "opciones": [
+       "c",
+       "s",
+       "z"
+      ]
+     },
+     {
+      "antes": "Vesti",
+      "despues": "io",
+      "correcto": "g",
+      "opciones": [
+       "g",
+       "j"
+      ]
+     },
+     {
+      "antes": "Reprodu",
+      "despues": "ión",
+      "correcto": "cc",
+      "opciones": [
+       "cc",
+       "c",
+       "x"
+      ]
+     },
+     {
+      "antes": "Nutri",
+      "despues": "ión",
+      "correcto": "c",
+      "opciones": [
+       "c",
+       "s",
+       "z"
+      ]
+     },
+     {
+      "antes": "Fun",
+      "despues": "ión",
+      "correcto": "c",
+      "opciones": [
+       "c",
+       "s",
+       "z"
+      ]
+     },
+     {
+      "antes": "A",
+      "despues": "sorción",
+      "correcto": "b",
+      "opciones": [
+       "b",
+       "v",
+       "p"
+      ]
+     },
+     {
+      "antes": "Fa",
+      "despues": "ricación",
+      "correcto": "b",
+      "opciones": [
+       "b",
+       "v"
+      ]
+     },
+     {
+      "antes": "Ca",
+      "despues": "tación",
+      "correcto": "p",
+      "opciones": [
+       "p",
+       "b",
+       "c"
+      ]
+     },
+     {
+      "antes": "Re",
+      "despues": "piración",
+      "correcto": "s",
+      "opciones": [
+       "s",
+       "x",
+       "c"
+      ]
+     },
+     {
+      "antes": "Distri",
+      "despues": "ución",
+      "correcto": "b",
+      "opciones": [
+       "b",
+       "v"
+      ]
+     },
+     {
+      "antes": "",
+      "despues": "uelo",
+      "correcto": "S",
+      "opciones": [
+       "S",
+       "Z",
+       "C"
+      ]
+     },
+     {
+      "antes": "E",
+      "despues": "pulsión",
+      "correcto": "x",
+      "opciones": [
+       "x",
+       "s",
+       "c"
+      ]
+     }
+    ],
+    [],
+    []
+   ]
+  }
+ ]
+}

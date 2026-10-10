@@ -30,7 +30,7 @@
 
     <section id="pantalla-cantones" class="pantalla activa">
       <h2 class="titulo-seccion">🗺️ Ecuador por cantones</h2>
-      <p class="subtitulo">Pasa el cursor para resaltar una provincia · clic para verla en 3D 🔄</p>
+      <p class="subtitulo">Toca una provincia para verla en 3D 🔄</p>
       <div class="mapa-zona" id="mapac-zona">
         <div class="mapa-col-mapa">
           <div id="mapac-svg-cont" class="mapa-svg-cont"></div>
@@ -40,7 +40,7 @@
         <div class="foco-3d">
           <canvas id="mapac-canvas"></canvas>
           <div class="foco-canton oculto" id="mapac-canton-label"></div>
-          <p class="foco-hint">🔄 Arrastra para girar · pasa el cursor por un cantón</p>
+          <p class="foco-hint">🔄 Arrastra para girar · toca un cantón para ver su nombre</p>
         </div>
         <aside class="mapa-detalle" id="mapac-datos"></aside>
       </div>
@@ -54,8 +54,7 @@
   </div>
   <div id="celebracion"></div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script>window.THREE || document.write('<scr'+'ipt src="lib/three.min.js"></scr'+'ipt>');</script>
+  <script src="lib/three.min.js"></script>
   <script src="src/efectos/escena3d.js"></script>
   <script src="src/efectos/luna.js"></script>
   <script src="data/mapas/cantones.js"></script>

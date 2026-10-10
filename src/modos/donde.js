@@ -6,7 +6,7 @@
    ============================================================ */
 const Donde = (function () {
   let svgEl = null, rendido = false, bloqueado = false, temporizador = null;
-  let cola = [], indice = 0, aciertos = 0, objetivo = null;
+  let cola = [], indice = 0, aciertos = 0, objetivo = null, tInicio = 0;
   const provPorEl = [];
   const TOTAL = 10;
 
@@ -64,8 +64,10 @@ const Donde = (function () {
   function mostrar() { if (!rendido) init(); else empezar(); }
 
   function empezar() {
-    aciertos = 0; indice = 0; bloqueado = false;
+    aciertos = 0; indice = 0; bloqueado = false; tInicio = Date.now();
     cola = Juego.mezclar(provs().slice()).slice(0, TOTAL);
+    const mej = document.getElementById("donde-mejores");
+    if (mej) mej.innerHTML = "";
     const otra = document.getElementById("donde-otra");
     if (otra) otra.classList.add("oculto");
     preguntar();
@@ -118,6 +120,10 @@ const Donde = (function () {
     retro.textContent = aciertos === cola.length ? "¡Perfecto! 🏆" : "¡Muy bien! Toca «Otra ronda» para seguir.";
     retro.className = "retro bien";
     if (aciertos >= cola.length - 1) Juego.granPremio();
+    Juego.registrarResultado("donde", { aciertos: aciertos, total: cola.length, ms: Date.now() - tInicio });
+    const mej = document.getElementById("donde-mejores");
+    if (mej) mej.innerHTML = Juego.tablaMejoresHTML("donde");
+    objetivo = null;
     const otra = document.getElementById("donde-otra");
     if (otra) otra.classList.remove("oculto");
   }

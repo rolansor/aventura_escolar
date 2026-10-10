@@ -11,31 +11,28 @@
       "icono": "💧",
       "nombre": "Arma el ciclo",
       "desc": "arrastra cada etapa",
-      "total": 5,
-      "pregunta": "💧 Arrastra cada etapa a su lugar en el dibujo 👇",
+      "total": 3,
+      "modelo": "cicloagua",
+      "pregunta": "💧 Pon cada etapa en su «?» 👇",
       "escena": "<svg viewBox=\"0 0 300 200\" class=\"ciclo-svg\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"0\" y=\"0\" width=\"300\" height=\"200\" fill=\"#bfe6ff\"/><circle cx=\"38\" cy=\"34\" r=\"20\" fill=\"#ffd23f\"/><path d=\"M0 150 Q60 120 120 150 T300 150 L300 200 L0 200 Z\" fill=\"#7bbf5a\"/><rect x=\"0\" y=\"150\" width=\"120\" height=\"50\" fill=\"#3aa0e0\"/><path d=\"M0 150 q15 -8 30 0 t30 0 t30 0 t30 0\" stroke=\"#fff\" stroke-width=\"2\" fill=\"none\" opacity=\"0.7\"/><g fill=\"#fff\"><ellipse cx=\"150\" cy=\"48\" rx=\"34\" ry=\"20\"/><ellipse cx=\"120\" cy=\"56\" rx=\"22\" ry=\"16\"/><ellipse cx=\"182\" cy=\"56\" rx=\"24\" ry=\"16\"/></g><g stroke=\"#2e6cf6\" stroke-width=\"3\" stroke-linecap=\"round\"><line x1=\"200\" y1=\"74\" x2=\"194\" y2=\"92\"/><line x1=\"214\" y1=\"74\" x2=\"208\" y2=\"92\"/><line x1=\"228\" y1=\"74\" x2=\"222\" y2=\"92\"/></g><g stroke=\"#9fd0ef\" stroke-width=\"3\" stroke-linecap=\"round\" opacity=\"0.9\"><path d=\"M40 140 q-6 -14 4 -26 q8 -10 0 -22\" fill=\"none\"/><path d=\"M64 140 q-6 -14 4 -26 q8 -10 0 -22\" fill=\"none\"/></g></svg>",
       "slots": [
         {
           "id": "evaporacion",
-          "txt": "Evaporación",
           "left": 9,
           "top": 46
         },
         {
           "id": "condensacion",
-          "txt": "Condensación",
           "left": 40,
           "top": 8
         },
         {
           "id": "precipitacion",
-          "txt": "Precipitación",
           "left": 66,
           "top": 38
         },
         {
           "id": "infiltracion",
-          "txt": "Infiltración",
           "left": 42,
           "top": 74
         }
@@ -60,41 +57,34 @@
       ]
     },
     {
-      "tipo": "escena",
+      "tipo": "clasificar",
       "icono": "🧊",
       "nombre": "Estados del agua",
       "desc": "sólido, líquido, gas",
-      "total": 6,
-      "pregunta": "🧊 Lleva cada agua a su estado 👇",
-      "escena": "",
-      "slots": [
-        {
-          "id": "solido",
-          "txt": "Sólido 🧊"
-        },
-        {
-          "id": "liquido",
-          "txt": "Líquido 💧"
-        },
-        {
-          "id": "gaseoso",
-          "txt": "Gaseoso 💨"
-        }
+      "pregunta": "🧊 ¿En qué estado está el agua? Arrastra cada una 👇",
+      "fichas": [4, 5, 6],
+      "cestas": [
+        { "id": "solido", "nombre": "Sólido", "emoji": "🧊" },
+        { "id": "liquido", "nombre": "Líquido", "emoji": "💧" },
+        { "id": "gaseoso", "nombre": "Gaseoso", "emoji": "💨" }
       ],
-      "fichas": [
-        {
-          "id": "solido",
-          "ficha": "🧊 Hielo"
-        },
-        {
-          "id": "liquido",
-          "ficha": "💧 Agua"
-        },
-        {
-          "id": "gaseoso",
-          "ficha": "💨 Vapor"
-        }
-      ]
+      "items": {
+        "solido": [
+          ["hielo 🧊", "nieve ❄️", "granizo", "un cubito de hielo", "una paleta helada 🍧", "un muñeco de nieve ⛄"],
+          ["la escarcha", "un copo de nieve", "un glaciar 🏔️", "la nieve del Cotopaxi", "un témpano de hielo", "el hielo de la refri"],
+          ["el agua a menos de 0 °C", "un iceberg", "el granizo de una tormenta", "la nieve del Chimborazo", "el hielo de un glaciar", "agua congelada en el congelador"]
+        ],
+        "liquido": [
+          ["la lluvia 🌧️", "el río", "el mar 🌊", "el agua de la llave 🚰", "un charco", "un vaso de agua 🥛"],
+          ["el rocío de la mañana", "un lago", "una cascada", "el agua de un pozo", "las gotas en una hoja", "el agua de una piscina 🏊"],
+          ["el agua entre 0 °C y 100 °C", "el agua subterránea", "la lluvia que entra en la tierra", "el agua del río Guayas", "el agua del océano Pacífico", "el hielo que se derritió"]
+        ],
+        "gaseoso": [
+          ["el vapor de la olla ♨️", "el vapor de la tetera 🫖", "el vapor de la ducha 🚿", "el vapor de la sopa caliente", "el vapor del agua hirviendo", "el vapor de la plancha"],
+          ["el vapor que sube del mar", "el agua que se evaporó de la ropa", "el vapor de un géiser", "el vapor de agua del aire", "el agua de un charco que se secó", "el vapor de una olla de presión"],
+          ["el agua a más de 100 °C", "el vapor de agua invisible del aire", "el agua que se evapora con el sol", "la humedad del aire", "el agua que sale al hervir", "el vapor que luego forma las nubes"]
+        ]
+      }
     },
     {
       "tipo": "vf",
@@ -112,7 +102,9 @@
           { "t": "El hielo es agua congelada.", "c": true, "exp": "" },
           { "t": "El agua de la lluvia llena los ríos.", "c": true, "exp": "" },
           { "t": "El agua del mar es dulce.", "c": false, "exp": "El agua del mar es salada." },
-          { "t": "Las nubes están hechas de gotitas de agua.", "c": true, "exp": "" }
+          { "t": "Las nubes están hechas de gotitas de agua.", "c": true, "exp": "" },
+          { "t": "La lluvia sube desde el suelo hasta las nubes.", "c": false, "exp": "La lluvia cae de las nubes al suelo." },
+          { "t": "Las nubes están hechas de algodón.", "c": false, "exp": "Están hechas de gotitas de agua." }
         ],
         [
           { "t": "El vapor sube y forma las nubes.", "c": true, "exp": "" },
@@ -123,7 +115,9 @@
           { "t": "La nieve es agua en estado sólido.", "c": true, "exp": "" },
           { "t": "El agua se infiltra y pasa al suelo.", "c": true, "exp": "" },
           { "t": "El agua que se evapora del mar puede caer como lluvia en la montaña.", "c": true, "exp": "" },
-          { "t": "Solo el agua de los ríos se evapora.", "c": false, "exp": "También se evapora el agua del mar, los lagos y las plantas." }
+          { "t": "Solo el agua de los ríos se evapora.", "c": false, "exp": "También se evapora el agua del mar, los lagos y las plantas." },
+          { "t": "El agua se evapora cuando se enfría.", "c": false, "exp": "Se evapora cuando se calienta." },
+          { "t": "Las nubes se forman con humo.", "c": false, "exp": "Se forman con vapor de agua que se enfría." }
         ],
         [
           { "t": "Las nubes se forman por condensación.", "c": true, "exp": "" },
@@ -134,7 +128,10 @@
           { "t": "El rocío de la mañana se forma por condensación.", "c": true, "exp": "" },
           { "t": "El granizo es precipitación en estado sólido.", "c": true, "exp": "" },
           { "t": "En la evaporación el agua pasa de líquido a sólido.", "c": false, "exp": "Pasa de líquido a gas (vapor)." },
-          { "t": "El agua subterránea es parte del ciclo del agua.", "c": true, "exp": "" }
+          { "t": "El agua subterránea es parte del ciclo del agua.", "c": true, "exp": "" },
+          { "t": "La condensación convierte el agua líquida en hielo.", "c": false, "exp": "Convierte el vapor en gotitas de agua líquida." },
+          { "t": "La precipitación solo puede ser lluvia.", "c": false, "exp": "También puede ser nieve o granizo." },
+          { "t": "El agua que se infiltra en el suelo desaparece para siempre.", "c": false, "exp": "Queda como agua subterránea y sigue en el ciclo." }
         ]
       ]
     },

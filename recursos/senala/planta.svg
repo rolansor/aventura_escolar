@@ -1,0 +1,74 @@
+<!-- La planta — dibujo de respaldo de "Señala la parte" (se usa cuando no hay WebGL;
+     con WebGL se muestra el modelo 3D src/efectos/modelos/planta.js).
+     Partes: raiz, tallo, hoja, flor, fruto. -->
+<svg viewBox="0 0 260 380" class="sen-svg sen-planta" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="pl-tierra" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7a5230"/><stop offset="1" stop-color="#5a3b20"/>
+    </linearGradient>
+    <linearGradient id="pl-hoja" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7fd66b"/><stop offset="1" stop-color="#2f8f3f"/>
+    </linearGradient>
+    <radialGradient id="pl-petalo" cx="0.5" cy="0.9" r="0.9">
+      <stop offset="0" stop-color="#ffe3ef"/><stop offset="1" stop-color="#ff5fa2"/>
+    </radialGradient>
+    <radialGradient id="pl-fruto" cx="0.35" cy="0.3" r="0.8">
+      <stop offset="0" stop-color="#ff7a66"/><stop offset="1" stop-color="#c62828"/>
+    </radialGradient>
+  </defs>
+
+  <!-- tierra cortada (no es una parte) -->
+  <path d="M20 266 H240 V362 Q240 372 230 372 H30 Q20 372 20 362 Z" fill="url(#pl-tierra)"/>
+  <path d="M20 266 H240 V282 H20 Z" fill="#3f2a17" opacity="0.55"/>
+  <path d="M14 268 Q40 256 66 264 Q92 254 118 264 Q146 254 172 264 Q200 254 226 262 Q240 262 246 268 Q130 276 14 268 Z" fill="#63b946"/>
+  <g fill="#a8a29a"><ellipse cx="48" cy="318" rx="8" ry="5"/><ellipse cx="212" cy="338" rx="7" ry="4.5"/><ellipse cx="70" cy="354" rx="6" ry="4"/><ellipse cx="196" cy="300" rx="5" ry="3.5"/></g>
+
+  <!-- RAÍZ -->
+  <g data-parte="raiz" fill="none" stroke="#ecd6a9" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M130 268 C128 300 134 326 130 360" stroke-width="10"/>
+    <path d="M130 284 C150 292 168 292 190 306 M130 290 C108 296 92 300 68 306 M130 312 C150 324 162 338 172 356 M130 318 C112 330 100 344 90 358" stroke-width="6"/>
+    <path d="M168 294 C174 306 178 312 180 322 M90 300 C84 312 80 318 78 328 M156 330 C148 340 146 346 146 352 M106 336 C112 344 114 350 114 356 M190 306 C200 304 208 306 216 310 M68 306 C58 310 52 316 48 324" stroke-width="3"/>
+  </g>
+
+  <!-- TALLO -->
+  <g data-parte="tallo">
+    <path d="M130 270 C124 220 138 170 130 92" fill="none" stroke="#3f9d4b" stroke-width="11" stroke-linecap="round"/>
+    <path d="M127 262 C122 220 135 172 128 100" fill="none" stroke="#6cc977" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  </g>
+
+  <!-- HOJAS -->
+  <g data-parte="hoja">
+    <path d="M132 236 C156 204 204 200 226 220 C208 250 160 258 132 236 Z" fill="url(#pl-hoja)" stroke="#2a7d39" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M134 235 C164 224 196 220 222 221" fill="none" stroke="#d6f2c2" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M128 206 C104 176 58 174 36 194 C54 224 100 230 128 206 Z" fill="url(#pl-hoja)" stroke="#2a7d39" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M126 205 C96 196 64 192 40 195" fill="none" stroke="#d6f2c2" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M133 166 C152 140 190 136 208 152 C194 176 156 184 133 166 Z" fill="url(#pl-hoja)" stroke="#2a7d39" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M135 165 C158 156 184 152 204 153" fill="none" stroke="#d6f2c2" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M129 136 C112 114 80 112 64 126 C76 146 108 152 129 136 Z" fill="url(#pl-hoja)" stroke="#2a7d39" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M127 135 C108 128 86 126 68 127" fill="none" stroke="#d6f2c2" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- FRUTO -->
+  <g data-parte="fruto">
+    <path d="M132 190 C156 176 176 180 184 198" fill="none" stroke="#3f9d4b" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="186" cy="222" r="24" fill="url(#pl-fruto)" stroke="#9c1f1f" stroke-width="2"/>
+    <path d="M186 200 l-10 -4 l6 8 l-8 4 l10 2 l2 8 l4 -8 l10 -2 l-8 -4 l6 -8 l-10 4 z" fill="#2f8f3f" stroke="#226e30" stroke-width="1.5" stroke-linejoin="round"/>
+    <ellipse cx="177" cy="214" rx="6" ry="9" transform="rotate(-28 177 214)" fill="#ffffff" opacity="0.45"/>
+  </g>
+
+  <!-- FLOR -->
+  <g data-parte="flor">
+    <g stroke="#e0407f" stroke-width="1.5">
+      <ellipse cx="130" cy="38" rx="15" ry="26" fill="url(#pl-petalo)"/>
+      <ellipse cx="130" cy="38" rx="15" ry="26" fill="url(#pl-petalo)" transform="rotate(45 130 76)"/>
+      <ellipse cx="130" cy="38" rx="15" ry="26" fill="url(#pl-petalo)" transform="rotate(90 130 76)"/>
+      <ellipse cx="130" cy="38" rx="15" ry="26" fill="url(#pl-petalo)" transform="rotate(135 130 76)"/>
+      <ellipse cx="130" cy="38" rx="15" ry="26" fill="url(#pl-petalo)" transform="rotate(180 130 76)"/>
+      <ellipse cx="130" cy="38" rx="15" ry="26" fill="url(#pl-petalo)" transform="rotate(225 130 76)"/>
+      <ellipse cx="130" cy="38" rx="15" ry="26" fill="url(#pl-petalo)" transform="rotate(270 130 76)"/>
+      <ellipse cx="130" cy="38" rx="15" ry="26" fill="url(#pl-petalo)" transform="rotate(315 130 76)"/>
+    </g>
+    <circle cx="130" cy="76" r="17" fill="#ffc928" stroke="#e0a100" stroke-width="2"/>
+    <g fill="#e0a100"><circle cx="124" cy="71" r="2"/><circle cx="135" cy="70" r="2"/><circle cx="130" cy="79" r="2"/><circle cx="122" cy="81" r="2"/><circle cx="138" cy="80" r="2"/></g>
+  </g>
+</svg>

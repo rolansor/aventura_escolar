@@ -30,15 +30,27 @@
     <!-- Selector de perfiles (se muestra al abrir si no hay perfil activo) -->
     <section id="pantalla-perfiles" class="pantalla">
       <h1 class="titulo-juego">La Aventura</h1>
-      <p class="subtitulo">¿Quién va a jugar hoy? 🇪🇨</p>
+      <p class="subtitulo">¿Quién va a jugar hoy? <span class="bandera-ec" title="Ecuador"></span></p>
       <div class="tarjetas-menu" id="perfiles-lista"></div>
     </section>
 
-    <!-- Menú de materias -->
-    <section id="pantalla-menu" class="pantalla">
+    <!-- Grado y trimestre (lo primero al entrar; ver data/curriculo.json) -->
+    <section id="pantalla-curso" class="pantalla">
       <h1 class="titulo-juego" id="titulo-juego">La Aventura de Nelson</h1>
-      <p class="subtitulo" id="subtitulo">¡Hola, Nelson! Elige una materia para empezar 🇪🇨</p>
+      <p class="subtitulo" id="subtitulo">¡Hola! Elige tu grado y el trimestre <span class="bandera-ec" title="Ecuador"></span></p>
+      <h2 class="curso-paso">🎒 ¿En qué grado estás?</h2>
+      <div class="curso-grados" id="curso-grados"></div>
+      <h2 class="curso-paso" id="curso-paso-tri">📅 ¿Qué trimestre vas a estudiar?</h2>
+      <div class="tarjetas-menu curso-trimestres" id="curso-trimestres"></div>
+      <button type="button" class="curso-ayuda" id="curso-ayuda">🗺️ ¿Qué hay en cada trimestre?</button>
+    </section>
+
+    <!-- Materias del trimestre elegido -->
+    <section id="pantalla-menu" class="pantalla">
+      <h2 class="titulo-seccion" id="menu-titulo"></h2>
+      <p class="subtitulo" id="menu-sub">Elige una materia</p>
       <div class="tarjetas-menu" id="tarjetas-menu"></div>
+      <button type="button" class="curso-ayuda">🗺️ ¿Qué hay en cada trimestre?</button>
     </section>
 
     <!-- Submenú de una materia -->
@@ -56,23 +68,24 @@
   </div>
   <div id="celebracion"></div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script>window.THREE || document.write('<scr'+'ipt src="lib/three.min.js"></scr'+'ipt>');</script>
+  <script src="lib/three.min.js"></script>
   <script src="src/efectos/escena3d.js"></script>
   <script src="src/efectos/luna.js"></script>
   <script src="data/materias.js"></script>
+  <script src="data/curriculo.js"></script>
   <script src="data/nino.js"></script>
   <script src="src/core/datos.js"></script>
   <script src="src/core/juego.js"></script>
   <script src="src/core/perfiles.js"></script>
+  <script src="src/core/curriculo.js"></script>
   <script src="src/core/menu.js"></script>
   <script>
     window.ES_MENU = true;
     window.RUTA_INICIO = "index.html";
-    Datos.cargar(["materias", "nino"]).then(function () {
+    Datos.cargar(["materias", "curriculo", "nino"]).then(function () {
       Juego.iniciarBase();
       Perfiles.init();
-      // Si ya hay un perfil elegido, al menú; si no, al selector de perfiles.
+      // Si ya hay un perfil elegido, a elegir grado y trimestre; si no, al selector de perfiles.
       if (Juego.perfilActivo()) Menu.init();
       else Perfiles.abrir();
     }).catch(function (e) { console.error("Error cargando datos:", e); });

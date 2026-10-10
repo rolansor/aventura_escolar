@@ -53,7 +53,16 @@ y abre **http://localhost:8000**. También se puede publicar tal cual en **GitHu
 
 ## 📚 Materias y actividades
 
-El menú está organizado por **materias**; cada una agrupa varias actividades.
+Al entrar se elige el **grado** (1.º a 7.º de básica; por ahora solo **5.º** está listo y los demás
+salen "en construcción") y el **trimestre**. Cada trimestre muestra sus **materias**, y cada materia
+agrupa las actividades que tocan en ese trimestre (algunas se repiten de un trimestre a otro). El botón
+**🗺️ ¿Qué hay en cada trimestre?** abre un mapa conceptual con todo el reparto, que se edita en
+`data/curriculo.json`.
+
+El **segundo trimestre** de 5.º sigue lo que el colegio publica en su Classroom: rectas y ángulos (con un
+graduador que se arrastra), cuadriláteros y perímetro, multiplicación hasta 3 cifras con sus términos y
+propiedades, el concurso de vocabulario (40 palabras con significado, sinónimo, antónimo y escritura), la
+vida de las plantas, señoríos étnicos, Incas y Conquista, y los ríos y la gente del Ecuador.
 
 ### 📖 Lengua
 Ortografía (10 reglas: B/V, C-S-Z, G/J, H muda, LL/Y, tildes, mayúsculas, M antes de P/B,
@@ -206,11 +215,11 @@ contribución en **[`CONTRIBUTING.md`](CONTRIBUTING.md)**.
 - **JSON válido**:
   `python -c "import json; json.load(open('data/contenido/<modo>.json', encoding='utf-8'))"`
 - **Regenerar los datos**: `python herramientas/build.py`.
-- **Parse-check de un JS** (no hay Node, sí hay `bun`): `bun build --no-bundle <archivo>.js`
-  (silencio = OK; imprime el error de sintaxis si lo hay). Útil porque servir con 200 no garantiza
-  que el JS parsee.
-- **Smoke tests headless** con happy-dom: montan una actividad vía `Contenido.montar` y "tocan" la
-  ronda en básico y avanzado.
+- **Contenido sin trampas**: `python herramientas/validar.py` (respuestas que no están entre las
+  opciones, palabras en dos grupos, casillas con la respuesta escrita, `.js` sin regenerar…).
+- **Prueba de humo en un navegador real**: `python herramientas/humo.py --todos` abre todas las páginas
+  en Chrome/Edge **sin ventana**, entra a cada tema en los tres niveles y avisa de errores de
+  JavaScript, rondas vacías o actividades que no caben en pantalla. No necesita Node ni instalar nada.
 
 ---
 

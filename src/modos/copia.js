@@ -237,7 +237,7 @@ const Copia = (function () {
       $("copia-escuchar").classList.add("oculto");
       $("copia-escuchar-lento").classList.add("oculto");
     } else {
-      regla.textContent = "🎧 Pulsa 🔊 Escuchar, oye con atención y escribe el texto. Puedes repetir las veces que quieras.";
+      regla.textContent = "🎧 Pulsa 🔊 Escuchar, oye con atención y escribe el texto. Puedes repetir las veces que quieras. No hace falta poner puntos ni comas.";
       $("copia-escuchar").classList.remove("oculto");
       $("copia-escuchar-lento").classList.remove("oculto");
       // Lee una vez al entrar (gesto del usuario: venía de un clic en el chip/toggle).
@@ -252,23 +252,42 @@ const Copia = (function () {
     detenerVoz();
     const escrito = $("copia-dictado-input").value;
     const pal1 = correctoDictado();
-    const pal2 = escrito.trim().split(/\s+/).filter(Boolean);
+    const pal2 = escrito.trim().split(/\s+/).map(sinSignos).filter(Boolean);
     let ac = 0, html = "";
-    const maxLen = Math.max(pal1.length, pal2.length);
-    for (let i = 0; i < maxLen; i++) {
-      const esperada = pal1[i] || "";
-      const recibida = pal2[i] || "";
-      if (recibida === esperada && esperada !== "") {
-        ac++;
-        html += `<span class="palabra ok">${escapar(recibida)}</span> `;
-      } else {
-        html += `<span class="palabra mal" title="Debía ser: ${escapar(esperada)}">${escapar(recibida || "▢")}</span> `;
-      }
-    }
-    $("copia-resultado").insertAdjacentHTML("afterbegin", "<div class='texto-corregir'>" + html + "</div>");
+    // Se ALINEAN las dos listas: si el niño se salta una palabra, solo esa queda
+    // marcada (antes todo lo que venía después salía en rojo por estar "corrido").
+    alinear(pal1, pal2).forEach((op) => {
+      if (op.tipo === "igual") { ac++; html += `<span class="palabra ok">${escapar(op.rec)}</span> `; }
+      else if (op.tipo === "cambio") html += `<span class="palabra mal" title="Debía ser: ${escapar(op.esp)}">${escapar(op.rec)}</span> `;
+      else if (op.tipo === "falta") html += `<span class="palabra mal falta" title="Faltó: ${escapar(op.esp)}">▢</span> `;
+      else html += `<span class="palabra mal sobra" title="Esta palabra sobra">${escapar(op.rec)}</span> `;
+    });
+    $("copia-resultado").insertAdjacentHTML("afterbegin", "<div class='texto-corregir'>" + html + "</div>" +
+      "<p class='dictado-clave'>✅ El texto era: <b>" + escapar(parrafoActual.texto) + "</b></p>");
     mostrarResultado(ac, pal1.length, "escribiste");
   }
-  function correctoDictado() { return parrafoActual.texto.trim().split(/\s+/); }
+  // En el dictado no se exigen los signos (la voz no los pronuncia): se comparan
+  // las palabras sin puntuación, pero SÍ con sus tildes y mayúsculas.
+  function sinSignos(w) { return w.replace(/^[.,;:¡!¿?"'«»()\-—…]+|[.,;:¡!¿?"'«»()\-—…]+$/g, ""); }
+  function correctoDictado() { return parrafoActual.texto.trim().split(/\s+/).map(sinSignos).filter(Boolean); }
+  /* Distancia de edición por PALABRAS con rastro: devuelve la lista de operaciones
+     [{tipo:"igual"|"cambio"|"falta"|"sobra", esp?, rec?}] que lleva de lo esperado a lo escrito. */
+  function alinear(esp, rec) {
+    const n = esp.length, m = rec.length, D = [];
+    for (let i = 0; i <= n; i++) { D.push(new Array(m + 1).fill(0)); D[i][0] = i; }
+    for (let j = 0; j <= m; j++) D[0][j] = j;
+    for (let i = 1; i <= n; i++) for (let j = 1; j <= m; j++) {
+      D[i][j] = Math.min(D[i - 1][j] + 1, D[i][j - 1] + 1, D[i - 1][j - 1] + (esp[i - 1] === rec[j - 1] ? 0 : 1));
+    }
+    const ops = []; let i = n, j = m;
+    while (i > 0 || j > 0) {
+      if (i > 0 && j > 0 && esp[i - 1] === rec[j - 1] && D[i][j] === D[i - 1][j - 1]) { ops.push({ tipo: "igual", esp: esp[i - 1], rec: rec[j - 1] }); i--; j--; }
+      else if (i > 0 && j > 0 && D[i][j] === D[i - 1][j - 1] + 1) { ops.push({ tipo: "cambio", esp: esp[i - 1], rec: rec[j - 1] }); i--; j--; }
+      else if (i > 0 && D[i][j] === D[i - 1][j] + 1) { ops.push({ tipo: "falta", esp: esp[i - 1] }); i--; }
+      else { ops.push({ tipo: "sobra", rec: rec[j - 1] }); j--; }
+    }
+    return ops.reverse();
+  }
 
   /* ---------- Resultado + leaderboard (común a los dos sub-modos) ---------- */
   function mostrarResultado(ac, total, verbo) {
@@ -287,7 +306,10 @@ const Copia = (function () {
   function vozEs() {
     if (vozCache) return vozCache;
     const vs = (window.speechSynthesis.getVoices && window.speechSynthesis.getVoices()) || [];
-    vozCache = vs.find((v) => /^es(-|_)/i.test(v.lang)) ||
+    // Preferimos una voz de Ecuador o de Latinoamérica; si no hay, cualquiera en español.
+    vozCache = vs.find((v) => /^es[-_]EC/i.test(v.lang)) ||
+      vs.find((v) => /^es[-_](419|MX|CO|PE|US|AR|CL|VE)/i.test(v.lang)) ||
+      vs.find((v) => /^es(-|_)/i.test(v.lang)) ||
       vs.find((v) => /spanish|espa/i.test(v.name)) || null;
     return vozCache;
   }
@@ -295,7 +317,8 @@ const Copia = (function () {
     if (!window.speechSynthesis || !texto) return;
     window.speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(texto);
-    u.lang = "es-ES";
+    const v0 = vozEs();
+    u.lang = (v0 && v0.lang) || "es-EC";
     u.rate = rate || 0.9;
     u.pitch = 1;
     const v = vozEs();

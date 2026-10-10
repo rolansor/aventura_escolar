@@ -10,11 +10,21 @@
 
   /* ---------- Par o impar: empareja las fichas ---------- */
   function rondaParImpar(host, ctrl) {
-    const N = ctrl.azar(4, 21), par = N % 2 === 0;
-    ctrl.pregunta("¿El <b>" + N + "</b> es par o impar? Mira si <b>sobra</b> una ficha 👀");
+    // Básico e intermedio: se emparejan fichas (¿sobra una?). Avanzado: números
+    // grandes, ya sin fichas: la pista es mirar la ÚLTIMA cifra.
+    const r = Juego.porNivel([[4, 20], [11, 30], [101, 9999]]);
+    const N = ctrl.azar(r[0], r[1]), par = N % 2 === 0, conFichas = N <= 30;
     let dots = "";
-    for (let i = 0; i < N; i++) dots += '<span class="ficha-pt' + (!par && i === N - 1 ? " sobra" : "") + '"></span>';
-    host.innerHTML = '<div class="puntos-par">' + dots + "</div>" +
+    if (conFichas) {
+      ctrl.pregunta("¿El <b>" + N + "</b> es par o impar? Mira si <b>sobra</b> una ficha 👀");
+      for (let i = 0; i < N; i++) dots += '<span class="ficha-pt' + (!par && i === N - 1 ? " sobra" : "") + '"></span>';
+      dots = '<div class="puntos-par">' + dots + "</div>";
+    } else {
+      const s = String(N);
+      ctrl.pregunta("¿Es par o impar? Fíjate en la <b>última cifra</b> 👀");
+      dots = '<div class="num-grande">' + s.slice(0, -1) + '<b>' + s.slice(-1) + "</b></div>";
+    }
+    host.innerHTML = dots +
       '<div class="fila-cartas">' +
         '<button class="carta-num" data-v="Par">Par 👫</button>' +
         '<button class="carta-num" data-v="Impar">Impar 🙋</button>' +
@@ -25,7 +35,8 @@
         if (listo) return;
         if ((b.dataset.v === "Par") === par) { listo = true; b.classList.add("crece", "ok"); ctrl.ganar(); }
         else { b.classList.add("tiembla"); setTimeout(() => b.classList.remove("tiembla"), 450);
-          ctrl.reintento(par ? "No sobra ninguna → es <b>par</b> 👀" : "Sobra una ficha → es <b>impar</b> 👀"); }
+          ctrl.reintento(conFichas ? (par ? "No sobra ninguna → es <b>par</b> 👀" : "Sobra una ficha → es <b>impar</b> 👀")
+                                   : "Si termina en 0, 2, 4, 6 u 8 es par 👀"); }
       };
     });
   }
@@ -33,7 +44,8 @@
   /* ---------- Anterior / siguiente: la tira numérica ---------- */
   function rondaVecino(siguiente) {
     return function (host, ctrl) {
-      const N = ctrl.azar(102, 9997);
+      const r = Juego.porNivel([[12, 98], [102, 9997], [10002, 999997]]);
+      const N = ctrl.azar(r[0], r[1]);
       const cells = [N - 2, N - 1, N, N + 1, N + 2];
       ctrl.pregunta("Toca el número <b>" + (siguiente ? "SIGUIENTE ➡️" : "ANTERIOR ⬅️") + "</b> a <b>" + N + "</b>");
       host.innerHTML = '<div class="tira-num">' + cells.map((c) =>
@@ -55,7 +67,8 @@
   /* ---------- Romanos: une cada número con su romano ---------- */
   function rondaRomano(host, ctrl) {
     const nums = [];
-    while (nums.length < 3) { const n = ctrl.azar(1, 39); if (nums.indexOf(n) < 0) nums.push(n); }
+    const tope = Juego.porNivel([[1, 20], [1, 100], [40, 2000]]);
+    while (nums.length < 3) { const n = ctrl.azar(tope[0], tope[1]); if (nums.indexOf(n) < 0) nums.push(n); }
     ctrl.pregunta("🏛️ Une cada número con su <b>romano</b>. Toca uno y luego su pareja 👆");
     const izq = ctrl.mezclar(nums.slice()), der = ctrl.mezclar(nums.slice());
     host.innerHTML = '<div class="match-cols">' +

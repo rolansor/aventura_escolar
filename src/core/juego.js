@@ -72,7 +72,15 @@ const Juego = (function () {
   }
   function borrarPerfil(id) {
     guardar("perfiles", perfiles().filter((p) => p.id !== id));
-    guardar("estado__" + id, null);
+    // Se lleva consigo su progreso y sus marcadores (estado__<id>, lb_<juego>__<id>).
+    try {
+      const sufijo = "__" + id, sobran = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && k.indexOf("ads_") === 0 && k.slice(-sufijo.length) === sufijo) sobran.push(k);
+      }
+      sobran.forEach((k) => localStorage.removeItem(k));
+    } catch (e) {}
     if (perfilActivoId() === id) guardar("perfil_activo", null);
   }
   function seleccionarPerfil(id) {
@@ -97,6 +105,21 @@ const Juego = (function () {
   function nivelIdx() { const i = NIVELES.indexOf(nivel()); return i < 0 ? 0 : i; }
   // Devuelve el valor de `tres` que corresponde al nivel actual (basico/intermedio/avanzado).
   function porNivel(tres) { return tres[nivelIdx()]; }
+
+  /* ---------- Curso (grado + trimestre que está estudiando el perfil) ----------
+     Se guarda en el propio perfil (`grado`, `trimestre`) para volver al mismo sitio
+     al regresar de una actividad. Sin perfil cae a la clave suelta "curso".      */
+  function curso() {
+    const p = perfilActivo();
+    const c = p ? p : (cargar("curso", null) || {});
+    return { grado: c.grado || null, trimestre: c.trimestre || null };
+  }
+  function fijarCurso(grado, trimestre) {
+    const lista = perfiles();
+    const p = lista.find((x) => x.id === perfilActivoId());
+    if (p) { p.grado = grado; p.trimestre = trimestre; guardar("perfiles", lista); }
+    else guardar("curso", { grado: grado, trimestre: trimestre });
+  }
 
   /* ---------- Leaderboard (por juego y por perfil) ----------
      Cada juego registra sus rondas en "lb_<juego>__<perfilId>". Se guardan
@@ -227,7 +250,6 @@ const Juego = (function () {
     estado.racha++;
     sumarEstrellas(1 + (estado.racha >= 3 ? 1 : 0));
     sonidoAcierto();
-    if (window.ESCENA && ESCENA.mascotaFeliz) ESCENA.mascotaFeliz();
     reaccionMascota("feliz");
   }
   function error() {
@@ -235,12 +257,11 @@ const Juego = (function () {
     guardar(claveEstado(), estado);
     refrescarMarcador();
     sonidoError();
-    if (window.ESCENA && ESCENA.mascotaTriste) ESCENA.mascotaTriste();
     reaccionMascota("triste");
   }
   function granPremio() {
     sonidoFiesta();
-    if (window.ESCENA) { ESCENA.celebrar(); if (ESCENA.mascotaFeliz) ESCENA.mascotaFeliz(); }
+    if (window.ESCENA && ESCENA.celebrar) ESCENA.celebrar();
     reaccionMascota("fiesta");
     confetiHTML();
   }
@@ -283,6 +304,30 @@ const Juego = (function () {
     };
   }
 
+  // Segundos del temporizador para una pregunta. El ajuste del adulto (timerSeg) es
+  // para una pregunta RÁPIDA (tocar una opción); las operaciones escritas piden más:
+  // cada modo pasa su `factor` (p. ej. una suma de 6 cifras ≈ 4 veces más tiempo).
+  function tiempo(factor) { return Math.max(5, Math.round(config().timerSeg * (factor || 1))); }
+
+  /* ---------- Fin de ronda: el niño decide qué sigue ----------
+     Antes el resumen desaparecía solo a los 2,6 s. Ahora se queda en pantalla con
+     dos botones, insertados justo después de `ancla` (normalmente el <p class="retro">). */
+  function quitarBotonesFin(ancla) {
+    const padre = ancla && ancla.parentNode;
+    if (padre) padre.querySelectorAll(".fin-ronda").forEach((x) => x.remove());
+  }
+  function botonesFin(ancla, alRepetir, alVolver) {
+    if (!ancla) return;
+    quitarBotonesFin(ancla);
+    const d = document.createElement("div");
+    d.className = "fin-ronda";
+    d.innerHTML = '<button type="button" class="boton-grande fin-otra">🔁 Otra ronda</button>' +
+      '<button type="button" class="boton-secundario fin-volver">↩️ Elegir otra</button>';
+    d.querySelector(".fin-otra").onclick = () => { d.remove(); if (alRepetir) alRepetir(); };
+    d.querySelector(".fin-volver").onclick = () => { d.remove(); if (alVolver) alVolver(); };
+    ancla.insertAdjacentElement("afterend", d);
+  }
+
   /* ---------- Cronómetro visible ---------- */
   let cronId = null;
   function cronDetener() { if (cronId) { clearInterval(cronId); cronId = null; } }
@@ -304,14 +349,17 @@ const Juego = (function () {
   }
 
   /* ---------- Identidad / mascota ---------- */
-  function aplicarIdentidad() {
+  // `soloTextos` = true al arrancar la página: la mascota ya se construye con la
+  // identidad correcta en Luna.init(), no hace falta rehacerla.
+  function aplicarIdentidad(soloTextos) {
     const n = jugador();
     const t = document.getElementById("titulo-juego");
     const s = document.getElementById("subtitulo");
     if (t) t.textContent = "La Aventura de " + n;
-    if (s) s.textContent = "¡Hola, " + n + "! Elige una materia para empezar 🇪🇨";
+    // La bandera va dibujada con CSS (.bandera-ec): Windows no trae el emoji 🇪🇨 y mostraba "EC".
+    if (s) s.innerHTML = "¡Hola, " + escHTML(n) + '! Elige tu grado y el trimestre <span class="bandera-ec" title="Ecuador"></span>';
     document.title = "La Aventura de " + n + " 🚀";
-    if (window.Luna && Luna.aplicarConfig) Luna.aplicarConfig();
+    if (!soloTextos && window.Luna && Luna.aplicarConfig) Luna.aplicarConfig();
   }
 
   /* ---------- Arranque común de cada página ---------- */
@@ -320,7 +368,7 @@ const Juego = (function () {
 
     if (window.ESCENA) ESCENA.iniciar();
     if (window.Luna) Luna.init();
-    aplicarIdentidad();
+    aplicarIdentidad(true);
 
     const inicio = window.RUTA_INICIO || "index.html";
     const bi = document.getElementById("btn-inicio");
@@ -352,9 +400,9 @@ const Juego = (function () {
   return {
     iniciarBase, guardar, cargar, azar, azarEl, mezclar, frasePositiva, construirSecuencia,
     acierto, error, granPremio, sumarEstrellas, reiniciarProgreso,
-    config, cronIniciar, cronDetener, jugador, avatarNombre, genero, generoMascota, aplicarIdentidad, tip,
+    config, tiempo, botonesFin, quitarBotonesFin, esc: escHTML, cronIniciar, cronDetener, jugador, avatarNombre, genero, generoMascota, aplicarIdentidad, tip,
     perfiles, perfilActivo, perfilActivoId, crearPerfil, seleccionarPerfil, actualizarPerfil, borrarPerfil,
-    nivel, nivelIdx, porNivel,
+    nivel, nivelIdx, porNivel, curso, fijarCurso,
     registrarResultado, mejores, fmtTiempo, tablaMejoresHTML, pintarMejores
   };
 })();

@@ -15,7 +15,7 @@ No hay carpeta `dist/`: ambos modos usan exactamente los mismos archivos.
 ## Estructura de carpetas
 
 ```
-index.html                 menú principal (materias)
+index.html                 menú principal (grado y trimestre → materias → actividades)
 paginas/                   1 HTML por módulo (ortografia, copia, mapas, cantones, editor, contenido… + ~24 del runner)
 data/                      *.json canónicos (editables) + *.js generados por build.py
   contenido/               1 JSON por actividad migrada al runner (data/contenido/<modo>.json) + sus .js
@@ -24,11 +24,17 @@ src/
                            contenido.js (runner genérico), mc.js / actividad.js (motores), arrastrar.js
   modos/                   los que NO usan el runner: ortografia.js, copia.js, editor.js (Ajustes),
                            banco.js (Banco de contenido), mapas.js, mapacantones.js …  (las ~24 migradas YA NO viven aquí)
-  efectos/                 escena3d.js (fondo three.js), luna.js (mascota)
+  efectos/                 escena3d.js (fondo three.js), luna.js (mascota),
+                           modelo3d.js (escenario 3D de las actividades)
+    modelos/               1 archivo por modelo 3D: planta, flor, cicloagua, bloques, fraccion
 css/modulos/               base, menu, ejercicios, editor, mapas, cantones, efectos (.css)
-lib/                       three.min.js (r128, para 3D offline)
-recursos/                  ecuador_1.0/2.0.svg, banderas/EC-*.svg
-herramientas/build.py      precompila data/*.json -> data/*.js  (Python; NO Node; recursivo incl. data/contenido/)
+lib/                       three.min.js (r128, copia local: el 3D no depende de internet)
+recursos/                  ecuador_1.0/2.0.svg, banderas/EC-*.svg, senala/*.svg (dibujos de "Señala la parte")
+herramientas/              Python, sin instalar nada (NO Node):
+  build.py                 precompila data/*.json -> data/*.js (recursivo; incrusta {"$archivo": …})
+  validar.py               revisa que el contenido no tenga trampas (sale con 1 si hay errores)
+  humo.py + cdp.py         prueba de humo en Chrome/Edge sin ventana (todas las páginas y temas)
+  corregir_cantones.py     corrige los nombres de cantones que trae la fuente GADM
 docs/                      ARQUITECTURA.md, ESQUEMA_CONTENIDO.md, capturas/
 ```
 
@@ -54,9 +60,13 @@ internas; `data/mapas/*.json` ya existen para de-duplicarlas más adelante.)
 
 ## Patrón de módulos y navegación
 
-- Cada modo es un IIFE `window.Modo = { init, ... }`. Su página carga: three.js (CDN + respaldo
-  local), efectos, core (datos + juego), su módulo, sus `data/*.js`, y arranca con
+- Cada modo es un IIFE `window.Modo = { init, ... }`. Su página carga: three.js (`lib/three.min.js`,
+  siempre la copia local), efectos, core (datos + juego), su módulo, sus `data/*.js`, y arranca con
   `Datos.cargar([...]).then(function(){ Juego.iniciarBase(); Modo.init(); })`.
+- **Grado y trimestre**: `index.html` pide primero el grado (1.º–7.º de básica; los que no tienen plan
+  salen "en construcción") y el trimestre. El plan de `data/curriculo.json` reparte las actividades del
+  catálogo (`data/materias.json`) por trimestre; lo lee `src/core/curriculo.js`, que también pinta el
+  mapa conceptual de ayuda. El curso elegido se recuerda en el perfil (`Juego.curso/fijarCurso`).
 - **Multipágina**: el menú (`index.html`) genera las materias desde `DATOS.materias` y cada actividad
   ENLAZA a `paginas/<modo>.html` (`src/core/menu.js`). El marcador (estrellas/nivel) persiste en
   `localStorage`, así que se mantiene entre páginas.
@@ -79,8 +89,9 @@ en `docs/ESQUEMA_CONTENIDO.md`.
   rondas para uno de los dos motores existentes:
   - **`motor: "actividad"`** (manipulativo, `src/core/actividad.js`): cada tema se traduce a una `ronda(host, ctrl)`
     a partir de su `tipo`. Tipos soportados: `clasificar`, `emparejar`, `ordenar`, `silabas`, `alfabetico`,
-    `vf`, `definir`, `sujeto`, `signos`, `formas`, `escena`, `senala`, `problema`, `terminos`. Muchos de
-    ellos usan `src/core/arrastrar.js` para el arrastrar-y-soltar.
+    `vf`, `definir`, `sujeto`, `signos`, `formas`, `escena`, `senala`, `problema`, `terminos`, `ahorcado`.
+    Muchos de ellos usan `src/core/arrastrar.js` para el arrastrar-y-soltar; `senala`, `escena` y
+    `clasificar` (con `dibujo`) pueden montar además un **modelo 3D** (ver abajo).
   - **`motor: "mc"`** (opción múltiple, `src/core/mc.js`): tipos `mc` y `lectura` (comprensión lectora).
 - **Enrutado del dato**: `src/core/datos.js` coloca cada `contenido/<modo>` en `DATOS.contenido[<modo>]`
   (regla por prefijo, ver arriba).
@@ -116,6 +127,36 @@ Algunas piezas conservan su **loader / lógica propia** en `src/modos/` y no pas
 - **Matemáticas**: los generadores numéricos (aritmética, tablas, multiplicación, división, etc.).
 - **Zona de adultos**: ⚙️ Ajustes (`editor.js`) y 📚 Banco de contenido (`src/modos/banco.js`,
   global **`window.BancoContenido`** — no confundir con el runner `window.Contenido` de `src/core/`).
+
+## Modelos 3D de las actividades (`src/efectos/modelo3d.js`)
+
+`window.Modelo3D` es un **escenario three.js reutilizable**: pone un modelo dentro de la caja de juego para
+que el niño lo gire, lo toque y le suelte fichas encima. Da luces, sombra de contacto, cámara que encuadra
+sola, giro con el dedo (con límites), detección de la parte tocada (con tolerancia para dedos pequeños),
+resaltado de acierto/error, etiquetas y controles **anclados** a un punto del modelo, y limpieza al salir.
+
+- Los modelos se construyen **por código** (sin `.glb`/`.obj`: `file://` no permite cargarlos) en
+  `src/efectos/modelos/<nombre>.js`, con `Modelo3D.registrar("<nombre>", function (api, opts) { … })`.
+  El `api` trae ayudantes de geometría: `tubo` (tallos, raíces), `lamina` (hojas y pétalos curvos),
+  `torno` (sólidos de revolución), `mat`/`color` y `parte(obj, id)` para marcar qué es tocable.
+- Modelos actuales: **planta**, **flor** (por dentro), **cicloagua** (maqueta animada), **bloques**
+  (base 10 con tamaños reales) y **fraccion** (pizza / barra).
+- **Siempre hay respaldo sin WebGL**: `Modelo3D.disponible(nombre)` devuelve `false` y la actividad usa su
+  dibujo SVG (o bloques 2D con CSS). Mientras hay un modelo activo, el fondo baja el ritmo
+  (`ESCENA.ahorro(true)`).
+- Una actividad lo crea una vez por tema y lo reutiliza de ronda en ronda guardándolo en `ctrl.memo`;
+  se destruye con `ctrl.alTerminar(() => m.destruir())` (ver `src/core/actividad.js`).
+
+## Pruebas (sin instalar nada)
+
+```bash
+python herramientas/validar.py          # contenido: 0 errores
+python herramientas/humo.py --todos     # el juego de verdad, en los 3 niveles
+```
+
+`humo.py` usa Chrome o Edge ya instalados, sin ventana y con un perfil temporal (no toca el progreso
+real). `herramientas/cdp.py` es el cliente mínimo que lo maneja y sirve para escribir más pruebas
+(capturas, clics y arrastres reales).
 
 ## Cómo regenerar los datos
 

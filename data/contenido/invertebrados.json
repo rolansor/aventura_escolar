@@ -422,7 +422,9 @@
           { "t": "Los crustáceos casi siempre viven en el agua.", "c": true, "exp": "Como el cangrejo y el camarón." },
           { "t": "El cangrejo es un crustáceo.", "c": true, "exp": "Tiene caparazón y pinzas." },
           { "t": "Los caracoles se mueven muy rápido.", "c": false, "exp": "Se mueven muy lento, arrastrándose." },
-          { "t": "Los ciempiés tienen muchas patas.", "c": true, "exp": "Son miriápodos." }
+          { "t": "Los ciempiés tienen muchas patas.", "c": true, "exp": "Son miriápodos." },
+          { "t": "El cangrejo es un insecto.", "c": false, "exp": "Es un crustáceo." },
+          { "t": "Los artrópodos tienen huesos por dentro.", "c": false, "exp": "Tienen un exoesqueleto por fuera." }
         ],
         [
           { "t": "La estrella de mar puede regenerar un brazo.", "c": true, "exp": "Tiene el poder de la regeneración." },

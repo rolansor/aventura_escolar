@@ -96,6 +96,20 @@ html, body {
 .pantalla.activa { display: flex; }
 .oculto { display: none !important; }
 
+/* Título de sección (materia, mapas…): blanco sobre el fondo azul. Vive aquí porque
+   lo usan páginas que no cargan ejercicios.css (antes salía oscuro y casi no se leía). */
+.titulo-seccion { color: white; text-shadow: 0 3px 8px rgba(0,0,0,0.5); font-size: clamp(1.5rem, 4.5vw, 2rem); margin: 6px 0 4px; text-align: center; }
+
+/* Subtítulo bajo un título de sección (también lo define menu.css para el menú). */
+.subtitulo { color: white; font-size: 1.05rem; text-shadow: 0 2px 6px rgba(0,0,0,0.5); margin: 2px 0 12px; text-align: center; }
+
+/* Bandera del Ecuador dibujada (Windows no trae el emoji 🇪🇨 y mostraba "EC"). */
+.bandera-ec { display: inline-block; width: 1.5em; height: 1em; border-radius: 3px; vertical-align: -0.12em;
+  background: linear-gradient(#ffd100 0 50%, #0072ce 50% 75%, #ef3340 75% 100%); box-shadow: 0 1px 3px rgba(0,0,0,.35); }
+
+/* Fin de ronda: el niño decide si repite o elige otra cosa (ver Juego.botonesFin). */
+.fin-ronda { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 14px; }
+
 /* ---------- Botones genéricos ---------- */
 .boton-grande {
   font-size: 1.3rem;
@@ -145,8 +159,16 @@ html, body {
 @keyframes caer { to { transform: translateY(110vh) rotate(720deg); opacity: 0.9; } }
 
 /* ---------- Responsive ---------- */
+/* En pantallas angostas la mascota vive abajo a la derecha: se deja un margen al
+   final para que el último botón pueda subir por encima de ella al desplazar. */
+@media (max-width: 900px) {
+  .pantalla { padding-bottom: 150px; }
+}
 @media (max-width: 520px) {
-  #marcador { font-size: 0.9rem; gap: 8px; padding: 8px 12px; }
+  #barra-superior { padding: 8px 8px; gap: 6px; }
+  .grupo-barra { gap: 6px; min-width: 0; }
+  #marcador { font-size: 0.82rem; gap: 6px; padding: 7px 10px; }
   .caja-juego { padding: 18px 16px 24px; }
-  .boton-icono { width: 46px; height: 46px; font-size: 1.3rem; }
+  .boton-icono { width: 42px; height: 42px; font-size: 1.2rem; flex: none; }
+  .pantalla { padding-bottom: 130px; }
 }

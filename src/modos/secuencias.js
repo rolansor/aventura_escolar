@@ -11,7 +11,9 @@ const Secuencias = (function () {
   let ronda = 0;
   let actual = null; // { terminos:[], faltaIndice, respuesta, regla, pista }
   let temporizador = null;
+  let tInicio = 0;
   const TOTAL_RONDA = 6;
+  const PX = "sec";                // clave del leaderboard
 
   const elSelector = () => document.getElementById("secuencias-selector");
   const elJuego = () => document.getElementById("secuencias-juego");
@@ -35,16 +37,19 @@ const Secuencias = (function () {
     propias.forEach((p) => {
       const b = document.createElement("button");
       b.className = "chip-categoria";
-      b.innerHTML = `⭐ ${p.nombre}<small>creada por ti</small>`;
+      b.innerHTML = `⭐ ${Juego.esc(p.nombre)}<small>creada por ti</small>`;
       b.onclick = () => empezarPropia(p);
       cont.appendChild(b);
     });
+    Juego.pintarMejores(cont, PX); // 🏆 mejores de esta actividad
   }
 
   function empezar(tipo) {
     tipoActual = { clase: "auto", tipo };
     aciertos = 0;
     ronda = 0;
+    tInicio = Date.now();
+    Juego.quitarBotonesFin(document.getElementById("sec-retro"));
     elSelector().classList.add("oculto");
     elJuego().classList.remove("oculto");
     const info = DATOS.secuencias.find((s) => s.id === tipo);
@@ -56,6 +61,8 @@ const Secuencias = (function () {
     tipoActual = { clase: "propia", datos: p };
     aciertos = 0;
     ronda = 0;
+    tInicio = Date.now();
+    Juego.quitarBotonesFin(document.getElementById("sec-retro"));
     elSelector().classList.add("oculto");
     elJuego().classList.remove("oculto");
     document.getElementById("sec-regla").textContent = "💡 Secuencia creada por ti: " + p.nombre;
@@ -64,7 +71,9 @@ const Secuencias = (function () {
 
   /* ---------- Generadores de patrones ---------- */
   function generarAuto(tipo) {
-    const nivel = Math.min(1 + Math.floor(ronda / 2), 4);
+    // Sube un poco dentro de la ronda y, además, según el nivel del perfil
+    // (básico 1–4, intermedio 3–6, avanzado 5–8).
+    const nivel = Math.min(1 + Math.floor(ronda / 2), 4) + Juego.nivelIdx() * 2;
     let terminos = [], regla = "", pista = "";
 
     if (tipo === "suma") {
@@ -158,7 +167,7 @@ const Secuencias = (function () {
     const el = document.getElementById("sec-timer");
     if (c.timerOn) {
       el.classList.remove("oculto");
-      Juego.cronIniciar(c.timerSeg, "sec-timer", tiempoAgotado);
+      Juego.cronIniciar(Juego.tiempo(2), "sec-timer", tiempoAgotado);   // hay que calcular: el doble de tiempo
     } else {
       el.classList.add("oculto");
       Juego.cronDetener();
@@ -219,12 +228,20 @@ const Secuencias = (function () {
     retro.textContent = aciertos >= TOTAL_RONDA - 1 ? "¡Eres un genio de los números! 🏆" : "¡Buen trabajo! Sigue así.";
     retro.className = "retro bien";
     if (aciertos >= TOTAL_RONDA - 1) Juego.granPremio();
-    temporizador = setTimeout(volverSelector, 2600);
+    Juego.registrarResultado(PX, { aciertos: aciertos, total: TOTAL_RONDA, ms: Date.now() - tInicio });
+    document.getElementById("sec-pista").innerHTML = Juego.tablaMejoresHTML(PX);
+    const input = document.getElementById("sec-input");
+    input.disabled = true;
+    document.getElementById("sec-enviar").disabled = true;
+    const repetir = tipoActual;
+    Juego.botonesFin(retro, () => (repetir.clase === "auto" ? empezar(repetir.tipo) : empezarPropia(repetir.datos)), volverSelector);
   }
 
   function volverSelector() {
     if (temporizador) { clearTimeout(temporizador); temporizador = null; }
     Juego.cronDetener();
+    Juego.quitarBotonesFin(document.getElementById("sec-retro"));
+    document.getElementById("sec-pista").textContent = "";
     elJuego().classList.add("oculto");
     elSelector().classList.remove("oculto");
     pintarSelector(); // por si se crearon nuevas secuencias
@@ -232,3 +249,4 @@ const Secuencias = (function () {
 
   return { init, comprobar, verPista, volverSelector, pintarSelector };
 })();
+window.Secuencias = Secuencias;

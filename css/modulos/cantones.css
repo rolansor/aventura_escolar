@@ -3,7 +3,7 @@
    "foco": provincia en 3D + datos (canvas, banderas, etiquetas, hint). */
 
 /* ---- Mapa por cantones (versión GeoJSON, provincias = grupos de cantones) ---- */
-.mapac { width: 100%; height: auto; max-height: 72vh; display: block; }
+.mapac { width: 100%; height: auto; max-height: min(66vh, 620px); display: block; }
 /* Cada provincia es UNA forma (contorno disuelto); sin líneas de cantones en el 2D. */
 .mapac .prov {
   stroke: #3a3f55;
@@ -22,13 +22,14 @@
   align-items: flex-start;
   flex-wrap: wrap;
   width: 100%;
-  max-width: 1040px;
+  max-width: 760px;           /* deja libre la esquina donde vive la mascota */
   margin: 0 auto;
 }
+.mapac-foco .mapa-detalle { max-width: 300px; }
 .foco-3d {
   position: relative;
-  width: min(460px, 84vw);
-  height: 400px;
+  width: min(420px, 84vw);
+  height: min(380px, 56vh);
   background: #ffffff;
   border-radius: var(--radio);
   box-shadow: var(--sombra);

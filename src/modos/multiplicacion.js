@@ -1,15 +1,17 @@
-/* Multiplicación (2–3 cifras × 1–2 cifras) con explicación — Matemáticas */
+/* Multiplicación (hasta 3 cifras en el multiplicador) con explicación — Matemáticas */
 const Multiplicacion = (function () {
-  let cola = [], i = 0, ac = 0, act = null, t = null, re = false, tInicio = 0;
+  let cola = [], i = 0, ac = 0, act = null, t = null, re = false, tInicio = 0, ultimo = null;
   const TOTAL = 10;
   const $ = (id) => document.getElementById(id);
   const elSel = () => $("mul-selector"), elJuego = () => $("mul-juego");
   const NIV = [{ ca: 2, cb: 1, n: "2 cifras × 1" }, { ca: 3, cb: 1, n: "3 cifras × 1" },
-    { ca: 2, cb: 2, n: "2 cifras × 2" }, { ca: 3, cb: 2, n: "3 cifras × 2" }];
+    { ca: 2, cb: 2, n: "2 cifras × 2" }, { ca: 3, cb: 2, n: "3 cifras × 2" },
+    { ca: 3, cb: 3, n: "3 cifras × 3" }, { ca: 4, cb: 3, n: "4 cifras × 3" }];
   const numDe = (c) => Juego.azar(Math.pow(10, c - 1), Math.pow(10, c) - 1);
 
-  // El nivel del perfil acota qué combinaciones de cifras se ofrecen.
-  function nivNivel() { return Juego.porNivel([NIV.slice(0, 2), NIV.slice(0, 3), NIV.slice()]); }
+  // Todos los niveles llegan a 2 y 3 cifras en el multiplicador (lo pide el segundo
+  // trimestre de Quinto); el nivel del perfil solo quita lo más fácil o añade lo más largo.
+  function nivNivel() { return Juego.porNivel([NIV.slice(0, 5), NIV.slice(0, 5), NIV.slice(1)]); }
   function init() { pint(); }
   function pint() {
     const c = elSel(); if (!c) return; c.innerHTML = "";
@@ -18,6 +20,7 @@ const Multiplicacion = (function () {
     Juego.pintarMejores(c, "mul"); // 🏆 mejores de esta actividad
   }
   function empezar(nv) {
+    ultimo = nv; Juego.quitarBotonesFin($("mul-retro"));
     ac = 0; i = 0; cola = []; tInicio = Date.now(); const f = {};
     for (let k = 0; k < TOTAL; k++) { let a, b, fi, tr = 0; do { a = numDe(nv.ca); b = numDe(nv.cb); fi = a + "x" + b; tr++; } while (f[fi] && tr < 12); f[fi] = 1; cola.push({ a: a, b: b, r: a * b }); }
     elSel().classList.add("oculto"); elJuego().classList.remove("oculto"); mostrar();
@@ -57,18 +60,20 @@ const Multiplicacion = (function () {
     const r = $("mul-retro"); r.textContent = "¡Inténtalo de nuevo!"; r.className = "retro"; inp.focus(); timer();
   }
   function siguiente() { if (t) { clearTimeout(t); t = null; } i++; if (i >= cola.length) terminar(); else mostrar(); }
-  function timer() { const c = Juego.config(); const el = $("mul-timer"); if (c.timerOn) { el.classList.remove("oculto"); Juego.cronIniciar(c.timerSeg, "mul-timer", tag); } else { el.classList.add("oculto"); Juego.cronDetener(); } }
+  function timer() { const c = Juego.config(); const el = $("mul-timer"); if (c.timerOn) { el.classList.remove("oculto"); Juego.cronIniciar(Juego.tiempo(String(act.a).length + String(act.b).length - 1), "mul-timer", tag); } else { el.classList.add("oculto"); Juego.cronDetener(); } }
   function tag() { $("mul-input").disabled = true; const r = $("mul-retro"); r.textContent = "⏰ ¡Tiempo! Mira cómo se hace 👇"; r.className = "retro mal"; if (!re) Juego.error(); fallo(); }
   function terminar() {
     Juego.cronDetener(); $("mul-timer").classList.add("oculto"); $("mul-progreso").style.width = "100%";
     Juego.registrarResultado("mul", { aciertos: ac, total: cola.length, ms: Date.now() - tInicio });
     $("mul-pregunta").innerHTML = "¡Terminaste, " + Juego.jugador() + "! " + ac + " de " + cola.length + " ⭐" + Juego.tablaMejoresHTML("mul");
     ["mul-resp", "mul-explica", "mul-reintentar", "mul-siguiente"].forEach((id) => $(id).classList.add("oculto"));
-    const r = $("mul-retro"); r.textContent = ac === cola.length ? "¡Perfecto! 🏆" : "¡Muy bien! Toca otra ronda para seguir."; r.className = "retro bien";
-    if (ac >= cola.length - 1) Juego.granPremio(); t = setTimeout(volverSelector, 2500);
+    const r = $("mul-retro"); r.textContent = ac === cola.length ? "¡Perfecto! 🏆" : "¡Muy bien! ¿Otra ronda para mejorar?"; r.className = "retro bien";
+    if (ac >= cola.length - 1) Juego.granPremio();
+    Juego.botonesFin(r, () => empezar(ultimo), volverSelector);
   }
   function volverSelector() {
     if (t) { clearTimeout(t); t = null; } Juego.cronDetener();
+    Juego.quitarBotonesFin($("mul-retro")); pint();   // refresca el 🏆
     ["mul-explica", "mul-reintentar", "mul-siguiente"].forEach((id) => $(id).classList.add("oculto"));
     $("mul-resp").classList.remove("oculto"); elJuego().classList.add("oculto"); elSel().classList.remove("oculto");
   }

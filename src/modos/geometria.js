@@ -498,7 +498,11 @@
         if (contados.indexOf(i) >= 0) { ctrl.retro("Ese lado ya lo contaste 😉", ""); return; }
         contados.push(i); g.classList.add("contado");
         sumandos.textContent = contados.map((k) => lados[k]).join(" + ");
-        if (contados.length < 4) { ctrl.retro("Faltan " + (4 - contados.length) + " lados 👣", ""); return; }
+        if (contados.length < 4) {
+          const faltan = 4 - contados.length;
+          ctrl.retro((faltan === 1 ? "Falta 1 lado" : "Faltan " + faltan + " lados") + " 👣", "");
+          return;
+        }
         ctrl.retro("¡Diste la vuelta completa! Ahora suma 👇", "bien");
         if (niv === 2) { pedirNumero(ops, ctrl, total, u, "P = " + lados.join(" + ") + " = " + total + " " + u); return; }
         const cand = [total - lados[contados[3]], total + 10, total - 10, total + 2, total - 2, total + lados[0]]

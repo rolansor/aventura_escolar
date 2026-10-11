@@ -1,0 +1,231 @@
+{
+  "modo": "continuo",
+  "materia": "ingles",
+  "px": "pcon",
+  "titulo": "Present continuous",
+  "icono": "⏱️",
+  "motor": "actividad",
+  "temas": [
+    {
+      "tipo": "escucha",
+      "icono": "👀",
+      "nombre": "What are they doing?",
+      "desc": "escucha y toca lo que está pasando",
+      "total": 8,
+      "pregunta": "👂 ¿Qué está pasando? Escucha y toca 👇",
+      "palabras": [
+        [
+          { "en": "She is dancing.", "es": "Ella está bailando.", "emoji": "💃" },
+          { "en": "He is running.", "es": "Él está corriendo.", "emoji": "🏃" },
+          { "en": "He is sleeping.", "es": "Él está durmiendo.", "emoji": "😴" },
+          { "en": "She is singing.", "es": "Ella está cantando.", "emoji": "🎤" },
+          { "en": "He is swimming.", "es": "Él está nadando.", "emoji": "🏊" },
+          { "en": "She is reading.", "es": "Ella está leyendo.", "emoji": "📖" },
+          { "en": "He is cooking.", "es": "Él está cocinando.", "emoji": "🍳" },
+          { "en": "It is raining.", "es": "Está lloviendo.", "emoji": "🌧️" },
+          { "en": "She is painting.", "es": "Ella está pintando.", "emoji": "🎨" },
+          { "en": "He is crying.", "es": "Él está llorando.", "emoji": "😭" },
+          { "en": "She is eating.", "es": "Ella está comiendo.", "emoji": "🍽️" },
+          { "en": "He is writing.", "es": "Él está escribiendo.", "emoji": "✍️" }
+        ],
+        [
+          { "en": "They are playing soccer.", "es": "Ellos están jugando fútbol.", "emoji": "⚽" },
+          { "en": "He is riding a bike.", "es": "Él está montando bicicleta.", "emoji": "🚴" },
+          { "en": "She is listening to music.", "es": "Ella está escuchando música.", "emoji": "🎧" },
+          { "en": "They are watching TV.", "es": "Ellos están viendo televisión.", "emoji": "📺" },
+          { "en": "She is laughing.", "es": "Ella se está riendo.", "emoji": "😂" },
+          { "en": "He is climbing.", "es": "Él está escalando.", "emoji": "🧗" },
+          { "en": "She is surfing.", "es": "Ella está surfeando.", "emoji": "🏄" },
+          { "en": "He is fishing.", "es": "Él está pescando.", "emoji": "🎣" },
+          { "en": "She is taking a bath.", "es": "Ella se está bañando.", "emoji": "🛁" },
+          { "en": "He is studying.", "es": "Él está estudiando.", "emoji": "📚" },
+          { "en": "She is sweeping the floor.", "es": "Ella está barriendo el piso.", "emoji": "🧹" },
+          { "en": "He is driving a car.", "es": "Él está manejando un carro.", "emoji": "🚗" },
+          { "en": "It is snowing.", "es": "Está nevando.", "emoji": "❄️" }
+        ],
+        [
+          { "en": "The children are flying a kite.", "es": "Los niños están volando una cometa.", "emoji": "🪁" },
+          { "en": "My mom is talking on the phone.", "es": "Mi mamá está hablando por teléfono.", "emoji": "📞" },
+          { "en": "We are having a picnic.", "es": "Estamos haciendo un pícnic.", "emoji": "🧺" },
+          { "en": "He is washing his hands.", "es": "Él se está lavando las manos.", "emoji": "🧼" },
+          { "en": "They are singing happy birthday.", "es": "Ellos están cantando el cumpleaños feliz.", "emoji": "🎂" },
+          { "en": "The baby is drinking milk.", "es": "El bebé está tomando leche.", "emoji": "🍼" },
+          { "en": "She is buying fruit at the market.", "es": "Ella está comprando fruta en el mercado.", "emoji": "🛒" },
+          { "en": "He is taking a photo.", "es": "Él está tomando una foto.", "emoji": "📸" },
+          { "en": "They are traveling by plane.", "es": "Ellos están viajando en avión.", "emoji": "✈️" },
+          { "en": "She is planting a tree.", "es": "Ella está sembrando un árbol.", "emoji": "🌱" },
+          { "en": "He is playing the guitar.", "es": "Él está tocando la guitarra.", "emoji": "🎸" },
+          { "en": "We are camping in the mountains.", "es": "Estamos acampando en las montañas.", "emoji": "⛺" },
+          { "en": "The girl is skating.", "es": "La niña está patinando.", "emoji": "⛸️" }
+        ]
+      ]
+    },
+    {
+      "tipo": "terminacion",
+      "icono": "🔧",
+      "nombre": "The -ing machine",
+      "desc": "play + ing = playing",
+      "total": 8,
+      "pregunta": "🔧 Arma el verbo con -ing: llévale su terminación 👇",
+      "reglas": [
+        { "id": "ing", "ficha": "+ ing", "cuando": "para casi todos los verbos" },
+        { "id": "eing", "ficha": "quita la e + ing", "cuando": "para los verbos que terminan en -e" },
+        { "id": "doble", "ficha": "doble letra + ing", "cuando": "para verbos de una sola sílaba que terminan en consonante + vocal + consonante" }
+      ],
+      "reglasPorNivel": [["ing", "eing"], ["ing", "eing", "doble"], ["ing", "eing", "doble"]],
+      "items": [
+        [
+          { "base": "play", "regla": "ing", "res": "playing", "es": "jugar" },
+          { "base": "read", "regla": "ing", "res": "reading", "es": "leer" },
+          { "base": "eat", "regla": "ing", "res": "eating", "es": "comer" },
+          { "base": "sing", "regla": "ing", "res": "singing", "es": "cantar" },
+          { "base": "jump", "regla": "ing", "res": "jumping", "es": "saltar" },
+          { "base": "cook", "regla": "ing", "res": "cooking", "es": "cocinar" },
+          { "base": "sleep", "regla": "ing", "res": "sleeping", "es": "dormir" },
+          { "base": "drink", "regla": "ing", "res": "drinking", "es": "beber" },
+          { "base": "dance", "regla": "eing", "res": "dancing", "es": "bailar" },
+          { "base": "write", "regla": "eing", "res": "writing", "es": "escribir" },
+          { "base": "ride", "regla": "eing", "res": "riding", "es": "montar" },
+          { "base": "make", "regla": "eing", "res": "making", "es": "hacer" },
+          { "base": "smile", "regla": "eing", "res": "smiling", "es": "sonreír" },
+          { "base": "bake", "regla": "eing", "res": "baking", "es": "hornear" }
+        ],
+        [
+          { "base": "walk", "regla": "ing", "res": "walking", "es": "caminar" },
+          { "base": "study", "regla": "ing", "res": "studying", "es": "estudiar" },
+          { "base": "fly", "regla": "ing", "res": "flying", "es": "volar" },
+          { "base": "clean", "regla": "ing", "res": "cleaning", "es": "limpiar" },
+          { "base": "take", "regla": "eing", "res": "taking", "es": "tomar" },
+          { "base": "drive", "regla": "eing", "res": "driving", "es": "manejar" },
+          { "base": "come", "regla": "eing", "res": "coming", "es": "venir" },
+          { "base": "have", "regla": "eing", "res": "having", "es": "tener" },
+          { "base": "run", "regla": "doble", "res": "running", "es": "correr" },
+          { "base": "swim", "regla": "doble", "res": "swimming", "es": "nadar" },
+          { "base": "sit", "regla": "doble", "res": "sitting", "es": "sentarse" },
+          { "base": "cut", "regla": "doble", "res": "cutting", "es": "cortar" },
+          { "base": "hop", "regla": "doble", "res": "hopping", "es": "saltar en un pie" },
+          { "base": "clap", "regla": "doble", "res": "clapping", "es": "aplaudir" }
+        ],
+        [
+          { "base": "listen", "regla": "ing", "res": "listening", "es": "escuchar", "pista": "Listen tiene dos sílabas: no se dobla la letra, solo + ing 👀" },
+          { "base": "visit", "regla": "ing", "res": "visiting", "es": "visitar", "pista": "Visit tiene dos sílabas: no se dobla la letra, solo + ing 👀" },
+          { "base": "rain", "regla": "ing", "res": "raining", "es": "llover", "pista": "Rain tiene dos vocales juntas (ai): no se dobla la letra, solo + ing 👀" },
+          { "base": "cry", "regla": "ing", "res": "crying", "es": "llorar" },
+          { "base": "skate", "regla": "eing", "res": "skating", "es": "patinar" },
+          { "base": "close", "regla": "eing", "res": "closing", "es": "cerrar" },
+          { "base": "use", "regla": "eing", "res": "using", "es": "usar" },
+          { "base": "shine", "regla": "eing", "res": "shining", "es": "brillar" },
+          { "base": "shop", "regla": "doble", "res": "shopping", "es": "ir de compras" },
+          { "base": "put", "regla": "doble", "res": "putting", "es": "poner" },
+          { "base": "get", "regla": "doble", "res": "getting", "es": "conseguir" },
+          { "base": "stop", "regla": "doble", "res": "stopping", "es": "parar" },
+          { "base": "win", "regla": "doble", "res": "winning", "es": "ganar" },
+          { "base": "jog", "regla": "doble", "res": "jogging", "es": "trotar" },
+          { "base": "hug", "regla": "doble", "res": "hugging", "es": "abrazar" }
+        ]
+      ]
+    },
+    {
+      "tipo": "completa",
+      "icono": "🧲",
+      "nombre": "Am, is, are",
+      "desc": "I am, she is, they are + -ing",
+      "total": 8,
+      "pista": "I am · he, she, it is · you, we, they are 👀",
+      "items": [
+        [
+          { "f": "I ___ reading a book.", "c": "am", "d": ["is", "are"], "es": "Estoy leyendo un libro.", "emoji": "📖" },
+          { "f": "She ___ dancing.", "c": "is", "d": ["am", "are"], "es": "Ella está bailando.", "emoji": "💃" },
+          { "f": "They ___ playing soccer.", "c": "are", "d": ["is", "am"], "es": "Ellos están jugando fútbol.", "emoji": "⚽" },
+          { "f": "We ___ eating pizza.", "c": "are", "d": ["is", "am"], "es": "Estamos comiendo pizza.", "emoji": "🍕" },
+          { "f": "He ___ sleeping.", "c": "is", "d": ["are", "am"], "es": "Él está durmiendo.", "emoji": "😴" },
+          { "f": "You ___ singing very well.", "c": "are", "d": ["is", "am"], "es": "Estás cantando muy bien.", "emoji": "🎤" },
+          { "f": "The dog ___ running.", "c": "is", "d": ["are", "am"], "es": "El perro está corriendo.", "emoji": "🐕" },
+          { "f": "The cats ___ sleeping.", "c": "are", "d": ["is", "am"], "es": "Los gatos están durmiendo.", "emoji": "🐱" },
+          { "f": "It ___ raining.", "c": "is", "d": ["are", "am"], "es": "Está lloviendo.", "emoji": "🌧️" }
+        ],
+        [
+          { "f": "She ___ sleeping. She is awake.", "c": "isn't", "d": ["aren't", "am not"], "es": "Ella no está durmiendo. Está despierta.", "emoji": "👀" },
+          { "f": "I ___ watching TV. I am studying.", "c": "am not", "d": ["isn't", "aren't"], "es": "No estoy viendo televisión. Estoy estudiando.", "emoji": "📚" },
+          { "f": "They ___ playing. They are tired.", "c": "aren't", "d": ["isn't", "am not"], "es": "Ellos no están jugando. Están cansados.", "emoji": "😫" },
+          { "f": "He is ___ a sandwich.", "c": "eating", "d": ["eat", "eats"], "es": "Él está comiendo un sánduche.", "emoji": "🥪", "pista": "Después de am, is o are, el verbo lleva -ing 👀" },
+          { "f": "We are ___ to music.", "c": "listening", "d": ["listen", "listens"], "es": "Estamos escuchando música.", "emoji": "🎧", "pista": "Después de am, is o are, el verbo lleva -ing 👀" },
+          { "f": "The children are ___ in the pool.", "c": "swimming", "d": ["swim", "swiming"], "es": "Los niños están nadando en la piscina.", "emoji": "🏊", "pista": "Swim es corto y termina en consonante + vocal + consonante: se dobla la m 👀" },
+          { "f": "My mom is ___ a cake.", "c": "making", "d": ["make", "makeing"], "es": "Mi mamá está haciendo una torta.", "emoji": "🎂", "pista": "Make termina en -e: se quita la e y se añade -ing 👀" },
+          { "f": "The boys are ___ fast.", "c": "running", "d": ["runing", "run"], "es": "Los niños están corriendo rápido.", "emoji": "🏃", "pista": "Run es corto y termina en consonante + vocal + consonante: se dobla la n 👀" }
+        ],
+        [
+          { "f": "___ you listening to me?", "c": "Are", "d": ["Is", "Am"], "es": "¿Me estás escuchando?", "emoji": "👂" },
+          { "f": "___ she cooking dinner?", "c": "Is", "d": ["Are", "Am"], "es": "¿Ella está cocinando la cena?", "emoji": "🍳" },
+          { "f": "What ___ they doing?", "c": "are", "d": ["is", "am"], "es": "¿Qué están haciendo ellos?", "emoji": "❓" },
+          { "f": "___ it raining now?", "c": "Is", "d": ["Are", "Am"], "es": "¿Está lloviendo ahora?", "emoji": "🌧️" },
+          { "f": "Where ___ you going?", "c": "are", "d": ["is", "am"], "es": "¿A dónde vas?", "emoji": "🚶" },
+          { "f": "___ the children sleeping?", "c": "Are", "d": ["Is", "Am"], "es": "¿Los niños están durmiendo?", "emoji": "😴" },
+          { "f": "What ___ your dad doing?", "c": "is", "d": ["are", "am"], "es": "¿Qué está haciendo tu papá?", "emoji": "🔧" },
+          { "f": "___ I speaking too fast?", "c": "Am", "d": ["Is", "Are"], "es": "¿Estoy hablando muy rápido?", "emoji": "🗣️" }
+        ]
+      ]
+    },
+    {
+      "tipo": "frase",
+      "icono": "🧩",
+      "nombre": "Build the sentence",
+      "desc": "arma lo que está pasando ahora",
+      "total": 6,
+      "frases": [
+        [
+          { "en": "I am eating.", "es": "Estoy comiendo.", "emoji": "🍽️" },
+          { "en": "She is reading a book.", "es": "Ella está leyendo un libro.", "emoji": "📖" },
+          { "en": "They are playing soccer.", "es": "Ellos están jugando fútbol.", "emoji": "⚽" },
+          { "en": "The dog is sleeping.", "es": "El perro está durmiendo.", "emoji": "🐕" },
+          { "en": "We are singing.", "es": "Estamos cantando.", "emoji": "🎤" },
+          { "en": "He is running fast.", "es": "Él está corriendo rápido.", "emoji": "🏃" },
+          { "en": "It is raining.", "es": "Está lloviendo.", "emoji": "🌧️" }
+        ],
+        [
+          { "en": "He is not watching TV.", "es": "Él no está viendo televisión.", "emoji": "📺" },
+          { "en": "Are you listening to music?", "es": "¿Estás escuchando música?", "emoji": "🎧", "sobra": ["Is"] },
+          { "en": "We are doing our homework.", "es": "Estamos haciendo nuestro deber.", "emoji": "📝" },
+          { "en": "My mom is cooking dinner.", "es": "Mi mamá está cocinando la cena.", "emoji": "🍳", "sobra": ["are"] },
+          { "en": "The children are playing in the park.", "es": "Los niños están jugando en el parque.", "emoji": "🌳", "sobra": ["is"] },
+          { "en": "I am not sleeping.", "es": "No estoy durmiendo.", "emoji": "😴" },
+          { "en": "She is riding her bike.", "es": "Ella está montando su bicicleta.", "emoji": "🚴" }
+        ],
+        [
+          { "en": "What are you doing now?", "es": "¿Qué estás haciendo ahora?", "emoji": "❓", "sobra": ["is"] },
+          { "en": "My friends are riding their bikes.", "es": "Mis amigos están montando sus bicicletas.", "emoji": "🚴", "sobra": ["is"] },
+          { "en": "Is your mom cooking dinner?", "es": "¿Tu mamá está cocinando la cena?", "emoji": "🍳", "sobra": ["Are"] },
+          { "en": "The boys are not playing video games.", "es": "Los niños no están jugando videojuegos.", "emoji": "🎮" },
+          { "en": "Where is your sister going?", "es": "¿A dónde va tu hermana?", "emoji": "🚶", "sobra": ["are"] },
+          { "en": "I am writing a letter to my grandma.", "es": "Le estoy escribiendo una carta a mi abuela.", "emoji": "✉️" },
+          { "en": "Why are you laughing?", "es": "¿Por qué te estás riendo?", "emoji": "😂", "sobra": ["is"] }
+        ]
+      ]
+    },
+    {
+      "tipo": "clasificar",
+      "icono": "⚖️",
+      "nombre": "Every day or right now?",
+      "desc": "¿pasa siempre o está pasando ahora?",
+      "total": 5,
+      "pregunta": "¿Todos los días o ahora mismo? Lleva cada ficha a su grupo 👇",
+      "fichas": [4, 5, 6],
+      "cestas": [
+        { "id": "simple", "nombre": "Every day (todos los días)", "emoji": "🔁" },
+        { "id": "ahora", "nombre": "Right now (ahora mismo)", "emoji": "⏱️" }
+      ],
+      "items": {
+        "simple": [
+          ["every day", "always", "on Mondays", "every morning", "usually", "never"],
+          ["I play soccer every day.", "She always gets up at six.", "We go to school on Mondays.", "He never eats fish.", "They watch TV every night."],
+          ["My dad works in a bank.", "She speaks English and Spanish.", "The sun rises in the east.", "I brush my teeth after lunch.", "Birds eat insects."]
+        ],
+        "ahora": [
+          ["now", "right now", "at the moment", "Look!", "Listen!"],
+          ["I am playing soccer now.", "Look! She is dancing.", "We are eating right now.", "Listen! He is singing.", "They are sleeping at the moment."],
+          ["My dad is working in the garden.", "She is speaking to the teacher.", "The sun is shining.", "I am brushing my teeth.", "The birds are eating bread."]
+        ]
+      }
+    }
+  ]
+}

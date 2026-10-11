@@ -1,0 +1,267 @@
+{
+  "modo": "pasado",
+  "materia": "ingles",
+  "px": "ppas",
+  "titulo": "Past simple",
+  "icono": "⏪",
+  "motor": "actividad",
+  "temas": [
+    {
+      "tipo": "clasificar",
+      "icono": "⏳",
+      "nombre": "The time machine",
+      "desc": "¿ya pasó, pasa siempre o pasa ahora?",
+      "total": 5,
+      "pregunta": "⏳ ¿Cuándo pasa? Lleva cada oración a su tiempo 👇",
+      "fichas": [4, 5, 6],
+      "cestas": [
+        { "id": "pasado", "nombre": "Yesterday (ya pasó)", "emoji": "⏪" },
+        { "id": "simple", "nombre": "Every day (siempre)", "emoji": "🔁" },
+        { "id": "ahora", "nombre": "Right now (ahora)", "emoji": "⏱️" }
+      ],
+      "cestasPorNivel": [
+        ["pasado", "simple"],
+        ["pasado", "simple", "ahora"],
+        ["pasado", "simple", "ahora"]
+      ],
+      "items": {
+        "pasado": [
+          ["I played yesterday.", "She cooked last night.", "We walked yesterday.", "He watched TV last night.", "They danced last Saturday."],
+          ["I went to the beach last week.", "She ate pizza yesterday.", "We saw a movie last night.", "He bought a ball two days ago."],
+          ["My grandma made soup.", "The dog ran in the park.", "We didn't go to school.", "I wrote a letter.", "Did you see the rainbow?"]
+        ],
+        "simple": [
+          ["I play every day.", "She cooks every night.", "We walk every morning.", "He watches TV every day.", "They dance on Saturdays."],
+          ["I go to the beach every year.", "She eats pizza on Fridays.", "We see our friends every day.", "He always buys candy."],
+          ["My grandma makes soup.", "The dog runs in the park.", "We don't go to school on Sundays.", "I write letters.", "Do you see your friends on Sundays?"]
+        ],
+        "ahora": [
+          [],
+          ["I am going to the beach now.", "She is eating pizza right now.", "Look! We are watching a movie.", "He is buying a ball at the moment."],
+          ["My grandma is making soup.", "The dog is running in the park.", "We aren't going to school.", "I am writing a letter.", "Are you looking at the rainbow?"]
+        ]
+      }
+    },
+    {
+      "tipo": "completa",
+      "icono": "⏪",
+      "nombre": "What happened?",
+      "desc": "completa con el verbo en pasado",
+      "total": 8,
+      "pista": "Ya pasó: el verbo va en pasado (con -ed, o cambia si es irregular) 👀",
+      "items": [
+        [
+          { "f": "Yesterday I ___ soccer.", "c": "played", "d": ["play", "plays"], "es": "Ayer jugué fútbol.", "emoji": "⚽" },
+          { "f": "Last night we ___ a movie.", "c": "watched", "d": ["watch", "watching"], "es": "Anoche vimos una película.", "emoji": "🎬" },
+          { "f": "She ___ her grandma last week.", "c": "visited", "d": ["visit", "visits"], "es": "Ella visitó a su abuela la semana pasada.", "emoji": "👵" },
+          { "f": "He ___ the dishes yesterday.", "c": "washed", "d": ["wash", "washes"], "es": "Él lavó los platos ayer.", "emoji": "🍽️" },
+          { "f": "They ___ in the rain yesterday.", "c": "danced", "d": ["dance", "dancing"], "es": "Ayer ellos bailaron bajo la lluvia.", "emoji": "🌧️" },
+          { "f": "I ___ my room last Saturday.", "c": "cleaned", "d": ["clean", "cleans"], "es": "Limpié mi cuarto el sábado pasado.", "emoji": "🧹" },
+          { "f": "We ___ to the park yesterday.", "c": "walked", "d": ["walk", "walks"], "es": "Ayer caminamos al parque.", "emoji": "🌳" },
+          { "f": "Mom ___ rice and chicken last night.", "c": "cooked", "d": ["cook", "cooks"], "es": "Anoche mi mamá cocinó arroz con pollo.", "emoji": "🍗" }
+        ],
+        [
+          { "f": "Last night we ___ pizza.", "c": "ate", "d": ["eat", "eated"], "es": "Anoche comimos pizza.", "emoji": "🍕" },
+          { "f": "Yesterday I ___ to the zoo.", "c": "went", "d": ["go", "goed"], "es": "Ayer fui al zoológico.", "emoji": "🦁" },
+          { "f": "She ___ a rainbow this morning.", "c": "saw", "d": ["see", "sees"], "es": "Ella vio un arcoíris esta mañana.", "emoji": "🌈" },
+          { "f": "He ___ a new ball last week.", "c": "bought", "d": ["buy", "buyed"], "es": "Él compró una pelota nueva la semana pasada.", "emoji": "⚽" },
+          { "f": "We ___ a great time at the party.", "c": "had", "d": ["have", "haved"], "es": "La pasamos muy bien en la fiesta.", "emoji": "🎉" },
+          { "f": "I ___ a letter to my cousin.", "c": "wrote", "d": ["write", "writed"], "es": "Le escribí una carta a mi primo.", "emoji": "✉️" },
+          { "f": "My uncle ___ from Loja yesterday.", "c": "came", "d": ["come", "comed"], "es": "Mi tío vino de Loja ayer.", "emoji": "🚌" },
+          { "f": "She ___ orange juice at breakfast.", "c": "drank", "d": ["drink", "drinked"], "es": "Ella tomó jugo de naranja en el desayuno.", "emoji": "🍊" }
+        ],
+        [
+          { "f": "Two days ago we ___ to Salinas.", "c": "traveled", "d": ["travel", "travels"], "es": "Hace dos días viajamos a Salinas.", "emoji": "🏖️" },
+          { "f": "Last year my family ___ in Ambato.", "c": "lived", "d": ["live", "lives"], "es": "El año pasado mi familia vivía en Ambato.", "emoji": "🏠" },
+          { "f": "The class ___ at seven yesterday.", "c": "began", "d": ["begin", "begined"], "es": "La clase empezó a las siete ayer.", "emoji": "⏰" },
+          { "f": "I ___ my friend at the mall last Sunday.", "c": "met", "d": ["meet", "meeted"], "es": "Me encontré con mi amigo en el centro comercial el domingo pasado.", "emoji": "🛍️" },
+          { "f": "We ___ photos at the volcano.", "c": "took", "d": ["take", "taked"], "es": "Tomamos fotos en el volcán.", "emoji": "📸" },
+          { "f": "The baby ___ all afternoon.", "c": "slept", "d": ["sleep", "sleeped"], "es": "El bebé durmió toda la tarde.", "emoji": "😴" },
+          { "f": "She ___ the box to her room.", "c": "carried", "d": ["carry", "carryed"], "es": "Ella cargó la caja hasta su cuarto.", "emoji": "📦" },
+          { "f": "My dad ___ me to ride a bike.", "c": "taught", "d": ["teach", "teached"], "es": "Mi papá me enseñó a montar bicicleta.", "emoji": "🚲" },
+          { "f": "Nelson ___ the answer.", "c": "knew", "d": ["know", "knowed"], "es": "Nelson sabía la respuesta.", "emoji": "💡" }
+        ]
+      ]
+    },
+    {
+      "tipo": "completa",
+      "icono": "🚫",
+      "nombre": "Didn't and Did…?",
+      "desc": "decir que no y preguntar en pasado",
+      "total": 8,
+      "pista": "En pasado se niega con didn't y se pregunta con Did; el verbo vuelve a su forma base 👀",
+      "items": [
+        [
+          { "f": "I ___ go to school yesterday.", "c": "didn't", "d": ["don't"], "es": "No fui a la escuela ayer.", "emoji": "🏫" },
+          { "f": "She ___ eat her soup last night.", "c": "didn't", "d": ["doesn't"], "es": "Ella no se tomó la sopa anoche.", "emoji": "🍲" },
+          { "f": "We ___ play soccer last Sunday.", "c": "didn't", "d": ["don't"], "es": "No jugamos fútbol el domingo pasado.", "emoji": "⚽" },
+          { "f": "He ___ call me yesterday.", "c": "didn't", "d": ["doesn't"], "es": "Él no me llamó ayer.", "emoji": "📞" },
+          { "f": "I ___ like fish. I never eat it.", "c": "don't", "d": ["didn't"], "es": "No me gusta el pescado. Nunca lo como.", "emoji": "🐟", "pista": "Aquí no se habla de ayer, sino de siempre: va en presente 👀" },
+          { "f": "They ___ come to the party last week.", "c": "didn't", "d": ["don't"], "es": "Ellos no vinieron a la fiesta la semana pasada.", "emoji": "🎉" },
+          { "f": "It ___ rain yesterday.", "c": "didn't", "d": ["doesn't"], "es": "Ayer no llovió.", "emoji": "🌧️" },
+          { "f": "She ___ watch TV every day.", "c": "doesn't", "d": ["didn't"], "es": "Ella no ve televisión todos los días.", "emoji": "📺", "pista": "Every day es de siempre, no de ayer: va en presente 👀" }
+        ],
+        [
+          { "f": "She didn't ___ TV last night.", "c": "watch", "d": ["watched", "watches"], "es": "Ella no vio televisión anoche.", "emoji": "📺" },
+          { "f": "Did you ___ your homework?", "c": "do", "d": ["did", "does"], "es": "¿Hiciste tu deber?", "emoji": "📝" },
+          { "f": "I didn't ___ the movie.", "c": "see", "d": ["saw", "sees"], "es": "No vi la película.", "emoji": "🎬" },
+          { "f": "Did he ___ to the party?", "c": "go", "d": ["went", "goes"], "es": "¿Él fue a la fiesta?", "emoji": "🎉" },
+          { "f": "We didn't ___ pizza last night.", "c": "eat", "d": ["ate", "eats"], "es": "No comimos pizza anoche.", "emoji": "🍕" },
+          { "f": "Did they ___ the game?", "c": "win", "d": ["won", "wins"], "es": "¿Ellos ganaron el partido?", "emoji": "🏆" },
+          { "f": "He didn't ___ his room.", "c": "clean", "d": ["cleaned", "cleans"], "es": "Él no limpió su cuarto.", "emoji": "🧹" }
+        ],
+        [
+          { "f": "___ you see the rainbow yesterday?", "c": "Did", "d": ["Do", "Does"], "es": "¿Viste el arcoíris ayer?", "emoji": "🌈" },
+          { "f": "Where ___ you go last weekend?", "c": "did", "d": ["do", "does"], "es": "¿A dónde fuiste el fin de semana pasado?", "emoji": "🗺️" },
+          { "f": "What ___ she eat for breakfast yesterday?", "c": "did", "d": ["does", "do"], "es": "¿Qué desayunó ella ayer?", "emoji": "🥣" },
+          { "f": "I ___ sleep well last night.", "c": "didn't", "d": ["don't", "doesn't"], "es": "No dormí bien anoche.", "emoji": "😴" },
+          { "f": "___ they visit Quito last year?", "c": "Did", "d": ["Do", "Does"], "es": "¿Ellos visitaron Quito el año pasado?", "emoji": "🏙️" },
+          { "f": "She ___ buy the dress yesterday.", "c": "didn't", "d": ["doesn't", "don't"], "es": "Ella no compró el vestido ayer.", "emoji": "👗" },
+          { "f": "When ___ the movie start last night?", "c": "did", "d": ["does", "do"], "es": "¿A qué hora empezó la película anoche?", "emoji": "🎬" },
+          { "f": "What did you ___ last Saturday?", "c": "do", "d": ["did", "does"], "es": "¿Qué hiciste el sábado pasado?", "emoji": "❓" }
+        ]
+      ]
+    },
+    {
+      "tipo": "completa",
+      "icono": "🧲",
+      "nombre": "Was or were?",
+      "desc": "el pasado de am, is, are",
+      "total": 8,
+      "pista": "I, he, she, it → was · you, we, they → were 👀",
+      "items": [
+        [
+          { "f": "I ___ happy yesterday.", "c": "was", "d": ["were"], "es": "Yo estaba feliz ayer.", "emoji": "😊" },
+          { "f": "They ___ at school yesterday.", "c": "were", "d": ["was"], "es": "Ellos estaban en la escuela ayer.", "emoji": "🏫" },
+          { "f": "She ___ tired last night.", "c": "was", "d": ["were"], "es": "Ella estaba cansada anoche.", "emoji": "😴" },
+          { "f": "We ___ at the beach last Sunday.", "c": "were", "d": ["was"], "es": "Estuvimos en la playa el domingo pasado.", "emoji": "🏖️" },
+          { "f": "It ___ sunny yesterday.", "c": "was", "d": ["were"], "es": "Ayer estuvo soleado.", "emoji": "☀️" },
+          { "f": "You ___ late this morning.", "c": "were", "d": ["was"], "es": "Llegaste tarde esta mañana.", "emoji": "⏰" },
+          { "f": "He ___ sick last week.", "c": "was", "d": ["were"], "es": "Él estuvo enfermo la semana pasada.", "emoji": "🤒" },
+          { "f": "The dogs ___ hungry last night.", "c": "were", "d": ["was"], "es": "Los perros tenían hambre anoche.", "emoji": "🐕" }
+        ],
+        [
+          { "f": "She ___ at home yesterday. She was at school.", "c": "wasn't", "d": ["weren't"], "es": "Ella no estaba en casa ayer. Estaba en la escuela.", "emoji": "🏠" },
+          { "f": "They ___ sad. They were happy.", "c": "weren't", "d": ["wasn't"], "es": "Ellos no estaban tristes. Estaban felices.", "emoji": "😀" },
+          { "f": "___ you at the party last night?", "c": "Were", "d": ["Was"], "es": "¿Estuviste en la fiesta anoche?", "emoji": "🎉" },
+          { "f": "___ he your teacher last year?", "c": "Was", "d": ["Were"], "es": "¿Él fue tu profesor el año pasado?", "emoji": "🍎" },
+          { "f": "I ___ hungry, so I didn't eat.", "c": "wasn't", "d": ["weren't"], "es": "No tenía hambre, así que no comí.", "emoji": "🍽️" },
+          { "f": "___ the movie good?", "c": "Was", "d": ["Were"], "es": "¿Estuvo buena la película?", "emoji": "🎬" },
+          { "f": "We ___ tired after the game.", "c": "were", "d": ["was"], "es": "Estábamos cansados después del partido.", "emoji": "⚽" },
+          { "f": "___ your friends at the park?", "c": "Were", "d": ["Was"], "es": "¿Tus amigos estaban en el parque?", "emoji": "🌳" }
+        ],
+        [
+          { "f": "Yesterday it ___ sunny.", "c": "was", "d": ["is", "were"], "es": "Ayer estuvo soleado.", "emoji": "☀️" },
+          { "f": "Today it ___ rainy.", "c": "is", "d": ["was", "were"], "es": "Hoy está lluvioso.", "emoji": "🌧️", "pista": "Today es hoy, no ayer: va en presente 👀" },
+          { "f": "Last year I ___ in fourth grade.", "c": "was", "d": ["am", "were"], "es": "El año pasado yo estaba en cuarto grado.", "emoji": "🎒" },
+          { "f": "Now I ___ in fifth grade.", "c": "am", "d": ["was", "were"], "es": "Ahora estoy en quinto grado.", "emoji": "🎒", "pista": "Now es ahora, no ayer: va en presente 👀" },
+          { "f": "My grandparents ___ young in this old photo.", "c": "were", "d": ["was", "is"], "es": "Mis abuelos eran jóvenes en esta foto vieja.", "emoji": "📷" },
+          { "f": "Where ___ you yesterday afternoon?", "c": "were", "d": ["was", "are"], "es": "¿Dónde estabas ayer por la tarde?", "emoji": "❓" },
+          { "f": "There ___ many people at the concert last night.", "c": "were", "d": ["was", "are"], "es": "Había mucha gente en el concierto anoche.", "emoji": "🎵" },
+          { "f": "There ___ a cat on the roof yesterday.", "c": "was", "d": ["were", "is"], "es": "Ayer había un gato en el techo.", "emoji": "🐱" }
+        ]
+      ]
+    },
+    {
+      "tipo": "frase",
+      "icono": "🧩",
+      "nombre": "Build the sentence",
+      "desc": "arma oraciones de lo que ya pasó",
+      "total": 6,
+      "frases": [
+        [
+          { "en": "I played soccer yesterday.", "es": "Ayer jugué fútbol.", "emoji": "⚽" },
+          { "en": "She went to the park.", "es": "Ella fue al parque.", "emoji": "🌳" },
+          { "en": "We ate pizza.", "es": "Comimos pizza.", "emoji": "🍕" },
+          { "en": "He watched a movie.", "es": "Él vio una película.", "emoji": "🎬" },
+          { "en": "They were happy.", "es": "Ellos estaban felices.", "emoji": "😊" },
+          { "en": "I saw a big dog.", "es": "Vi un perro grande.", "emoji": "🐕" },
+          { "en": "My mom cooked rice.", "es": "Mi mamá cocinó arroz.", "emoji": "🍚" }
+        ],
+        [
+          { "en": "He didn't go to school.", "es": "Él no fue a la escuela.", "emoji": "🏫", "sobra": ["went"] },
+          { "en": "Did you see the movie?", "es": "¿Viste la película?", "emoji": "🎬", "sobra": ["saw"] },
+          { "en": "They were at the beach.", "es": "Ellos estaban en la playa.", "emoji": "🏖️", "sobra": ["was"] },
+          { "en": "I visited my grandma last Sunday.", "es": "Visité a mi abuela el domingo pasado.", "emoji": "👵" },
+          { "en": "We had a great time.", "es": "La pasamos muy bien.", "emoji": "🎉" },
+          { "en": "She bought a new dress.", "es": "Ella compró un vestido nuevo.", "emoji": "👗", "sobra": ["buyed"] },
+          { "en": "I wasn't at home yesterday.", "es": "Ayer no estuve en casa.", "emoji": "🏠" }
+        ],
+        [
+          { "en": "Last weekend we visited my grandma.", "es": "El fin de semana pasado visitamos a mi abuela.", "emoji": "👵", "sobra": ["visit"] },
+          { "en": "Where did you go yesterday?", "es": "¿A dónde fuiste ayer?", "emoji": "🗺️", "sobra": ["went"] },
+          { "en": "I didn't watch TV last night.", "es": "No vi televisión anoche.", "emoji": "📺", "sobra": ["watched"] },
+          { "en": "My family traveled to Cuenca last year.", "es": "Mi familia viajó a Cuenca el año pasado.", "emoji": "🚌" },
+          { "en": "What did you eat for lunch?", "es": "¿Qué comiste en el almuerzo?", "emoji": "🍽️", "sobra": ["ate"] },
+          { "en": "We were tired after the trip.", "es": "Estábamos cansados después del viaje.", "emoji": "😴", "sobra": ["was"] },
+          { "en": "She wrote a letter to her friend.", "es": "Ella le escribió una carta a su amiga.", "emoji": "✉️", "sobra": ["writed"] }
+        ]
+      ]
+    },
+    {
+      "tipo": "ordenar",
+      "icono": "📸",
+      "nombre": "My past in pictures",
+      "desc": "ordena lo que pasó",
+      "total": 4,
+      "pregunta": "📸 Ordena lo que pasó: ¿qué fue primero? 👇",
+      "secuencias": [
+        [
+          ["In the morning I woke up.", "At noon I ate lunch.", "In the afternoon I played.", "At night I slept."],
+          ["On Monday I painted.", "On Tuesday I danced.", "On Wednesday I cooked."],
+          ["First, I washed my hands.", "Then, I ate my lunch.", "Finally, I brushed my teeth."],
+          ["First, I opened my book.", "Then, I read a story.", "Finally, I closed my book."]
+        ],
+        [
+          ["At 8:00 we arrived at the beach.", "At 9:00 we swam in the sea.", "At 10:00 we played soccer.", "At 11:00 we built a sandcastle.", "At 12:00 we ate fish."],
+          ["On Monday I visited my aunt.", "On Tuesday I studied Math.", "On Wednesday I played soccer.", "On Thursday I cleaned my room.", "On Friday I watched a movie."],
+          ["First, I took out the bread.", "Then, I added cheese.", "Finally, I ate my sandwich."]
+        ],
+        [
+          ["Yesterday morning I woke up late.", "At noon I had lunch with my family.", "In the afternoon we visited my grandma.", "In the evening we watched a movie.", "At night I went to bed."],
+          ["In January we went to the beach.", "In May I started fifth grade.", "In July we had vacation.", "In October we celebrated Guayaquil.", "In December we opened presents."],
+          ["Two years ago I was in third grade.", "Last year I was in fourth grade.", "This year I am in fifth grade.", "Next year I will be in sixth grade."]
+        ]
+      ]
+    },
+    {
+      "tipo": "emparejar",
+      "icono": "🕰️",
+      "nombre": "Time words",
+      "desc": "yesterday, last night, two days ago…",
+      "total": 5,
+      "pregunta": "Une cada palabra de tiempo con su significado 👇",
+      "pares": [
+        [
+          { "a": "yesterday", "b": "ayer" },
+          { "a": "today", "b": "hoy" },
+          { "a": "last night", "b": "anoche" },
+          { "a": "last week", "b": "la semana pasada" },
+          { "a": "last year", "b": "el año pasado" },
+          { "a": "this morning", "b": "esta mañana" },
+          { "a": "now", "b": "ahora" }
+        ],
+        [
+          { "a": "last month", "b": "el mes pasado" },
+          { "a": "last weekend", "b": "el fin de semana pasado" },
+          { "a": "two days ago", "b": "hace dos días" },
+          { "a": "a week ago", "b": "hace una semana" },
+          { "a": "last Monday", "b": "el lunes pasado" },
+          { "a": "yesterday morning", "b": "ayer por la mañana" },
+          { "a": "tomorrow", "b": "mañana" },
+          { "a": "last night", "b": "anoche" }
+        ],
+        [
+          { "a": "the day before yesterday", "b": "anteayer" },
+          { "a": "a long time ago", "b": "hace mucho tiempo" },
+          { "a": "last summer", "b": "el verano pasado" },
+          { "a": "three years ago", "b": "hace tres años" },
+          { "a": "yesterday afternoon", "b": "ayer por la tarde" },
+          { "a": "when I was little", "b": "cuando era pequeño" },
+          { "a": "an hour ago", "b": "hace una hora" },
+          { "a": "last Christmas", "b": "la Navidad pasada" }
+        ]
+      ]
+    }
+  ]
+}

@@ -68,6 +68,15 @@ def tres_niveles(f, t, clave):
     return v
 
 
+def nivel_real(niveles, n):
+    """El arreglo que de verdad se usa en el nivel n: si está vacío, el runner baja al inferior."""
+    arr = niveles[n]
+    while n > 0 and not arr:
+        n -= 1
+        arr = niveles[n]
+    return arr
+
+
 def revisar_tema(f, t, C):
     tp, nom = t.get("tipo"), t.get("nombre")
 
@@ -193,7 +202,12 @@ def revisar_tema(f, t, C):
         elif not t.get("modelo"):
             error(f, nom, "el tema no tiene ni «svg» ni «modelo»")
         for p in t["partes"]:
-            if not re.match(r"(el|la|los|las)\s", p["nombre"]):
+            if t.get("idioma") == "en":      # consigna en inglés: "Touch the kitchen" + su traducción
+                if not re.match(r"(the|my|a|an)\s", p["nombre"]):
+                    aviso(f, nom, "el nombre debe empezar con su artículo (the…): «%s»" % p["nombre"])
+                if not p.get("es"):
+                    error(f, nom, "falta la traducción («es») de «%s»" % p["nombre"])
+            elif not re.match(r"(el|la|los|las)\s", p["nombre"]):
                 aviso(f, nom, "el nombre debe empezar con su artículo (el/la/los/las): «%s»" % p["nombre"])
 
     elif tp == "ahorcado":
@@ -204,6 +218,91 @@ def revisar_tema(f, t, C):
             for w in arr:
                 if not re.fullmatch(r"[A-Za-z \-]+", w["en"]):
                     error(f, nom, "la palabra tiene caracteres que no están en el teclado: " + w["en"])
+
+    elif tp == "escucha":
+        cartas = t.get("opciones", [3, 4, 6])
+        for n in range(3):
+            arr = nivel_real(tres_niveles(f, t, "palabras"), n)
+            if not arr:
+                error(f, nom, "sin palabras en " + NIV[n]); continue
+            en = [norm(w["en"]) for w in arr]
+            if len(en) != len(set(en)):
+                error(f, nom, "palabras repetidas en %s: %s" % (NIV[n], sorted(x for x in set(en) if en.count(x) > 1)))
+            for w in arr:
+                if not w.get("emoji"):
+                    error(f, nom, "«%s» no tiene dibujo (emoji): no habría qué tocar" % w["en"])
+            # Las cartas de una ronda llevan dibujos distintos: hacen falta tantos como cartas.
+            if len({w.get("emoji") for w in arr}) < cartas[n]:
+                aviso(f, nom, "%s tiene %d dibujos distintos y la ronda pide %d cartas"
+                      % (NIV[n], len({w.get("emoji") for w in arr}), cartas[n]))
+
+    elif tp == "frase":
+        for n, arr in enumerate(tres_niveles(f, t, "frases")):
+            if not arr and n == 0:
+                error(f, nom, "sin oraciones en básico")
+            for q in arr:
+                palabras = q["en"].split()
+                if len(palabras) < 3:
+                    error(f, nom, "oración demasiado corta para ordenar: " + q["en"])
+                if not q.get("es"):
+                    aviso(f, nom, "oración sin traducción (el niño no sabría qué armar): " + q["en"])
+                for x in q.get("sobra", []):
+                    if x in palabras:
+                        error(f, nom, "la ficha que sobra «%s» también está en la oración: %s" % (x, q["en"]))
+
+    elif tp == "completa":
+        for n, arr in enumerate(tres_niveles(f, t, "items")):
+            if not arr and n == 0:
+                error(f, nom, "sin oraciones en básico")
+            for q in arr:
+                if q["f"].count("___") != 1:
+                    error(f, nom, "la oración debe tener UN hueco «___»: " + q["f"])
+                if q["c"] in q["d"]:
+                    error(f, nom, "la respuesta correcta también está entre las otras fichas: " + q["f"])
+                if not q["d"] or len(set(q["d"])) != len(q["d"]):
+                    error(f, nom, "fichas repetidas o insuficientes: " + q["f"])
+
+    elif tp == "terminacion":
+        ids = [r["id"] for r in t["reglas"]]
+        if len(ids) != len(set(ids)):
+            error(f, nom, "reglas con el mismo id")
+        por_nivel = t.get("reglasPorNivel") or [ids, ids, ids]
+        for lista in por_nivel:
+            for i in lista:
+                if i not in ids:
+                    error(f, nom, "reglasPorNivel usa una regla que no existe: " + i)
+        for n in range(3):
+            if len(por_nivel[n]) < 2:
+                error(f, nom, "%s solo tiene una terminación: no habría nada que elegir" % NIV[n])
+            arr = nivel_real(tres_niveles(f, t, "items"), n)
+            if not arr:
+                error(f, nom, "sin palabras en " + NIV[n])
+            for q in arr:
+                if q["regla"] not in ids:
+                    error(f, nom, "«%s» usa una regla que no existe: %s" % (q["base"], q["regla"]))
+                elif q["regla"] not in por_nivel[n]:
+                    aviso(f, nom, "«%s» usa la regla «%s», que no sale en %s" % (q["base"], q["regla"], NIV[n]))
+                if not q.get("res"):
+                    error(f, nom, "«%s» no tiene resultado («res»)" % q["base"])
+                # Una terminación cambia, como mucho, la última letra (study → studied, dance → dancing).
+                elif len(os.path.commonprefix([q["base"], q["res"]])) < len(q["base"]) - 1:
+                    aviso(f, nom, "¿está bien escrito? «%s» → «%s»" % (q["base"], q["res"]))
+            for i in por_nivel[n]:
+                if arr and not any(q["regla"] == i for q in arr):
+                    aviso(f, nom, "en %s ninguna palabra usa la terminación «%s»" % (NIV[n], i))
+
+    elif tp == "memoria":
+        parejas = t.get("parejas", [4, 5, 6])
+        for n in range(3):
+            arr = nivel_real(tres_niveles(f, t, "pares"), n)
+            if not arr:
+                error(f, nom, "sin parejas en " + NIV[n]); continue
+            caras = [norm(p["a"]) for p in arr] + [norm(p["b"]) for p in arr]
+            # Dos cartas iguales que NO son pareja confundirían (el niño no sabría por qué no vale).
+            if len(caras) != len(set(caras)):
+                error(f, nom, "cartas repetidas en %s: %s" % (NIV[n], sorted(x for x in set(caras) if caras.count(x) > 1)))
+            if len(arr) < parejas[n]:
+                aviso(f, nom, "%s tiene %d parejas y la ronda pide %d" % (NIV[n], len(arr), parejas[n]))
 
     elif tp == "lectura":
         total = t.get("total", 6)

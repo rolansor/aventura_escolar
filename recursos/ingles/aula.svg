@@ -1,0 +1,109 @@
+<!-- El aula — dibujo de Inglés "My school" (se incrusta en data/contenido/escuela.json con {"$archivo": ...}).
+     Partes (data-parte): door, board, clock, window, bookshelf, backpack, desk, chair, globe, book.
+     El globo y el libro están SOBRE el pupitre, pero son partes aparte. -->
+<svg viewBox="0 0 520 400" class="sen-svg sen-aula" xmlns="http://www.w3.org/2000/svg">
+  <!-- pared, piso y banderines (no son partes) -->
+  <rect x="0" y="0" width="520" height="400" rx="16" fill="#fff3d6"/>
+  <path d="M0 292 H520 V384 Q520 400 504 400 H16 Q0 400 0 384 Z" fill="#d8b384"/>
+  <path d="M0 328 H520 M0 364 H520 M70 292 V328 M230 292 V328 M390 292 V328 M150 328 V364 M310 328 V364 M470 328 V364 M60 364 V400 M240 364 V400 M400 364 V400" stroke="#c49e6c" stroke-width="1.5" fill="none"/>
+  <path d="M0 292 H520" stroke="#b08a5a" stroke-width="3"/>
+  <path d="M120 14 Q260 34 400 14" fill="none" stroke="#8a5a33" stroke-width="1.5"/>
+  <g>
+    <path d="M140 17 l14 2 l-9 16 z" fill="#e8553f"/><path d="M178 22 l14 1.5 l-8 16 z" fill="#ffd54a"/>
+    <path d="M216 25 l14 1 l-7 16 z" fill="#3fa650"/><path d="M254 27 l14 0 l-7 16 z" fill="#5b8def"/>
+    <path d="M292 26 l14 -1 l-6 16 z" fill="#b06ad9"/><path d="M330 23 l14 -1.5 l-5 16 z" fill="#ff9f43"/>
+    <path d="M366 19 l14 -2 l-4 16 z" fill="#e8553f"/>
+  </g>
+
+  <!-- DOOR -->
+  <g data-parte="door">
+    <rect x="22" y="92" width="80" height="200" rx="4" fill="#a8703f" stroke="#6b4423" stroke-width="4"/>
+    <rect x="36" y="108" width="52" height="60" rx="3" fill="#bfe6ff" stroke="#6b4423" stroke-width="3"/>
+    <rect x="36" y="186" width="52" height="90" rx="3" fill="none" stroke="#8a5a33" stroke-width="3"/>
+    <circle cx="93" cy="196" r="5" fill="#ffd54a" stroke="#b58a12" stroke-width="2"/>
+  </g>
+
+  <!-- BOARD -->
+  <g data-parte="board">
+    <rect x="138" y="52" width="244" height="130" rx="6" fill="#a8703f" stroke="#6b4423" stroke-width="3"/>
+    <rect x="148" y="62" width="224" height="108" rx="3" fill="#2f7d5b"/>
+    <text x="260" y="108" text-anchor="middle" font-family="Comic Sans MS, Trebuchet MS, Arial, sans-serif" font-size="28" font-weight="bold" fill="#ffffff">Hello!</text>
+    <text x="260" y="148" text-anchor="middle" font-family="Comic Sans MS, Trebuchet MS, Arial, sans-serif" font-size="22" font-weight="bold" fill="#ffe680">A B C</text>
+    <rect x="162" y="172" width="24" height="6" rx="2" fill="#ffffff"/>
+    <rect x="328" y="170" width="30" height="9" rx="2" fill="#5b8def"/>
+  </g>
+
+  <!-- CLOCK -->
+  <g data-parte="clock">
+    <circle cx="452" cy="58" r="30" fill="#ffffff" stroke="#e8553f" stroke-width="6"/>
+    <path d="M452 34 v6 M452 76 v6 M428 58 h6 M470 58 h6" stroke="#3a4266" stroke-width="3" stroke-linecap="round"/>
+    <path d="M452 58 V42 M452 58 L466 65" stroke="#3a4266" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="452" cy="58" r="3.5" fill="#e8553f"/>
+  </g>
+
+  <!-- WINDOW -->
+  <g data-parte="window">
+    <rect x="404" y="106" width="100" height="100" rx="4" fill="#bfe6ff" stroke="#6b4423" stroke-width="5"/>
+    <circle cx="482" cy="128" r="10" fill="#ffd54a"/>
+    <ellipse cx="430" cy="134" rx="15" ry="6" fill="#ffffff"/>
+    <path d="M407 203 Q430 172 454 194 Q480 168 501 203 Z" fill="#7ccf6b"/>
+    <path d="M454 106 V206 M404 156 H504" stroke="#6b4423" stroke-width="4"/>
+  </g>
+
+  <!-- BOOKSHELF -->
+  <g data-parte="bookshelf">
+    <rect x="404" y="222" width="100" height="108" rx="4" fill="#b9804f" stroke="#6b4423" stroke-width="4"/>
+    <rect x="412" y="230" width="84" height="42" fill="#f6e3c5"/>
+    <rect x="412" y="280" width="84" height="42" fill="#f6e3c5"/>
+    <rect x="416" y="240" width="9" height="32" fill="#e8553f"/><rect x="427" y="236" width="10" height="36" fill="#5b8def"/>
+    <rect x="439" y="242" width="8" height="30" fill="#ffd54a"/><rect x="449" y="238" width="10" height="34" fill="#3fa650"/>
+    <rect x="461" y="244" width="9" height="28" fill="#b06ad9"/>
+    <rect x="474" y="240" width="9" height="33" fill="#ff9f43" transform="rotate(14 478 272)"/>
+    <rect x="416" y="288" width="10" height="34" fill="#3fa650"/><rect x="428" y="292" width="8" height="30" fill="#ff9f43"/>
+    <rect x="438" y="286" width="11" height="36" fill="#e8553f"/><rect x="451" y="290" width="9" height="32" fill="#5b8def"/>
+    <rect x="466" y="308" width="26" height="14" rx="2" fill="#b06ad9"/><rect x="469" y="296" width="20" height="12" rx="2" fill="#ffd54a"/>
+  </g>
+
+  <!-- BACKPACK -->
+  <g data-parte="backpack">
+    <path d="M119 314 Q119 298 134 298 Q149 298 149 314" fill="none" stroke="#2a5fb0" stroke-width="5" stroke-linecap="round"/>
+    <rect x="106" y="310" width="56" height="68" rx="16" fill="#3f86e8" stroke="#2a5fb0" stroke-width="3"/>
+    <path d="M114 332 H154" stroke="#2a5fb0" stroke-width="3" stroke-linecap="round"/>
+    <rect x="116" y="342" width="36" height="27" rx="6" fill="#6aa9f5" stroke="#2a5fb0" stroke-width="2.5"/>
+    <circle cx="134" cy="352" r="3" fill="#ffd54a"/>
+  </g>
+
+  <!-- DESK -->
+  <g data-parte="desk">
+    <path d="M194 332 V380 M322 332 V380" stroke="#8a5a33" stroke-width="8" stroke-linecap="round"/>
+    <rect x="186" y="308" width="144" height="24" fill="#c2854a" stroke="#8a5a33" stroke-width="2"/>
+    <rect x="246" y="316" width="24" height="5" rx="2" fill="#8a5a33"/>
+    <rect x="176" y="296" width="164" height="14" rx="4" fill="#d99a5b" stroke="#8a5a33" stroke-width="3"/>
+  </g>
+
+  <!-- GLOBE (sobre el pupitre) -->
+  <g data-parte="globe">
+    <path d="M204 295 h28 M218 295 v-10" stroke="#6b4423" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="218" cy="260" r="26" fill="#5bb8f5" stroke="#2a78c0" stroke-width="3"/>
+    <path d="M205 247 q8 -9 17 -3 q5 6 -4 10 q-1 9 -10 5 q-7 -4 -3 -12 z" fill="#5cc26a"/>
+    <path d="M224 266 q9 -3 11 6 q-4 8 -11 5 z" fill="#5cc26a"/>
+    <path d="M203 270 q5 -2 7 3 q-3 4 -7 2 z" fill="#5cc26a"/>
+  </g>
+
+  <!-- BOOK (sobre el pupitre) -->
+  <g data-parte="book">
+    <rect x="270" y="244" width="46" height="52" rx="3" fill="#ffffff" stroke="#a83322" stroke-width="2"/>
+    <rect x="266" y="240" width="46" height="54" rx="3" fill="#e8553f" stroke="#a83322" stroke-width="3"/>
+    <path d="M275 240 V294" stroke="#a83322" stroke-width="2.5"/>
+    <rect x="281" y="252" width="24" height="7" rx="2" fill="#ffffff"/>
+    <path d="M293 268 l3 7 h7 l-5.5 4.5 l2 7 l-6.5 -4 l-6.5 4 l2 -7 l-5.5 -4.5 h7 z" fill="#ffd54a"/>
+  </g>
+
+  <!-- CHAIR -->
+  <g data-parte="chair">
+    <rect x="388" y="262" width="8" height="118" rx="3" fill="#2f7d3d"/>
+    <rect x="385" y="266" width="14" height="36" rx="5" fill="#5cc26a" stroke="#2f7d3d" stroke-width="2"/>
+    <rect x="352" y="335" width="7" height="45" rx="2" fill="#2f7d3d"/>
+    <rect x="350" y="326" width="48" height="10" rx="3" fill="#5cc26a" stroke="#2f7d3d" stroke-width="2"/>
+  </g>
+</svg>

@@ -1,0 +1,392 @@
+{
+  "modo": "palabras",
+  "materia": "ingles",
+  "px": "pal",
+  "titulo": "More words",
+  "icono": "🧩",
+  "motor": "actividad",
+  "temas": [
+    {
+      "tipo": "senala",
+      "idioma": "en",
+      "icono": "🧍",
+      "nombre": "My body",
+      "desc": "head, arms, legs, knees…",
+      "total": 8,
+      "svg": { "$archivo": "recursos/senala/cuerpo.svg" },
+      "partes": [
+        { "id": "cabeza", "nombre": "the head", "es": "la cabeza" },
+        { "id": "cuello", "nombre": "the neck", "es": "el cuello" },
+        { "id": "hombro", "nombre": "the shoulders", "es": "los hombros" },
+        { "id": "tronco", "nombre": "the chest", "es": "el pecho" },
+        { "id": "brazo", "nombre": "the arms", "es": "los brazos" },
+        { "id": "codo", "nombre": "the elbows", "es": "los codos" },
+        { "id": "mano", "nombre": "the hands", "es": "las manos" },
+        { "id": "pierna", "nombre": "the legs", "es": "las piernas" },
+        { "id": "rodilla", "nombre": "the knees", "es": "las rodillas" },
+        { "id": "pie", "nombre": "the feet", "es": "los pies" }
+      ]
+    },
+    {
+      "tipo": "senala",
+      "idioma": "en",
+      "icono": "😀",
+      "nombre": "My face",
+      "desc": "eyes, nose, mouth, ears…",
+      "total": 7,
+      "svg": { "$archivo": "recursos/senala/cara.svg" },
+      "partes": [
+        { "id": "pelo", "nombre": "the hair", "es": "el pelo" },
+        { "id": "cejas", "nombre": "the eyebrows", "es": "las cejas" },
+        { "id": "ojos", "nombre": "the eyes", "es": "los ojos" },
+        { "id": "orejas", "nombre": "the ears", "es": "las orejas" },
+        { "id": "nariz", "nombre": "the nose", "es": "la nariz" },
+        { "id": "mejillas", "nombre": "the cheeks", "es": "las mejillas" },
+        { "id": "boca", "nombre": "the mouth", "es": "la boca" }
+      ]
+    },
+    {
+      "tipo": "escucha",
+      "icono": "🐶",
+      "nombre": "Animals",
+      "desc": "escucha y toca el animal",
+      "total": 8,
+      "palabras": [
+        [
+          { "en": "dog", "es": "perro", "emoji": "🐶" },
+          { "en": "cat", "es": "gato", "emoji": "🐱" },
+          { "en": "bird", "es": "pájaro", "emoji": "🐦" },
+          { "en": "fish", "es": "pez", "emoji": "🐟" },
+          { "en": "cow", "es": "vaca", "emoji": "🐮" },
+          { "en": "horse", "es": "caballo", "emoji": "🐴" },
+          { "en": "pig", "es": "chancho", "emoji": "🐷" },
+          { "en": "chicken", "es": "gallina", "emoji": "🐔" },
+          { "en": "duck", "es": "pato", "emoji": "🦆" },
+          { "en": "rabbit", "es": "conejo", "emoji": "🐰" },
+          { "en": "sheep", "es": "oveja", "emoji": "🐑" },
+          { "en": "mouse", "es": "ratón", "emoji": "🐭" }
+        ],
+        [
+          { "en": "lion", "es": "león", "emoji": "🦁" },
+          { "en": "tiger", "es": "tigre", "emoji": "🐯" },
+          { "en": "monkey", "es": "mono", "emoji": "🐵" },
+          { "en": "elephant", "es": "elefante", "emoji": "🐘" },
+          { "en": "giraffe", "es": "jirafa", "emoji": "🦒" },
+          { "en": "snake", "es": "culebra", "emoji": "🐍" },
+          { "en": "bear", "es": "oso", "emoji": "🐻" },
+          { "en": "turtle", "es": "tortuga", "emoji": "🐢" },
+          { "en": "frog", "es": "rana", "emoji": "🐸" },
+          { "en": "whale", "es": "ballena", "emoji": "🐳" },
+          { "en": "shark", "es": "tiburón", "emoji": "🦈" },
+          { "en": "butterfly", "es": "mariposa", "emoji": "🦋" },
+          { "en": "bee", "es": "abeja", "emoji": "🐝" }
+        ],
+        [
+          { "en": "parrot", "es": "loro", "emoji": "🦜" },
+          { "en": "llama", "es": "llama", "emoji": "🦙" },
+          { "en": "dolphin", "es": "delfín", "emoji": "🐬" },
+          { "en": "penguin", "es": "pingüino", "emoji": "🐧" },
+          { "en": "eagle", "es": "águila", "emoji": "🦅" },
+          { "en": "bat", "es": "murciélago", "emoji": "🦇" },
+          { "en": "spider", "es": "araña", "emoji": "🕷️" },
+          { "en": "ant", "es": "hormiga", "emoji": "🐜" },
+          { "en": "crab", "es": "cangrejo", "emoji": "🦀" },
+          { "en": "octopus", "es": "pulpo", "emoji": "🐙" },
+          { "en": "owl", "es": "búho", "emoji": "🦉" },
+          { "en": "deer", "es": "venado", "emoji": "🦌" },
+          { "en": "fox", "es": "zorro", "emoji": "🦊" },
+          { "en": "snail", "es": "caracol", "emoji": "🐌" },
+          { "en": "crocodile", "es": "cocodrilo", "emoji": "🐊" }
+        ]
+      ]
+    },
+    {
+      "tipo": "escucha",
+      "icono": "🍽️",
+      "nombre": "Food",
+      "desc": "escucha y toca la comida",
+      "total": 8,
+      "palabras": [
+        [
+          { "en": "bread", "es": "pan", "emoji": "🍞" },
+          { "en": "milk", "es": "leche", "emoji": "🥛" },
+          { "en": "egg", "es": "huevo", "emoji": "🥚" },
+          { "en": "rice", "es": "arroz", "emoji": "🍚" },
+          { "en": "cheese", "es": "queso", "emoji": "🧀" },
+          { "en": "apple", "es": "manzana", "emoji": "🍎" },
+          { "en": "banana", "es": "guineo", "emoji": "🍌" },
+          { "en": "water", "es": "agua", "emoji": "💧" },
+          { "en": "pizza", "es": "pizza", "emoji": "🍕" },
+          { "en": "cake", "es": "torta", "emoji": "🍰" },
+          { "en": "ice cream", "es": "helado", "emoji": "🍦" },
+          { "en": "cookie", "es": "galleta", "emoji": "🍪" }
+        ],
+        [
+          { "en": "chicken", "es": "pollo", "emoji": "🍗" },
+          { "en": "soup", "es": "sopa", "emoji": "🍲" },
+          { "en": "salad", "es": "ensalada", "emoji": "🥗" },
+          { "en": "meat", "es": "carne", "emoji": "🥩" },
+          { "en": "corn", "es": "choclo", "emoji": "🌽" },
+          { "en": "potato", "es": "papa", "emoji": "🥔" },
+          { "en": "carrot", "es": "zanahoria", "emoji": "🥕" },
+          { "en": "hamburger", "es": "hamburguesa", "emoji": "🍔" },
+          { "en": "sandwich", "es": "sánduche", "emoji": "🥪" },
+          { "en": "candy", "es": "caramelo", "emoji": "🍬" },
+          { "en": "chocolate", "es": "chocolate", "emoji": "🍫" },
+          { "en": "popcorn", "es": "canguil", "emoji": "🍿" }
+        ],
+        [
+          { "en": "honey", "es": "miel", "emoji": "🍯" },
+          { "en": "shrimp", "es": "camarón", "emoji": "🦐" },
+          { "en": "pineapple", "es": "piña", "emoji": "🍍" },
+          { "en": "lemon", "es": "limón", "emoji": "🍋" },
+          { "en": "strawberry", "es": "frutilla", "emoji": "🍓" },
+          { "en": "grapes", "es": "uvas", "emoji": "🍇" },
+          { "en": "watermelon", "es": "sandía", "emoji": "🍉" },
+          { "en": "mushroom", "es": "hongo", "emoji": "🍄" },
+          { "en": "peanut", "es": "maní", "emoji": "🥜" },
+          { "en": "pancakes", "es": "panqueques", "emoji": "🥞" },
+          { "en": "French fries", "es": "papas fritas", "emoji": "🍟" },
+          { "en": "coffee", "es": "café", "emoji": "☕" },
+          { "en": "tea", "es": "té", "emoji": "🍵" }
+        ]
+      ]
+    },
+    {
+      "tipo": "escucha",
+      "icono": "🎨",
+      "nombre": "Colors",
+      "desc": "escucha y toca el color",
+      "total": 8,
+      "palabras": [
+        [
+          { "en": "red", "es": "rojo", "emoji": "🔴" },
+          { "en": "blue", "es": "azul", "emoji": "🔵" },
+          { "en": "yellow", "es": "amarillo", "emoji": "🟡" },
+          { "en": "green", "es": "verde", "emoji": "🟢" },
+          { "en": "orange", "es": "anaranjado", "emoji": "🟠" },
+          { "en": "purple", "es": "morado", "emoji": "🟣" },
+          { "en": "brown", "es": "café", "emoji": "🟤" },
+          { "en": "black", "es": "negro", "emoji": "⚫" },
+          { "en": "white", "es": "blanco", "emoji": "⚪" }
+        ],
+        [],
+        []
+      ]
+    },
+    {
+      "tipo": "clasificar",
+      "icono": "🧺",
+      "nombre": "Sort the words",
+      "desc": "animales, comida, ropa, familia…",
+      "total": 5,
+      "pregunta": "¿De qué grupo es? Lleva cada palabra a su cesta 👇",
+      "fichas": [4, 5, 6],
+      "cestas": [
+        { "id": "animals", "nombre": "Animals", "emoji": "🐾" },
+        { "id": "food", "nombre": "Food", "emoji": "🍎" },
+        { "id": "clothes", "nombre": "Clothes", "emoji": "👕" },
+        { "id": "family", "nombre": "Family", "emoji": "👪" },
+        { "id": "weather", "nombre": "Weather", "emoji": "⛅" }
+      ],
+      "cestasPorNivel": [
+        ["animals", "food", "clothes"],
+        ["animals", "food", "clothes", "family"],
+        ["animals", "food", "clothes", "family", "weather"]
+      ],
+      "items": {
+        "animals": [
+          ["🐶 dog", "🐱 cat", "🐮 cow", "🐴 horse", "🐦 bird", "🐷 pig"],
+          ["monkey", "lion", "turtle", "rabbit", "sheep", "frog"],
+          ["parrot", "whale", "spider", "eagle", "butterfly", "snake"]
+        ],
+        "food": [
+          ["🍞 bread", "🧀 cheese", "🍚 rice", "🥚 egg", "🍕 pizza", "🥛 milk"],
+          ["soup", "salad", "meat", "potato", "sandwich", "cake"],
+          ["honey", "butter", "popcorn", "pancakes", "noodles", "beans"]
+        ],
+        "clothes": [
+          ["👕 T-shirt", "👖 pants", "👟 shoes", "🧦 socks", "👗 dress", "🧢 cap"],
+          ["shirt", "skirt", "jacket", "sweater", "shorts", "hat", "boots"],
+          ["scarf", "gloves", "coat", "uniform", "sandals", "belt", "raincoat"]
+        ],
+        "family": [
+          [],
+          ["mother", "father", "brother", "sister", "grandmother", "grandfather"],
+          ["uncle", "aunt", "cousin", "parents", "daughter", "son", "grandparents"]
+        ],
+        "weather": [
+          [],
+          [],
+          ["sunny", "rainy", "cloudy", "windy", "stormy", "foggy", "snowy"]
+        ]
+      }
+    },
+    {
+      "tipo": "emparejar",
+      "icono": "👪",
+      "nombre": "My family",
+      "desc": "une cada familiar con su nombre",
+      "total": 5,
+      "pregunta": "Une cada palabra con su pareja 👇",
+      "pares": [
+        [
+          { "a": "mother", "b": "mamá" },
+          { "a": "father", "b": "papá" },
+          { "a": "brother", "b": "hermano" },
+          { "a": "sister", "b": "hermana" },
+          { "a": "baby", "b": "bebé" },
+          { "a": "grandmother", "b": "abuela" },
+          { "a": "grandfather", "b": "abuelo" }
+        ],
+        [
+          { "a": "uncle", "b": "tío" },
+          { "a": "aunt", "b": "tía" },
+          { "a": "cousin", "b": "primo o prima" },
+          { "a": "parents", "b": "papá y mamá" },
+          { "a": "son", "b": "hijo" },
+          { "a": "daughter", "b": "hija" },
+          { "a": "grandparents", "b": "abuelos" },
+          { "a": "grandmother", "b": "abuela" }
+        ],
+        [
+          { "a": "my mother's sister", "b": "aunt" },
+          { "a": "my mother's brother", "b": "uncle" },
+          { "a": "my father's father", "b": "grandfather" },
+          { "a": "my mother's mother", "b": "grandmother" },
+          { "a": "my uncle's son", "b": "cousin" },
+          { "a": "my mother and father", "b": "parents" },
+          { "a": "my parents' daughter", "b": "sister" },
+          { "a": "my parents' son", "b": "brother" }
+        ]
+      ]
+    },
+    {
+      "tipo": "emparejar",
+      "icono": "🔢",
+      "nombre": "Numbers",
+      "desc": "une el número con su nombre",
+      "total": 5,
+      "pregunta": "Une cada número con su nombre en inglés 👇",
+      "porRonda": [4, 5, 5],
+      "pares": [
+        [
+          { "a": "one", "b": "1" },
+          { "a": "two", "b": "2" },
+          { "a": "three", "b": "3" },
+          { "a": "four", "b": "4" },
+          { "a": "five", "b": "5" },
+          { "a": "six", "b": "6" },
+          { "a": "seven", "b": "7" },
+          { "a": "eight", "b": "8" },
+          { "a": "nine", "b": "9" },
+          { "a": "ten", "b": "10" },
+          { "a": "eleven", "b": "11" },
+          { "a": "twelve", "b": "12" }
+        ],
+        [
+          { "a": "thirteen", "b": "13" },
+          { "a": "fourteen", "b": "14" },
+          { "a": "fifteen", "b": "15" },
+          { "a": "sixteen", "b": "16" },
+          { "a": "seventeen", "b": "17" },
+          { "a": "eighteen", "b": "18" },
+          { "a": "nineteen", "b": "19" },
+          { "a": "twenty", "b": "20" },
+          { "a": "thirty", "b": "30" },
+          { "a": "forty", "b": "40" },
+          { "a": "fifty", "b": "50" }
+        ],
+        [
+          { "a": "twenty-one", "b": "21" },
+          { "a": "thirty-five", "b": "35" },
+          { "a": "forty-seven", "b": "47" },
+          { "a": "fifty-two", "b": "52" },
+          { "a": "sixty", "b": "60" },
+          { "a": "sixty-eight", "b": "68" },
+          { "a": "seventy", "b": "70" },
+          { "a": "seventy-three", "b": "73" },
+          { "a": "eighty", "b": "80" },
+          { "a": "eighty-four", "b": "84" },
+          { "a": "ninety", "b": "90" },
+          { "a": "ninety-nine", "b": "99" },
+          { "a": "one hundred", "b": "100" }
+        ]
+      ]
+    },
+    {
+      "tipo": "ordenar",
+      "icono": "📅",
+      "nombre": "In order",
+      "desc": "días, meses y números en orden",
+      "total": 5,
+      "pregunta": "Tócalos en orden: ¿cuál va primero? 👇",
+      "secuencias": [
+        [
+          ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          ["one", "two", "three", "four", "five"],
+          ["six", "seven", "eight", "nine", "ten"],
+          ["morning", "afternoon", "evening", "night"],
+          ["Friday", "Saturday", "Sunday"]
+        ],
+        [
+          ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          ["January", "February", "March", "April", "May", "June"],
+          ["July", "August", "September", "October", "November", "December"],
+          ["ten", "twenty", "thirty", "forty", "fifty"],
+          ["first", "second", "third", "fourth", "fifth"]
+        ],
+        [
+          ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+          ["sixty", "seventy", "eighty", "ninety", "one hundred"],
+          ["yesterday", "today", "tomorrow"],
+          ["eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen"],
+          ["first", "second", "third", "fourth", "fifth", "sixth"]
+        ]
+      ]
+    },
+    {
+      "tipo": "memoria",
+      "icono": "🃏",
+      "nombre": "Memory",
+      "desc": "encuentra el animal y su nombre",
+      "total": 3,
+      "voz": "b",
+      "pares": [
+        [
+          { "a": "🐶", "b": "dog" },
+          { "a": "🐱", "b": "cat" },
+          { "a": "🐮", "b": "cow" },
+          { "a": "🐴", "b": "horse" },
+          { "a": "🐷", "b": "pig" },
+          { "a": "🦆", "b": "duck" },
+          { "a": "🐰", "b": "rabbit" },
+          { "a": "🐑", "b": "sheep" }
+        ],
+        [
+          { "a": "🦁", "b": "lion" },
+          { "a": "🐵", "b": "monkey" },
+          { "a": "🐘", "b": "elephant" },
+          { "a": "🐍", "b": "snake" },
+          { "a": "🐢", "b": "turtle" },
+          { "a": "🐸", "b": "frog" },
+          { "a": "🦋", "b": "butterfly" },
+          { "a": "🐝", "b": "bee" },
+          { "a": "🦈", "b": "shark" }
+        ],
+        [
+          { "a": "🦜", "b": "parrot" },
+          { "a": "🐬", "b": "dolphin" },
+          { "a": "🐧", "b": "penguin" },
+          { "a": "🦅", "b": "eagle" },
+          { "a": "🦇", "b": "bat" },
+          { "a": "🕷️", "b": "spider" },
+          { "a": "🦀", "b": "crab" },
+          { "a": "🐙", "b": "octopus" },
+          { "a": "🦉", "b": "owl" },
+          { "a": "🦊", "b": "fox" }
+        ]
+      ]
+    }
+  ]
+}

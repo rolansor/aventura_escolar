@@ -146,15 +146,20 @@ window.Arrastrar = (function () {
 
   // Actividad "ponlas en orden": fichas desordenadas que se tocan en el orden
   // correcto (armar la oración / orden alfabético / sílabas). opts =
-  // { pregunta, correcto:[..en orden..] }. Pensada para una ronda() de Actividad.
+  // { pregunta, correcto:[..en orden..], extras?:[..fichas que sobran..] }.
+  // Pensada para una ronda() de Actividad.
   // Se compara el TEXTO de cada posición: dos fichas iguales (las dos "ra" de
-  // re-fri-ge-ra-do-ra) son intercambiables.
+  // re-fri-ge-ra-do-ra) son intercambiables. Con `extras` hay fichas de más que
+  // no entran en la respuesta (p. ej. "play" cuando la oración pide "plays").
   function ordenar(host, ctrl, opts) {
     ctrl.pregunta(opts.pregunta || "Tócalas en el orden correcto 👇");
     const correcto = opts.correcto || [];
-    const fuenteArr = ctrl.mezclar(correcto.map((t, i) => ({ t: t, i: i })));
+    const fuenteArr = ctrl.mezclar(correcto.map((t, i) => ({ t: t, i: i }))
+      .concat((opts.extras || []).map((t) => ({ t: t, i: -1 }))));
     // Que nunca salgan ya ordenadas (no habría nada que hacer).
-    if (correcto.length > 1 && fuenteArr.every((o, idx) => o.t === correcto[idx])) fuenteArr.push(fuenteArr.shift());
+    if (correcto.length > 1 && fuenteArr.filter((o) => o.i >= 0).every((o, idx) => o.t === correcto[idx])) {
+      fuenteArr.push(fuenteArr.splice(fuenteArr.findIndex((o) => o.i >= 0), 1)[0]);
+    }
     host.innerHTML = '<div class="ord-destino"></div><div class="ord-fuente"></div>';
     const dest = host.querySelector(".ord-destino"), fuente = host.querySelector(".ord-fuente");
     let puestos = [];
@@ -181,6 +186,8 @@ window.Arrastrar = (function () {
       const bien = puestos.every((o, idx) => o.t === correcto[idx]);
       if (bien) {
         dest.querySelectorAll(".ord-chip").forEach((c) => { c.classList.add("ok"); c.onclick = null; });
+        // Las fichas de más quedan tachadas: se ve cuál era la que sobraba.
+        fuente.querySelectorAll(".ord-chip").forEach((c) => { c.classList.add("sobra"); c.disabled = true; });
         ctrl.ganar();
       } else {
         // Marca en rojo solo las que están fuera de lugar: el material dice dónde mirar.

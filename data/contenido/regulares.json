@@ -1,0 +1,271 @@
+{
+  "modo": "regulares",
+  "materia": "ingles",
+  "px": "vreg",
+  "titulo": "Regular verbs",
+  "icono": "✅",
+  "motor": "actividad",
+  "temas": [
+    {
+      "tipo": "escucha",
+      "icono": "🏃",
+      "nombre": "Action!",
+      "desc": "escucha el verbo y toca la acción",
+      "total": 8,
+      "pregunta": "👂 Escucha el verbo y toca la acción 👇",
+      "palabras": [
+        [
+          { "en": "walk", "es": "caminar", "emoji": "🚶" },
+          { "en": "dance", "es": "bailar", "emoji": "💃" },
+          { "en": "cook", "es": "cocinar", "emoji": "🍳" },
+          { "en": "play", "es": "jugar", "emoji": "⚽" },
+          { "en": "paint", "es": "pintar", "emoji": "🎨" },
+          { "en": "listen", "es": "escuchar", "emoji": "🎧" },
+          { "en": "clean", "es": "limpiar", "emoji": "🧹" },
+          { "en": "cry", "es": "llorar", "emoji": "😭" },
+          { "en": "laugh", "es": "reír", "emoji": "😂" },
+          { "en": "call", "es": "llamar", "emoji": "📞" },
+          { "en": "study", "es": "estudiar", "emoji": "📚" },
+          { "en": "watch", "es": "mirar", "emoji": "📺" }
+        ],
+        [
+          { "en": "climb", "es": "trepar", "emoji": "🧗" },
+          { "en": "wash", "es": "lavar", "emoji": "🧼" },
+          { "en": "smile", "es": "sonreír", "emoji": "😊" },
+          { "en": "clap", "es": "aplaudir", "emoji": "👏" },
+          { "en": "wave", "es": "saludar con la mano", "emoji": "👋" },
+          { "en": "hug", "es": "abrazar", "emoji": "🤗" },
+          { "en": "kiss", "es": "besar", "emoji": "💋" },
+          { "en": "shout", "es": "gritar", "emoji": "📢" },
+          { "en": "travel", "es": "viajar", "emoji": "✈️" },
+          { "en": "skate", "es": "patinar", "emoji": "⛸️" },
+          { "en": "open", "es": "abrir", "emoji": "🔓" },
+          { "en": "close", "es": "cerrar", "emoji": "🔒" },
+          { "en": "plant", "es": "sembrar", "emoji": "🌱" },
+          { "en": "wait", "es": "esperar", "emoji": "⏳" }
+        ],
+        [
+          { "en": "They played soccer.", "es": "Ellos jugaron fútbol.", "emoji": "⚽" },
+          { "en": "He walked to school.", "es": "Él caminó a la escuela.", "emoji": "🚶" },
+          { "en": "She cooked dinner.", "es": "Ella cocinó la cena.", "emoji": "🍳" },
+          { "en": "We watched a movie.", "es": "Vimos una película.", "emoji": "📺" },
+          { "en": "I painted a picture.", "es": "Pinté un cuadro.", "emoji": "🎨" },
+          { "en": "The baby cried.", "es": "El bebé lloró.", "emoji": "😭" },
+          { "en": "They laughed a lot.", "es": "Ellos se rieron mucho.", "emoji": "😂" },
+          { "en": "She cleaned her room.", "es": "Ella limpió su cuarto.", "emoji": "🧹" },
+          { "en": "He studied Math.", "es": "Él estudió Matemática.", "emoji": "📚" },
+          { "en": "We traveled by plane.", "es": "Viajamos en avión.", "emoji": "✈️" },
+          { "en": "She called her mom.", "es": "Ella llamó a su mamá.", "emoji": "📞" },
+          { "en": "He climbed the mountain.", "es": "Él escaló la montaña.", "emoji": "🧗" },
+          { "en": "I washed my hands.", "es": "Me lavé las manos.", "emoji": "🧼" },
+          { "en": "We listened to music.", "es": "Escuchamos música.", "emoji": "🎧" },
+          { "en": "They danced at the party.", "es": "Ellos bailaron en la fiesta.", "emoji": "💃" }
+        ]
+      ]
+    },
+    {
+      "tipo": "terminacion",
+      "icono": "🔧",
+      "nombre": "The -ed machine",
+      "desc": "arma el pasado: play + ed = played",
+      "total": 8,
+      "pregunta": "🔧 Arma el pasado: llévale su terminación 👇",
+      "reglas": [
+        { "id": "ed", "ficha": "+ ed", "cuando": "para casi todos los verbos" },
+        { "id": "d", "ficha": "+ d", "cuando": "para los verbos que terminan en -e" },
+        { "id": "ied", "ficha": "y → ied", "cuando": "para los que terminan en consonante + y" },
+        { "id": "doble", "ficha": "doble letra + ed", "cuando": "para verbos de una sola sílaba que terminan en consonante + vocal + consonante" }
+      ],
+      "reglasPorNivel": [["ed", "d"], ["ed", "d", "ied"], ["ed", "d", "ied", "doble"]],
+      "items": [
+        [
+          { "base": "play", "regla": "ed", "res": "played", "es": "jugar" },
+          { "base": "walk", "regla": "ed", "res": "walked", "es": "caminar" },
+          { "base": "jump", "regla": "ed", "res": "jumped", "es": "saltar" },
+          { "base": "cook", "regla": "ed", "res": "cooked", "es": "cocinar" },
+          { "base": "clean", "regla": "ed", "res": "cleaned", "es": "limpiar" },
+          { "base": "watch", "regla": "ed", "res": "watched", "es": "mirar" },
+          { "base": "help", "regla": "ed", "res": "helped", "es": "ayudar" },
+          { "base": "talk", "regla": "ed", "res": "talked", "es": "hablar" },
+          { "base": "dance", "regla": "d", "res": "danced", "es": "bailar" },
+          { "base": "like", "regla": "d", "res": "liked", "es": "gustar" },
+          { "base": "love", "regla": "d", "res": "loved", "es": "amar" },
+          { "base": "live", "regla": "d", "res": "lived", "es": "vivir" },
+          { "base": "smile", "regla": "d", "res": "smiled", "es": "sonreír" },
+          { "base": "close", "regla": "d", "res": "closed", "es": "cerrar" },
+          { "base": "bake", "regla": "d", "res": "baked", "es": "hornear" },
+          { "base": "use", "regla": "d", "res": "used", "es": "usar" }
+        ],
+        [
+          { "base": "paint", "regla": "ed", "res": "painted", "es": "pintar" },
+          { "base": "listen", "regla": "ed", "res": "listened", "es": "escuchar" },
+          { "base": "wash", "regla": "ed", "res": "washed", "es": "lavar" },
+          { "base": "stay", "regla": "ed", "res": "stayed", "es": "quedarse" },
+          { "base": "enjoy", "regla": "ed", "res": "enjoyed", "es": "disfrutar" },
+          { "base": "arrive", "regla": "d", "res": "arrived", "es": "llegar" },
+          { "base": "skate", "regla": "d", "res": "skated", "es": "patinar" },
+          { "base": "wave", "regla": "d", "res": "waved", "es": "saludar con la mano" },
+          { "base": "dance", "regla": "d", "res": "danced", "es": "bailar" },
+          { "base": "study", "regla": "ied", "res": "studied", "es": "estudiar" },
+          { "base": "cry", "regla": "ied", "res": "cried", "es": "llorar" },
+          { "base": "try", "regla": "ied", "res": "tried", "es": "intentar" },
+          { "base": "carry", "regla": "ied", "res": "carried", "es": "cargar" },
+          { "base": "copy", "regla": "ied", "res": "copied", "es": "copiar" },
+          { "base": "hurry", "regla": "ied", "res": "hurried", "es": "apurarse" }
+        ],
+        [
+          { "base": "open", "regla": "ed", "res": "opened", "es": "abrir", "pista": "Open tiene dos sílabas: no se dobla la letra, solo + ed 👀" },
+          { "base": "visit", "regla": "ed", "res": "visited", "es": "visitar", "pista": "Visit tiene dos sílabas: no se dobla la letra, solo + ed 👀" },
+          { "base": "answer", "regla": "ed", "res": "answered", "es": "responder", "pista": "Answer tiene dos sílabas: no se dobla la letra, solo + ed 👀" },
+          { "base": "play", "regla": "ed", "res": "played", "es": "jugar" },
+          { "base": "close", "regla": "d", "res": "closed", "es": "cerrar" },
+          { "base": "arrive", "regla": "d", "res": "arrived", "es": "llegar" },
+          { "base": "tidy", "regla": "ied", "res": "tidied", "es": "ordenar" },
+          { "base": "study", "regla": "ied", "res": "studied", "es": "estudiar" },
+          { "base": "carry", "regla": "ied", "res": "carried", "es": "cargar" },
+          { "base": "stop", "regla": "doble", "res": "stopped", "es": "parar" },
+          { "base": "plan", "regla": "doble", "res": "planned", "es": "planear" },
+          { "base": "hug", "regla": "doble", "res": "hugged", "es": "abrazar" },
+          { "base": "clap", "regla": "doble", "res": "clapped", "es": "aplaudir" },
+          { "base": "drop", "regla": "doble", "res": "dropped", "es": "dejar caer" },
+          { "base": "shop", "regla": "doble", "res": "shopped", "es": "ir de compras" },
+          { "base": "jog", "regla": "doble", "res": "jogged", "es": "trotar" },
+          { "base": "skip", "regla": "doble", "res": "skipped", "es": "brincar" }
+        ]
+      ]
+    },
+    {
+      "tipo": "memoria",
+      "icono": "🃏",
+      "nombre": "Memory: present and past",
+      "desc": "encuentra el verbo y su pasado",
+      "total": 3,
+      "voz": "ab",
+      "pregunta": "🃏 Une cada verbo con su pasado 👇",
+      "pares": [
+        [
+          { "a": "play", "b": "played" },
+          { "a": "walk", "b": "walked" },
+          { "a": "jump", "b": "jumped" },
+          { "a": "cook", "b": "cooked" },
+          { "a": "clean", "b": "cleaned" },
+          { "a": "dance", "b": "danced" },
+          { "a": "like", "b": "liked" },
+          { "a": "love", "b": "loved" },
+          { "a": "watch", "b": "watched" }
+        ],
+        [
+          { "a": "study", "b": "studied" },
+          { "a": "cry", "b": "cried" },
+          { "a": "try", "b": "tried" },
+          { "a": "carry", "b": "carried" },
+          { "a": "stay", "b": "stayed" },
+          { "a": "enjoy", "b": "enjoyed" },
+          { "a": "smile", "b": "smiled" },
+          { "a": "arrive", "b": "arrived" },
+          { "a": "paint", "b": "painted" }
+        ],
+        [
+          { "a": "stop", "b": "stopped" },
+          { "a": "plan", "b": "planned" },
+          { "a": "hug", "b": "hugged" },
+          { "a": "clap", "b": "clapped" },
+          { "a": "drop", "b": "dropped" },
+          { "a": "shop", "b": "shopped" },
+          { "a": "travel", "b": "traveled" },
+          { "a": "visit", "b": "visited" },
+          { "a": "hurry", "b": "hurried" },
+          { "a": "copy", "b": "copied" }
+        ]
+      ]
+    },
+    {
+      "tipo": "ahorcado",
+      "icono": "✏️",
+      "nombre": "Write the past",
+      "desc": "escribe el pasado letra por letra",
+      "total": 6,
+      "vidas": 6,
+      "pistas": [2, 1, 0],
+      "mostrarEs": [true, true, true],
+      "palabras": [
+        [
+          { "en": "PLAYED", "es": "jugó (play)", "emoji": "⚽" },
+          { "en": "WALKED", "es": "caminó (walk)", "emoji": "🚶" },
+          { "en": "JUMPED", "es": "saltó (jump)", "emoji": "🦘" },
+          { "en": "COOKED", "es": "cocinó (cook)", "emoji": "🍳" },
+          { "en": "LIKED", "es": "le gustó (like)", "emoji": "👍" },
+          { "en": "LOVED", "es": "amó (love)", "emoji": "❤️" },
+          { "en": "CALLED", "es": "llamó (call)", "emoji": "📞" },
+          { "en": "HELPED", "es": "ayudó (help)", "emoji": "🤝" },
+          { "en": "TALKED", "es": "habló (talk)", "emoji": "🗣️" },
+          { "en": "WASHED", "es": "lavó (wash)", "emoji": "🧼" }
+        ],
+        [
+          { "en": "DANCED", "es": "bailó (dance)", "emoji": "💃" },
+          { "en": "PAINTED", "es": "pintó (paint)", "emoji": "🎨" },
+          { "en": "CLEANED", "es": "limpió (clean)", "emoji": "🧹" },
+          { "en": "WATCHED", "es": "miró (watch)", "emoji": "📺" },
+          { "en": "LISTENED", "es": "escuchó (listen)", "emoji": "🎧" },
+          { "en": "STUDIED", "es": "estudió (study)", "emoji": "📚" },
+          { "en": "CRIED", "es": "lloró (cry)", "emoji": "😭" },
+          { "en": "SMILED", "es": "sonrió (smile)", "emoji": "😊" },
+          { "en": "OPENED", "es": "abrió (open)", "emoji": "🔓" },
+          { "en": "CLOSED", "es": "cerró (close)", "emoji": "🔒" }
+        ],
+        [
+          { "en": "STOPPED", "es": "paró (stop)", "emoji": "🛑" },
+          { "en": "TRAVELED", "es": "viajó (travel)", "emoji": "✈️" },
+          { "en": "CARRIED", "es": "cargó (carry)", "emoji": "📦" },
+          { "en": "CLAPPED", "es": "aplaudió (clap)", "emoji": "👏" },
+          { "en": "HUGGED", "es": "abrazó (hug)", "emoji": "🤗" },
+          { "en": "PLANNED", "es": "planeó (plan)", "emoji": "🗓️" },
+          { "en": "VISITED", "es": "visitó (visit)", "emoji": "🏠" },
+          { "en": "ARRIVED", "es": "llegó (arrive)", "emoji": "🛬" },
+          { "en": "ANSWERED", "es": "respondió (answer)", "emoji": "💬" },
+          { "en": "HURRIED", "es": "se apuró (hurry)", "emoji": "🏃" }
+        ]
+      ]
+    },
+    {
+      "tipo": "completa",
+      "icono": "⏪",
+      "nombre": "Yesterday…",
+      "desc": "completa lo que pasó ayer",
+      "total": 8,
+      "pista": "Ya pasó (yesterday, last night…): el verbo va en pasado, con -ed 👀",
+      "items": [
+        [
+          { "f": "Yesterday I ___ soccer.", "c": "played", "d": ["play", "playing"], "es": "Ayer jugué fútbol.", "emoji": "⚽" },
+          { "f": "Last night she ___ dinner.", "c": "cooked", "d": ["cook", "cooks"], "es": "Anoche ella cocinó la cena.", "emoji": "🍳" },
+          { "f": "Yesterday we ___ to school.", "c": "walked", "d": ["walk", "walking"], "es": "Ayer caminamos a la escuela.", "emoji": "🚶" },
+          { "f": "I ___ my teeth this morning.", "c": "brushed", "d": ["brush", "brushing"], "es": "Me cepillé los dientes esta mañana.", "emoji": "🦷" },
+          { "f": "He ___ a movie last night.", "c": "watched", "d": ["watch", "watches"], "es": "Él vio una película anoche.", "emoji": "📺" },
+          { "f": "They ___ at the party yesterday.", "c": "danced", "d": ["dance", "dancing"], "es": "Ellos bailaron en la fiesta ayer.", "emoji": "💃" },
+          { "f": "She ___ her room yesterday.", "c": "cleaned", "d": ["clean", "cleans"], "es": "Ella limpió su cuarto ayer.", "emoji": "🧹" },
+          { "f": "We ___ to music last night.", "c": "listened", "d": ["listen", "listening"], "es": "Anoche escuchamos música.", "emoji": "🎧" }
+        ],
+        [
+          { "f": "She ___ English last year.", "c": "studied", "d": ["studyed", "study"], "es": "Ella estudió Inglés el año pasado.", "emoji": "📚", "pista": "Termina en consonante + y: la y cambia por i y se añade -ed 👀" },
+          { "f": "The baby ___ all night.", "c": "cried", "d": ["cryed", "cry"], "es": "El bebé lloró toda la noche.", "emoji": "😭", "pista": "Termina en consonante + y: la y cambia por i y se añade -ed 👀" },
+          { "f": "The bus ___ at the corner.", "c": "stopped", "d": ["stoped", "stop"], "es": "El bus paró en la esquina.", "emoji": "🚌", "pista": "Verbo de una sola sílaba que termina en consonante + vocal + consonante: se dobla la última letra 👀" },
+          { "f": "We ___ in Quito for two years.", "c": "lived", "d": ["liveed", "live"], "es": "Vivimos en Quito durante dos años.", "emoji": "🏠", "pista": "Si el verbo ya termina en -e, solo se añade -d 👀" },
+          { "f": "He ___ the heavy box.", "c": "carried", "d": ["carryed", "carry"], "es": "Él cargó la caja pesada.", "emoji": "📦", "pista": "Termina en consonante + y: la y cambia por i y se añade -ed 👀" },
+          { "f": "I ___ to open the door.", "c": "tried", "d": ["tryed", "try"], "es": "Intenté abrir la puerta.", "emoji": "🚪", "pista": "Termina en consonante + y: la y cambia por i y se añade -ed 👀" },
+          { "f": "They ___ a trip to the beach.", "c": "planned", "d": ["planed", "plan"], "es": "Ellos planearon un viaje a la playa.", "emoji": "🏖️", "pista": "Verbo de una sola sílaba que termina en consonante + vocal + consonante: se dobla la última letra 👀" },
+          { "f": "Mom ___ me this morning.", "c": "hugged", "d": ["huged", "hug"], "es": "Mi mamá me abrazó esta mañana.", "emoji": "🤗", "pista": "Verbo de una sola sílaba que termina en consonante + vocal + consonante: se dobla la última letra 👀" }
+        ],
+        [
+          { "f": "I didn't ___ TV last night.", "c": "watch", "d": ["watched", "watching"], "es": "No vi televisión anoche.", "emoji": "📺", "pista": "Después de didn't, el verbo vuelve a su forma base (sin -ed) 👀" },
+          { "f": "Did you ___ your room?", "c": "clean", "d": ["cleaned", "cleans"], "es": "¿Limpiaste tu cuarto?", "emoji": "🧹", "pista": "Después de did, el verbo vuelve a su forma base (sin -ed) 👀" },
+          { "f": "She ___ visit her grandma last week.", "c": "didn't", "d": ["doesn't", "don't"], "es": "Ella no visitó a su abuela la semana pasada.", "emoji": "👵", "pista": "Last week ya pasó: en pasado se niega con didn't 👀" },
+          { "f": "___ they play soccer yesterday?", "c": "Did", "d": ["Do", "Does"], "es": "¿Jugaron fútbol ayer?", "emoji": "⚽", "pista": "Yesterday ya pasó: en pasado se pregunta con Did 👀" },
+          { "f": "He didn't ___ for the test.", "c": "study", "d": ["studied", "studies"], "es": "Él no estudió para la prueba.", "emoji": "📚", "pista": "Después de didn't, el verbo vuelve a su forma base (sin -ed) 👀" },
+          { "f": "Did she ___ at the party?", "c": "dance", "d": ["danced", "dances"], "es": "¿Ella bailó en la fiesta?", "emoji": "💃", "pista": "Después de did, el verbo vuelve a su forma base (sin -ed) 👀" },
+          { "f": "We ___ the mountain last Sunday.", "c": "climbed", "d": ["climb", "climbing"], "es": "Escalamos la montaña el domingo pasado.", "emoji": "🧗" },
+          { "f": "My cousin ___ at six yesterday.", "c": "arrived", "d": ["arrive", "arrives"], "es": "Mi primo llegó a las seis ayer.", "emoji": "🛬" }
+        ]
+      ]
+    }
+  ]
+}

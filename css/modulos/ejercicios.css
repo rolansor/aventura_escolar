@@ -252,6 +252,7 @@
 .ord-chip.puesto { background: #eef3ff; }
 .ord-chip.ok { background: var(--verde); border-color: var(--verde); color: #fff; }
 .ord-chip.rojo { background: var(--rojo); border-color: var(--rojo); color: #fff; animation: temblor 0.4s; }
+.ord-chip.sobra { opacity: .5; text-decoration: line-through; border-color: #c7d2f0; cursor: default; transform: none; }   /* ficha de más, al terminar */
 
 /* ---------- Pon el signo (puntuación) ---------- */
 .signo-frase {
@@ -594,6 +595,91 @@
 @media (max-width: 520px) {
   .ahor-tecla { width: 31px; height: 38px; font-size: .95rem; }
   .ahor-teclado { gap: 5px; }
+}
+
+/* ---------- Inglés: tarjeta de pista, completar la oración y armarla ---------- */
+.en-tarjeta { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 2px 0 10px; }
+.en-emoji { font-size: clamp(2.2rem, 8vw, 3rem); line-height: 1; }
+.en-es { font-size: 1.05rem; font-weight: bold; color: #4a5270; background: #eef3ff; border-radius: 12px; padding: 6px 12px; }
+.en-oir { margin: 0; }
+.pregunta .en-oir { vertical-align: middle; letter-spacing: 0; }
+.en-frase { margin-bottom: 4px; transition: border-color .15s, background .15s; }
+.en-frase.zona-hover { border-color: var(--azul); background: #eef3ff; }
+.en-frase.rojo { border-color: var(--rojo); background: #fdecea; animation: temblor .4s; }
+.en-hueco { display: inline-block; min-width: 3.2em; padding: 0 10px; margin: 0 4px; border: 3px dashed var(--azul); border-radius: 10px;
+  background: #fff; color: var(--azul); font-weight: bold; line-height: 1.45; }
+.en-hueco.ok { border-style: solid; border-color: var(--verde); background: var(--verde); color: #fff; animation: latido .35s; }
+.ficha-arr.en-ficha { font-size: 1.15rem; padding: 10px 18px; }
+.ficha-arr.en-ficha.mal { background: #fdecea; color: #9b2c25; box-shadow: none; opacity: .75; cursor: default; }
+.en-arma .ord-chip { font-size: 1.15rem; padding: 7px 12px; }
+
+/* ---------- Inglés: la máquina de terminaciones (play + ed = played) ---------- */
+.ter-maquina { display: flex; align-items: stretch; justify-content: center; gap: 8px; flex-wrap: wrap; margin: 4px auto 6px; padding: 12px;
+  max-width: 620px; border: 3px dashed #c7d2f0; border-radius: 18px; background: #f5f8ff; transition: border-color .15s, background .15s; }
+.ter-maquina.zona-hover { border-color: var(--amarillo); background: #fff7df; }
+.ter-maquina.rojo { border-color: var(--rojo); background: #fdecea; animation: temblor .4s; }
+.ter-maquina.ok { border-style: solid; border-color: var(--verde); background: #e9fbf3; }
+.ter-pieza { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 96px; padding: 8px 14px;
+  border: 3px solid var(--azul); border-radius: 14px; background: #fff; color: var(--azul-osc); font-size: 1.6rem; font-weight: bold; }
+.ter-pieza small { font-size: .82rem; font-weight: normal; color: #555; }
+.ter-emoji { font-size: 1.5rem; line-height: 1.1; }
+.ter-ranura { border-style: dashed; border-color: #6aa9e0; color: #6aa9e0; font-size: 1.1rem; max-width: 150px; line-height: 1.2; }
+.ter-maquina.ok .ter-ranura { border-style: solid; border-color: var(--verde); color: #17603f; }
+.ter-res { border-color: #c7d2f0; color: #8a93ad; }
+.ter-maquina.ok .ter-res { border-color: var(--verde); color: var(--azul-osc); animation: latido .35s; }
+.ter-res mark { background: #fff3a8; color: #b3540a; border-radius: 4px; padding: 0 1px; }
+.ter-signo { align-self: center; font-size: 1.6rem; font-weight: bold; color: #4a5270; }
+
+/* ---------- Inglés: escucha y toca ---------- */
+.esc-voz { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 2px 0 12px; }
+.esc-altavoz { width: 62px; height: 62px; border: none; border-radius: 50%; background: var(--azul); color: #fff; font-size: 1.8rem;
+  cursor: pointer; box-shadow: var(--sombra); transition: transform .12s; }
+.esc-altavoz:hover { transform: scale(1.08); }
+.esc-altavoz:active { transform: scale(.94); }
+.esc-texto { font-size: 1.6rem; font-weight: bold; color: var(--azul-osc); transition: filter .25s; }
+.esc-texto.tapado { filter: blur(9px); user-select: none; }
+.esc-ver { margin: 0; }
+.esc-cartas { display: grid; grid-template-columns: repeat(3, 122px); gap: 12px; justify-content: center; }
+.esc-cartas.esc-de-4 { grid-template-columns: repeat(4, 122px); }
+.esc-carta { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 112px; padding: 8px 6px;
+  border: 3px solid #c7d2f0; border-radius: 18px; background: #fff; color: var(--azul-osc); font-family: var(--fuente); cursor: pointer;
+  transition: transform .12s, border-color .12s; }
+.esc-carta:hover:not(:disabled) { transform: translateY(-3px); border-color: var(--azul); }
+.esc-emoji { font-size: 3rem; line-height: 1.15; }
+.esc-pie { display: flex; flex-direction: column; min-height: 2.3em; font-size: .9rem; line-height: 1.15; }
+.esc-pie small { color: #555; font-size: .78rem; }
+.esc-carta.ok { border-color: var(--verde); background: #e9fbf3; animation: latido .35s; }
+.esc-carta.mal { border-color: var(--rojo); background: #fdecea; opacity: .85; cursor: default; animation: temblor .4s; }
+
+/* ---------- Memoria (parejas boca abajo): un color de dorso por lado ---------- */
+.mem-mesa { display: grid; grid-template-columns: repeat(4, minmax(0, 136px)); gap: 10px; justify-content: center; margin: 4px auto; }
+.mem-mesa.mem-de-10 { grid-template-columns: repeat(5, minmax(0, 122px)); }
+.mem-carta { height: 82px; padding: 4px; border: 3px solid transparent; border-radius: 14px; background: var(--azul); color: var(--azul-osc);
+  font-family: var(--fuente); font-size: 1.15rem; font-weight: bold; line-height: 1.15; cursor: pointer; transition: filter .12s; }
+.mem-carta.mem-b { background: #ff9f43; }
+.mem-carta:hover:not(.vista) { filter: brightness(1.1); }
+.mem-dorso { color: rgba(255,255,255,.92); font-size: 1.9rem; }
+.mem-cara { display: none; }
+.mem-carta.vista { background: #fff; border-color: var(--azul); cursor: default; animation: memGiro .25s; }
+.mem-carta.mem-b.vista { border-color: #ff9f43; }
+.mem-carta.vista .mem-cara { display: block; }
+.mem-carta.vista .mem-dorso { display: none; }
+.mem-carta.mem-dibujo .mem-cara { font-size: 2.3rem; }
+.mem-carta.vista.ok { background: #e9fbf3; border-color: var(--verde); color: #17603f; }
+@keyframes memGiro { from { transform: scaleX(.1); } to { transform: scaleX(1); } }
+@media (max-width: 520px) {
+  .esc-cartas, .esc-cartas.esc-de-4 { grid-template-columns: repeat(2, minmax(0, 130px)); gap: 8px; }
+  .esc-cartas.esc-de-6 { grid-template-columns: repeat(3, minmax(0, 104px)); }
+  .esc-carta { min-height: 96px; }
+  .esc-emoji { font-size: 2.4rem; }
+  .mem-mesa, .mem-mesa.mem-de-10 { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+  .mem-carta { height: 70px; font-size: .88rem; }
+  /* la máquina entera (palabra + terminación = resultado) en una sola fila */
+  .ter-maquina { gap: 4px; padding: 8px 6px; }
+  .ter-pieza { min-width: 58px; padding: 6px 6px; font-size: 1.12rem; border-width: 2px; }
+  .ter-ranura { font-size: .82rem; max-width: 84px; }
+  .ter-signo { font-size: 1.15rem; }
+  .en-hueco { min-width: 2.4em; }
 }
 
 /* ---------- Leaderboard (🏆 mejores de la ronda, por perfil) ---------- */

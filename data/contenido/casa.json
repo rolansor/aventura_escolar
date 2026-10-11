@@ -1,0 +1,274 @@
+{
+  "modo": "casa",
+  "materia": "ingles",
+  "px": "casa",
+  "titulo": "My house",
+  "icono": "🏠",
+  "motor": "actividad",
+  "temas": [
+    {
+      "tipo": "clasificar",
+      "icono": "🏠",
+      "nombre": "Rooms of the house",
+      "desc": "ponle el nombre a cada parte de la casa",
+      "total": 5,
+      "pregunta": "Lleva cada palabra a su lugar en la casa 👇",
+      "voz": "en",
+      "dibujo": { "svg": { "$archivo": "recursos/ingles/casa.svg" }, "pista": "¿Dónde va esa palabra? 👀" },
+      "fichas": [4, 5, 6],
+      "cestas": [
+        { "id": "roof", "nombre": "el techo", "emoji": "🔺" },
+        { "id": "bedroom", "nombre": "el dormitorio", "emoji": "🛏️" },
+        { "id": "bathroom", "nombre": "el baño", "emoji": "🚿" },
+        { "id": "living", "nombre": "la sala", "emoji": "🛋️" },
+        { "id": "dining", "nombre": "el comedor", "emoji": "🍽️" },
+        { "id": "kitchen", "nombre": "la cocina", "emoji": "🍳" },
+        { "id": "garage", "nombre": "el garaje", "emoji": "🚗" },
+        { "id": "garden", "nombre": "el jardín", "emoji": "🌳" }
+      ],
+      "items": {
+        "roof": [["roof"], [], ["roof", "It is on top of the house."]],
+        "bedroom": [["bedroom"], [], ["bedroom", "I sleep here."]],
+        "bathroom": [["bathroom"], [], ["bathroom", "I take a shower here."]],
+        "living": [["living room"], [], ["living room", "We watch TV here."]],
+        "dining": [["dining room"], [], ["dining room", "We eat lunch here."]],
+        "kitchen": [["kitchen"], [], ["kitchen", "We cook here."]],
+        "garage": [["garage"], [], ["garage", "We park the car here."]],
+        "garden": [["garden"], [], ["garden", "Flowers grow here."]]
+      }
+    },
+    {
+      "tipo": "clasificar",
+      "icono": "📦",
+      "nombre": "Where does it go?",
+      "desc": "lleva cada cosa a su cuarto",
+      "total": 5,
+      "pregunta": "¿En qué parte de la casa va? Lleva cada cosa a su lugar 👇",
+      "voz": "en",
+      "dibujo": { "svg": { "$archivo": "recursos/ingles/casa.svg" }, "pista": "¿En qué parte de la casa se usa? 👀" },
+      "fichas": [4, 5, 6],
+      "cestas": [
+        { "id": "roof", "nombre": "el techo", "emoji": "🔺" },
+        { "id": "bedroom", "nombre": "el dormitorio (bedroom)", "emoji": "🛏️" },
+        { "id": "bathroom", "nombre": "el baño (bathroom)", "emoji": "🚿" },
+        { "id": "living", "nombre": "la sala (living room)", "emoji": "🛋️" },
+        { "id": "dining", "nombre": "el comedor (dining room)", "emoji": "🍽️" },
+        { "id": "kitchen", "nombre": "la cocina (kitchen)", "emoji": "🍳" },
+        { "id": "garage", "nombre": "el garaje (garage)", "emoji": "🚗" },
+        { "id": "garden", "nombre": "el jardín (garden)", "emoji": "🌳" }
+      ],
+      "cestasPorNivel": [
+        ["bedroom", "bathroom", "kitchen", "living"],
+        ["bedroom", "bathroom", "kitchen", "living", "garage", "garden"],
+        ["bedroom", "bathroom", "kitchen", "living", "garage", "garden"]
+      ],
+      "items": {
+        "bedroom": [
+          ["🛏️ bed", "🧸 teddy bear", "⏰ alarm clock"],
+          ["bed", "pillow", "blanket", "wardrobe", "alarm clock"],
+          ["pillow", "blanket", "wardrobe", "pajamas", "nightstand"]
+        ],
+        "bathroom": [
+          ["🚿 shower", "🚽 toilet", "🧼 soap", "🛁 bathtub"],
+          ["shower", "toilet", "soap", "bathtub", "towel", "toothbrush"],
+          ["towel", "toothbrush", "toothpaste", "shampoo", "bathtub"]
+        ],
+        "kitchen": [
+          ["🍳 frying pan", "🧊 fridge", "🔥 stove"],
+          ["fridge", "stove", "oven", "frying pan", "microwave"],
+          ["oven", "microwave", "kettle", "blender", "dishwasher"]
+        ],
+        "living": [
+          ["🛋️ sofa", "📺 TV"],
+          ["sofa", "television", "armchair", "coffee table"],
+          ["armchair", "coffee table", "remote control", "fireplace", "couch"]
+        ],
+        "garage": [
+          [],
+          ["🚗 car", "🚲 bike", "🔧 tools"],
+          ["car", "bicycle", "toolbox", "motorcycle"]
+        ],
+        "garden": [
+          [],
+          ["🌳 tree", "🌷 flowers", "grass"],
+          ["tree", "flowers", "grass", "bushes", "swing"]
+        ]
+      }
+    },
+    {
+      "tipo": "senala",
+      "idioma": "en",
+      "icono": "👆",
+      "nombre": "Touch the room",
+      "desc": "escucha y toca esa parte de la casa",
+      "total": 8,
+      "svg": { "$archivo": "recursos/ingles/casa.svg" },
+      "partes": [
+        { "id": "roof", "nombre": "the roof", "es": "el techo" },
+        { "id": "bedroom", "nombre": "the bedroom", "es": "el dormitorio" },
+        { "id": "bathroom", "nombre": "the bathroom", "es": "el baño" },
+        { "id": "living", "nombre": "the living room", "es": "la sala" },
+        { "id": "dining", "nombre": "the dining room", "es": "el comedor" },
+        { "id": "kitchen", "nombre": "the kitchen", "es": "la cocina" },
+        { "id": "garage", "nombre": "the garage", "es": "el garaje" },
+        { "id": "garden", "nombre": "the garden", "es": "el jardín" }
+      ]
+    },
+    {
+      "tipo": "escucha",
+      "icono": "👂",
+      "nombre": "Listen and touch",
+      "desc": "escucha la palabra y toca la cosa",
+      "total": 8,
+      "palabras": [
+        [
+          { "en": "bed", "es": "cama", "emoji": "🛏️" },
+          { "en": "door", "es": "puerta", "emoji": "🚪" },
+          { "en": "sofa", "es": "sofá", "emoji": "🛋️" },
+          { "en": "television", "es": "televisor", "emoji": "📺" },
+          { "en": "shower", "es": "ducha", "emoji": "🚿" },
+          { "en": "key", "es": "llave", "emoji": "🔑" },
+          { "en": "toilet", "es": "inodoro", "emoji": "🚽" },
+          { "en": "bathtub", "es": "tina", "emoji": "🛁" },
+          { "en": "telephone", "es": "teléfono", "emoji": "☎️" },
+          { "en": "house", "es": "casa", "emoji": "🏠" },
+          { "en": "clock", "es": "reloj", "emoji": "🕰️" }
+        ],
+        [
+          { "en": "chair", "es": "silla", "emoji": "🪑" },
+          { "en": "soap", "es": "jabón", "emoji": "🧼" },
+          { "en": "broom", "es": "escoba", "emoji": "🧹" },
+          { "en": "basket", "es": "canasta", "emoji": "🧺" },
+          { "en": "teddy bear", "es": "oso de peluche", "emoji": "🧸" },
+          { "en": "light bulb", "es": "foco", "emoji": "💡" },
+          { "en": "candle", "es": "vela", "emoji": "🕯️" },
+          { "en": "spoon", "es": "cuchara", "emoji": "🥄" },
+          { "en": "cup", "es": "taza", "emoji": "☕" },
+          { "en": "plate", "es": "plato", "emoji": "🍽️" },
+          { "en": "frying pan", "es": "sartén", "emoji": "🍳" },
+          { "en": "umbrella", "es": "paraguas", "emoji": "☂️" },
+          { "en": "picture", "es": "cuadro", "emoji": "🖼️" }
+        ],
+        [
+          { "en": "alarm clock", "es": "reloj despertador", "emoji": "⏰" },
+          { "en": "trash can", "es": "tacho de basura", "emoji": "🗑️" },
+          { "en": "newspaper", "es": "periódico", "emoji": "📰" },
+          { "en": "radio", "es": "radio", "emoji": "📻" },
+          { "en": "computer", "es": "computadora", "emoji": "💻" },
+          { "en": "flowers", "es": "flores", "emoji": "💐" },
+          { "en": "scissors", "es": "tijeras", "emoji": "✂️" },
+          { "en": "flashlight", "es": "linterna", "emoji": "🔦" },
+          { "en": "hammer", "es": "martillo", "emoji": "🔨" },
+          { "en": "box", "es": "caja", "emoji": "📦" },
+          { "en": "bowl", "es": "tazón", "emoji": "🥣" },
+          { "en": "thermometer", "es": "termómetro", "emoji": "🌡️" },
+          { "en": "battery", "es": "pila", "emoji": "🔋" }
+        ]
+      ]
+    },
+    {
+      "tipo": "memoria",
+      "icono": "🃏",
+      "nombre": "Memory",
+      "desc": "encuentra el dibujo y su palabra",
+      "total": 3,
+      "voz": "b",
+      "pares": [
+        [
+          { "a": "🛏️", "b": "bed" },
+          { "a": "🚪", "b": "door" },
+          { "a": "🛋️", "b": "sofa" },
+          { "a": "📺", "b": "TV" },
+          { "a": "🚿", "b": "shower" },
+          { "a": "🔑", "b": "key" },
+          { "a": "🏠", "b": "house" },
+          { "a": "🛁", "b": "bathtub" }
+        ],
+        [
+          { "a": "🪑", "b": "chair" },
+          { "a": "🧼", "b": "soap" },
+          { "a": "🧹", "b": "broom" },
+          { "a": "🕯️", "b": "candle" },
+          { "a": "🥄", "b": "spoon" },
+          { "a": "☕", "b": "cup" },
+          { "a": "🍳", "b": "frying pan" },
+          { "a": "🖼️", "b": "picture" },
+          { "a": "🧸", "b": "teddy bear" }
+        ],
+        [
+          { "a": "⏰", "b": "alarm clock" },
+          { "a": "🗑️", "b": "trash can" },
+          { "a": "📰", "b": "newspaper" },
+          { "a": "💻", "b": "computer" },
+          { "a": "🔦", "b": "flashlight" },
+          { "a": "🔨", "b": "hammer" },
+          { "a": "📦", "b": "box" },
+          { "a": "🧺", "b": "basket" },
+          { "a": "☂️", "b": "umbrella" },
+          { "a": "💡", "b": "light bulb" }
+        ]
+      ]
+    },
+    {
+      "tipo": "frase",
+      "icono": "🧩",
+      "nombre": "Build the sentence",
+      "desc": "arma oraciones sobre la casa",
+      "total": 6,
+      "frases": [
+        [
+          { "en": "This is my house.", "es": "Esta es mi casa.", "emoji": "🏠" },
+          { "en": "The bed is big.", "es": "La cama es grande.", "emoji": "🛏️" },
+          { "en": "I love my bedroom.", "es": "Me encanta mi dormitorio.", "emoji": "💙" },
+          { "en": "The sofa is new.", "es": "El sofá es nuevo.", "emoji": "🛋️" },
+          { "en": "My house is small.", "es": "Mi casa es pequeña.", "emoji": "🏡" },
+          { "en": "The door is open.", "es": "La puerta está abierta.", "emoji": "🚪" },
+          { "en": "The kitchen is clean.", "es": "La cocina está limpia.", "emoji": "🍳" }
+        ],
+        [
+          { "en": "There is a sofa in the living room.", "es": "Hay un sofá en la sala.", "emoji": "🛋️" },
+          { "en": "The car is in the garage.", "es": "El carro está en el garaje.", "emoji": "🚗" },
+          { "en": "My mom is in the kitchen.", "es": "Mi mamá está en la cocina.", "emoji": "🍳" },
+          { "en": "There are two bedrooms.", "es": "Hay dos dormitorios.", "emoji": "🛏️" },
+          { "en": "The keys are on the table.", "es": "Las llaves están sobre la mesa.", "emoji": "🔑" },
+          { "en": "We eat in the dining room.", "es": "Comemos en el comedor.", "emoji": "🍽️" },
+          { "en": "The cat is under the bed.", "es": "El gato está debajo de la cama.", "emoji": "🐱" }
+        ],
+        [
+          { "en": "There are three bedrooms in my house.", "es": "Hay tres dormitorios en mi casa.", "emoji": "🛏️", "sobra": ["is"] },
+          { "en": "I take a shower in the bathroom.", "es": "Me ducho en el baño.", "emoji": "🚿" },
+          { "en": "My dad is cooking in the kitchen.", "es": "Mi papá está cocinando en la cocina.", "emoji": "🍳", "sobra": ["are"] },
+          { "en": "The flowers are in the garden.", "es": "Las flores están en el jardín.", "emoji": "🌷", "sobra": ["is"] },
+          { "en": "Is there a TV in your bedroom?", "es": "¿Hay un televisor en tu dormitorio?", "emoji": "📺", "sobra": ["Are"] },
+          { "en": "We watch TV in the living room.", "es": "Vemos televisión en la sala.", "emoji": "📺" },
+          { "en": "My bike is next to the car.", "es": "Mi bicicleta está junto al carro.", "emoji": "🚲" }
+        ]
+      ]
+    },
+    {
+      "tipo": "clasificar",
+      "icono": "🌳",
+      "nombre": "Inside or outside?",
+      "desc": "¿se hace dentro de la casa o afuera?",
+      "total": 5,
+      "pregunta": "¿Adentro o afuera? Lleva cada actividad a su lugar 👇",
+      "fichas": [4, 5, 6],
+      "cestas": [
+        { "id": "inside", "nombre": "Inside (adentro)", "emoji": "🏠" },
+        { "id": "outside", "nombre": "Outside (afuera)", "emoji": "🌳" }
+      ],
+      "items": {
+        "inside": [
+          ["📺 watch TV", "📖 read in bed", "🎮 play video games", "🧩 do a puzzle", "🛁 take a bath", "😴 sleep in my bed"],
+          ["do my homework", "play board games", "bake a cake", "watch a movie", "clean my room", "play video games"],
+          ["I am doing my homework at my desk.", "We are watching a movie on the sofa.", "She is baking cookies in the kitchen.", "He is playing chess in the living room.", "They are cleaning the bathroom."]
+        ],
+        "outside": [
+          ["⚽ play soccer", "🚲 ride a bike", "🪁 fly a kite", "🏖️ go to the beach", "🌳 climb a tree", "🎣 go fishing", "⛺ go camping"],
+          ["play in the park", "go to the beach", "fly a kite", "walk the dog", "plant a tree", "have a picnic", "ride a bike"],
+          ["They are flying kites in the park.", "We are swimming in the river.", "He is riding his bike on the street.", "She is climbing a tree in the garden.", "I am walking my dog in the park."]
+        ]
+      }
+    }
+  ]
+}

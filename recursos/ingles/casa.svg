@@ -1,0 +1,149 @@
+<!-- La casa — dibujo de Inglés "My house" (se incrusta en data/contenido/casa.json con {"$archivo": ...}).
+     Partes (data-parte): roof, bedroom, bathroom, living, dining, kitchen, garage, garden.
+     Cada cuarto lleva su propio fondo: así TODA su superficie sirve para tocarlo o soltarle una ficha.
+     El marco de la casa va al final con pointer-events="none" para no estorbar. -->
+<svg viewBox="0 0 520 400" class="sen-svg sen-casa" xmlns="http://www.w3.org/2000/svg">
+  <!-- cielo, sol y nube (no son partes) -->
+  <rect x="0" y="0" width="520" height="400" rx="16" fill="#dff1ff"/>
+  <circle cx="474" cy="52" r="24" fill="#ffd54a"/>
+  <g fill="#ffffff" opacity="0.92">
+    <ellipse cx="62" cy="62" rx="34" ry="13"/><ellipse cx="88" cy="51" rx="24" ry="13"/>
+  </g>
+
+  <!-- GARDEN: el césped, el árbol y las flores -->
+  <g data-parte="garden">
+    <path d="M0 330 H520 V384 Q520 400 504 400 H16 Q0 400 0 384 Z" fill="#7ccf6b"/>
+    <path d="M0 330 H520" stroke="#5fb352" stroke-width="3"/>
+    <rect x="46" y="236" width="16" height="98" rx="4" fill="#8a5a33"/>
+    <circle cx="54" cy="200" r="42" fill="#3fa650"/>
+    <circle cx="28" cy="226" r="25" fill="#3fa650"/>
+    <circle cx="80" cy="226" r="25" fill="#3fa650"/>
+    <circle cx="40" cy="192" r="15" fill="#57bd66" opacity="0.7"/>
+    <circle cx="36" cy="214" r="5" fill="#e8553f"/><circle cx="68" cy="196" r="5" fill="#e8553f"/><circle cx="76" cy="228" r="5" fill="#e8553f"/>
+    <!-- flores -->
+    <g stroke="#3f8f3a" stroke-width="3" stroke-linecap="round">
+      <path d="M22 384 V362"/><path d="M92 388 V366"/><path d="M168 386 V364"/><path d="M250 388 V368"/><path d="M342 386 V364"/><path d="M430 388 V366"/><path d="M494 384 V362"/>
+    </g>
+    <g>
+      <circle cx="22" cy="358" r="8" fill="#ff7fb0"/><circle cx="22" cy="358" r="3.5" fill="#ffd54a"/>
+      <circle cx="92" cy="362" r="8" fill="#ffd54a"/><circle cx="92" cy="362" r="3.5" fill="#ff9f43"/>
+      <circle cx="168" cy="360" r="8" fill="#b06ad9"/><circle cx="168" cy="360" r="3.5" fill="#ffd54a"/>
+      <circle cx="250" cy="364" r="8" fill="#ff7fb0"/><circle cx="250" cy="364" r="3.5" fill="#ffd54a"/>
+      <circle cx="342" cy="360" r="8" fill="#ffd54a"/><circle cx="342" cy="360" r="3.5" fill="#ff9f43"/>
+      <circle cx="430" cy="362" r="8" fill="#b06ad9"/><circle cx="430" cy="362" r="3.5" fill="#ffd54a"/>
+      <circle cx="494" cy="358" r="8" fill="#ff7fb0"/><circle cx="494" cy="358" r="3.5" fill="#ffd54a"/>
+    </g>
+  </g>
+
+  <!-- ROOF: el techo con su chimenea -->
+  <g data-parte="roof">
+    <rect x="352" y="46" width="24" height="56" fill="#b5523a" stroke="#7d3423" stroke-width="2"/>
+    <rect x="347" y="40" width="34" height="10" rx="2" fill="#7d3423"/>
+    <path d="M90 122 L270 26 L450 122 Z" fill="#d9634a" stroke="#8c3a28" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M232 50 H308 M192 72 H348 M152 94 H388 M118 110 H422" stroke="#b84b35" stroke-width="2" fill="none"/>
+    <circle cx="270" cy="88" r="15" fill="#bfe6ff" stroke="#8c3a28" stroke-width="3"/>
+    <path d="M255 88 H285 M270 73 V103" stroke="#8c3a28" stroke-width="2"/>
+  </g>
+
+  <!-- BEDROOM: cama, ventana y armario -->
+  <g data-parte="bedroom">
+    <rect x="110" y="122" width="180" height="104" fill="#ffe7c2"/>
+    <rect x="178" y="136" width="42" height="36" rx="3" fill="#bfe6ff" stroke="#8a5a33" stroke-width="3"/>
+    <path d="M199 136 V172 M178 154 H220" stroke="#8a5a33" stroke-width="2"/>
+    <rect x="119" y="168" width="10" height="56" rx="3" fill="#8a5a33"/>
+    <rect x="126" y="196" width="100" height="16" rx="4" fill="#ffffff" stroke="#c9b28f" stroke-width="1.5"/>
+    <ellipse cx="145" cy="193" rx="14" ry="6.5" fill="#ffffff" stroke="#c9b28f" stroke-width="1.5"/>
+    <path d="M164 189 H222 Q228 189 228 195 V212 H164 Z" fill="#5b8def"/>
+    <path d="M164 197 H228" stroke="#3f6fd0" stroke-width="2"/>
+    <rect x="124" y="210" width="108" height="7" rx="2" fill="#8a5a33"/>
+    <rect x="127" y="216" width="6" height="8" fill="#8a5a33"/><rect x="223" y="216" width="6" height="8" fill="#8a5a33"/>
+    <rect x="244" y="148" width="38" height="76" rx="3" fill="#b9804f" stroke="#7b4f2a" stroke-width="2"/>
+    <path d="M263 150 V222" stroke="#7b4f2a" stroke-width="2"/>
+    <circle cx="259" cy="188" r="2.2" fill="#4a2d14"/><circle cx="267" cy="188" r="2.2" fill="#4a2d14"/>
+  </g>
+
+  <!-- BATHROOM: ducha, tina, espejo e inodoro -->
+  <g data-parte="bathroom">
+    <rect x="290" y="122" width="140" height="104" fill="#d6f1f4"/>
+    <path d="M290 150 H430 M290 178 H430 M318 122 V178 M346 122 V178 M374 122 V178 M402 122 V178" stroke="#bde3e8" stroke-width="1.5" fill="none"/>
+    <path d="M304 220 V142 Q304 133 314 133 H326" fill="none" stroke="#9aa5b1" stroke-width="4" stroke-linecap="round"/>
+    <path d="M320 133 h14 l5 9 h-24 z" fill="#9aa5b1"/>
+    <path d="M321 148 v8 M328 148 v11 M335 148 v8" stroke="#4aa8e8" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M298 196 H366 V208 Q366 222 352 222 H312 Q298 222 298 208 Z" fill="#ffffff" stroke="#9aa5b1" stroke-width="2.5"/>
+    <rect x="294" y="191" width="76" height="8" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="2"/>
+    <ellipse cx="402" cy="148" rx="13" ry="16" fill="#bfe6ff" stroke="#9aa5b1" stroke-width="3"/>
+    <path d="M396 142 q4 -6 9 -2" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+    <rect x="398" y="176" width="22" height="24" rx="3" fill="#ffffff" stroke="#9aa5b1" stroke-width="2.5"/>
+    <path d="M384 200 H420 V206 Q420 214 408 216 V224 H394 V214 Q384 210 384 200 Z" fill="#ffffff" stroke="#9aa5b1" stroke-width="2.5" stroke-linejoin="round"/>
+  </g>
+
+  <!-- LIVING ROOM: sofá, cuadro y televisor -->
+  <g data-parte="living">
+    <rect x="110" y="226" width="120" height="104" fill="#ffd9cf"/>
+    <rect x="128" y="242" width="36" height="26" rx="2" fill="#ffffff" stroke="#8a5a33" stroke-width="3"/>
+    <path d="M131 265 l10 -11 l7 7 l5 -5 l8 9 z" fill="#7ccf6b"/><circle cx="155" cy="250" r="3" fill="#ffd54a"/>
+    <rect x="120" y="284" width="66" height="36" rx="9" fill="#e8553f"/>
+    <rect x="126" y="304" width="54" height="17" rx="5" fill="#f47c68"/>
+    <path d="M153 304 V321" stroke="#c8402c" stroke-width="2"/>
+    <rect x="114" y="299" width="14" height="27" rx="6" fill="#c8402c"/>
+    <rect x="178" y="299" width="14" height="27" rx="6" fill="#c8402c"/>
+    <rect x="121" y="324" width="6" height="5" fill="#5a3a22"/><rect x="179" y="324" width="6" height="5" fill="#5a3a22"/>
+    <rect x="197" y="306" width="29" height="22" rx="2" fill="#b9804f" stroke="#7b4f2a" stroke-width="2"/>
+    <path d="M211 300 v6" stroke="#2f3a55" stroke-width="4"/>
+    <rect x="194" y="274" width="34" height="27" rx="3" fill="#2f3a55"/>
+    <rect x="197" y="277" width="28" height="21" rx="2" fill="#7fd0ff"/>
+  </g>
+
+  <!-- DINING ROOM: mesa con frutero, sillas y lámpara -->
+  <g data-parte="dining">
+    <rect x="230" y="226" width="100" height="104" fill="#fff2b0"/>
+    <path d="M280 226 V244" stroke="#7b4f2a" stroke-width="2"/>
+    <path d="M266 260 Q280 236 294 260 Z" fill="#ff9f43" stroke="#c96e17" stroke-width="2" stroke-linejoin="round"/>
+    <rect x="236" y="280" width="5" height="48" rx="2" fill="#8a5a33"/>
+    <rect x="236" y="306" width="18" height="5" rx="2" fill="#8a5a33"/>
+    <rect x="249" y="311" width="4" height="17" fill="#8a5a33"/>
+    <rect x="319" y="280" width="5" height="48" rx="2" fill="#8a5a33"/>
+    <rect x="306" y="306" width="18" height="5" rx="2" fill="#8a5a33"/>
+    <rect x="307" y="311" width="4" height="17" fill="#8a5a33"/>
+    <path d="M264 300 V328 M296 300 V328" stroke="#7b4f2a" stroke-width="5" stroke-linecap="round"/>
+    <rect x="254" y="292" width="52" height="8" rx="3" fill="#c98f58" stroke="#7b4f2a" stroke-width="2"/>
+    <circle cx="275" cy="283" r="5.5" fill="#e8553f"/><circle cx="285" cy="283" r="5.5" fill="#ffd54a"/>
+    <path d="M267 285 Q280 298 293 285 Z" fill="#ffffff" stroke="#9aa5b1" stroke-width="1.5"/>
+  </g>
+
+  <!-- KITCHEN: refrigeradora, anaquel y cocina con olla -->
+  <g data-parte="kitchen">
+    <rect x="330" y="226" width="100" height="104" fill="#dcefc8"/>
+    <rect x="338" y="250" width="32" height="78" rx="4" fill="#f4f7fb" stroke="#9aa5b1" stroke-width="2.5"/>
+    <path d="M338 280 H370" stroke="#9aa5b1" stroke-width="2"/>
+    <path d="M344 260 v11 M344 290 v17" stroke="#6b7785" stroke-width="3" stroke-linecap="round"/>
+    <rect x="380" y="236" width="42" height="22" rx="3" fill="#b9804f" stroke="#7b4f2a" stroke-width="2"/>
+    <path d="M401 236 V258" stroke="#7b4f2a" stroke-width="2"/>
+    <path d="M396 274 q-3 -5 0 -9 M406 274 q-3 -5 0 -9" fill="none" stroke="#9aa5b1" stroke-width="2" stroke-linecap="round"/>
+    <rect x="390" y="279" width="22" height="13" rx="2" fill="#e8553f" stroke="#a83322" stroke-width="2"/>
+    <path d="M387 279 H415" stroke="#a83322" stroke-width="3" stroke-linecap="round"/>
+    <rect x="380" y="292" width="42" height="36" rx="3" fill="#f4f7fb" stroke="#9aa5b1" stroke-width="2.5"/>
+    <circle cx="388" cy="299" r="2" fill="#6b7785"/><circle cx="396" cy="299" r="2" fill="#6b7785"/><circle cx="414" cy="299" r="2" fill="#6b7785"/>
+    <rect x="387" y="305" width="28" height="18" rx="2" fill="#2f3a55"/>
+    <path d="M391 309 H411" stroke="#7fd0ff" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- GARAGE: el carro -->
+  <g data-parte="garage">
+    <rect x="430" y="250" width="84" height="80" fill="#e3e7ef"/>
+    <path d="M426 238 H518 V250 H426 Z" fill="#8c3a28"/>
+    <path d="M436 258 H508 M436 266 H508" stroke="#c3cad8" stroke-width="3" stroke-linecap="round"/>
+    <path d="M440 318 V304 Q440 300 446 299 L454 286 Q456 282 462 282 H484 Q490 282 493 286 L500 299 Q506 300 506 304 V318 Z" fill="#3f86e8" stroke="#2a5fb0" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M458 298 L463 288 H471 V298 Z M475 298 V288 H484 L490 298 Z" fill="#cfeaff"/>
+    <circle cx="503" cy="306" r="2.5" fill="#ffd54a"/>
+    <circle cx="456" cy="319" r="8" fill="#2b2f3a"/><circle cx="456" cy="319" r="3" fill="#c9d0df"/>
+    <circle cx="490" cy="319" r="8" fill="#2b2f3a"/><circle cx="490" cy="319" r="3" fill="#c9d0df"/>
+  </g>
+
+  <!-- marco de la casa: paredes y pisos (no es parte) -->
+  <g fill="none" stroke="#6b4a36" stroke-width="4" stroke-linejoin="round" pointer-events="none">
+    <rect x="110" y="122" width="320" height="208"/>
+    <path d="M110 226 H430 M290 122 V226 M230 226 V330 M330 226 V330"/>
+    <rect x="430" y="250" width="84" height="80"/>
+  </g>
+</svg>

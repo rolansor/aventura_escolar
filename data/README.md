@@ -9,7 +9,7 @@ que rellena `window.__DATOS__["<clave>"]` (la clave incluye la subcarpeta, p. ej
 > **Tras editar cualquier `.json`: `python herramientas/build.py`** y después
 > **`python herramientas/validar.py`** (avisa si el contenido tiene trampas). No edites los `.js` (se regeneran).
 >
-> Los dibujos grandes van como archivos `.svg` aparte (p. ej. `recursos/senala/*.svg`) y el JSON los
+> Los dibujos grandes van como archivos `.svg` aparte (p. ej. `recursos/senala/*.svg` o `recursos/ingles/*.svg`) y el JSON los
 > referencia con `{ "$archivo": "ruta" }`; `build.py` los incrusta en el `.js`.
 
 ## Organización

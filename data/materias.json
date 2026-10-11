@@ -335,13 +335,61 @@
     "id": "ingles",
     "icono": "🗣️",
     "nombre": "Inglés",
-    "desc": "Palabras y juegos en inglés",
+    "desc": "Vocabulario, verbos y tiempos en inglés",
     "actividades": [
       {
+        "modo": "casa",
+        "icono": "🏠",
+        "nombre": "My house",
+        "desc": "La casa: cuartos, cosas y dónde va cada una"
+      },
+      {
+        "modo": "escuela",
+        "icono": "🎒",
+        "nombre": "My school",
+        "desc": "El aula, los útiles y lo que se dice en clase"
+      },
+      {
+        "modo": "palabras",
+        "icono": "🧩",
+        "nombre": "More words",
+        "desc": "Cuerpo, animales, comida, familia, números y días"
+      },
+      {
         "modo": "ahorcado",
-        "icono": "🍎",
+        "icono": "🔤",
         "nombre": "El ahorcado",
-        "desc": "Adivina la fruta en inglés letra por letra"
+        "desc": "Adivina la palabra en inglés letra por letra"
+      },
+      {
+        "modo": "presimple",
+        "icono": "🔁",
+        "nombre": "Present simple",
+        "desc": "Lo de todos los días: I play, she plays"
+      },
+      {
+        "modo": "continuo",
+        "icono": "⏱️",
+        "nombre": "Present continuous",
+        "desc": "Lo que pasa ahora: she is playing"
+      },
+      {
+        "modo": "regulares",
+        "icono": "✅",
+        "nombre": "Regular verbs",
+        "desc": "El pasado con -ed: played, studied, stopped"
+      },
+      {
+        "modo": "irregulares",
+        "icono": "🔀",
+        "nombre": "Irregular verbs",
+        "desc": "Verbos que cambian en pasado: go → went"
+      },
+      {
+        "modo": "pasado",
+        "icono": "⏪",
+        "nombre": "Past simple",
+        "desc": "Lo que ya pasó: did, didn't, was, were"
       }
     ]
   }

@@ -83,9 +83,9 @@ página en `paginas/` que el menú enlaza. Las páginas de `paginas/` usan `<bas
 | `src/core/menu.js` | `Menu` | Menú del índice en 3 sub-pantallas: **grado + trimestre** (`pantalla-curso`), **materias** del trimestre (`pantalla-menu`) y **actividades** (`pantalla-materia`); las tarjetas salen de `Curriculo.materias(...)` y enlazan a `paginas/<modo>.html`. **Modal de clave** (`pedirClave(destino)`) que se abre ANTES de ir a la zona de adultos; sin clave válida no se navega. Dos tarjetas de adultos: **⚙️ Ajustes** (`editor.html`) y **📚 Banco de contenido** (`contenido.html`). |
 | `src/core/mc.js` | `MC` | Motor de **opción múltiple** (repasos rápidos). Fábrica `MC(px, temas)`; ronda de 10. Al terminar registra el resultado en el leaderboard (`Juego.registrarResultado(px,…)`). **No es el patrón por defecto** (ver Filosofía de diseño). |
 | `src/core/actividad.js` | `Actividad` | Motor de **actividades manipulativas** (hermano de `MC`). Fábrica `Actividad(px, temas, opts)`; cada tema tiene `ronda(host, ctrl)` que arma la interacción en `#<px>-extra` y resuelve con `ctrl.ganar()/fallar()/reintento()`. Sin temporizador (autocorrectivo). Al terminar registra el leaderboard. Reutiliza la misma estructura de página por prefijo que `MC`. |
-| `src/core/arrastrar.js` | `Arrastrar` | Arrastrar-y-soltar con eventos de **puntero** (mouse + dedo). `Arrastrar.hacer(item, zonas, alSoltar)` (marca `.zona-hover`, devuelve la zona destino o null) y `Arrastrar.clasificar(host, ctrl, {pregunta, cestas, items})` (actividad "clasifica en cestas"). Además dos ayudantes de **toque** para `ronda()` de `Actividad`: `Arrastrar.emparejar(host, ctrl, {pregunta, pares:[{a,b}]})` (une parejas: toca izquierda→derecha; CSS `.emp-*`) y `Arrastrar.ordenar(host, ctrl, {pregunta, correcto:[...]})` (toca fichas en orden; CSS `.ord-*`). |
-| `src/core/contenido.js` | `Contenido` | **Runner genérico de contenido**. `Contenido.montar("<modo>")` lee `DATOS.contenido[<modo>]` (de `data/contenido/<modo>.json`) y arma las rondas según el `tipo` de cada tema (clasificar/emparejar/ordenar/silabas/alfabetico/vf/definir/sujeto/signos/formas/escena/senala/problema/terminos/**ahorcado**/**lectura**; motor `mc`: mc), devolviendo un `Actividad`/`MC`. Incluye el helper de **voz en inglés** (`hablarEn`, Web Speech API) que usa el ahorcado. Centraliza la lógica que antes estaba en cada `src/modos/*.js`. Ver `docs/ESQUEMA_CONTENIDO.md`. |
-| `data/contenido/<modo>.json` | `DATOS.contenido[<modo>]` | **Contenido de las 30 actividades del runner** (Lengua: clases, familia, sinonimos, refranes, ordena, alfabetico, silabas, sujeto, signos, formas, lectura, vocabulario; Ciencias: animales, invertebrados, cuidafauna, plantas, vidaplantas, cuerpo, materia, ambiente, cicloagua, senala; Sociales: epoca, regiones, incas, riosygente; Mate: problemas, terminos, propmult; Inglés: ahorcado) + `quiz.json` (bancos de texto del Quiz). **No tienen `src/modos/*.js`** (su lógica vive en el runner). Editar el JSON + `build.py`. |
+| `src/core/arrastrar.js` | `Arrastrar` | Arrastrar-y-soltar con eventos de **puntero** (mouse + dedo). `Arrastrar.hacer(item, zonas, alSoltar)` (marca `.zona-hover`, devuelve la zona destino o null) y `Arrastrar.clasificar(host, ctrl, {pregunta, cestas, items})` (actividad "clasifica en cestas"). Además dos ayudantes de **toque** para `ronda()` de `Actividad`: `Arrastrar.emparejar(host, ctrl, {pregunta, pares:[{a,b}]})` (une parejas: toca izquierda→derecha; CSS `.emp-*`) y `Arrastrar.ordenar(host, ctrl, {pregunta, correcto:[...], extras?:[...]})` (toca fichas en orden; `extras` = fichas que sobran; CSS `.ord-*`). |
+| `src/core/contenido.js` | `Contenido` | **Runner genérico de contenido**. `Contenido.montar("<modo>")` lee `DATOS.contenido[<modo>]` (de `data/contenido/<modo>.json`) y arma las rondas según el `tipo` de cada tema (clasificar/emparejar/ordenar/silabas/alfabetico/vf/definir/sujeto/signos/formas/escena/senala/problema/terminos/**lectura**/**memoria**, y los de Inglés: **ahorcado**/**escucha**/**frase**/**completa**/**terminacion**; motor `mc`: mc), devolviendo un `Actividad`/`MC`. Incluye los ayudantes de Inglés: **voz** (`hablarEn`, Web Speech API), tarjeta de pista (`tarjetaEn`), botón 🔊 (`botonOir`) y la ficha que se arrastra o se toca (`fichaEn`). Centraliza la lógica que antes estaba en cada `src/modos/*.js`. Ver `docs/ESQUEMA_CONTENIDO.md`. |
+| `data/contenido/<modo>.json` | `DATOS.contenido[<modo>]` | **Contenido de las 38 actividades del runner** (Lengua: clases, familia, sinonimos, refranes, ordena, alfabetico, silabas, sujeto, signos, formas, lectura, vocabulario; Ciencias: animales, invertebrados, cuidafauna, plantas, vidaplantas, cuerpo, materia, ambiente, cicloagua, senala; Sociales: epoca, regiones, incas, riosygente; Mate: problemas, terminos, propmult; Inglés: casa, escuela, palabras, ahorcado, presimple, continuo, regulares, irregulares, pasado) + `quiz.json` (bancos de texto del Quiz). **No tienen `src/modos/*.js`** (su lógica vive en el runner). Editar el JSON + `build.py`. |
 | `src/modos/ortografia.js` | `Ortografia` | Ejercicios desde `DATOS.ortografia` (loader propio). |
 | `src/modos/secuencias.js` | `Secuencias` | Secuencias numéricas. |
 | `src/modos/copia.js` | `Copia` | **Corregir / Dictado** (dos sub-modos manipulativos). *Corregir*: el texto sale con errores y el niño **toca la palabra mala** → mini-modal con opciones (dificultad por `Juego.nivelIdx()`: básico = errores marcados y opciones obvias; intermedio = marcados, opciones más parecidas; avanzado = sin marcar, el niño los **busca** y al final pulsa Comprobar). *Dictado*: la voz del navegador (**Web Speech API**, sin librerías; degrada a mostrar el texto si no hay voz) lee y el niño escribe. Puntaje = palabras correctas/total → leaderboard `"copia"`. Conserva `generarErrores` (lo usa `banco.js`). |
@@ -98,7 +98,7 @@ página en `paginas/` que el menú enlaza. Las páginas de `paginas/` usan `<bas
 | `src/efectos/modelo3d.js` + `src/efectos/modelos/*.js` | `Modelo3D` | **Escenario 3D de las actividades** (ver "Modelos 3D y dibujos"). `Modelo3D.registrar(nombre, fn)` / `disponible(nombre)` / `crear(host, nombre, opts)`. Modelos: `planta`, `flor`, `cicloagua`, `bloques`, `fraccion`. |
 | `herramientas/*.py` | — | `build.py` (genera los `data/*.js`; incrusta `{"$archivo": …}`), `validar.py` (contenido), `humo.py` + `cdp.py` (prueba de humo en navegador sin ventana), `corregir_cantones.py` (nombres de cantones). |
 | `css/modulos/*.css` | — | Estilos modulares (orden en `css/modulos/_orden.md`). |
-| `recursos/` | — | `ecuador_1.0.svg` / `ecuador_2.0.svg` (mapa original y horneado), `gadm41_ECU_2.json` (fuente de los cantones), `banderas/EC-*.svg` (banderas provinciales) y `senala/*.svg` (dibujos de "Señala la parte"). |
+| `recursos/` | — | `ecuador_1.0.svg` / `ecuador_2.0.svg` (mapa original y horneado), `gadm41_ECU_2.json` (fuente de los cantones), `banderas/EC-*.svg` (banderas provinciales), `senala/*.svg` (dibujos de "Señala la parte") e `ingles/*.svg` (la casa y el aula de Inglés). |
 | `paginas/*.html` | — | Una por módulo; incluye sus `data/*.js`, core, su modo, y arranca con `Datos.cargar(...).then(() => { Juego.iniciarBase(); Modo.init(); })`. |
 
 `Juego` (en `src/core/juego.js`) es la API compartida por todas las páginas. Las secciones de abajo
@@ -116,7 +116,7 @@ de una actividad (`index.html?materia=<id>`) se abre esa materia en el curso rec
 { id, icono, nombre, desc,
   actividades: [ { modo, icono, nombre, desc }, ... ] }  // modo = clave del mapa PAGINA de menu.js
 ```
-Las 51 actividades del catálogo:
+Las 59 actividades del catálogo:
 - **Lengua** (14): ortografia, copia, clases, familia, sinonimos, formas, silabas, ordena, sujeto, signos,
   alfabetico, lectura, refranes, vocabulario.
 - **Matemáticas** (18): secuencias, tablas, aritmetica, terminos, problemas, valor (su página es
@@ -125,7 +125,7 @@ Las 51 actividades del catálogo:
 - **Estudios Sociales** (8): epoca, regiones, mapas, cantones, quiz, donde, incas, riosygente.
 - **Ciencias Naturales** (10): senala, plantas, cuerpo, animales, invertebrados, cuidafauna, cicloagua,
   materia, ambiente, vidaplantas.
-- **Inglés** (1): ahorcado.
+- **Inglés** (9): casa, escuela, palabras, ahorcado, presimple, continuo, regulares, irregulares, pasado.
 
 **Para añadir una actividad nueva:**
 1. **Con el runner (lo normal):** crea `data/contenido/<modo>.json` y `paginas/<modo>.html` copiando una
@@ -154,8 +154,9 @@ Lo primero que se elige al entrar, en una sola pantalla (`pantalla-curso`). `dat
   Una actividad puede estar en **varios** trimestres (se repite) o en **uno** solo; una materia que no
   aparece en un trimestre no sale en su menú (en el mapa sale con 💤). **Para mover o repetir algo: editar
   el plan + `build.py`.**
-- **Hoy, en 5.º:** `"1"` = todo lo que existía antes de los trimestres (44 actividades; decisión del usuario:
-  "todo lo anterior es primer trimestre"), `"2"` = 15 actividades (ver "Segundo trimestre de Quinto") y
+- **Hoy, en 5.º:** `"1"` = todo lo que existía antes de los trimestres (decisión del usuario: "todo lo anterior es
+  primer trimestre") más el Inglés de vocabulario y presente (49 actividades), `"2"` = 20 actividades (ver
+  "Segundo trimestre de Quinto") y
   `"3"` todavía no existe. Un trimestre sin plan sale "🚧 En construcción" (tarjeta y columna del mapa) y no
   se puede entrar.
 - **Curso recordado**: `Juego.curso()` → `{grado, trimestre}` y `Juego.fijarCurso(g, t)`; se guarda en el
@@ -230,18 +231,55 @@ de Quinto".
 - **incas, riosygente** — ver "Segundo trimestre de Quinto".
 
 ### Inglés (materia `ingles`)
-**El ahorcado** (`ahorcado`, px `ahor`, tipo `ahorcado` del runner). Dos temas: **🍎 Fruits** (frutas comunes)
-y **🇪🇨 Fruits of Ecuador** (guineo, verde, uvilla, tomate de árbol, guanábana, pitahaya…). El niño adivina la
-palabra **en inglés** tocando letras (o con el teclado real); la pista es el **emoji grande + la traducción
-al español de Ecuador** (en avanzado del tema 1 se oculta la traducción). Cada fallo dibuja una parte del
-monigote y quita un ❤️ (6 vidas); en básico se regalan 2 letras, 1 en intermedio y 0 en avanzado (`pistas`).
-Al terminar, la **voz del navegador pronuncia la palabra en inglés** (Web Speech API, `en-US`, con botón 🔊
-para repetir; si no hay voz, no pasa nada). Estilos `.ahor-*` en `ejercicios.css`.
+Nueve actividades del runner. **Todo se oye**: la voz del navegador (Web Speech API, `en-US`; si no hay
+voz en inglés, no pasa nada y lo que había que oír sale escrito) pronuncia la palabra u oración al acertar,
+y un botón 🔊 la repite. Cada palabra lleva su traducción al **español de Ecuador** (guineo, choclo, esfero,
+deber, canguil) y su emoji. Tipos propios de la materia: `escucha`, `frase`, `completa`, `terminacion`
+(ver `docs/ESQUEMA_CONTENIDO.md`), más `memoria` y `senala` con `idioma:"en"`.
+- **casa** — "My house" (px `casa`, 7 temas). El material es el **dibujo de la casa en corte**
+  (`recursos/ingles/casa.svg`: roof, bedroom, bathroom, living, dining, kitchen, garage, garden): *Rooms of the
+  house* (se lleva cada nombre a su cuarto; en avanzado también frases como "We cook here."), *Where does it
+  go?* (cada cosa a su cuarto: bed → bedroom), *Touch the room* (se oye "Touch the kitchen" y se toca),
+  *Listen and touch*, *Memory*, *Build the sentence* e *Inside or outside?* (actividades de adentro y de
+  afuera, del 1.er trimestre del colegio).
+- **escuela** — "My school" (px `escu`, 7 temas). Sobre el **dibujo del aula** (`recursos/ingles/aula.svg`:
+  door, board, clock, window, bookshelf, backpack, desk, chair, globe, book): *My classroom* (rotular),
+  *Touch it!*, *Where is it?* (en la mochila / en el aula / materias / lugares de la escuela), *Listen and
+  touch*, *Memory*, *Classroom language* ("Raise your hand." ↔ "Levanta la mano.") y *Build the sentence*.
+- **palabras** — "More words" (px `pal`, 10 temas): *My body* y *My face* (los dibujos de "Señala la parte",
+  en inglés), *Animals*, *Food* y *Colors* (escucha y toca), *Sort the words* (animales, comida, ropa,
+  familia, clima), *My family*, *Numbers* (hasta 100), *In order* (días, meses, números, ordinales) y *Memory*.
+- **ahorcado** — "El ahorcado" (px `ahor`, 4 temas): **🍎 Fruits**, **🌴 Fruits of Ecuador** (guineo, verde,
+  uvilla, tomate de árbol, guanábana, pitahaya…), **🏠 House** y **🎒 School**. Se adivina la palabra tocando
+  letras (o con el teclado real); la pista es el emoji + la traducción (en avanzado de Fruits se oculta). Cada
+  fallo dibuja una parte del monigote y quita un ❤️ (6 vidas); se regalan 2 letras en básico, 1 en intermedio
+  y 0 en avanzado (`pistas`). Estilos `.ahor-*`.
+- **presimple** — "Present simple" (px `psim`, 7 temas): *I play, she plays* (¿con -s o sin -s?), *The -s
+  machine* (play + s, watch + es, study → studies), *Don't, doesn't, do, does*, *Build the sentence*, *My day*
+  (ordenar la rutina por la hora) y los **adverbios de modo** del 1.er trimestre: *How? Adverbs with -ly*
+  (slow + ly, happy → happily, fast no cambia) y *Quickly or slowly?*.
+- **continuo** — "Present continuous" (px `pcon`, 5 temas): *What are they doing?* (se oye "She is dancing." y
+  se toca el dibujo), *The -ing machine* (+ ing, quita la e, dobla la letra), *Am, is, are*, *Build the
+  sentence* y *Every day or right now?* (present simple contra present continuous).
+- **regulares** — "Regular verbs" (px `vreg`, 5 temas): *Action!* (escucha el verbo y toca la acción), *The -ed
+  machine* (+ ed, + d, y → ied, doble letra + ed), *Memory: present and past*, *Write the past* (ahorcado con
+  el pasado) y *Yesterday…* (completar; en avanzado, didn't y Did).
+- **irregulares** — "Irregular verbs" (px `virr`, 5 temas): *Present and past* (go ↔ went; unos 45 verbos en
+  tres niveles), *Memory*, *Regular or irregular?* (en básico se ve la pareja "go → went"; después solo el
+  verbo), *Write the past* y *Yesterday…* (las otras fichas son el error típico: goed, eated).
+- **pasado** — "Past simple" (px `ppas`, 7 temas): *The time machine* (¿ya pasó, pasa siempre o pasa ahora?),
+  *What happened?* (regulares e irregulares), *Didn't and Did…?*, *Was or were?*, *Build the sentence*, *My
+  past in pictures* (ordenar lo que pasó; es el nombre del proyecto del colegio) y *Time words*.
+
+**La máquina de terminaciones** (`terminacion`) es el material manipulativo de la gramática: una misma
+mecánica para -s, -ing, -ed y -ly. Al fallar no regaña: dice para qué sirve la ficha elegida o en qué fijarse
+("Mira cómo termina **study**: busca la ficha para los que terminan en consonante + y"). CSS `.ter-*`; el resto
+de Inglés usa `.en-*` (tarjeta, hueco, ficha), `.esc-*` (escucha) y `.mem-*` (memoria), todo en `ejercicios.css`.
 
 ### Segundo trimestre de Quinto (sacado del Classroom del colegio)
 El 2.º trimestre fue del 20-jul a mediados de octubre de 2026. Su plan (`"2"` en `data/curriculo.json`)
 **repite** actividades que ya existían y calzan (Lengua: clases, sinonimos, lectura; Mate: tablas,
-multiplicacion; Ciencias: plantas, senala, ambiente) y añade estas:
+multiplicacion; Ciencias: plantas, senala, ambiente; Inglés: presimple, continuo) y añade estas:
 - **rectas** — "Rectas y ángulos" (`src/modos/geometria.js`, global `Rectas`, px `rec`; motor `Actividad`,
   todo SVG con eventos de puntero): **Gira la recta** (se gira la recta roja hasta que sea paralela /
   secante perpendicular / secante oblicua a la azul y se pulsa "¡Listo!"; el material responde con la
@@ -271,7 +309,9 @@ multiplicacion; Ciencias: plantas, senala, ambiente) y añade estas:
   trueque, Imperio Inca, línea de tiempo hasta 1534 y personajes; vertientes y ríos, usos del agua, pueblos
   por región, fiestas, comidas y vestimenta.
 
-Inglés aún no tiene nada del 2.º trimestre (verbos regulares en pasado): en el mapa sale con 💤.
+De Inglés, el 2.º trimestre lleva **regulares**, **irregulares** y **pasado** (el colegio da los verbos
+regulares en pasado y el proyecto "My past in pictures") y repite **presimple** y **continuo** para comparar
+los tiempos; el 1.º tiene el vocabulario (casa, escuela, palabras, ahorcado) y los dos presentes.
 Lo que falta está en "Estado y pendientes".
 
 ## Perfiles, Niveles y Leaderboard
@@ -476,14 +516,20 @@ están en `banco.js` y **deben permanecer alineadas** con las claves que lee `or
   incrustados con `{"$archivo": …}`. Partes = `<g data-parte="id">`. Animaciones por clase CSS: `late`
   (corazón), `respira` (pulmones), `parpadea` (ojos). El de órganos también es destino de fichas en
   `cuerpo` → "¿Para qué sirve?".
+- **Dibujos de Inglés** en `recursos/ingles/*.svg` (la casa en corte y el aula), con el mismo contrato
+  (`<g data-parte="id">`, clase `sen-svg`). Cada cuarto lleva su propio fondo para que toda su superficie
+  sirva de destino, y el marco va al final con `pointer-events="none"`. Se usan a la vez para rotular
+  (`clasificar` con `dibujo`) y para tocar (`senala` con `idioma:"en"`); el cuerpo y la cara de "Señala la
+  parte" se reutilizan en inglés en `palabras`.
 - **Páginas**: la que use un modelo carga `src/efectos/modelo3d.js` y su `src/efectos/modelos/<n>.js`
   después de `luna.js` (ver `paginas/senala.html`).
 
 ## Pruebas y validación
 - `python herramientas/validar.py` — contenido: respuestas fuera de las opciones, palabras en dos cestas,
   casillas que regalan la respuesta, partes sin dibujo, ortografía sin la letra de su categoría, cantones
-  mal escritos, lecturas cuya `pista`/`toca` no está en una sola oración del texto, plan de trimestres
-  incoherente (`revisar_curriculo`), `.js` sin regenerar. **Debe dar 0 errores.**
+  mal escritos, lecturas cuya `pista`/`toca` no está en una sola oración del texto, Inglés (oraciones sin su hueco
+  `___`, fichas que sobran y están en la oración, cartas de memoria repetidas, terminaciones que no existen,
+  palabras sin dibujo), plan de trimestres incoherente (`revisar_curriculo`), `.js` sin regenerar. **Debe dar 0 errores.**
 - `python herramientas/humo.py [--todos] [--nivel X] [página…]` — abre cada página en Chrome/Edge sin
   ventana (perfil temporal: no toca el progreso real), entra varias veces a cada tema y reporta errores de
   JavaScript, rondas vacías y actividades que no caben en pantalla. Antes recorre el inicio (grado →
@@ -499,6 +545,12 @@ están en `banco.js` y **deben permanecer alineadas** con las claves que lee `or
 
 ## Estado y pendientes
 **Hecho (lo más reciente primero):**
+- **Inglés completo (oct-2026)**: de una actividad (el ahorcado de frutas) a nueve. Vocabulario de la casa,
+  la escuela y general (cuerpo, animales, comida, colores, familia, números, días y meses), verbos regulares
+  e irregulares, present simple, present continuous y past simple, más los adverbios de modo y las
+  actividades de adentro/afuera del 1.er trimestre. Cinco tipos nuevos en el runner (`escucha`, `frase`,
+  `completa`, `terminacion`, `memoria`), `senala` en inglés, los dibujos de la casa y el aula, y sus chequeos
+  en `validar.py`.
 - **Revisión de Lengua (oct-2026)**: Comprensión lectora rehecha (antes el "texto" eran una o dos oraciones
   pequeñas bajo la pregunta: ahora son textos de verdad, siempre a la vista, con preguntas de elegir, tocar la
   oración y ordenar). Orden alfabético ya no rechaza el orden correcto con ñ; "jabalís"/"rubís" dejaron de ser
@@ -526,9 +578,13 @@ están en `banco.js` y **deben permanecer alineadas** con las claves que lee `or
 
 **Pendiente:**
 - **2.º trimestre:** Lengua (sustantivos concretos/abstractos y contables/incontables, artículos, adjetivos,
-  tipos de texto, paratextos), Inglés (pasado con -ed) y un tangram. Confirmar con el cuaderno cómo llama la
+  tipos de texto, paratextos) y un tangram. Confirmar con el cuaderno cómo llama la
   profesora a las propiedades de la multiplicación (se usó "elemento neutro" y "elemento absorbente"; podrían
   ser "modulativa" y "anulativa") y unificar la grafía "Cápac Ñan" (`epoca`, `quiz`) / "Qhapaq Ñan" (`incas`).
+- **Inglés:** confirmar con el libro del colegio el vocabulario exacto de cada unidad (se usó el temario que
+  pidió el usuario: casa, escuela, verbos y los tres tiempos) y si quieren los sonidos de -ed (/t/, /d/, /ɪd/).
+  El reparto por trimestre es una decisión propia (vocabulario y presentes en el 1.º, pasado en el 2.º): se
+  cambia en `data/curriculo.json`.
 - **3.er trimestre:** armarlo cuando el colegio publique sus talleres (volver a leer el Classroom).
 - **Otros grados** (1.º–4.º, 6.º y 7.º): en construcción; hoy no tienen plan ni contenido.
 - Sin nivel de dificultad propio: Ortografía y La hora (esta se gradúa por temas).

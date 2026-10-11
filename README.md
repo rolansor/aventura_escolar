@@ -91,7 +91,14 @@ plantas, la vida de las plantas, el cuerpo humano, los animales, los invertebrad
 fauna, el ciclo del agua (maqueta 3D), la materia, y ecosistemas y ambiente.
 
 ### 🗣️ Inglés
-El ahorcado de las frutas: adivinar la palabra en inglés letra por letra, con su pronunciación por voz.
+Todo se oye (la voz del navegador pronuncia cada palabra y un 🔊 la repite) y casi todo se arma con las manos:
+- **Vocabulario:** *My house* (se rotula una casa dibujada en corte y se lleva cada cosa a su cuarto),
+  *My school* (el aula, los útiles y lo que se dice en clase), *More words* (cuerpo, animales, comida,
+  colores, familia, números, días y meses) y *El ahorcado* (frutas, casa y escuela).
+- **Verbos:** *Regular verbs* (la máquina que arma el pasado: play + ed = played, study → studied) e
+  *Irregular verbs* (go → went, con parejas y memoria).
+- **Tiempos:** *Present simple* (I play, she plays; don't y doesn't; la rutina del día; adverbios con
+  -ly), *Present continuous* (am/is/are + -ing) y *Past simple* (did, didn't, was, were).
 
 ---
 
@@ -140,8 +147,8 @@ Contenido.montar("<modo>")   →   motor Actividad (manipulativo) ó MC (opción
 
 Los **tipos de juego** que entiende el runner incluyen `clasificar`, `emparejar`, `ordenar`,
 `silabas`, `alfabetico`, `vf` (verdadero/falso), `definir`, `sujeto`, `signos`, `formas`,
-`escena`, `senala`, `problema`, `terminos`, `ahorcado` y `lectura` (motor *actividad*), más `mc`
-(motor *mc*).
+`escena`, `senala`, `problema`, `terminos`, `lectura`, `memoria` y los de Inglés (`ahorcado`,
+`escucha`, `frase`, `completa`, `terminacion`), todos del motor *actividad*, más `mc` (motor *mc*).
 El esquema completo y los campos de cada tipo están en **[`docs/ESQUEMA_CONTENIDO.md`](docs/ESQUEMA_CONTENIDO.md)**.
 
 **Excepciones** con lógica propia (no usan el runner): **ortografía** (`data/ortografia.json`),
@@ -195,7 +202,7 @@ de materias y actividades está en `data/materias.json`.
 │   └── *.json (+ *.js)         # ortografia, parrafos, secuencias, nino, generador-parrafos
 ├── css/modulos/                # estilos modulares
 ├── lib/three.min.js            # three.js r128 local (3D offline)
-├── recursos/                   # SVG del mapa, banderas, dibujos de "Señala la parte", fuente de cantones
+├── recursos/                   # SVG del mapa, banderas, dibujos ("Señala la parte", casa y aula), cantones
 ├── herramientas/               # Python, sin instalar nada:
 │   ├── build.py                #   precompila data/**/*.json → data/**/*.js
 │   ├── validar.py              #   revisa que el contenido no tenga trampas

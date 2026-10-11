@@ -17,13 +17,14 @@
           "matematicas": ["secuencias", "tablas", "aritmetica", "terminos", "problemas", "valor", "multiplicacion", "division", "comparar", "redondeo", "numeros", "dinero", "medidas", "hora", "fracciones"],
           "sociales":    ["epoca", "regiones", "mapas", "cantones", "quiz", "donde"],
           "ciencias":    ["senala", "plantas", "cuerpo", "animales", "invertebrados", "cuidafauna", "cicloagua", "materia", "ambiente"],
-          "ingles":      ["ahorcado"]
+          "ingles":      ["casa", "escuela", "palabras", "ahorcado", "presimple", "continuo"]
         },
         "2": {
           "lengua":      ["vocabulario", "clases", "sinonimos", "lectura"],
           "matematicas": ["rectas", "cuadrilateros", "tablas", "multiplicacion", "propmult"],
           "sociales":    ["incas", "riosygente"],
-          "ciencias":    ["vidaplantas", "plantas", "senala", "ambiente"]
+          "ciencias":    ["vidaplantas", "plantas", "senala", "ambiente"],
+          "ingles":      ["regulares", "irregulares", "pasado", "presimple", "continuo"]
         }
       }
     },

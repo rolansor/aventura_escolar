@@ -10,7 +10,9 @@
    Cada tema: { tipo, icono, nombre, desc, total?, …contenido por nivel [b,i,a]… }
    Tipos: clasificar | emparejar | ordenar | silabas | alfabetico | vf | definir
           | sujeto | signos | formas | escena | senala | problema | terminos
-          | ahorcado (Inglés) | lectura (comprensión lectora) | (motor mc:) mc
+          | lectura (comprensión lectora) | memoria (parejas boca abajo)
+          | Inglés: ahorcado, escucha, frase, completa, terminacion
+          | (motor mc:) mc
    ============================================================ */
 window.Contenido = (function () {
   function esc(s) { const d = document.createElement("div"); d.textContent = String(s == null ? "" : s); return d.innerHTML; }
@@ -63,7 +65,10 @@ window.Contenido = (function () {
     if (!window.speechSynthesis || !window.SpeechSynthesisUtterance || !texto) return;
     try {
       window.speechSynthesis.cancel();
-      const u = new SpeechSynthesisUtterance(String(texto).toLowerCase());
+      // Una palabra TODA en mayúsculas (el ahorcado) se pasa a minúsculas para que no
+      // la deletree; una oración se deja como está ("I play soccer.").
+      const s = String(texto);
+      const u = new SpeechSynthesisUtterance(s === s.toUpperCase() ? s.toLowerCase() : s);
       u.lang = "en-US"; u.rate = 0.8; u.pitch = 1;
       const v = buscarVozEn(); if (v) u.voice = v;
       window.speechSynthesis.speak(u);
@@ -72,6 +77,38 @@ window.Contenido = (function () {
   // Las voces pueden cargar tarde (addEventListener para no pisar a copia.js).
   if (window.speechSynthesis && window.speechSynthesis.addEventListener) {
     window.speechSynthesis.addEventListener("voiceschanged", function () { vozEn = null; buscarVozEn(); });
+  }
+  buscarVozEn();   // pedirlas ya: así están cargadas cuando el niño entra a un tema
+
+  /* Piezas comunes de las actividades de Inglés */
+  // Tarjeta de pista: el dibujo (emoji) y lo que hay que decir, en español.
+  function tarjetaEn(q) {
+    if (!q.emoji && !q.es) return "";
+    return '<div class="en-tarjeta">' + (q.emoji ? '<span class="en-emoji">' + esc(q.emoji) + "</span>" : "") +
+      (q.es ? '<span class="en-es">' + esc(q.es) + "</span>" : "") + "</div>";
+  }
+  // Botón 🔊 para oír (otra vez) un texto en inglés; se añade al final de `donde`.
+  function botonOir(donde, texto) {
+    if (!donde || !window.speechSynthesis) return null;
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "ahor-audio en-oir"; b.title = "Escuchar en inglés"; b.textContent = "🔊 Escuchar";
+    b.onclick = () => hablarEn(texto);
+    donde.appendChild(b);
+    return b;
+  }
+  // Ficha que vale ARRASTRAR hasta `zona` o simplemente TOCAR (un toque = soltar sin
+  // haberla movido): así sirve igual con el dedo, el ratón o un niño que aún no arrastra.
+  function fichaEn(fila, texto, zona, alUsar) {
+    const chip = document.createElement("button");
+    chip.type = "button"; chip.className = "ficha-arr en-ficha"; chip.textContent = texto;
+    fila.appendChild(chip);
+    let x0 = 0, y0 = 0;
+    chip.addEventListener("pointerdown", (e) => { x0 = e.clientX; y0 = e.clientY; });
+    Arrastrar.hacer(chip, [zona], (item, z, ev) => {
+      const toque = Math.abs(ev.clientX - x0) + Math.abs(ev.clientY - y0) < 10;
+      if (z || toque) alUsar(chip);
+    });
+    return chip;
   }
 
   // Pinta botones tipo ".ord-chip" dentro de un contenedor ".ord-fuente" en host.
@@ -91,11 +128,14 @@ window.Contenido = (function () {
   const VF_LADOS = new Map();       // banco de V/F -> { v:[verdaderas], f:[falsas] }
 
   /* Clasificar soltando cada ficha SOBRE la parte que corresponde de un dibujo SVG
-     (grupos data-parte) o de un modelo 3D. { dibujo: { modelo?, svg } } y los id de
-     las cestas deben ser los id de las partes. */
+     (grupos data-parte) o de un modelo 3D. { dibujo: { modelo?, svg, pista? } } y los id
+     de las cestas deben ser los id de las partes. `dibujo.pista` cambia la ayuda al
+     fallar; con `voz: "en"` en el tema, la ficha acertada se pronuncia en inglés. */
   function sobreDibujo(t, host, ctrl, cestas, items) {
     ctrl.pregunta(t.pregunta || "Arrastra cada ficha a su parte 👇");
-    const meta = {}; cestas.forEach((c) => (meta[c.id] = c));
+    // Todas las partes tienen nombre, también las que no juegan en este nivel: si la
+    // ficha cae en una de ellas, igual se le dice al niño qué parte es.
+    const meta = {}; (t.cestas || cestas).forEach((c) => (meta[c.id] = c));
     host.innerHTML = '<div class="dib-zona"><div class="dib-dibujo"></div><div class="dib-lado"><div class="fila-fichas"></div><div class="dib-hechas"></div></div></div>';
     const marco = host.querySelector(".dib-dibujo"), fila = host.querySelector(".fila-fichas"), hechas = host.querySelector(".dib-hechas");
     let m = null, zonas;
@@ -136,12 +176,13 @@ window.Contenido = (function () {
           d.className = "dib-hecha";
           d.innerHTML = (meta[it.cesta].emoji || "✅") + " <b>" + esc(meta[it.cesta].nombre) + ":</b> " + esc(it.txt);
           hechas.appendChild(d);
+          if (t.voz === "en") hablarEn(it.txt);
           faltan--;
           if (faltan === 0) ctrl.ganar(1500); else ctrl.retro("¡Bien! Faltan " + faltan + " 👇", "bien");
         } else {
-          const tocada = id || cerca[0];
+          const tocada = id || cerca[0], ayuda = t.dibujo.pista || "¿Qué parte hace ese trabajo? 👀";
           destello(tocada, "mal");
-          ctrl.reintento(meta[tocada] ? "Eso es <b>" + esc(meta[tocada].nombre) + "</b>. ¿Qué parte hace ese trabajo? 👀" : "Ahí no. ¿Qué parte hace ese trabajo? 👀");
+          ctrl.reintento(meta[tocada] ? "Eso es <b>" + esc(meta[tocada].nombre) + "</b>. " + ayuda : "Ahí no. " + ayuda);
         }
       }, { alMover: (ev) => { if (m) m.sobre(m.parteEn(ev.clientX, ev.clientY)); } });
     });
@@ -342,18 +383,34 @@ window.Contenido = (function () {
       });
     },
     // Señala la parte: toca la región correcta sobre un SVG. { svg, partes:[{id,nombre}] }
+    // Con idioma:"en" la consigna va en inglés y con voz ("Touch the kitchen"); cada
+    // parte trae además su traducción: { id, nombre:"the kitchen", es:"la cocina" }.
     senala: (t) => (host, ctrl) => {
       const parte = sacar(t.partes);
-      // "¿Dónde ESTÁN las rodillas?" / "¿Dónde ESTÁ la raíz?" (el nombre trae su artículo).
-      const plural = /^(los|las)\s/i.test(parte.nombre);
-      ctrl.pregunta("¿Dónde " + (plural ? "están" : "está") + " <b>" + esc(parte.nombre) + "</b>? 👆");
-      const nombreDe = (id) => { const p = t.partes.find((x) => x.id === id); return p ? p.nombre : ""; };
-      // El error es información: se le dice QUÉ tocó, no solo que falló.
-      const casi = (id) => {
-        const n = nombreDe(id), art = (n.split(" ")[0] || "").toLowerCase();
-        const dem = { el: "Ese es", la: "Esa es", los: "Esos son", las: "Esas son" }[art] || "Eso es";
-        return dem + " <b>" + esc(n) + "</b>. Busca <b>" + esc(parte.nombre) + "</b> 👀";
-      };
+      const en = t.idioma === "en";
+      const parteDe = (id) => t.partes.find((x) => x.id === id) || { nombre: "" };
+      let casi;
+      if (en) {
+        ctrl.pregunta("👆 Touch <b>" + esc(parte.nombre) + "</b> ");
+        botonOir(host.parentNode && host.parentNode.querySelector(".pregunta"), parte.nombre);
+        hablarEn(parte.nombre);
+        casi = (id) => {
+          const p = parteDe(id);
+          return "Eso es <b>" + esc(p.nombre) + "</b>" + (p.es ? " (" + esc(p.es) + ")" : "") + ". Busca <b>" + esc(parte.nombre) + "</b> 👀";
+        };
+      } else {
+        // "¿Dónde ESTÁN las rodillas?" / "¿Dónde ESTÁ la raíz?" (el nombre trae su artículo).
+        const plural = /^(los|las)\s/i.test(parte.nombre);
+        ctrl.pregunta("¿Dónde " + (plural ? "están" : "está") + " <b>" + esc(parte.nombre) + "</b>? 👆");
+        // El error es información: se le dice QUÉ tocó, no solo que falló.
+        casi = (id) => {
+          const n = parteDe(id).nombre, art = (n.split(" ")[0] || "").toLowerCase();
+          const dem = { el: "Ese es", la: "Esa es", los: "Esos son", las: "Esas son" }[art] || "Eso es";
+          return dem + " <b>" + esc(n) + "</b>. Busca <b>" + esc(parte.nombre) + "</b> 👀";
+        };
+      }
+      // En inglés, al acertar se dice también qué significa.
+      const bien = (ms) => { ctrl.ganar(ms); if (en && parte.es) ctrl.retro("✅ <b>" + esc(parte.nombre) + "</b> = " + esc(parte.es), "bien"); };
 
       // Con WebGL: el modelo 3D (se gira con el dedo y cada parte se ilumina).
       if (t.modelo && window.Modelo3D && Modelo3D.disponible(t.modelo)) {
@@ -363,7 +420,7 @@ window.Contenido = (function () {
         m.alTocar = (id, cerca) => {
           // Vale si tocó la parte o quedó pegadito a ella (dedos pequeños, piezas finas).
           if (id === parte.id || (cerca || []).indexOf(parte.id) >= 0) {
-            m.resaltar(parte.id, "ok", true); m.etiquetar(parte.id, parte.nombre, "ok"); ctrl.ganar(1700);
+            m.resaltar(parte.id, "ok", true); m.etiquetar(parte.id, parte.nombre, "ok"); bien(1700);
           } else if (id) { m.resaltar(id, "mal"); ctrl.reintento(casi(id)); }
         };
         return;
@@ -377,7 +434,7 @@ window.Contenido = (function () {
           const id = el.getAttribute("data-parte");
           if (id === parte.id) {
             host.querySelectorAll('[data-parte="' + parte.id + '"]').forEach((e) => e.classList.add("ok"));
-            ctrl.ganar(1400);
+            bien(en ? 1900 : 1400);
           } else { el.classList.add("mal"); setTimeout(() => el.classList.remove("mal"), 700); ctrl.reintento(casi(id)); }
         });
       });
@@ -586,6 +643,187 @@ window.Contenido = (function () {
         const unicas = ctrl.mezclar(letras.filter(esLetra).filter((c, k, a) => a.indexOf(c) === k));
         unicas.slice(0, Math.min(nPistas, Math.max(0, unicas.length - 1))).forEach((L) => probar(L, true));
       };
+    },
+    // Escucha y toca (Inglés): la voz dice una palabra o una oración y el niño toca su
+    // dibujo. Si el navegador no tiene voz en inglés, la palabra sale escrita (se lee).
+    // { palabras:[[{en,es,emoji}],[i],[a]], opciones?:[b,i,a], verTexto?:[b,i,a] }
+    escucha: (t) => (host, ctrl) => {
+      const pool = nivelArr(t.palabras, Juego.nivelIdx());
+      const meta = sacar(pool);
+      const n = Juego.porNivel(t.opciones || [3, 4, 6]);
+      // Las otras cartas llevan OTRO dibujo (dos palabras pueden compartir emoji).
+      const cartas = [meta];
+      ctrl.mezclar(pool.slice()).forEach((p) => {
+        if (cartas.length < n && !cartas.some((c) => c.emoji === p.emoji || c.en === p.en)) cartas.push(p);
+      });
+      const verTexto = !buscarVozEn() || Juego.porNivel(t.verTexto || [true, false, false]);
+      ctrl.pregunta(t.pregunta || "👂 Escucha y toca el dibujo 👇");
+      host.innerHTML =
+        '<div class="esc-voz">' +
+          '<button class="esc-altavoz" type="button" title="Escuchar otra vez">🔊</button>' +
+          '<span class="esc-texto' + (verTexto ? "" : " tapado") + '">' + esc(meta.en) + "</span>" +
+          (verTexto ? "" : '<button class="ahor-audio esc-ver" type="button">👀 Ver la palabra</button>') +
+        "</div>" +
+        '<div class="esc-cartas esc-de-' + cartas.length + '"></div>';
+      const texto = host.querySelector(".esc-texto"), ver = host.querySelector(".esc-ver");
+      const destapar = () => { texto.classList.remove("tapado"); if (ver) ver.remove(); };
+      host.querySelector(".esc-altavoz").onclick = () => hablarEn(meta.en);
+      if (ver) ver.onclick = destapar;
+      const mesa = host.querySelector(".esc-cartas");
+      let listo = false;
+      ctrl.mezclar(cartas).forEach((p) => {
+        const b = document.createElement("button");
+        b.type = "button"; b.className = "esc-carta";
+        b.innerHTML = '<span class="esc-emoji">' + esc(p.emoji) + '</span><span class="esc-pie"></span>';
+        b.onclick = () => {
+          if (listo || b.disabled) return;
+          // La carta tocada dice su nombre: el error también enseña una palabra.
+          b.querySelector(".esc-pie").innerHTML = "<b>" + esc(p.en) + "</b>" + (p.es ? "<small>" + esc(p.es) + "</small>" : "");
+          if (p === meta) { listo = true; b.classList.add("ok"); destapar(); ctrl.ganar(1800); }
+          else {
+            b.classList.add("mal"); b.disabled = true;
+            ctrl.reintento("Eso es <b>" + esc(p.en) + "</b>" + (p.es ? " (" + esc(p.es) + ")" : "") + ". Escucha otra vez 🔊");
+          }
+        };
+        mesa.appendChild(b);
+      });
+      hablarEn(meta.en);
+    },
+    // Arma la oración en inglés: fichas-palabra que se tocan en orden. El dibujo y la
+    // oración en español dicen QUÉ hay que decir; al acertar, la voz la lee.
+    // { frases:[[{en,es,emoji?,sobra?:[…fichas de más…]}],[i],[a]] }
+    frase: (t) => (host, ctrl) => {
+      const q = itemDe(t.frases, Juego.nivelIdx());
+      const palabras = String(q.en).trim().split(/\s+/);
+      host.innerHTML = tarjetaEn(q) + '<div class="en-arma"></div>';
+      const c2 = Object.create(ctrl);
+      c2.ganar = () => {
+        hablarEn(q.en); botonOir(host.querySelector(".en-tarjeta") || host, q.en);
+        ctrl.ganar(1800 + 250 * palabras.length);      // tiempo para oírla entera
+      };
+      Arrastrar.ordenar(host.querySelector(".en-arma"), c2, {
+        pregunta: t.pregunta || "🧩 Arma la oración en inglés 👇",
+        correcto: palabras, extras: q.sobra || []
+      });
+    },
+    // Completa la oración (Inglés): la ficha que falta se arrastra hasta la oración (o se toca).
+    // { pista?, items:[[{f:"She ___ soccer.", c:"plays", d:["play"], es?, emoji?, pista?}],[i],[a]] }
+    completa: (t) => (host, ctrl) => {
+      const q = itemDe(t.items, Juego.nivelIdx());
+      const trozo = String(q.f).split("___");
+      ctrl.pregunta(t.pregunta || "🧩 Lleva a la oración la ficha que falta 👇");
+      host.innerHTML = tarjetaEn(q) +
+        '<div class="signo-frase en-frase">' + esc(trozo[0]) + '<span class="en-hueco">?</span>' + esc(trozo[1] || "") + "</div>" +
+        '<div class="fila-fichas"></div>';
+      const frase = host.querySelector(".en-frase"), hueco = host.querySelector(".en-hueco");
+      const fila = host.querySelector(".fila-fichas");
+      let listo = false;
+      ctrl.mezclar([q.c].concat(q.d)).forEach((op) => {
+        fichaEn(fila, op, frase, (chip) => {
+          if (listo) return;
+          if (op === q.c) {
+            listo = true;
+            chip.remove(); hueco.textContent = op; hueco.classList.add("ok");
+            const entera = trozo[0] + op + (trozo[1] || "");
+            hablarEn(entera); botonOir(host.querySelector(".en-tarjeta") || fila, entera);
+            ctrl.ganar(1800 + 250 * entera.split(/\s+/).length);
+          } else {
+            chip.classList.add("mal"); chip.dataset.fijo = "1"; chip.disabled = true;
+            frase.classList.add("rojo"); setTimeout(() => frase.classList.remove("rojo"), 450);
+            ctrl.reintento(q.pista || t.pista || "Esa no. Lee la oración con calma 👀");
+          }
+        });
+      });
+    },
+    // La máquina de terminaciones (Inglés): a la palabra se le pega la terminación que le
+    // toca (+ed, +d, y→ied…); la ficha se arrastra sobre la máquina (o se toca) y el
+    // material responde armando la palabra nueva, con lo que cambió resaltado.
+    // { reglas:[{id,ficha,cuando}], reglasPorNivel?:[[ids],[i],[a]],
+    //   items:[[{base,regla,res,es?,emoji?,pista?}],[i],[a]] }
+    terminacion: (t) => (host, ctrl) => {
+      const q = itemDe(t.items, Juego.nivelIdx());
+      const ids = t.reglasPorNivel ? Juego.porNivel(t.reglasPorNivel) : t.reglas.map((r) => r.id);
+      const reglas = t.reglas.filter((r) => ids.indexOf(r.id) >= 0 || r.id === q.regla);
+      let k = 0;                                   // hasta dónde coinciden (play|ed, stud|ied)
+      while (k < q.base.length && k < q.res.length && q.base[k] === q.res[k]) k++;
+      ctrl.pregunta(t.pregunta || "🔧 Llévale su terminación 👇");
+      host.innerHTML =
+        '<div class="ter-maquina">' +
+          '<div class="ter-pieza ter-base">' + (q.emoji ? '<span class="ter-emoji">' + esc(q.emoji) + "</span>" : "") +
+            "<b>" + esc(q.base) + "</b>" + (q.es ? "<small>" + esc(q.es) + "</small>" : "") + "</div>" +
+          '<span class="ter-signo">+</span>' +
+          '<div class="ter-pieza ter-ranura">?</div>' +
+          '<span class="ter-signo">=</span>' +
+          '<div class="ter-pieza ter-res">…</div>' +
+        "</div>" +
+        '<div class="fila-fichas"></div>';
+      const maq = host.querySelector(".ter-maquina"), fila = host.querySelector(".fila-fichas");
+      let listo = false;
+      reglas.forEach((r) => {
+        fichaEn(fila, r.ficha, maq, (chip) => {
+          if (listo) return;
+          if (r.id === q.regla) {
+            listo = true;
+            chip.remove();
+            host.querySelector(".ter-ranura").textContent = r.ficha;
+            host.querySelector(".ter-res").innerHTML = "<span>" + esc(q.res.slice(0, k)) + "<mark>" + esc(q.res.slice(k)) + "</mark></span>";
+            maq.classList.add("ok");
+            hablarEn(q.res); botonOir(fila, q.res);
+            ctrl.ganar(2400);
+            ctrl.retro("🎉 <b>" + esc(q.base) + "</b> → <b>" + esc(q.res) + "</b>", "bien");
+          } else {
+            chip.classList.add("mal"); chip.dataset.fijo = "1"; chip.disabled = true;
+            maq.classList.add("rojo"); setTimeout(() => maq.classList.remove("rojo"), 450);
+            // El error es información. Si a la palabra le tocaba la regla general (la primera),
+            // se explica para qué sirve la ficha elegida; si le tocaba una especial, se dice en
+            // qué fijarse para encontrarla. Un caso raro trae su propia `pista`.
+            const buena = t.reglas.find((x) => x.id === q.regla) || {};
+            ctrl.reintento(q.pista ? esc(q.pista)
+              : t.reglas[0].id === q.regla
+                ? "«" + esc(r.ficha) + "» es " + esc(r.cuando || "para otras palabras") + ". Mira cómo termina <b>" + esc(q.base) + "</b> 👀"
+                : "Mira cómo termina <b>" + esc(q.base) + "</b>: busca la ficha " + esc(buena.cuando || "que le toca") + " 👀");
+          }
+        });
+      });
+    },
+    // Memoria: cartas boca abajo; se voltean dos y, si son pareja, se quedan a la vista.
+    // Los dos lados de cada pareja llevan el dorso de distinto color (una de cada color).
+    // { pares:[[{a,b}],[i],[a]], parejas?:[b,i,a], voz?:"a"|"b"|"ab" (se pronuncia en inglés) }
+    memoria: (t) => (host, ctrl) => {
+      const pool = nivelArr(t.pares, Juego.nivelIdx());
+      const n = Math.min(Juego.porNivel(t.parejas || [4, 5, 6]), pool.length);
+      const pares = ctrl.mezclar(pool.slice()).slice(0, n);
+      const cartas = [];
+      pares.forEach((p, k) => { cartas.push({ t: p.a, k: k, lado: "a" }, { t: p.b, k: k, lado: "b" }); });
+      ctrl.pregunta(t.pregunta || "🃏 Voltea una carta de cada color 👇");
+      host.innerHTML = '<div class="mem-mesa mem-de-' + cartas.length + '"></div>';
+      const mesa = host.querySelector(".mem-mesa");
+      let abierta = null, espera = null, faltan = n;
+      ctrl.alSalir(() => { if (espera) clearTimeout(espera); });
+      ctrl.mezclar(cartas).forEach((c) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "mem-carta mem-" + c.lado + (/[a-z0-9]/i.test(c.t) ? "" : " mem-dibujo");
+        b.innerHTML = '<span class="mem-dorso">?</span><span class="mem-cara">' + esc(c.t) + "</span>";
+        b.onclick = () => {
+          if (espera || b.classList.contains("vista")) return;
+          b.classList.add("vista");
+          if (!abierta) { abierta = { b: b, c: c }; return; }
+          const otra = abierta; abierta = null;
+          if (otra.c.k === c.k) {
+            b.classList.add("ok"); otra.b.classList.add("ok");
+            const p = pares[c.k];
+            if (t.voz) hablarEn(t.voz === "a" ? p.a : t.voz === "b" ? p.b : p.a + ", " + p.b);
+            faltan--;
+            if (faltan === 0) ctrl.ganar(1900); else ctrl.retro("¡Pareja! Faltan " + faltan + " 👇", "bien");
+          } else {
+            // No es un error: en la memoria se aprende mirando. Se voltean otra vez.
+            ctrl.retro("No son pareja. ¡Recuerda dónde están! 👀", "");
+            espera = setTimeout(() => { espera = null; b.classList.remove("vista"); otra.b.classList.remove("vista"); }, 1100);
+          }
+        };
+        mesa.appendChild(b);
+      });
     },
     // Comprensión lectora: se lee UN texto, que queda siempre a la vista, y se responden sus
     // preguntas una por una (una sesión = un texto). Tres clases de pregunta:

@@ -45,7 +45,7 @@ docs/                      ARQUITECTURA.md, ESQUEMA_CONTENIDO.md
 ```
 
 > Nota sobre `src/modos/`: "**un módulo por actividad**" es cierto **solo** para lo que NO usa el runner
-> (ver "Capa de contenido"). Las 30 actividades del runner **no tienen** un `src/modos/<modo>.js` propio:
+> (ver "Capa de contenido"). Las 38 actividades del runner **no tienen** un `src/modos/<modo>.js` propio:
 > su lógica vive de forma centralizada en `src/core/contenido.js`.
 
 ## Datos: `.json` canónico → `.js` generado
@@ -95,8 +95,11 @@ en `docs/ESQUEMA_CONTENIDO.md`.
   rondas para uno de los dos motores existentes:
   - **`motor: "actividad"`** (manipulativo, `src/core/actividad.js`): cada tema se traduce a una `ronda(host, ctrl)`
     a partir de su `tipo`. Tipos soportados: `clasificar`, `emparejar`, `ordenar`, `silabas`, `alfabetico`,
-    `vf`, `definir`, `sujeto`, `signos`, `formas`, `escena`, `senala`, `problema`, `terminos`, `ahorcado`,
-    `lectura` (comprensión lectora: texto siempre a la vista + preguntas de elegir, tocar la oración u ordenar).
+    `vf`, `definir`, `sujeto`, `signos`, `formas`, `escena`, `senala`, `problema`, `terminos`,
+    `lectura` (comprensión lectora: texto siempre a la vista + preguntas de elegir, tocar la oración u ordenar),
+    `memoria` (parejas boca abajo) y los de Inglés: `ahorcado`, `escucha` (oír y tocar el dibujo), `frase`
+    (armar la oración), `completa` (llevar la ficha al hueco) y `terminacion` (la máquina play + ed = played).
+    Los de Inglés pronuncian con la voz del navegador (`hablarEn`, Web Speech API; sin voz, se lee).
     Muchos de ellos usan `src/core/arrastrar.js` para el arrastrar-y-soltar; `senala`, `escena` y
     `clasificar` (con `dibujo`) pueden montar además un **modelo 3D** (ver abajo).
   - **`motor: "mc"`** (opción múltiple, `src/core/mc.js`): tipo `mc` (repasos rápidos; hoy ninguna actividad lo usa).

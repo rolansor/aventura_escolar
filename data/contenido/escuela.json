@@ -1,0 +1,279 @@
+{
+  "modo": "escuela",
+  "materia": "ingles",
+  "px": "escu",
+  "titulo": "My school",
+  "icono": "🎒",
+  "motor": "actividad",
+  "temas": [
+    {
+      "tipo": "clasificar",
+      "icono": "🏫",
+      "nombre": "My classroom",
+      "desc": "ponle el nombre a cada cosa del aula",
+      "total": 5,
+      "pregunta": "Lleva cada palabra a su lugar en el aula 👇",
+      "voz": "en",
+      "dibujo": { "svg": { "$archivo": "recursos/ingles/aula.svg" }, "pista": "¿Dónde va esa palabra? 👀" },
+      "fichas": [4, 5, 6],
+      "cestas": [
+        { "id": "door", "nombre": "la puerta", "emoji": "🚪" },
+        { "id": "board", "nombre": "la pizarra", "emoji": "📝" },
+        { "id": "clock", "nombre": "el reloj", "emoji": "⏰" },
+        { "id": "window", "nombre": "la ventana", "emoji": "🌤️" },
+        { "id": "bookshelf", "nombre": "el librero", "emoji": "📚" },
+        { "id": "backpack", "nombre": "la mochila", "emoji": "🎒" },
+        { "id": "desk", "nombre": "el pupitre", "emoji": "✏️" },
+        { "id": "chair", "nombre": "la silla", "emoji": "🪑" },
+        { "id": "globe", "nombre": "el globo terráqueo", "emoji": "🌎" },
+        { "id": "book", "nombre": "el libro", "emoji": "📕" }
+      ],
+      "items": {
+        "door": [["door"], [], ["door", "We open it to go out."]],
+        "board": [["board"], [], ["board", "The teacher writes on it."]],
+        "clock": [["clock"], [], ["clock", "It tells the time."]],
+        "window": [["window"], [], ["window", "We look outside through it."]],
+        "bookshelf": [["bookshelf"], [], ["bookshelf", "We keep many books on it."]],
+        "backpack": [["backpack"], [], ["backpack", "I carry my things in it."]],
+        "desk": [["desk"], [], ["desk", "I put my notebook on it."]],
+        "chair": [["chair"], [], ["chair", "I sit on it."]],
+        "globe": [["globe"], [], ["globe", "It shows the countries of the world."]],
+        "book": [["book"], [], ["book", "I read it."]]
+      }
+    },
+    {
+      "tipo": "senala",
+      "idioma": "en",
+      "icono": "👆",
+      "nombre": "Touch it!",
+      "desc": "escucha y toca esa cosa del aula",
+      "total": 8,
+      "svg": { "$archivo": "recursos/ingles/aula.svg" },
+      "partes": [
+        { "id": "door", "nombre": "the door", "es": "la puerta" },
+        { "id": "board", "nombre": "the board", "es": "la pizarra" },
+        { "id": "clock", "nombre": "the clock", "es": "el reloj" },
+        { "id": "window", "nombre": "the window", "es": "la ventana" },
+        { "id": "bookshelf", "nombre": "the bookshelf", "es": "el librero" },
+        { "id": "backpack", "nombre": "the backpack", "es": "la mochila" },
+        { "id": "desk", "nombre": "the desk", "es": "el pupitre" },
+        { "id": "chair", "nombre": "the chair", "es": "la silla" },
+        { "id": "globe", "nombre": "the globe", "es": "el globo terráqueo" },
+        { "id": "book", "nombre": "the book", "es": "el libro" }
+      ]
+    },
+    {
+      "tipo": "clasificar",
+      "icono": "🎒",
+      "nombre": "Where is it?",
+      "desc": "en la mochila, en el aula, materias y lugares",
+      "total": 5,
+      "pregunta": "¿A qué grupo pertenece? Lleva cada palabra a su lugar 👇",
+      "fichas": [4, 5, 6],
+      "cestas": [
+        { "id": "mochila", "nombre": "In my backpack", "emoji": "🎒" },
+        { "id": "aula", "nombre": "In the classroom", "emoji": "🏫" },
+        { "id": "materias", "nombre": "School subjects", "emoji": "📚" },
+        { "id": "lugares", "nombre": "Places at school", "emoji": "🗺️" }
+      ],
+      "cestasPorNivel": [
+        ["mochila", "aula"],
+        ["mochila", "aula", "materias"],
+        ["mochila", "aula", "materias", "lugares"]
+      ],
+      "items": {
+        "mochila": [
+          ["✏️ pencil", "📏 ruler", "📓 notebook", "✂️ scissors", "🖍️ crayons", "🖊️ pen"],
+          ["pencil", "eraser", "ruler", "notebook", "scissors", "glue", "pencil case"],
+          ["sharpener", "eraser", "glue stick", "colored pencils", "pencil case", "lunch box"]
+        ],
+        "aula": [
+          ["🚪 door", "🪑 chair", "⏰ clock", "🌎 globe", "board", "window"],
+          ["board", "desk", "door", "window", "clock", "bookshelf"],
+          ["whiteboard", "teacher's desk", "bookshelf", "trash can", "projector", "world map"]
+        ],
+        "materias": [
+          [],
+          ["Math", "Science", "Art", "Music", "English", "P.E."],
+          ["Math", "Science", "Social Studies", "Language", "Music", "Art"]
+        ],
+        "lugares": [
+          [],
+          [],
+          ["library", "playground", "cafeteria", "computer lab", "gym", "principal's office", "soccer field"]
+        ]
+      }
+    },
+    {
+      "tipo": "escucha",
+      "icono": "👂",
+      "nombre": "Listen and touch",
+      "desc": "escucha la palabra y toca el útil",
+      "total": 8,
+      "palabras": [
+        [
+          { "en": "pencil", "es": "lápiz", "emoji": "✏️" },
+          { "en": "pen", "es": "esfero", "emoji": "🖊️" },
+          { "en": "book", "es": "libro", "emoji": "📕" },
+          { "en": "notebook", "es": "cuaderno", "emoji": "📓" },
+          { "en": "ruler", "es": "regla", "emoji": "📏" },
+          { "en": "scissors", "es": "tijeras", "emoji": "✂️" },
+          { "en": "backpack", "es": "mochila", "emoji": "🎒" },
+          { "en": "crayon", "es": "crayón", "emoji": "🖍️" },
+          { "en": "school", "es": "escuela", "emoji": "🏫" },
+          { "en": "school bus", "es": "bus escolar", "emoji": "🚌" },
+          { "en": "bell", "es": "campana", "emoji": "🔔" },
+          { "en": "ball", "es": "pelota", "emoji": "⚽" }
+        ],
+        [
+          { "en": "computer", "es": "computadora", "emoji": "💻" },
+          { "en": "globe", "es": "globo terráqueo", "emoji": "🌎" },
+          { "en": "map", "es": "mapa", "emoji": "🗺️" },
+          { "en": "calendar", "es": "calendario", "emoji": "📅" },
+          { "en": "paintbrush", "es": "pincel", "emoji": "🖌️" },
+          { "en": "paper clip", "es": "clip", "emoji": "📎" },
+          { "en": "clock", "es": "reloj", "emoji": "⏰" },
+          { "en": "books", "es": "libros", "emoji": "📚" },
+          { "en": "paints", "es": "pinturas", "emoji": "🎨" },
+          { "en": "microscope", "es": "microscopio", "emoji": "🔬" },
+          { "en": "trophy", "es": "trofeo", "emoji": "🏆" },
+          { "en": "medal", "es": "medalla", "emoji": "🏅" }
+        ],
+        [
+          { "en": "magnifying glass", "es": "lupa", "emoji": "🔍" },
+          { "en": "abacus", "es": "ábaco", "emoji": "🧮" },
+          { "en": "test tube", "es": "tubo de ensayo", "emoji": "🧪" },
+          { "en": "pushpin", "es": "tachuela", "emoji": "📌" },
+          { "en": "folder", "es": "carpeta", "emoji": "📁" },
+          { "en": "clipboard", "es": "tablero", "emoji": "📋" },
+          { "en": "telescope", "es": "telescopio", "emoji": "🔭" },
+          { "en": "stopwatch", "es": "cronómetro", "emoji": "⏱️" },
+          { "en": "bookmark", "es": "separador", "emoji": "🔖" },
+          { "en": "microscope", "es": "microscopio", "emoji": "🔬" },
+          { "en": "paintbrush", "es": "pincel", "emoji": "🖌️" },
+          { "en": "calendar", "es": "calendario", "emoji": "📅" }
+        ]
+      ]
+    },
+    {
+      "tipo": "memoria",
+      "icono": "🃏",
+      "nombre": "Memory",
+      "desc": "encuentra el útil y su nombre",
+      "total": 3,
+      "voz": "b",
+      "pares": [
+        [
+          { "a": "✏️", "b": "pencil" },
+          { "a": "🖊️", "b": "pen" },
+          { "a": "📕", "b": "book" },
+          { "a": "📓", "b": "notebook" },
+          { "a": "📏", "b": "ruler" },
+          { "a": "✂️", "b": "scissors" },
+          { "a": "🎒", "b": "backpack" },
+          { "a": "🖍️", "b": "crayon" }
+        ],
+        [
+          { "a": "💻", "b": "computer" },
+          { "a": "🌎", "b": "globe" },
+          { "a": "🗺️", "b": "map" },
+          { "a": "📅", "b": "calendar" },
+          { "a": "🖌️", "b": "paintbrush" },
+          { "a": "📎", "b": "paper clip" },
+          { "a": "🔔", "b": "bell" },
+          { "a": "🚌", "b": "school bus" },
+          { "a": "🎨", "b": "paints" }
+        ],
+        [
+          { "a": "🔍", "b": "magnifying glass" },
+          { "a": "🧮", "b": "abacus" },
+          { "a": "🧪", "b": "test tube" },
+          { "a": "📌", "b": "pushpin" },
+          { "a": "📁", "b": "folder" },
+          { "a": "📋", "b": "clipboard" },
+          { "a": "🔭", "b": "telescope" },
+          { "a": "🔬", "b": "microscope" },
+          { "a": "🔖", "b": "bookmark" },
+          { "a": "⏱️", "b": "stopwatch" }
+        ]
+      ]
+    },
+    {
+      "tipo": "emparejar",
+      "icono": "🙋",
+      "nombre": "Classroom language",
+      "desc": "lo que se dice en clase",
+      "total": 5,
+      "pregunta": "Une lo que se dice en clase con su significado 👇",
+      "porRonda": [3, 4, 4],
+      "pares": [
+        [
+          { "a": "Sit down.", "b": "Siéntate." },
+          { "a": "Stand up.", "b": "Ponte de pie." },
+          { "a": "Open your book.", "b": "Abre tu libro." },
+          { "a": "Close your book.", "b": "Cierra tu libro." },
+          { "a": "Listen.", "b": "Escucha." },
+          { "a": "Look at the board.", "b": "Mira la pizarra." },
+          { "a": "Be quiet, please.", "b": "Silencio, por favor." },
+          { "a": "Raise your hand.", "b": "Levanta la mano." }
+        ],
+        [
+          { "a": "Repeat after me.", "b": "Repite después de mí." },
+          { "a": "Write your name.", "b": "Escribe tu nombre." },
+          { "a": "Take out your notebook.", "b": "Saca tu cuaderno." },
+          { "a": "Work in pairs.", "b": "Trabajen en parejas." },
+          { "a": "Come here, please.", "b": "Ven acá, por favor." },
+          { "a": "Put your pencil down.", "b": "Deja tu lápiz." },
+          { "a": "Read the text.", "b": "Lee el texto." },
+          { "a": "Clean the board.", "b": "Borra la pizarra." }
+        ],
+        [
+          { "a": "May I go to the bathroom?", "b": "¿Puedo ir al baño?" },
+          { "a": "Can you repeat, please?", "b": "¿Puede repetir, por favor?" },
+          { "a": "How do you say it in English?", "b": "¿Cómo se dice en inglés?" },
+          { "a": "I don't understand.", "b": "No entiendo." },
+          { "a": "Can I borrow your eraser?", "b": "¿Me prestas tu borrador?" },
+          { "a": "What does it mean?", "b": "¿Qué significa?" },
+          { "a": "I have a question.", "b": "Tengo una pregunta." },
+          { "a": "May I come in?", "b": "¿Puedo entrar?" },
+          { "a": "I'm finished.", "b": "Ya terminé." }
+        ]
+      ]
+    },
+    {
+      "tipo": "frase",
+      "icono": "🧩",
+      "nombre": "Build the sentence",
+      "desc": "arma oraciones sobre la escuela",
+      "total": 6,
+      "frases": [
+        [
+          { "en": "This is my pencil.", "es": "Este es mi lápiz.", "emoji": "✏️" },
+          { "en": "I have a book.", "es": "Tengo un libro.", "emoji": "📕" },
+          { "en": "My backpack is big.", "es": "Mi mochila es grande.", "emoji": "🎒" },
+          { "en": "I like my school.", "es": "Me gusta mi escuela.", "emoji": "🏫" },
+          { "en": "The ruler is long.", "es": "La regla es larga.", "emoji": "📏" },
+          { "en": "She is my teacher.", "es": "Ella es mi profesora.", "emoji": "🍎" },
+          { "en": "We read books.", "es": "Leemos libros.", "emoji": "📚" }
+        ],
+        [
+          { "en": "The book is on the desk.", "es": "El libro está sobre el pupitre.", "emoji": "📕" },
+          { "en": "I have two new pencils.", "es": "Tengo dos lápices nuevos.", "emoji": "✏️" },
+          { "en": "My favorite subject is Art.", "es": "Mi materia favorita es Arte.", "emoji": "🎨" },
+          { "en": "We play in the playground.", "es": "Jugamos en el patio.", "emoji": "⚽" },
+          { "en": "There is a clock on the wall.", "es": "Hay un reloj en la pared.", "emoji": "⏰" },
+          { "en": "Can I borrow your eraser?", "es": "¿Me prestas tu borrador?", "emoji": "🙏" },
+          { "en": "The scissors are in my backpack.", "es": "Las tijeras están en mi mochila.", "emoji": "✂️" }
+        ],
+        [
+          { "en": "There are twenty students in my class.", "es": "Hay veinte estudiantes en mi clase.", "emoji": "🏫", "sobra": ["is"] },
+          { "en": "We have English on Monday and Friday.", "es": "Tenemos Inglés los lunes y los viernes.", "emoji": "📅" },
+          { "en": "My teacher writes on the board.", "es": "Mi profesora escribe en la pizarra.", "emoji": "📝", "sobra": ["write"] },
+          { "en": "I go to the library after lunch.", "es": "Voy a la biblioteca después del almuerzo.", "emoji": "📚" },
+          { "en": "What is your favorite subject?", "es": "¿Cuál es tu materia favorita?", "emoji": "❓", "sobra": ["are"] },
+          { "en": "Our classroom is next to the library.", "es": "Nuestra aula está junto a la biblioteca.", "emoji": "🏫" }
+        ]
+      ]
+    }
+  ]
+}

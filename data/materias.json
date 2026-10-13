@@ -327,7 +327,13 @@
         "modo": "vidaplantas",
         "icono": "🌿",
         "nombre": "La vida de las plantas",
-        "desc": "Sin semilla, fotosíntesis, polinizadores y ecosistemas"
+        "desc": "Sin semilla, fotosíntesis, funciones y ecosistemas"
+      },
+      {
+        "modo": "reproplantas",
+        "icono": "🌸",
+        "nombre": "Cómo se reproducen las plantas",
+        "desc": "La flor por dentro, polinización, frutos y plantas que se copian"
       }
     ]
   },

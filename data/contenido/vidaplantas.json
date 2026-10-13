@@ -37,19 +37,19 @@
       "desc": "las plantas sin semilla",
       "pregunta": "¿De quién se habla: del musgo o del helecho? 👇",
       "cestas": [
-        { "id": "musgo", "nombre": "Musgo", "emoji": "🧽" },
-        { "id": "helecho", "nombre": "Helecho", "emoji": "🌿" }
+        { "id": "musgo", "nombre": "Musgo (briofita)", "emoji": "🧽" },
+        { "id": "helecho", "nombre": "Helecho (pteridófita)", "emoji": "🌿" }
       ],
       "items": {
         "musgo": [
           ["es muy chiquito", "alfombra verde", "esponja que guarda agua", "sin raíz de verdad", "mide pocos centímetros", "lo arrancan para el pesebre"],
           ["sin tubitos para la savia", "bebe por todo el cuerpo", "esponja del páramo", "esporas en una cápsula", "se sujeta con rizoides", "primero en cubrir la roca"],
-          ["briofita", "planta no vascular", "filoides en vez de hojas", "cauloide en vez de tallo", "cápsula sobre un filamento", "esfagno de las turberas"]
+          ["sin vasos conductores", "planta no vascular", "filoides en vez de hojas", "cauloide en vez de tallo", "cápsula sobre un filamento", "esfagno de las turberas"]
         ],
         "helecho": [
           ["hojas grandes", "hojas llamadas frondas", "hoja nueva enrollada", "raíz, tallo y hojas", "a veces alto como árbol", "bolitas cafés bajo la hoja"],
           ["con tubitos para la savia", "esporas en los soros", "tallo escondido: rizoma", "frondas partidas en hojitas", "brote como caracol", "puede medir varios metros"],
-          ["pteridofita", "vascular sin semilla", "soros en el envés", "fronda dividida en pinnas", "rizoma con raíces verdaderas", "frondas jóvenes en espiral"]
+          ["con vasos conductores", "vascular sin semilla", "soros en el envés", "fronda dividida en pinnas", "rizoma con raíces verdaderas", "frondas jóvenes en espiral"]
         ]
       }
     },
@@ -79,102 +79,37 @@
     {
       "tipo": "clasificar",
       "icono": "🔁",
-      "nombre": "¿Fotosíntesis, respiración o nutrición?",
-      "desc": "tres trabajos de la planta",
-      "pregunta": "¿De cuál trabajo de la planta se habla? 👇",
+      "nombre": "Las funciones de la planta",
+      "desc": "fotosíntesis, respiración, nutrición y reproducción",
+      "pregunta": "¿De cuál función de la planta se habla? 👇",
       "cestas": [
         { "id": "foto", "nombre": "Fotosíntesis", "emoji": "☀️" },
         { "id": "resp", "nombre": "Respiración", "emoji": "💨" },
-        { "id": "nutri", "nombre": "Nutrición (absorbe y reparte)", "emoji": "🚰" }
+        { "id": "nutri", "nombre": "Nutrición", "emoji": "🚰" },
+        { "id": "repro", "nombre": "Reproducción", "emoji": "🌱" }
       ],
-      "cestasPorNivel": [["foto", "resp"], ["foto", "resp", "nutri"], ["foto", "resp", "nutri"]],
       "items": {
         "foto": [
           ["necesita la luz del sol", "fabrica el alimento", "suelta oxígeno", "usa dióxido de carbono", "trabaja la clorofila verde", "solo pasa de día"],
-          ["atrapa la energía del sol", "produce azúcar", "libera oxígeno al aire", "solo ocurre con luz", "necesita la clorofila", "gasta dióxido de carbono"],
+          ["fabrica alimento usando la luz del Sol", "atrapa la energía del sol", "produce azúcar", "libera oxígeno al aire", "solo ocurre con luz", "necesita la clorofila"],
           ["ocurre en los cloroplastos", "transforma luz en energía química", "produce glucosa", "desprende oxígeno", "fija el dióxido de carbono", "se detiene en la oscuridad"]
         ],
         "resp": [
           ["toma oxígeno", "suelta dióxido de carbono", "pasa de día y de noche", "no necesita luz", "la hace toda la planta", "la hacen también los animales"],
-          ["gasta oxígeno", "libera dióxido de carbono", "ocurre también de noche", "saca energía del alimento", "la hacen raíz, tallo y hojas", "la hacemos también las personas"],
+          ["intercambia gases con el ambiente", "gasta oxígeno", "libera dióxido de carbono", "ocurre también de noche", "saca energía del alimento", "la hacemos también las personas"],
           ["consume glucosa y oxígeno", "libera energía para vivir", "expulsa dióxido de carbono", "ocurre las 24 horas", "sucede en todas las células", "no depende de la luz"]
         ],
         "nutri": [
-          [],
-          ["la raíz absorbe agua", "toma sales minerales", "la savia sube por el tallo", "reparte el alimento", "usa los pelitos de la raíz", "guarda alimento de reserva"],
+          ["la raíz toma agua", "toma minerales del suelo", "el agua sube por el tallo", "el tallo reparte el alimento", "consigue sustancias para alimentarse"],
+          ["obtiene y transforma sustancias para alimentarse", "la raíz absorbe agua", "toma sales minerales", "la savia sube por el tallo", "usa los pelitos de la raíz", "guarda alimento de reserva"],
           ["absorbe sales minerales", "transporta la savia bruta", "distribuye la savia elaborada", "usa los pelos absorbentes", "circula por los vasos conductores", "almacena reservas en la raíz"]
+        ],
+        "repro": [
+          ["produce plantas nuevas", "forma semillas", "trabaja la flor", "da frutos con semillas", "hace que nazcan plantitas hijas"],
+          ["produce nuevos individuos", "une el polen con el óvulo", "forma frutos y semillas", "empieza con la polinización", "puede hacerse con un pedazo de tallo"],
+          ["origina nuevos individuos", "puede ser sexual o asexual", "incluye polinización y fecundación", "forma el embrión de la semilla", "hace que la especie continúe"]
         ]
       }
-    },
-    {
-      "tipo": "ordenar",
-      "icono": "🌸",
-      "nombre": "De la flor al fruto",
-      "desc": "ordena el ciclo",
-      "total": 4,
-      "pregunta": "Todo empieza en la flor (o en su botón). Tócalas en orden 👇",
-      "secuencias": [
-        [
-          ["botón", "flor abierta", "fruto verde", "fruto maduro"],
-          ["flor", "llega la abeja", "fruto", "semilla"],
-          ["flor", "fruto", "semilla", "planta nueva"],
-          ["botón", "flor con polen", "caen los pétalos", "crece el fruto"]
-        ],
-        [
-          ["flor", "polinización", "fruto", "semilla", "planta nueva"],
-          ["botón", "flor abierta", "llega el colibrí", "caen los pétalos", "crece el fruto"],
-          ["flor", "polinización", "fecundación", "fruto con semillas", "germinación"],
-          ["flor del cacao", "una mosquita lleva el polen", "nace la mazorca", "semillas de cacao", "chocolate 🍫"]
-        ],
-        [
-          ["flor", "polinización", "fecundación", "fruto", "semilla", "germinación", "planta nueva"],
-          ["el polen sale del estambre", "viaja con un polinizador", "llega al estigma", "baja hasta el óvulo", "se forman semilla y fruto"],
-          ["botón", "flor abierta", "polinización", "fecundación", "caen los pétalos", "fruto maduro"],
-          ["flor", "polinización", "fecundación", "el ovario engorda", "fruto maduro", "la semilla cae al suelo", "germinación"]
-        ]
-      ]
-    },
-    {
-      "tipo": "emparejar",
-      "icono": "🐝",
-      "nombre": "Los polinizadores",
-      "desc": "quién lleva el polen y cómo",
-      "total": 5,
-      "pregunta": "Une cada uno con lo que es o lo que hace 👇",
-      "pares": [
-        [
-          { "a": "la abeja 🐝", "b": "lleva polen en sus patas" },
-          { "a": "el colibrí", "b": "mete su pico largo en la flor" },
-          { "a": "la mariposa 🦋", "b": "toma néctar con su trompa" },
-          { "a": "el murciélago 🦇", "b": "visita las flores de noche" },
-          { "a": "el viento 🌬️", "b": "sopla el polen por el aire" },
-          { "a": "el polen", "b": "polvito amarillo de la flor" },
-          { "a": "el néctar", "b": "jugo dulce de la flor" },
-          { "a": "los pétalos", "b": "con su color llaman a los insectos" }
-        ],
-        [
-          { "a": "la abeja", "b": "hace miel con el néctar" },
-          { "a": "el abejorro", "b": "pariente grande y peludo de la abeja" },
-          { "a": "el colibrí", "b": "ave que vuela quieta frente a la flor" },
-          { "a": "la mariposa", "b": "insecto de día con alas de colores" },
-          { "a": "la polilla", "b": "mariposa que vuela de noche" },
-          { "a": "el murciélago", "b": "mamífero que poliniza de noche" },
-          { "a": "el viento", "b": "lleva el polen del maíz" },
-          { "a": "el agua", "b": "lleva el polen de plantas acuáticas" },
-          { "a": "el néctar", "b": "premio dulce para el polinizador" }
-        ],
-        [
-          { "a": "polinización", "b": "viaje del polen hasta el pistilo" },
-          { "a": "polinización por el viento", "b": "polen liviano que vuela lejos" },
-          { "a": "polinización por el agua", "b": "el polen viaja flotando" },
-          { "a": "autopolinización", "b": "el polen cae en la misma flor" },
-          { "a": "polinización cruzada", "b": "el polen llega a otra planta" },
-          { "a": "el colibrí estrella del Chimborazo", "b": "poliniza la chuquiragua" },
-          { "a": "una mosquita diminuta", "b": "poliniza la flor del cacao" },
-          { "a": "el murciélago", "b": "poliniza flores que abren de noche" },
-          { "a": "el abejorro", "b": "poliniza la flor del maracuyá" }
-        ]
-      ]
     },
     {
       "tipo": "emparejar",
@@ -379,6 +314,46 @@
       ]
     },
     {
+      "tipo": "completa",
+      "idioma": "es",
+      "icono": "✍️",
+      "nombre": "Completa",
+      "desc": "la palabra que falta",
+      "pista": "Esa no va ahí. Lee otra vez con calma 👀",
+      "items": [
+        [
+          { "f": "La planta fabrica su alimento con la luz del Sol: eso es la ___.", "c": "fotosíntesis", "d": ["respiración", "polinización"] },
+          { "f": "En la fotosíntesis, la hoja suelta ___.", "c": "oxígeno", "d": ["humo", "polen"] },
+          { "f": "Para la fotosíntesis, la planta necesita luz, agua y ___.", "c": "dióxido de carbono", "d": ["oxígeno", "azúcar"] },
+          { "f": "Los musgos y los helechos nacen de ___.", "c": "esporas", "d": ["semillas", "huevos"] },
+          { "f": "El musgo es una ___.", "c": "briofita", "d": ["pteridófita", "semilla"] },
+          { "f": "El helecho es una ___.", "c": "pteridófita", "d": ["briofita", "flor"] },
+          { "f": "Las plantas respiran ___.", "c": "de día y de noche", "d": ["solo de día", "solo de noche"] },
+          { "f": "Las plantas son ___ porque fabrican su propio alimento.", "c": "productores", "d": ["consumidores", "descomponedores"] }
+        ],
+        [
+          { "f": "La ___ permite que la planta fabrique su alimento. Para realizarla necesita luz solar, ___ y ___; además libera ___.", "c": ["fotosíntesis", "agua", "dióxido de carbono", "oxígeno"], "igual": [[1, 2]], "d": ["respiración"] },
+          { "f": "Al respirar, la planta toma ___ y suelta ___.", "c": ["oxígeno", "dióxido de carbono"], "d": ["azúcar", "luz"] },
+          { "f": "Las briofitas, como los ___, no tienen raíces, tallos ni hojas verdaderas.", "c": "musgos", "d": ["helechos", "pinos", "rosales"] },
+          { "f": "Las pteridófitas, como los ___, tienen vasos conductores y se reproducen por ___.", "c": ["helechos", "esporas"], "d": ["musgos", "semillas"] },
+          { "f": "Un ecosistema está formado por seres ___ y elementos ___.", "c": ["vivos", "no vivos"], "d": ["dormidos", "gigantes"] },
+          { "f": "La ___ es la variedad de seres vivos de un lugar.", "c": "biodiversidad", "d": ["fotosíntesis", "polinización", "adaptación"] },
+          { "f": "Las plantas son ___; los animales que se las comen son ___.", "c": ["productores", "consumidores"], "d": ["descomponedores", "minerales"] },
+          { "f": "La raíz absorbe ___ y sales minerales; las hojas atrapan la ___ del Sol.", "c": ["agua", "luz"], "d": ["polen", "sombra"] }
+        ],
+        [
+          { "f": "Fotosíntesis: ___ + dióxido de carbono + luz → ___ + oxígeno.", "c": ["agua", "glucosa"], "d": ["polen", "nitrógeno"] },
+          { "f": "La savia ___ sube con agua y sales; la savia ___ baja con el alimento.", "c": ["bruta", "elaborada"], "d": ["dulce", "verde"] },
+          { "f": "Los musgos son ___: no tienen vasos conductores. Los helechos son ___: sí los tienen.", "c": ["briofitas", "pteridófitas"], "d": ["consumidores", "polinizadores"] },
+          { "f": "Las esporas del helecho están en los ___, en el ___ de la fronda.", "c": ["soros", "envés"], "d": ["estomas", "haz"] },
+          { "f": "Los gases entran y salen de la hoja por los ___, que están sobre todo en el ___.", "c": ["estomas", "envés"], "d": ["soros", "pecíolo"] },
+          { "f": "En una cadena alimenticia: ___ → consumidor primario → consumidor ___ → descomponedor.", "c": ["productor", "secundario"], "d": ["hongo", "abiótico"] },
+          { "f": "La ___ libera oxígeno; la ___ lo consume.", "c": ["fotosíntesis", "respiración"], "d": ["nutrición", "germinación"] },
+          { "f": "Los factores ___ tienen vida; los factores ___ no tienen vida.", "c": ["bióticos", "abióticos"], "d": ["acuáticos", "mixtos"] }
+        ]
+      ]
+    },
+    {
       "tipo": "vf",
       "icono": "🤔",
       "nombre": "¿Verdadero o falso?",
@@ -392,6 +367,11 @@
           { "t": "El cactus tiene espinas en vez de hojas.", "c": true, "exp": "Así pierde menos agua." },
           { "t": "Una maceta puede ser un pequeño ecosistema.", "c": true, "exp": "Tiene seres vivos, tierra, agua y luz." },
           { "t": "Los musgos viven en lugares húmedos.", "c": true, "exp": "Necesitan mucha agua." },
+          { "t": "Las plantas respiran de día y de noche.", "c": true, "exp": "Para respirar no hace falta la luz." },
+          { "t": "Las plantas fabrican su propio alimento.", "c": true, "exp": "Por eso se llaman productores." },
+          { "t": "El musgo es una briofita.", "c": true, "exp": "Es chiquito y no tiene tubitos para llevar el agua." },
+          { "t": "Las plantas solo respiran de noche.", "c": false, "exp": "Respiran todo el tiempo: de día y de noche." },
+          { "t": "El helecho es una briofita.", "c": false, "exp": "Es una pteridófita; la briofita es el musgo." },
           { "t": "Los musgos tienen flores grandes.", "c": false, "exp": "No tienen flores ni semillas." },
           { "t": "Está bien arrancar musgo para el pesebre.", "c": false, "exp": "No: el musgo guarda el agua del bosque." },
           { "t": "Los helechos nacen de semillas.", "c": false, "exp": "Nacen de esporas." },
@@ -408,6 +388,14 @@
           { "t": "Los hongos y las bacterias son descomponedores.", "c": true, "exp": "Convierten los restos en abono." },
           { "t": "El manglar crece donde se juntan el río y el mar.", "c": true, "exp": "Es un ecosistema de la Costa." },
           { "t": "Quemar el páramo destruye los musgos.", "c": true, "exp": "Y sin musgos se guarda menos agua." },
+          { "t": "Las briofitas, como los musgos, no tienen raíces, tallos ni hojas verdaderas.", "c": true, "exp": "Tienen partes parecidas, pero más sencillas." },
+          { "t": "Las pteridófitas tienen vasos conductores para transportar agua y otras sustancias.", "c": true, "exp": "Por eso los helechos crecen más que los musgos." },
+          { "t": "Las plantas respiran tanto de día como de noche.", "c": true, "exp": "La fotosíntesis necesita luz; la respiración, no." },
+          { "t": "Las plantas son productores porque fabrican su propio alimento con la fotosíntesis.", "c": true, "exp": "Los demás seres vivos dependen de ellas." },
+          { "t": "La biodiversidad es la variedad de seres vivos de un lugar.", "c": true, "exp": "Ecuador tiene muchísima." },
+          { "t": "Los helechos son briofitas.", "c": false, "exp": "Son pteridófitas: tienen vasos conductores." },
+          { "t": "Las plantas respiran solo cuando hay sol.", "c": false, "exp": "Respiran siempre; lo que necesita sol es la fotosíntesis." },
+          { "t": "Un ecosistema está formado solo por animales.", "c": false, "exp": "Tiene seres vivos y también agua, suelo, aire y luz." },
           { "t": "Los helechos tienen flores de colores.", "c": false, "exp": "No tienen flores: tienen esporas bajo las hojas." },
           { "t": "Las plantas son consumidores.", "c": false, "exp": "Son productores: fabrican su alimento." },
           { "t": "Solo las abejas polinizan.", "c": false, "exp": "También colibríes, mariposas, murciélagos y el viento." },
@@ -425,6 +413,8 @@
           { "t": "Los productores son la base de la cadena alimenticia.", "c": true, "exp": "Sin plantas no habría alimento para los demás." },
           { "t": "Los descomponedores devuelven nutrientes al suelo.", "c": true, "exp": "Así las plantas los vuelven a usar." },
           { "t": "Las orquídeas epífitas viven sobre los árboles.", "c": true, "exp": "No les quitan alimento: solo se apoyan." },
+          { "t": "Las pteridófitas son plantas con vasos conductores, pero sin semillas.", "c": true, "exp": "Como los helechos: se reproducen por esporas." },
+          { "t": "La biodiversidad es la cantidad de agua de un río.", "c": false, "exp": "Es la variedad de seres vivos de un lugar." },
           { "t": "Los helechos son plantas con semilla.", "c": false, "exp": "Se reproducen por esporas." },
           { "t": "Al respirar, la planta libera oxígeno.", "c": false, "exp": "Al respirar libera dióxido de carbono; el oxígeno sale en la fotosíntesis." },
           { "t": "Polinización y fecundación son lo mismo.", "c": false, "exp": "Primero llega el polen; después se une al óvulo." },
@@ -451,7 +441,10 @@
           { "q": "¿Qué guarda el fruto por dentro?", "c": "Las semillas", "d": ["Las raíces", "Las esporas"] },
           { "q": "¿Para qué le sirven las espinas al cactus?", "c": "Para perder menos agua y defenderse", "d": ["Para volar con el viento", "Para atraer a las abejas"] },
           { "q": "¿Qué puede ser un pequeño ecosistema?", "c": "Una maceta con su planta y sus bichitos", "d": ["Un vaso vacío", "Una piedra sola"] },
-          { "q": "¿Dónde viven los musgos?", "c": "En lugares húmedos y con sombra", "d": ["En el desierto seco", "En el fondo del mar"] }
+          { "q": "¿Dónde viven los musgos?", "c": "En lugares húmedos y con sombra", "d": ["En el desierto seco", "En el fondo del mar"] },
+          { "q": "¿Cuál de estas plantas es una briofita?", "c": "El musgo", "d": ["El helecho", "El rosal", "El pino"] },
+          { "q": "¿Cuándo respiran las plantas?", "c": "De día y de noche", "d": ["Solo de día", "Solo de noche"] },
+          { "q": "Los árboles nos enseñan a cuidar y compartir. ¿Qué acción lo muestra mejor?", "c": "Cuidar las plantas y ayudar a otros", "d": ["Romper ramas por diversión", "Botar basura en el parque", "Desperdiciar agua"] }
         ],
         [
           { "q": "¿Qué es una espora?", "c": "Una célula diminuta que da una planta nueva", "d": ["Una semilla dentro de un fruto", "Una flor muy pequeña"] },
@@ -463,7 +456,13 @@
           { "q": "¿Qué significa que Ecuador es megadiverso?", "c": "Que tiene muchísimas especies de seres vivos", "d": ["Que es el país más grande del mundo", "Que casi no tiene plantas"] },
           { "q": "¿Qué es el pecíolo?", "c": "El rabito que une la hoja al tallo", "d": ["La punta de la hoja", "La cara de abajo de la hoja"] },
           { "q": "¿Por qué no se debe arrancar el musgo?", "c": "Porque guarda agua y protege el suelo", "d": ["Porque es venenoso", "Porque pica como la ortiga"] },
-          { "q": "¿Qué puedes usar en el pesebre en vez de musgo?", "c": "Aserrín pintado o papel verde", "d": ["Musgo del páramo", "Helechos del bosque"] }
+          { "q": "¿Qué puedes usar en el pesebre en vez de musgo?", "c": "Aserrín pintado o papel verde", "d": ["Musgo del páramo", "Helechos del bosque"] },
+          { "q": "¿Qué es la biodiversidad?", "c": "La variedad de seres vivos de un lugar", "d": ["La cantidad de agua de un río", "El tamaño de una planta", "El color del suelo"] },
+          { "q": "¿De qué está formado un ecosistema?", "c": "De seres vivos y elementos no vivos", "d": ["Solo de animales", "Solo de plantas", "Solo de agua y suelo"] },
+          { "q": "Los helechos son pteridófitas. ¿Cómo se reproducen?", "c": "Por esporas", "d": ["Por semillas", "Por frutos", "Por bulbos"] },
+          { "q": "¿Qué función de la planta fabrica alimento con la luz del Sol?", "c": "La fotosíntesis", "d": ["La respiración", "La reproducción"] },
+          { "q": "¿Qué función de la planta intercambia gases con el ambiente?", "c": "La respiración", "d": ["La reproducción", "La nutrición"] },
+          { "q": "¿Qué función de la planta produce nuevos individuos?", "c": "La reproducción", "d": ["La nutrición", "La fotosíntesis"] }
         ],
         [
           { "q": "¿Qué son las briofitas?", "c": "Plantas sin vasos conductores, como los musgos", "d": ["Plantas con flores y frutos", "Árboles que dan piñas"] },
@@ -476,7 +475,9 @@
           { "q": "¿Qué es una planta epífita?", "c": "La que vive sobre otra planta sin dañarla", "d": ["La que vive bajo el mar", "La que come insectos"] },
           { "q": "¿Qué es el envés?", "c": "La cara inferior de la hoja", "d": ["La cara superior de la hoja", "El borde de la hoja"] },
           { "q": "¿Para qué sirven los rizoides del musgo?", "c": "Para sujetarlo al suelo o a la roca", "d": ["Para fabricar semillas", "Para atraer colibríes"] },
-          { "q": "¿Qué son los factores abióticos?", "c": "Las partes sin vida: luz, agua, suelo y aire", "d": ["Los animales del lugar", "Las plantas con flor"] }
+          { "q": "¿Qué son los factores abióticos?", "c": "Las partes sin vida: luz, agua, suelo y aire", "d": ["Los animales del lugar", "Las plantas con flor"] },
+          { "q": "¿Qué son las pteridófitas?", "c": "Plantas con vasos conductores pero sin semillas, como los helechos", "d": ["Plantas sin vasos conductores, como los musgos", "Plantas con flores y frutos"] },
+          { "q": "¿Qué es la nutrición de la planta?", "c": "Obtener y transformar sustancias para alimentarse", "d": ["Producir nuevos individuos", "Intercambiar gases con el ambiente"] }
         ]
       ]
     }

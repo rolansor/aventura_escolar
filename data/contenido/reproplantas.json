@@ -1,0 +1,358 @@
+{
+  "modo": "reproplantas",
+  "materia": "ciencias",
+  "px": "rpl",
+  "titulo": "Cómo se reproducen las plantas",
+  "icono": "🌸",
+  "motor": "actividad",
+  "temas": [
+    {
+      "tipo": "clasificar",
+      "icono": "🔬",
+      "nombre": "La flor con lupa",
+      "desc": "el trabajo de cada parte",
+      "total": 5,
+      "pregunta": "Lleva cada trabajo hasta la parte de la flor que lo hace 👇",
+      "dibujo": { "svg": { "$archivo": "recursos/senala/flor-corte.svg" }, "pista": "¿Qué parte de la flor hace eso? 👀" },
+      "fichas": [4, 5, 6],
+      "cestas": [
+        { "id": "petalo", "nombre": "Pétalo", "emoji": "🌸" },
+        { "id": "sepalo", "nombre": "Sépalo", "emoji": "🟢" },
+        { "id": "antera", "nombre": "Antera", "emoji": "🟡" },
+        { "id": "filamento", "nombre": "Filamento", "emoji": "📏" },
+        { "id": "estigma", "nombre": "Estigma", "emoji": "🎯" },
+        { "id": "estilo", "nombre": "Estilo", "emoji": "🧪" },
+        { "id": "ovario", "nombre": "Ovario", "emoji": "🥚" }
+      ],
+      "cestasPorNivel": [
+        ["petalo", "antera", "estigma", "ovario"],
+        ["petalo", "sepalo", "antera", "filamento", "estigma", "ovario"],
+        ["petalo", "sepalo", "antera", "filamento", "estigma", "estilo", "ovario"]
+      ],
+      "items": {
+        "petalo": [
+          ["Con su color llama a las abejas", "Es la parte de colores", "Atrae a los polinizadores"],
+          ["Parte coloreada que atrae a los polinizadores", "Su color y su olor llaman a los insectos", "Pista de aterrizaje para la abeja"],
+          ["Parte coloreada que ayuda a atraer polinizadores", "Juntos forman la corola", "Su color guía al polinizador hasta el néctar"]
+        ],
+        "sepalo": [
+          [],
+          ["Hojita verde que protege la flor", "Cubría el botón antes de abrirse", "Está debajo de los pétalos"],
+          ["Juntos forman el cáliz", "Protege el botón floral", "Hojita verde bajo la corola"]
+        ],
+        "antera": [
+          ["Fabrica el polen", "Guarda el polvito amarillo", "Bolsita llena de polen"],
+          ["Produce el polen", "Bolsita amarilla en la punta del estambre", "De aquí sale el polen que se lleva la abeja"],
+          ["Produce los granos de polen", "Parte del estambre donde se forma el polen", "Se abre y suelta el polen maduro"]
+        ],
+        "filamento": [
+          [],
+          ["Palito que sostiene la antera", "Levanta la bolsita de polen", "Hilo delgado del estambre"],
+          ["Sostiene la antera en alto", "Parte delgada del estambre", "Hilo que une la antera con la base de la flor"]
+        ],
+        "estigma": [
+          ["Recibe el polen", "Punta pegajosa del centro", "Aquí se pega el polen"],
+          ["Recibe el polen que trae el polinizador", "Punta pegajosa del pistilo", "Atrapa los granos de polen"],
+          ["Recibe el polen en la polinización", "Extremo pegajoso del pistilo", "Aquí termina el viaje del polen"]
+        ],
+        "estilo": [
+          [],
+          [],
+          ["Tubito que une el estigma con el ovario", "Por aquí baja el polen hasta el óvulo", "Cuello largo del pistilo"]
+        ],
+        "ovario": [
+          ["Guarda los óvulos", "Aquí crecerá el fruto", "Pancita con bolitas adentro"],
+          ["Contiene los óvulos", "Después se convierte en fruto", "Parte ancha de abajo del pistilo"],
+          ["Contiene los óvulos que serán semillas", "Al madurar se transforma en fruto", "Base ensanchada del pistilo"]
+        ]
+      }
+    },
+    {
+      "tipo": "senala",
+      "icono": "👆",
+      "nombre": "Toca la parte",
+      "desc": "antera, estigma, ovario…",
+      "total": 7,
+      "svg": { "$archivo": "recursos/senala/flor-corte.svg" },
+      "partes": [
+        { "id": "petalo", "nombre": "los pétalos" },
+        { "id": "sepalo", "nombre": "los sépalos" },
+        { "id": "filamento", "nombre": "los filamentos" },
+        { "id": "antera", "nombre": "las anteras" },
+        { "id": "estigma", "nombre": "el estigma" },
+        { "id": "estilo", "nombre": "el estilo" },
+        { "id": "ovario", "nombre": "el ovario" }
+      ]
+    },
+    {
+      "tipo": "ordenar",
+      "icono": "🍎",
+      "nombre": "De la flor al fruto",
+      "desc": "ordena el ciclo",
+      "total": 4,
+      "pregunta": "Todo empieza en la flor (o en su botón). Tócalas en orden 👇",
+      "secuencias": [
+        [
+          ["botón", "flor abierta", "fruto verde", "fruto maduro"],
+          ["flor", "llega la abeja", "fruto", "semilla"],
+          ["flor", "fruto", "semilla", "planta nueva"],
+          ["botón", "flor con polen", "caen los pétalos", "crece el fruto"]
+        ],
+        [
+          ["flor", "polinización", "fruto", "semilla", "planta nueva"],
+          ["botón", "flor abierta", "llega el colibrí", "caen los pétalos", "crece el fruto"],
+          ["flor", "polinización", "fecundación", "fruto con semillas", "germinación"],
+          ["flor del cacao", "una mosquita lleva el polen", "nace la mazorca", "semillas de cacao", "chocolate 🍫"]
+        ],
+        [
+          ["flor", "polinización", "fecundación", "fruto", "semilla", "germinación", "planta nueva"],
+          ["el polen sale de la antera", "viaja con un polinizador", "llega al estigma", "baja hasta el óvulo", "se forman semilla y fruto"],
+          ["botón", "flor abierta", "polinización", "fecundación", "caen los pétalos", "fruto maduro"],
+          ["flor", "polinización", "fecundación", "el ovario engorda", "fruto maduro", "la semilla cae al suelo", "germinación"]
+        ]
+      ]
+    },
+    {
+      "tipo": "emparejar",
+      "icono": "🐝",
+      "nombre": "Los polinizadores",
+      "desc": "quién lleva el polen y cómo",
+      "total": 5,
+      "pregunta": "Une cada uno con lo que es o lo que hace 👇",
+      "pares": [
+        [
+          { "a": "la abeja 🐝", "b": "lleva polen en sus patas" },
+          { "a": "el colibrí", "b": "mete su pico largo en la flor" },
+          { "a": "la mariposa 🦋", "b": "toma néctar con su trompa" },
+          { "a": "el murciélago 🦇", "b": "visita las flores de noche" },
+          { "a": "el viento 🌬️", "b": "sopla el polen por el aire" },
+          { "a": "el polen", "b": "polvito amarillo de la flor" },
+          { "a": "el néctar", "b": "jugo dulce de la flor" },
+          { "a": "los pétalos", "b": "con su color llaman a los insectos" }
+        ],
+        [
+          { "a": "la abeja", "b": "hace miel con el néctar" },
+          { "a": "el abejorro", "b": "pariente grande y peludo de la abeja" },
+          { "a": "el colibrí", "b": "ave que vuela quieta frente a la flor" },
+          { "a": "la mariposa", "b": "insecto de día con alas de colores" },
+          { "a": "la polilla", "b": "mariposa que vuela de noche" },
+          { "a": "el murciélago", "b": "mamífero que poliniza de noche" },
+          { "a": "el viento", "b": "lleva el polen del maíz" },
+          { "a": "el agua", "b": "lleva el polen de plantas acuáticas" },
+          { "a": "el néctar", "b": "premio dulce para el polinizador" }
+        ],
+        [
+          { "a": "polinización", "b": "viaje del polen hasta el estigma" },
+          { "a": "polinización por el viento", "b": "polen liviano que vuela lejos" },
+          { "a": "polinización por el agua", "b": "el polen viaja flotando" },
+          { "a": "autopolinización", "b": "el polen cae en la misma flor" },
+          { "a": "polinización cruzada", "b": "el polen llega a otra planta" },
+          { "a": "el colibrí estrella del Chimborazo", "b": "poliniza la chuquiragua" },
+          { "a": "una mosquita diminuta", "b": "poliniza la flor del cacao" },
+          { "a": "el murciélago", "b": "poliniza flores que abren de noche" },
+          { "a": "el abejorro", "b": "poliniza la flor del maracuyá" }
+        ]
+      ]
+    },
+    {
+      "tipo": "clasificar",
+      "icono": "🌱",
+      "nombre": "Dos maneras de nacer",
+      "desc": "reproducción sexual o asexual",
+      "pregunta": "¿La planta nueva nace con flor y semilla, o de un pedazo de otra planta? 👇",
+      "cestas": [
+        { "id": "sexual", "nombre": "Sexual: con flor y semilla", "emoji": "🌸" },
+        { "id": "asexual", "nombre": "Asexual: de un pedazo de la planta", "emoji": "✂️" }
+      ],
+      "items": {
+        "sexual": [
+          ["nace de una semilla", "necesita una flor", "necesita polen", "la abeja ayuda", "un fréjol que germina", "una pepa de aguacate sembrada"],
+          ["se unen el polen y el óvulo", "hay polinización", "hay fecundación", "se forma un fruto con semillas", "el maíz sembrado en grano", "empieza en la flor"],
+          ["intervienen dos gametos", "ocurre la fecundación del óvulo", "la semilla lleva un embrión", "los hijos no son idénticos a la planta madre", "necesita un polinizador o el viento", "da plantas más variadas"]
+        ],
+        "asexual": [
+          ["nace de un pedazo de tallo", "no necesita flores", "no necesita semillas", "una papa que retoña", "una ramita sembrada", "basta una sola planta"],
+          ["la planta hija es igual a la madre", "sale de un estolón", "sale de un bulbo", "sale de un tubérculo", "la yuca sembrada por estacas", "un diente de ajo sembrado"],
+          ["no intervienen gametos", "los hijos son copias idénticas", "se hace por esquejes", "no hay fecundación", "participa un solo progenitor", "no hace falta polinización"]
+        ]
+      }
+    },
+    {
+      "tipo": "clasificar",
+      "icono": "🥔",
+      "nombre": "Plantas que se copian",
+      "desc": "estolón, tubérculo, bulbo y esqueje",
+      "pregunta": "Sin flor ni semilla: ¿cómo hace su copia cada planta? 👇",
+      "fichas": [4, 5, 6],
+      "cestas": [
+        { "id": "estolon", "nombre": "Estolón: tallo que se arrastra", "emoji": "🍓" },
+        { "id": "tuberculo", "nombre": "Tubérculo: tallo gordo bajo tierra", "emoji": "🥔" },
+        { "id": "bulbo", "nombre": "Bulbo: bolita con capas", "emoji": "🧅" },
+        { "id": "esqueje", "nombre": "Esqueje: trozo de tallo cortado", "emoji": "✂️" }
+      ],
+      "items": {
+        "estolon": [
+          ["la frutilla (fresa)", "tallo que gatea por el suelo", "de él cuelgan plantitas hijas"],
+          ["la frutilla", "el pasto kikuyo", "el trébol", "la planta mala madre", "tallo rastrero que da plantitas"],
+          ["la fresa silvestre", "el kikuyo del parque", "el trébol blanco", "la cinta o mala madre", "tallo horizontal con plantitas hijas"]
+        ],
+        "tuberculo": [
+          ["la papa", "tiene ojitos que retoñan", "tallo gordo lleno de alimento"],
+          ["la papa chola", "el melloco", "la oca", "tallo que engorda bajo la tierra", "sus yemas se llaman ojos"],
+          ["la mashua", "el melloco", "la oca", "la papa nativa", "tallo subterráneo con reservas", "sus ojos son yemas que brotan"]
+        ],
+        "bulbo": [
+          ["la cebolla", "el ajo", "tiene capas como abrigos"],
+          ["la cebolla paiteña", "el ajo", "el tulipán", "la cebolla blanca", "bolita de hojas gruesas bajo tierra"],
+          ["el tulipán", "la azucena", "el narciso", "el diente de ajo", "hojas carnosas alrededor de una yema"]
+        ],
+        "esqueje": [
+          ["un trozo de tallo sembrado", "una ramita cortada", "un palito de rosal en la tierra"],
+          ["una estaca de yuca", "un trozo de caña de azúcar", "una ramita de geranio en agua", "un pedazo de rosal", "se corta un tallo y se siembra"],
+          ["una estaca de yuca", "un trozo de caña con yemas", "una ramita de geranio", "una estaca de sauce", "fragmento de tallo que echa raíces"]
+        ]
+      }
+    },
+    {
+      "tipo": "completa",
+      "idioma": "es",
+      "icono": "✍️",
+      "nombre": "Completa",
+      "desc": "la palabra que falta",
+      "pista": "Esa no va ahí. Piensa qué hace cada parte 👀",
+      "items": [
+        [
+          { "f": "La abeja lleva el ___ de flor en flor.", "c": "polen", "d": ["fruto", "tallo"] },
+          { "f": "De la flor nace el ___.", "c": "fruto", "d": ["musgo", "tallo"] },
+          { "f": "Dentro del fruto están las ___.", "c": "semillas", "d": ["esporas", "hojas"] },
+          { "f": "La semilla guarda un ___ que puede formar una nueva planta.", "c": "embrión", "d": ["pétalo", "polen"] },
+          { "f": "Los musgos y los helechos se reproducen por ___.", "c": "esporas", "d": ["semillas", "frutos"] },
+          { "f": "La frutilla se copia con un tallo que se arrastra: el ___.", "c": "estolón", "d": ["bulbo", "esqueje"] },
+          { "f": "La papa es un ___.", "c": "tubérculo", "d": ["bulbo", "estolón"] },
+          { "f": "La cebolla es un ___.", "c": "bulbo", "d": ["tubérculo", "fruto"] }
+        ],
+        [
+          { "f": "La polinización es el traslado del ___ desde las anteras hasta el ___ de una flor.", "c": ["polen", "estigma"], "d": ["óvulo", "pétalo"] },
+          { "f": "En la fecundación, el ___ se une con el ___.", "c": ["polen", "óvulo"], "igual": [[0, 1]], "d": ["pétalo", "sépalo"] },
+          { "f": "La antera produce el ___ y el ovario contiene los ___.", "c": ["polen", "óvulos"], "d": ["frutos", "pétalos"] },
+          { "f": "Los musgos y los helechos son plantas sin semillas: se reproducen por ___.", "c": "esporas", "d": ["frutos", "bulbos", "flores"] },
+          { "f": "La semilla contiene un ___ que puede desarrollarse y formar una nueva planta.", "c": "embrión", "d": ["estambre", "estolón", "pétalo"] },
+          { "f": "Después de la fecundación, el ovario se convierte en ___ y el óvulo en ___.", "c": ["fruto", "semilla"], "d": ["flor", "polen"] },
+          { "f": "La papa es un ___ y la cebolla es un ___.", "c": ["tubérculo", "bulbo"], "d": ["estolón", "esqueje"] },
+          { "f": "La frutilla se reproduce por ___ y el rosal se puede sembrar por ___.", "c": ["estolones", "esquejes"], "d": ["bulbos", "esporas"] }
+        ],
+        [
+          { "f": "El polen sale de la ___, viaja con un polinizador y llega al ___; después baja hasta el ___.", "c": ["antera", "estigma", "óvulo"], "d": ["sépalo", "pétalo"] },
+          { "f": "La polinización es el traslado del ___ desde las ___ hasta el ___.", "c": ["polen", "anteras", "estigma"], "d": ["óvulo", "sépalos"] },
+          { "f": "En la reproducción ___ hay fecundación; en la ___ basta un pedazo de la planta.", "c": ["sexual", "asexual"], "d": ["acuática", "nutritiva"] },
+          { "f": "Estolón → ___; tubérculo → ___; bulbo → ___.", "c": ["frutilla", "papa", "cebolla"], "d": ["maíz", "helecho"] },
+          { "f": "El ___ de la semilla crece, rompe la cáscara y nace la planta: eso es la ___.", "c": ["embrión", "germinación"], "d": ["polinización", "estigma"] },
+          { "f": "Los pétalos forman la ___ y los sépalos forman el ___.", "c": ["corola", "cáliz"], "d": ["pistilo", "estambre"] },
+          { "f": "El estambre tiene ___ y antera; el pistilo tiene estigma, ___ y ovario.", "c": ["filamento", "estilo"], "d": ["sépalo", "corola"] },
+          { "f": "Si las abejas desaparecieran, muchas plantas darían menos ___ y ___.", "c": ["frutos", "semillas"], "igual": [[0, 1]], "d": ["raíces", "esporas"] }
+        ]
+      ]
+    },
+    {
+      "tipo": "vf",
+      "icono": "🤔",
+      "nombre": "¿Verdadero o falso?",
+      "desc": "flores, frutos y semillas",
+      "preguntas": [
+        [
+          { "t": "La abeja lleva polen de flor en flor.", "c": true, "exp": "Eso se llama polinización." },
+          { "t": "De la semilla nace una planta nueva.", "c": true, "exp": "Dentro lleva un embrión: una plantita dormida." },
+          { "t": "Los pétalos de colores llaman a las abejas.", "c": true, "exp": "Por eso las flores son tan vistosas." },
+          { "t": "La antera guarda el polen.", "c": true, "exp": "Es la bolsita amarilla del estambre." },
+          { "t": "Una papa que retoña puede dar una planta nueva.", "c": true, "exp": "Sin flor ni semilla: es reproducción asexual." },
+          { "t": "Sin abejas habría menos frutos.", "c": true, "exp": "Ellas llevan el polen que la flor necesita." },
+          { "t": "La frutilla se copia con tallos que se arrastran.", "c": true, "exp": "Se llaman estolones." },
+          { "t": "El polen es el jugo dulce de la flor.", "c": false, "exp": "Ese es el néctar; el polen es el polvito amarillo." },
+          { "t": "El fruto sale antes que la flor.", "c": false, "exp": "Primero sale la flor; de ella nace el fruto." },
+          { "t": "La cebolla es un fruto.", "c": false, "exp": "Es un bulbo: hojas gruesas en capas." },
+          { "t": "Todas las plantas nuevas nacen de una semilla.", "c": false, "exp": "Algunas nacen de un pedazo de tallo, de un bulbo o de un tubérculo." },
+          { "t": "El ovario de la flor fabrica el polen.", "c": false, "exp": "El polen lo fabrica la antera; el ovario guarda los óvulos." },
+          { "t": "Las abejas dañan las flores.", "c": false, "exp": "Las ayudan: llevan el polen de una a otra." },
+          { "t": "El estigma está escondido bajo la tierra.", "c": false, "exp": "Está arriba, en la punta del pistilo, para recibir el polen." }
+        ],
+        [
+          { "t": "Si las abejas desaparecieran, muchas plantas producirían menos frutos y semillas.", "c": true, "exp": "Sin polinización casi no hay frutos." },
+          { "t": "El estigma recibe el polen.", "c": true, "exp": "Es la punta pegajosa del pistilo." },
+          { "t": "El ovario contiene los óvulos.", "c": true, "exp": "Los óvulos se convertirán en semillas." },
+          { "t": "La antera produce el polen.", "c": true, "exp": "Está en la punta del estambre." },
+          { "t": "La semilla contiene un embrión.", "c": true, "exp": "El embrión es la plantita que va a nacer." },
+          { "t": "La papa es un tubérculo.", "c": true, "exp": "Es un tallo gordo que crece bajo la tierra." },
+          { "t": "En la reproducción asexual, la planta hija es igual a la madre.", "c": true, "exp": "Es una copia: no se mezclaron dos plantas." },
+          { "t": "La polinización lleva el polen desde las anteras hasta el estigma.", "c": true, "exp": "Lo llevan los animales, el viento o el agua." },
+          { "t": "Los pétalos producen el polen.", "c": false, "exp": "Lo producen las anteras; los pétalos atraen a los polinizadores." },
+          { "t": "La fresa se reproduce por bulbos.", "c": false, "exp": "Por estolones: tallos que se arrastran." },
+          { "t": "Un esqueje es una semilla muy pequeña.", "c": false, "exp": "Es un trozo de tallo que se siembra." },
+          { "t": "La reproducción asexual necesita flores.", "c": false, "exp": "No: basta una parte de la planta." },
+          { "t": "La fecundación ocurre cuando una hoja cae al suelo.", "c": false, "exp": "Ocurre cuando el polen se une con el óvulo." },
+          { "t": "El viento nunca lleva polen.", "c": false, "exp": "Sí lo lleva: así se poliniza el maíz." },
+          { "t": "La cebolla es un tubérculo.", "c": false, "exp": "Es un bulbo; el tubérculo es la papa." }
+        ],
+        [
+          { "t": "En la fecundación, el polen se une con el óvulo.", "c": true, "exp": "De esa unión nace la semilla." },
+          { "t": "Después de la fecundación, el óvulo se convierte en semilla.", "c": true, "exp": "Y el ovario, en fruto." },
+          { "t": "Los estolones son tallos que crecen pegados al suelo.", "c": true, "exp": "Así se multiplica la frutilla." },
+          { "t": "La yuca se siembra por estacas, que son esquejes.", "c": true, "exp": "Cada trozo de tallo da una planta nueva." },
+          { "t": "Los pétalos forman la corola.", "c": true, "exp": "Y los sépalos, el cáliz." },
+          { "t": "En la reproducción sexual de las plantas intervienen dos gametos.", "c": true, "exp": "El que viaja en el polen y el óvulo." },
+          { "t": "En la autopolinización, el polen cae en la misma flor.", "c": true, "exp": "No hace falta un polinizador." },
+          { "t": "El pistilo tiene estigma, estilo y ovario.", "c": true, "exp": "Es la parte femenina de la flor." },
+          { "t": "Polinización y fecundación son lo mismo.", "c": false, "exp": "Primero llega el polen al estigma; después se une al óvulo." },
+          { "t": "El filamento recibe el polen.", "c": false, "exp": "Lo recibe el estigma; el filamento sostiene la antera." },
+          { "t": "Un tubérculo es una raíz delgada.", "c": false, "exp": "Es un tallo engrosado que guarda reservas." },
+          { "t": "Las plantas que nacen de esquejes son distintas de la planta madre.", "c": false, "exp": "Son copias idénticas." },
+          { "t": "El estilo es parte del estambre.", "c": false, "exp": "Es parte del pistilo: une el estigma con el ovario." },
+          { "t": "Los sépalos forman la corola.", "c": false, "exp": "Forman el cáliz; la corola son los pétalos." },
+          { "t": "En la reproducción asexual hay fecundación.", "c": false, "exp": "No: no intervienen ni el polen ni los óvulos." }
+        ]
+      ]
+    },
+    {
+      "tipo": "definir",
+      "icono": "📖",
+      "nombre": "¿Qué es cada cosa?",
+      "desc": "elige la definición",
+      "preguntas": [
+        [
+          { "q": "¿Qué es la polinización?", "c": "El viaje del polen de una flor a otra", "d": ["La caída de las hojas", "El riego de la planta"] },
+          { "q": "¿Qué hay dentro de una semilla?", "c": "Un embrión: una plantita dormida", "d": ["Una abeja dormida", "Solo agua"] },
+          { "q": "¿Qué parte de la flor guarda el polen?", "c": "La antera", "d": ["El ovario", "El sépalo"] },
+          { "q": "¿Qué parte de la flor recibe el polen?", "c": "El estigma", "d": ["El pétalo", "El tallo"] },
+          { "q": "¿Qué guarda el ovario de la flor?", "c": "Los óvulos", "d": ["El polen", "El néctar"] },
+          { "q": "¿Para qué sirven los pétalos de colores?", "c": "Para atraer a los polinizadores", "d": ["Para guardar agua", "Para sujetar la planta al suelo"] },
+          { "q": "¿Qué es un estolón?", "c": "Un tallo que se arrastra y da plantitas", "d": ["Una semilla con alas", "Una flor sin pétalos"] },
+          { "q": "¿Qué planta se reproduce por estolones?", "c": "La frutilla", "d": ["La papa", "La cebolla"] },
+          { "q": "¿Qué pasaría si no hubiera abejas?", "c": "Habría menos frutos y semillas", "d": ["Habría más frutos", "Las plantas no tendrían hojas"] }
+        ],
+        [
+          { "q": "¿Qué es la polinización?", "c": "El traslado del polen desde las anteras hasta el estigma", "d": ["La unión del polen con el óvulo", "La salida de la raíz de la semilla"] },
+          { "q": "¿Cuándo ocurre la fecundación en una planta?", "c": "Cuando el polen se une con el óvulo", "d": ["Cuando una hoja cae al suelo", "Cuando se corta un tallo", "Cuando se forma un estolón"] },
+          { "q": "¿Qué es el embrión?", "c": "La plantita que está dentro de la semilla", "d": ["El polvito amarillo de la flor", "La cáscara del fruto"] },
+          { "q": "¿Qué es la reproducción asexual?", "c": "Cuando una planta nueva nace de un pedazo de otra", "d": ["Cuando se unen el polen y el óvulo", "Cuando la abeja visita la flor"] },
+          { "q": "¿Qué es un tubérculo?", "c": "Un tallo gordo bajo tierra, como la papa", "d": ["Un tallo que se arrastra, como el de la frutilla", "Una flor que no se abre"] },
+          { "q": "¿Qué es un bulbo?", "c": "Una bolita de hojas gruesas en capas, como la cebolla", "d": ["Un trozo de tallo cortado", "Un fruto con muchas semillas"] },
+          { "q": "¿Qué es un esqueje?", "c": "Un trozo de tallo que se siembra y da otra planta", "d": ["Una semilla que vuela con el viento", "Una raíz que guarda agua"] },
+          { "q": "¿Qué hace la antera?", "c": "Produce el polen", "d": ["Recibe el polen", "Contiene los óvulos"] },
+          { "q": "¿Qué hace el estigma?", "c": "Recibe el polen", "d": ["Produce el polen", "Protege el botón"] },
+          { "q": "¿En qué se convierte el ovario después de la fecundación?", "c": "En el fruto", "d": ["En la raíz", "En un pétalo"] }
+        ],
+        [
+          { "q": "¿Qué es la fecundación?", "c": "La unión del polen con el óvulo", "d": ["El traslado del polen hasta el estigma", "La caída de los pétalos"] },
+          { "q": "¿Qué partes forman el estambre?", "c": "El filamento y la antera", "d": ["El estigma y el ovario", "Los pétalos y los sépalos"] },
+          { "q": "¿Qué partes forman el pistilo?", "c": "El estigma, el estilo y el ovario", "d": ["El filamento y la antera", "La corola y el cáliz"] },
+          { "q": "¿Qué es el cáliz?", "c": "El conjunto de los sépalos", "d": ["El conjunto de los pétalos", "El conjunto de los estambres"] },
+          { "q": "¿Qué es la corola?", "c": "El conjunto de los pétalos", "d": ["El conjunto de los sépalos", "La base de la flor"] },
+          { "q": "¿En qué se diferencian la reproducción sexual y la asexual?", "c": "En la sexual hay fecundación; en la asexual no", "d": ["La asexual necesita flores; la sexual no", "En las dos se unen el polen y el óvulo"] },
+          { "q": "¿Por qué las plantas de esqueje son iguales a la planta madre?", "c": "Porque son un pedazo de la misma planta", "d": ["Porque nacen de una semilla", "Porque las polinizó la misma abeja"] },
+          { "q": "¿Qué es la germinación?", "c": "Cuando el embrión crece y sale de la semilla", "d": ["Cuando el polen llega al estigma", "Cuando el fruto madura"] },
+          { "q": "¿Cuál es un ejemplo de estolón, tubérculo y bulbo, en ese orden?", "c": "Frutilla, papa y cebolla", "d": ["Papa, cebolla y frutilla", "Cebolla, frutilla y papa"] },
+          { "q": "¿Qué es la autopolinización?", "c": "Cuando el polen cae en el estigma de la misma flor", "d": ["Cuando el viento lleva el polen muy lejos", "Cuando la flor no tiene polen"] }
+        ]
+      ]
+    }
+  ]
+}

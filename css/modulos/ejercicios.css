@@ -609,6 +609,20 @@
 .en-hueco { display: inline-block; min-width: 3.2em; padding: 0 10px; margin: 0 4px; border: 3px dashed var(--azul); border-radius: 10px;
   background: #fff; color: var(--azul); font-weight: bold; line-height: 1.45; }
 .en-hueco.ok { border-style: solid; border-color: var(--verde); background: var(--verde); color: #fff; animation: latido .35s; }
+/* Varios huecos en una oración (completar en español: Ciencias, propiedades de la multiplicación):
+   cada hueco es un destino; brilla el que recibe la ficha si solo se la toca. */
+.en-varios { font-size: 1.22rem; line-height: 2; padding: 12px 16px; }
+.en-varios .en-hueco { min-width: 2.6em; line-height: 1.35; }
+.en-hueco.turno { border-color: var(--amarillo); box-shadow: 0 0 0 4px rgba(255, 201, 52, .35); }
+.en-hueco.zona-hover { border-color: var(--amarillo); background: #fff7df; transform: scale(1.08); }
+.en-hueco.rojo { border-color: var(--rojo); background: #fdecea; animation: temblor .4s; }
+/* El rectángulo partido de la propiedad distributiva: a × (b1 + b2) */
+.rep-rect { display: block; width: min(100%, 330px); height: auto; margin: 0 auto 8px; }
+.rep-a { fill: #ffe9a8; stroke: #1d2440; stroke-width: 2; }
+.rep-b { fill: #bfe3ff; stroke: #1d2440; stroke-width: 2; }
+.rep-lado { font-family: var(--fuente); font-weight: bold; font-size: 13px; fill: #4a5270; text-anchor: middle; }
+.rep-izq { text-anchor: end; }
+.rep-dentro { font-family: var(--fuente); font-weight: bold; font-size: 14px; fill: #1d2440; text-anchor: middle; }
 .ficha-arr.en-ficha { font-size: 1.15rem; padding: 10px 18px; }
 .ficha-arr.en-ficha.mal { background: #fdecea; color: #9b2c25; box-shadow: none; opacity: .75; cursor: default; }
 .en-arma .ord-chip { font-size: 1.15rem; padding: 7px 12px; }
@@ -830,6 +844,33 @@
 .geo-suma { font-size: 1.35rem; font-weight: bold; color: var(--azul-osc); margin: 6px 0 2px; }
 .geo-unidad { font-weight: bold; color: #4a5270; }
 .prob-enun.geo-enun { font-size: 1.05rem; padding: 10px 14px; margin: 2px auto 8px; }
+.geo-atajo { display: block; font-size: 1rem; color: #17603f; min-height: 1.3em; }
+.geo-resp { margin-top: 4px; }
+/* Tarjetas que reciben una ficha: pares de rectas (A, B, C) y cuadriláteros con su pista */
+.geo-pares { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 6px 0 4px; }
+.geo-par { position: relative; width: 150px; border: 3px dashed #6aa9e0; border-radius: 16px; background: rgba(255,255,255,.9);
+  padding: 8px 8px 6px; display: flex; flex-direction: column; align-items: center; gap: 4px; transition: transform .15s, border-color .15s; }
+.geo-par.zona-hover { border-color: var(--amarillo); background: #fff7df; transform: scale(1.04); }
+.geo-par.puesto { border-style: solid; border-color: var(--verde); }
+.geo-par.ok { border-style: solid; border-color: var(--verde); background: #e9fbf3; }
+.geo-par.rojo { border-color: var(--rojo); background: #fdecea; animation: temblor .4s; }
+.geo-par.tocable { cursor: pointer; }
+.geo-par.tocable:hover { transform: translateY(-3px); }
+.geo-letra { position: absolute; top: 4px; left: 10px; font-weight: bold; font-size: 1.1rem; color: #4a5270; }
+.geo-par-svg { display: block; width: 104px; height: 104px; }
+.geo-par-svg .geo-recta { stroke-width: 4; }
+.geo-par-nombre { min-height: 34px; display: flex; align-items: center; justify-content: center; }
+.geo-par .ficha-arr.colocada { font-size: .82rem; line-height: 1.2; }
+.geo-par-fig { width: 154px; }
+.geo-par-fig .geo-fig { width: 88px; height: 64px; }
+.geo-par-tit { font-weight: bold; color: #1d2440; min-height: 1.2em; font-size: .95rem; }
+.fila-fichas.geo-pistas .ficha-arr { font-size: .95rem; max-width: 300px; line-height: 1.25; }
+/* Ángulos que se clasifican: dibujito + medida */
+.ficha-arr.ficha-ang { color: var(--azul-osc); display: inline-flex; flex-direction: column; align-items: center; gap: 0; font-size: 1.05rem; min-width: 64px; }
+.geo-ang { display: block; width: 72px; height: 56px; }
+.geo-ang .geo-lado { stroke-width: 3.5; }
+.ficha-ang.colocada .geo-ang { width: 44px; height: 34px; }
+.ficha-arr.ficha-ang.colocada { font-size: .85rem; }
 
 /* ---------- Pantallas bajas (laptop de 768 px de alto): todo un poco más compacto ---------- */
 @media (max-height: 820px) {
@@ -927,3 +968,17 @@
 .m3d-capa .slot.zona-hover { transform: translate(-50%, -50%) scale(1.1); }
 .m3d-capa .slot.ok { color: #17603f; padding: 4px 12px; }
 .m3d-capa .slot-q { font-size: 1.4rem; font-weight: bold; }
+
+/* Tarjetas de geometría en celular: tres pares de rectas por fila y dos cuadriláteros por fila */
+@media (max-width: 640px) {
+  .geo-pares { gap: 8px; }
+  .geo-par { width: calc(33.33% - 6px); padding: 6px 3px 5px; border-radius: 12px; }
+  .geo-par-fig { width: calc(50% - 4px); }
+  .geo-par-svg { width: 100%; height: auto; max-width: 96px; }
+  .geo-letra { top: 2px; left: 6px; font-size: .95rem; }
+  .geo-par .ficha-arr.colocada { font-size: .66rem; padding: 4px 5px; }
+  .geo-par-fig .ficha-arr.colocada { font-size: .74rem; }
+  .fila-fichas.geo-pistas .ficha-arr { font-size: .84rem; }
+  .en-varios { font-size: 1.05rem; line-height: 1.9; padding: 10px; }
+  .geo-cesta { min-width: 0; flex: 1 1 0; }
+}

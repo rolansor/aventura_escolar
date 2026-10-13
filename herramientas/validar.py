@@ -91,6 +91,12 @@ def revisar_tema(f, t, C):
         for k in t["items"]:
             if k not in ids:
                 error(f, nom, "hay items para una cesta que no existe: " + k)
+        # Con «dibujo», cada cesta es una parte del dibujo: sin su data-parte no habría dónde soltar.
+        if (t.get("dibujo") or {}).get("svg"):
+            en_svg = set(re.findall(r'data-parte="([^"]+)"', t["dibujo"]["svg"]))
+            for i in ids:
+                if i not in en_svg:
+                    error(f, nom, "la cesta «%s» no es una parte del dibujo" % i)
         for n in range(3):
             activas = por_nivel[n] if por_nivel else ids
             # El runner baja al nivel inferior si un nivel está vacío: se valida lo que realmente se usa.
@@ -255,12 +261,19 @@ def revisar_tema(f, t, C):
             if not arr and n == 0:
                 error(f, nom, "sin oraciones en básico")
             for q in arr:
-                if q["f"].count("___") != 1:
-                    error(f, nom, "la oración debe tener UN hueco «___»: " + q["f"])
-                if q["c"] in q["d"]:
+                # Un hueco («c» es un texto) o varios («c» es una lista: una ficha por hueco, en orden).
+                resp = q["c"] if isinstance(q["c"], list) else [q["c"]]
+                if q["f"].count("___") != len(resp):
+                    error(f, nom, "la oración tiene %d huecos «___» y %d respuestas: %s" % (q["f"].count("___"), len(resp), q["f"]))
+                if any(c in q["d"] for c in resp):
                     error(f, nom, "la respuesta correcta también está entre las otras fichas: " + q["f"])
-                if not q["d"] or len(set(q["d"])) != len(q["d"]):
+                if len(set(q["d"])) != len(q["d"]) or len(resp) + len(q["d"]) < 2:
                     error(f, nom, "fichas repetidas o insuficientes: " + q["f"])
+                for g in q.get("igual", []):
+                    if any(not isinstance(k, int) or not (0 <= k < len(resp)) for k in g):
+                        error(f, nom, "«igual» nombra un hueco que no existe: " + q["f"])
+                if "rect" in q and (len(q["rect"]) != 3 or not all(isinstance(x, int) and x > 0 for x in q["rect"])):
+                    error(f, nom, "«rect» debe ser [a, b1, b2] con números mayores que 0: " + q["f"])
 
     elif tp == "terminacion":
         ids = [r["id"] for r in t["reglas"]]

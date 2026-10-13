@@ -84,8 +84,8 @@ página en `paginas/` que el menú enlaza. Las páginas de `paginas/` usan `<bas
 | `src/core/mc.js` | `MC` | Motor de **opción múltiple** (repasos rápidos). Fábrica `MC(px, temas)`; ronda de 10. Al terminar registra el resultado en el leaderboard (`Juego.registrarResultado(px,…)`). **No es el patrón por defecto** (ver Filosofía de diseño). |
 | `src/core/actividad.js` | `Actividad` | Motor de **actividades manipulativas** (hermano de `MC`). Fábrica `Actividad(px, temas, opts)`; cada tema tiene `ronda(host, ctrl)` que arma la interacción en `#<px>-extra` y resuelve con `ctrl.ganar()/fallar()/reintento()`. Sin temporizador (autocorrectivo). Al terminar registra el leaderboard. Reutiliza la misma estructura de página por prefijo que `MC`. |
 | `src/core/arrastrar.js` | `Arrastrar` | Arrastrar-y-soltar con eventos de **puntero** (mouse + dedo). `Arrastrar.hacer(item, zonas, alSoltar)` (marca `.zona-hover`, devuelve la zona destino o null) y `Arrastrar.clasificar(host, ctrl, {pregunta, cestas, items})` (actividad "clasifica en cestas"). Además dos ayudantes de **toque** para `ronda()` de `Actividad`: `Arrastrar.emparejar(host, ctrl, {pregunta, pares:[{a,b}]})` (une parejas: toca izquierda→derecha; CSS `.emp-*`) y `Arrastrar.ordenar(host, ctrl, {pregunta, correcto:[...], extras?:[...]})` (toca fichas en orden; `extras` = fichas que sobran; CSS `.ord-*`). |
-| `src/core/contenido.js` | `Contenido` | **Runner genérico de contenido**. `Contenido.montar("<modo>")` lee `DATOS.contenido[<modo>]` (de `data/contenido/<modo>.json`) y arma las rondas según el `tipo` de cada tema (clasificar/emparejar/ordenar/silabas/alfabetico/vf/definir/sujeto/signos/formas/escena/senala/problema/terminos/**lectura**/**memoria**, y los de Inglés: **ahorcado**/**escucha**/**frase**/**completa**/**terminacion**; motor `mc`: mc), devolviendo un `Actividad`/`MC`. Incluye los ayudantes de Inglés: **voz** (`hablarEn`, Web Speech API), tarjeta de pista (`tarjetaEn`), botón 🔊 (`botonOir`) y la ficha que se arrastra o se toca (`fichaEn`). Centraliza la lógica que antes estaba en cada `src/modos/*.js`. Ver `docs/ESQUEMA_CONTENIDO.md`. |
-| `data/contenido/<modo>.json` | `DATOS.contenido[<modo>]` | **Contenido de las 38 actividades del runner** (Lengua: clases, familia, sinonimos, refranes, ordena, alfabetico, silabas, sujeto, signos, formas, lectura, vocabulario; Ciencias: animales, invertebrados, cuidafauna, plantas, vidaplantas, cuerpo, materia, ambiente, cicloagua, senala; Sociales: epoca, regiones, incas, riosygente; Mate: problemas, terminos, propmult; Inglés: casa, escuela, palabras, ahorcado, presimple, continuo, regulares, irregulares, pasado) + `quiz.json` (bancos de texto del Quiz). **No tienen `src/modos/*.js`** (su lógica vive en el runner). Editar el JSON + `build.py`. |
+| `src/core/contenido.js` | `Contenido` | **Runner genérico de contenido**. `Contenido.montar("<modo>")` lee `DATOS.contenido[<modo>]` (de `data/contenido/<modo>.json`) y arma las rondas según el `tipo` de cada tema (clasificar/emparejar/ordenar/silabas/alfabetico/vf/definir/sujeto/signos/formas/escena/senala/problema/terminos/**lectura**/**memoria**, los de Inglés: **ahorcado**/**escucha**/**frase**/**terminacion**, y **completa**, que con `idioma:"es"` sirve en cualquier materia; motor `mc`: mc), devolviendo un `Actividad`/`MC`. Incluye los ayudantes de Inglés: **voz** (`hablarEn`, Web Speech API), tarjeta de pista (`tarjetaEn`), botón 🔊 (`botonOir`) y la ficha que se arrastra o se toca (`fichaEn`). Centraliza la lógica que antes estaba en cada `src/modos/*.js`. Ver `docs/ESQUEMA_CONTENIDO.md`. |
+| `data/contenido/<modo>.json` | `DATOS.contenido[<modo>]` | **Contenido de las 39 actividades del runner** (Lengua: clases, familia, sinonimos, refranes, ordena, alfabetico, silabas, sujeto, signos, formas, lectura, vocabulario; Ciencias: animales, invertebrados, cuidafauna, plantas, vidaplantas, reproplantas, cuerpo, materia, ambiente, cicloagua, senala; Sociales: epoca, regiones, incas, riosygente; Mate: problemas, terminos, propmult; Inglés: casa, escuela, palabras, ahorcado, presimple, continuo, regulares, irregulares, pasado) + `quiz.json` (bancos de texto del Quiz). **No tienen `src/modos/*.js`** (su lógica vive en el runner). Editar el JSON + `build.py`. |
 | `src/modos/ortografia.js` | `Ortografia` | Ejercicios desde `DATOS.ortografia` (loader propio). |
 | `src/modos/secuencias.js` | `Secuencias` | Secuencias numéricas. |
 | `src/modos/copia.js` | `Copia` | **Corregir / Dictado** (dos sub-modos manipulativos). *Corregir*: el texto sale con errores y el niño **toca la palabra mala** → mini-modal con opciones (dificultad por `Juego.nivelIdx()`: básico = errores marcados y opciones obvias; intermedio = marcados, opciones más parecidas; avanzado = sin marcar, el niño los **busca** y al final pulsa Comprobar). *Dictado*: la voz del navegador (**Web Speech API**, sin librerías; degrada a mostrar el texto si no hay voz) lee y el niño escribe. Puntaje = palabras correctas/total → leaderboard `"copia"`. Conserva `generarErrores` (lo usa `banco.js`). |
@@ -98,7 +98,7 @@ página en `paginas/` que el menú enlaza. Las páginas de `paginas/` usan `<bas
 | `src/efectos/modelo3d.js` + `src/efectos/modelos/*.js` | `Modelo3D` | **Escenario 3D de las actividades** (ver "Modelos 3D y dibujos"). `Modelo3D.registrar(nombre, fn)` / `disponible(nombre)` / `crear(host, nombre, opts)`. Modelos: `planta`, `flor`, `cicloagua`, `bloques`, `fraccion`. |
 | `herramientas/*.py` | — | `build.py` (genera los `data/*.js`; incrusta `{"$archivo": …}`), `validar.py` (contenido), `humo.py` + `cdp.py` (prueba de humo en navegador sin ventana), `corregir_cantones.py` (nombres de cantones). |
 | `css/modulos/*.css` | — | Estilos modulares (orden en `css/modulos/_orden.md`). |
-| `recursos/` | — | `ecuador_1.0.svg` / `ecuador_2.0.svg` (mapa original y horneado), `gadm41_ECU_2.json` (fuente de los cantones), `banderas/EC-*.svg` (banderas provinciales), `senala/*.svg` (dibujos de "Señala la parte") e `ingles/*.svg` (la casa y el aula de Inglés). |
+| `recursos/` | — | `ecuador_1.0.svg` / `ecuador_2.0.svg` (mapa original y horneado), `gadm41_ECU_2.json` (fuente de los cantones), `banderas/EC-*.svg` (banderas provinciales), `senala/*.svg` (dibujos de "Señala la parte" y la flor en corte) e `ingles/*.svg` (la casa y el aula de Inglés). |
 | `paginas/*.html` | — | Una por módulo; incluye sus `data/*.js`, core, su modo, y arranca con `Datos.cargar(...).then(() => { Juego.iniciarBase(); Modo.init(); })`. |
 
 `Juego` (en `src/core/juego.js`) es la API compartida por todas las páginas. Las secciones de abajo
@@ -116,15 +116,15 @@ de una actividad (`index.html?materia=<id>`) se abre esa materia en el curso rec
 { id, icono, nombre, desc,
   actividades: [ { modo, icono, nombre, desc }, ... ] }  // modo = clave del mapa PAGINA de menu.js
 ```
-Las 59 actividades del catálogo:
+Las 60 actividades del catálogo:
 - **Lengua** (14): ortografia, copia, clases, familia, sinonimos, formas, silabas, ordena, sujeto, signos,
   alfabetico, lectura, refranes, vocabulario.
 - **Matemáticas** (18): secuencias, tablas, aritmetica, terminos, problemas, valor (su página es
   `valorposicional.html`), multiplicacion, division, comparar, redondeo, numeros, dinero, medidas, hora,
   fracciones, rectas, cuadrilateros, propmult.
 - **Estudios Sociales** (8): epoca, regiones, mapas, cantones, quiz, donde, incas, riosygente.
-- **Ciencias Naturales** (10): senala, plantas, cuerpo, animales, invertebrados, cuidafauna, cicloagua,
-  materia, ambiente, vidaplantas.
+- **Ciencias Naturales** (11): senala, plantas, cuerpo, animales, invertebrados, cuidafauna, cicloagua,
+  materia, ambiente, vidaplantas, reproplantas.
 - **Inglés** (9): casa, escuela, palabras, ahorcado, presimple, continuo, regulares, irregulares, pasado.
 
 **Para añadir una actividad nueva:**
@@ -155,7 +155,7 @@ Lo primero que se elige al entrar, en una sola pantalla (`pantalla-curso`). `dat
   aparece en un trimestre no sale en su menú (en el mapa sale con 💤). **Para mover o repetir algo: editar
   el plan + `build.py`.**
 - **Hoy, en 5.º:** `"1"` = todo lo que existía antes de los trimestres (decisión del usuario: "todo lo anterior es
-  primer trimestre") más el Inglés de vocabulario y presente (49 actividades), `"2"` = 20 actividades (ver
+  primer trimestre") más el Inglés de vocabulario y presente (49 actividades), `"2"` = 22 actividades (ver
   "Segundo trimestre de Quinto") y
   `"3"` todavía no existe. Un trimestre sin plan sale "🚧 En construcción" (tarjeta y columna del mapa) y no
   se puede entrar.
@@ -212,7 +212,7 @@ de Quinto".
   ("Partes y su trabajo") y `cuerpo` ("¿Para qué sirve?") la ficha se suelta **sobre la parte** (planta 3D /
   dibujo de órganos). `cicloagua` → "Arma el ciclo" es una **maqueta 3D animada** con casillas "?".
 - **senala** — "Señala la parte": planta y flor en **3D**; cuerpo, cara y órganos como ilustraciones SVG.
-- **vidaplantas** — ver "Segundo trimestre de Quinto".
+- **vidaplantas** y **reproplantas** — ver "Segundo trimestre de Quinto".
 - **Regla de la materia: no solo clasificar.** Todas llevan además los temas de CONCEPTO **🤔 ¿Verdadero o
   falso?** (`vf`) y **📖 ¿Qué es cada cosa?** (`definir`), para estudiar *qué es* cada cosa.
 - Destrezas: CN.3.1.1 (invertebrados), CN.3.1.4 (diversidad y amenazas por región), CN.3.1.6 y CN.3.1.7
@@ -279,35 +279,59 @@ de Inglés usa `.en-*` (tarjeta, hueco, ficha), `.esc-*` (escucha) y `.mem-*` (m
 ### Segundo trimestre de Quinto (sacado del Classroom del colegio)
 El 2.º trimestre fue del 20-jul a mediados de octubre de 2026. Su plan (`"2"` en `data/curriculo.json`)
 **repite** actividades que ya existían y calzan (Lengua: clases, sinonimos, lectura; Mate: tablas,
-multiplicacion; Ciencias: plantas, senala, ambiente; Inglés: presimple, continuo) y añade estas:
+multiplicacion; Ciencias: invertebrados, plantas, senala, ambiente; Inglés: presimple, continuo) y añade estas:
 - **rectas** — "Rectas y ángulos" (`src/modos/geometria.js`, global `Rectas`, px `rec`; motor `Actividad`,
   todo SVG con eventos de puntero): **Gira la recta** (se gira la recta roja hasta que sea paralela /
   secante perpendicular / secante oblicua a la azul y se pulsa "¡Listo!"; el material responde con la
   esquina recta, las rayitas de paralelas o el punto de cruce), **El plano del barrio** (tocar la calle
-  que es paralela/perpendicular/oblicua a la roja), **Abre el ángulo** (se gira un lado: en básico se pide
-  la clase —agudo, recto, obtuso—; en intermedio/avanzado, los grados, con un graduador fijo) y **Mide
-  con el graduador** (el graduador se ARRASTRA hasta la punta del ángulo, encaja y entonces se elige la
-  medida; en avanzado el ángulo puede abrirse desde la izquierda y hay que usar la escala interior).
+  que es paralela/perpendicular/oblicua a la roja), **Ponles nombre** (tres pares de rectas A, B y C: se
+  lleva a cada uno la ficha "paralelas", "perpendiculares" u "oblicuas" y después se toca el que forma
+  90°), **Abre el ángulo** (se gira un lado: en básico se alternan la clase —agudo, recto, obtuso— y los
+  grados de 10 en 10; en intermedio/avanzado, siempre los grados; el graduador fijo sale cuando se piden
+  grados), **¿Agudo, recto u obtuso?** (cada ángulo, con su medida, se arrastra a su clase; en avanzado
+  solo va el número) y **Mide con el graduador** (el graduador se ARRASTRA hasta la punta del ángulo,
+  encaja, se elige la medida y luego el tipo de ángulo; en avanzado el ángulo puede abrirse desde la
+  izquierda y hay que usar la escala interior).
 - **cuadrilateros** — "Cuadriláteros y perímetro" (mismo archivo, global `Cuadri`, px `cua`): **Familias**
   (arrastrar cada figura a paralelogramos / trapecios / trapezoides; catálogo `FIGURAS`, giradas según el
-  nivel), **¿Cómo se llama?** (tocar el rombo, el romboide…), **Camina el contorno** (se toca cada lado
-  para sumarlo: P = l + l + l + l, y se elige o escribe el total) y **Problemas de perímetro** (cercar,
-  hallar el lado que falta, costo, vueltas; generados, con su dibujo).
+  nivel), **¿Cómo se llama?** (tocar el rombo, el romboide…; se alterna con "toca el que tiene 4 lados
+  iguales y 4 ángulos rectos"), **Cada figura con su pista** (se lleva cada característica hasta su figura;
+  las características están en `RASGO`, con las palabras del colegio), **Camina el contorno** (se toca cada
+  lado para sumarlo: P = l + l + l + l, se elige o escribe el total y el material muestra el atajo 4 × l
+  o 2 × (l + a)) y **Problemas de perímetro** (cercar, hallar el lado que falta, costo, vueltas; generados,
+  con su dibujo; en los de cercar primero se elige la operación, contra el área y la media vuelta).
 - **propmult** — "Propiedades de la multiplicación" (runner, px `pmul`): términos (tipo `terminos` con
   `op:"mult"`), ¿qué propiedad es? (`clasificar`: conmutativa, asociativa, distributiva, elemento neutro
-  y elemento absorbente), completa la igualdad (`formas`), V/F y definiciones. `multiplicacion` llega a
-  3 cifras en el multiplicador en todos los niveles.
+  y elemento absorbente; la asociativa entra en básico y la distributiva en intermedio), completa la
+  igualdad (`formas`), **Completa y nombra la propiedad** y **Reparte y multiplica** (tipo `completa` con
+  varios huecos: 24 × 13 = 24 × (10 + 3) = … paso a paso, con el rectángulo partido de `rect`), V/F y
+  definiciones. `multiplicacion` llega a 3 cifras en el multiplicador en todos los niveles y tiene el botón
+  **📝 Como en el examen** (las cinco multiplicaciones del cuestionario del colegio y otras cinco iguales).
 - **vocabulario** — "Concurso de vocabulario" (Lengua, runner, px `voc`): las **40 palabras del banco del
   colegio** (10 por materia) con su significado (`definir`), sinónimo y antónimo (`emparejar`) y escritura
   (`signos`: la letra o tilde que falta). Si el colegio cambia el banco, se edita
   `data/contenido/vocabulario.json`.
-- **vidaplantas** — "La vida de las plantas" (Ciencias, runner, px `vpl`, 13 temas): plantas con y sin
-  semilla, musgo y helecho, fotosíntesis/respiración/nutrición, de la flor al fruto, polinizadores, partes
-  de la hoja, ecosistemas (productores/consumidores/descomponedores, clases) y adaptaciones.
+- **vidaplantas** — "La vida de las plantas" (Ciencias, runner, px `vpl`, 12 temas): plantas con y sin
+  semilla, musgo (briofita) y helecho (pteridófita), qué entra y qué sale en la fotosíntesis, las cuatro
+  funciones (fotosíntesis, respiración, nutrición y reproducción), partes de la hoja, ecosistemas
+  (productores/consumidores/descomponedores, clases), adaptaciones y **Completa** (oraciones con huecos).
+- **reproplantas** — "Cómo se reproducen las plantas" (Ciencias, runner, px `rpl`, 9 temas): **La flor con
+  lupa** (sobre el dibujo de la flor en corte, `recursos/senala/flor-corte.svg`, se suelta cada trabajo en
+  su parte: pétalo, sépalo, filamento, antera, estigma, estilo y ovario), **Toca la parte**, de la flor al
+  fruto, los polinizadores, **Dos maneras de nacer** (sexual / asexual), **Plantas que se copian** (estolón,
+  tubérculo, bulbo y esqueje), **Completa**, V/F y definiciones.
 - **incas** — "Señoríos, Incas y Conquista" (px `inca`) y **riosygente** — "Ríos y gente del Ecuador"
   (px `ryg`) (Sociales, runner, 8 temas cada una): épocas aborígenes, señoríos étnicos y su territorio,
   trueque, Imperio Inca, línea de tiempo hasta 1534 y personajes; vertientes y ríos, usos del agua, pueblos
   por región, fiestas, comidas y vestimenta.
+
+**Cuestionarios del colegio (`temarios/`).** La carpeta `temarios/` guarda los cuestionarios de repaso
+(PDF, con su clave) que da el colegio; **no se versiona** (está en `.gitignore`) y solo sirve de referencia.
+Con los de Ciencias y Matemáticas del 2.º trimestre se completó lo de arriba, y sus ejercicios están dentro
+del juego: en los bancos de `vidaplantas`, `reproplantas`, `invertebrados` (gametos, gemación de la hidra) y
+`propmult`, en `multiplicacion` ("Como en el examen") y, en geometría, como casos que salen una vez por
+sesión (`COLE_PERI` y el terreno de 18 m × 11 m en `geometria.js`). Si llega un cuestionario nuevo, se
+compara pregunta por pregunta con lo que hay y se añade lo que falte.
 
 De Inglés, el 2.º trimestre lleva **regulares**, **irregulares** y **pasado** (el colegio da los verbos
 regulares en pasado y el proyecto "My past in pictures") y repite **presimple** y **continuo** para comparar
@@ -521,6 +545,9 @@ están en `banco.js` y **deben permanecer alineadas** con las claves que lee `or
   sirva de destino, y el marco va al final con `pointer-events="none"`. Se usan a la vez para rotular
   (`clasificar` con `dibujo`) y para tocar (`senala` con `idioma:"en"`); el cuerpo y la cara de "Señala la
   parte" se reutilizan en inglés en `palabras`.
+- **La flor en corte** (`recursos/senala/flor-corte.svg`, mismo contrato): siete partes, cada una por
+  separado. Las piezas finas (filamento, estilo) llevan debajo un trazo transparente y gordo para que el
+  dedo acierte; lo usa `reproplantas` para soltar fichas y para tocar.
 - **Páginas**: la que use un modelo carga `src/efectos/modelo3d.js` y su `src/efectos/modelos/<n>.js`
   después de `luna.js` (ver `paginas/senala.html`).
 
@@ -529,7 +556,8 @@ están en `banco.js` y **deben permanecer alineadas** con las claves que lee `or
   casillas que regalan la respuesta, partes sin dibujo, ortografía sin la letra de su categoría, cantones
   mal escritos, lecturas cuya `pista`/`toca` no está en una sola oración del texto, Inglés (oraciones sin su hueco
   `___`, fichas que sobran y están en la oración, cartas de memoria repetidas, terminaciones que no existen,
-  palabras sin dibujo), plan de trimestres incoherente (`revisar_curriculo`), `.js` sin regenerar. **Debe dar 0 errores.**
+  palabras sin dibujo), `completa` con huecos y respuestas que no cuadran, cestas que no son una parte del
+  dibujo, plan de trimestres incoherente (`revisar_curriculo`), `.js` sin regenerar. **Debe dar 0 errores.**
 - `python herramientas/humo.py [--todos] [--nivel X] [página…]` — abre cada página en Chrome/Edge sin
   ventana (perfil temporal: no toca el progreso real), entra varias veces a cada tema y reporta errores de
   JavaScript, rondas vacías y actividades que no caben en pantalla. Antes recorre el inicio (grado →
@@ -545,6 +573,14 @@ están en `banco.js` y **deben permanecer alineadas** con las claves que lee `or
 
 ## Estado y pendientes
 **Hecho (lo más reciente primero):**
+- **Cuestionarios del 2.º trimestre (oct-2026)**: con los cuestionarios de Ciencias y Matemáticas de
+  `temarios/` se añadió lo que faltaba. *Ciencias:* actividad nueva `reproplantas` (la flor en corte,
+  reproducción sexual y asexual, estolón/tubérculo/bulbo/esqueje), las cuatro funciones de la planta,
+  briofitas y pteridófitas con su nombre, biodiversidad, "Completa" con huecos, y gametos en `invertebrados`
+  (que ahora también está en el 2.º trimestre). *Matemáticas:* "Ponles nombre" y "¿Agudo, recto u obtuso?"
+  en `rectas`, tipo de ángulo al medir, "Cada figura con su pista" en `cuadrilateros`, el atajo del
+  perímetro y elegir la operación en los problemas, la distributiva paso a paso y "Como en el examen" en
+  `multiplicacion`. *Runner:* `completa` con varios huecos y en español.
 - **Inglés completo (oct-2026)**: de una actividad (el ahorcado de frutas) a nueve. Vocabulario de la casa,
   la escuela y general (cuerpo, animales, comida, colores, familia, números, días y meses), verbos regulares
   e irregulares, present simple, present continuous y past simple, más los adverbios de modo y las
@@ -578,9 +614,10 @@ están en `banco.js` y **deben permanecer alineadas** con las claves que lee `or
 
 **Pendiente:**
 - **2.º trimestre:** Lengua (sustantivos concretos/abstractos y contables/incontables, artículos, adjetivos,
-  tipos de texto, paratextos) y un tangram. Confirmar con el cuaderno cómo llama la
-  profesora a las propiedades de la multiplicación (se usó "elemento neutro" y "elemento absorbente"; podrían
-  ser "modulativa" y "anulativa") y unificar la grafía "Cápac Ñan" (`epoca`, `quiz`) / "Qhapaq Ñan" (`incas`).
+  tipos de texto, paratextos) y un tangram. Unificar la grafía "Cápac Ñan" (`epoca`, `quiz`) / "Qhapaq Ñan"
+  (`incas`). (Las propiedades de la multiplicación se quedan como "elemento neutro" y "elemento absorbente o
+  propiedad del cero": así las llama el cuestionario del colegio.) Faltan los cuestionarios de Lengua,
+  Sociales e Inglés: cuando lleguen a `temarios/`, repetir la comparación.
 - **Inglés:** confirmar con el libro del colegio el vocabulario exacto de cada unidad (se usó el temario que
   pidió el usuario: casa, escuela, verbos y los tres tiempos) y si quieren los sonidos de -ed (/t/, /d/, /ɪd/).
   El reparto por trimestre es una decisión propia (vocabulario y presentes en el 1.º, pasado en el 2.º): se

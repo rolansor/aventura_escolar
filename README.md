@@ -63,7 +63,10 @@ agrupa las actividades que tocan en ese trimestre (algunas se repiten de un trim
 El **segundo trimestre** de 5.º sigue lo que el colegio publica en su Classroom: rectas y ángulos (con un
 graduador que se arrastra), cuadriláteros y perímetro, multiplicación hasta 3 cifras con sus términos y
 propiedades, el concurso de vocabulario (40 palabras con significado, sinónimo, antónimo y escritura), la
-vida de las plantas, señoríos étnicos, Incas y Conquista, y los ríos y la gente del Ecuador.
+vida de las plantas y cómo se reproducen (la flor en corte, estolones, tubérculos, bulbos y esquejes),
+señoríos étnicos, Incas y Conquista, y los ríos y la gente del Ecuador. Los cuestionarios de repaso del
+colegio se guardan en `temarios/` (carpeta que **no** se sube al repositorio) y sus ejercicios están dentro
+de las actividades: por ejemplo, la multiplicación tiene el botón **📝 Como en el examen**.
 
 ### 📖 Lengua
 Ortografía (10 reglas: B/V, C-S-Z, G/J, H muda, LL/Y, tildes, mayúsculas, M antes de P/B,
@@ -87,7 +90,7 @@ Ecuador, "¿Dónde está?", señoríos étnicos, Incas y Conquista, y ríos y ge
 
 ### 🌱 Ciencias Naturales
 "Señala la parte" (planta y flor en **3D**; cuerpo, cara y órganos en ilustraciones animadas), las
-plantas, la vida de las plantas, el cuerpo humano, los animales, los invertebrados, el cuidado de la
+plantas, la vida de las plantas, cómo se reproducen las plantas, el cuerpo humano, los animales, los invertebrados, el cuidado de la
 fauna, el ciclo del agua (maqueta 3D), la materia, y ecosistemas y ambiente.
 
 ### 🗣️ Inglés
@@ -148,7 +151,8 @@ Contenido.montar("<modo>")   →   motor Actividad (manipulativo) ó MC (opción
 Los **tipos de juego** que entiende el runner incluyen `clasificar`, `emparejar`, `ordenar`,
 `silabas`, `alfabetico`, `vf` (verdadero/falso), `definir`, `sujeto`, `signos`, `formas`,
 `escena`, `senala`, `problema`, `terminos`, `lectura`, `memoria` y los de Inglés (`ahorcado`,
-`escucha`, `frase`, `completa`, `terminacion`), todos del motor *actividad*, más `mc` (motor *mc*).
+`escucha`, `frase`, `terminacion`) y `completa` (llevar la ficha al hueco: en Inglés con voz y, con
+`idioma:"es"`, en cualquier materia y con varios huecos), todos del motor *actividad*, más `mc` (motor *mc*).
 El esquema completo y los campos de cada tipo están en **[`docs/ESQUEMA_CONTENIDO.md`](docs/ESQUEMA_CONTENIDO.md)**.
 
 **Excepciones** con lógica propia (no usan el runner): **ortografía** (`data/ortografia.json`),

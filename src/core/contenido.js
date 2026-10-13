@@ -11,7 +11,8 @@
    Tipos: clasificar | emparejar | ordenar | silabas | alfabetico | vf | definir
           | sujeto | signos | formas | escena | senala | problema | terminos
           | lectura (comprensión lectora) | memoria (parejas boca abajo)
-          | Inglés: ahorcado, escucha, frase, completa, terminacion
+          | Inglés: ahorcado, escucha, frase, terminacion
+          | completa (Inglés con voz, o cualquier materia con idioma:"es")
           | (motor mc:) mc
    ============================================================ */
 window.Contenido = (function () {
@@ -98,17 +99,35 @@ window.Contenido = (function () {
   }
   // Ficha que vale ARRASTRAR hasta `zona` o simplemente TOCAR (un toque = soltar sin
   // haberla movido): así sirve igual con el dedo, el ratón o un niño que aún no arrastra.
+  // `zona` puede ser una sola o una lista; alUsar(chip, z) recibe la zona donde cayó
+  // (null si fue un toque).
   function fichaEn(fila, texto, zona, alUsar) {
     const chip = document.createElement("button");
     chip.type = "button"; chip.className = "ficha-arr en-ficha"; chip.textContent = texto;
     fila.appendChild(chip);
     let x0 = 0, y0 = 0;
     chip.addEventListener("pointerdown", (e) => { x0 = e.clientX; y0 = e.clientY; });
-    Arrastrar.hacer(chip, [zona], (item, z, ev) => {
+    Arrastrar.hacer(chip, [].concat(zona), (item, z, ev) => {
       const toque = Math.abs(ev.clientX - x0) + Math.abs(ev.clientY - y0) < 10;
-      if (z || toque) alUsar(chip);
+      if (z || toque) alUsar(chip, z);
     });
     return chip;
+  }
+  // Rectángulo partido en dos (modelo de área) para la propiedad distributiva:
+  // a × (b1 + b2) se VE como dos rectángulos, a × b1 y a × b2. r = [a, b1, b2].
+  function rectReparto(r) {
+    const a = esc(r[0]), b1 = esc(r[1]), b2 = esc(r[2]), x0 = 44, y0 = 26, W = 246, H = 66;
+    const w1 = Math.round(W * Math.max(0.34, Math.min(0.66, r[1] / (r[1] + r[2])))), w2 = W - w1;
+    const ym = y0 + H / 2 + 5;
+    return '<svg class="rep-rect" viewBox="0 0 300 100" aria-hidden="true">' +
+      '<rect class="rep-a" x="' + x0 + '" y="' + y0 + '" width="' + w1 + '" height="' + H + '"/>' +
+      '<rect class="rep-b" x="' + (x0 + w1) + '" y="' + y0 + '" width="' + w2 + '" height="' + H + '"/>' +
+      '<text class="rep-lado rep-izq" x="' + (x0 - 8) + '" y="' + ym + '">' + a + "</text>" +
+      '<text class="rep-lado" x="' + (x0 + w1 / 2) + '" y="' + (y0 - 8) + '">' + b1 + "</text>" +
+      '<text class="rep-lado" x="' + (x0 + w1 + w2 / 2) + '" y="' + (y0 - 8) + '">' + b2 + "</text>" +
+      '<text class="rep-dentro" x="' + (x0 + w1 / 2) + '" y="' + ym + '">' + a + " × " + b1 + "</text>" +
+      '<text class="rep-dentro" x="' + (x0 + w1 + w2 / 2) + '" y="' + ym + '">' + a + " × " + b2 + "</text>" +
+      "</svg>";
   }
 
   // Pinta botones tipo ".ord-chip" dentro de un contenedor ".ord-fuente" en host.
@@ -706,31 +725,58 @@ window.Contenido = (function () {
         correcto: palabras, extras: q.sobra || []
       });
     },
-    // Completa la oración (Inglés): la ficha que falta se arrastra hasta la oración (o se toca).
-    // { pista?, items:[[{f:"She ___ soccer.", c:"plays", d:["play"], es?, emoji?, pista?}],[i],[a]] }
+    // Completa la oración: la ficha que falta se arrastra hasta la oración (o se toca).
+    // Nació para Inglés (al acertar, la voz lee la oración); con idioma:"es" sirve en
+    // cualquier materia, sin voz. Con VARIOS huecos, `c` es una lista (una ficha por
+    // hueco, en orden): cada ficha se suelta en SU hueco, o se toca y va al que brilla.
+    // { pista?, idioma?:"es", items:[[{f:"She ___ soccer.", c:"plays", d:["play"], es?, emoji?, pista?,
+    //     igual?:[[1,2]]  (huecos que aceptan sus fichas en cualquier orden),
+    //     rect?:[a,b1,b2] (dibuja el rectángulo partido de a × (b1 + b2)) }],[i],[a]] }
+    // En `f`, un salto de línea (\n) parte la oración en renglones.
     completa: (t) => (host, ctrl) => {
       const q = itemDe(t.items, Juego.nivelIdx());
+      const es = t.idioma === "es";
       const trozo = String(q.f).split("___");
-      ctrl.pregunta(t.pregunta || "🧩 Lleva a la oración la ficha que falta 👇");
-      host.innerHTML = tarjetaEn(q) +
-        '<div class="signo-frase en-frase">' + esc(trozo[0]) + '<span class="en-hueco">?</span>' + esc(trozo[1] || "") + "</div>" +
+      const resp = [].concat(q.c);                 // una ficha por hueco, en orden
+      const varios = resp.length > 1;
+      const texto = (x) => esc(x).replace(/\n/g, "<br>");
+      ctrl.pregunta(t.pregunta || (varios ? "🧩 Lleva cada ficha a su hueco 👇" : "🧩 Lleva a la oración la ficha que falta 👇"));
+      host.innerHTML = tarjetaEn(q) + (q.rect ? rectReparto(q.rect) : "") +
+        '<div class="signo-frase en-frase' + (varios ? " en-varios" : "") + '">' +
+          trozo.map((tr, k) => texto(tr) + (k < resp.length ? '<span class="en-hueco" data-k="' + k + '">?</span>' : "")).join("") +
+        "</div>" +
         '<div class="fila-fichas"></div>';
-      const frase = host.querySelector(".en-frase"), hueco = host.querySelector(".en-hueco");
-      const fila = host.querySelector(".fila-fichas");
-      let listo = false;
-      ctrl.mezclar([q.c].concat(q.d)).forEach((op) => {
-        fichaEn(fila, op, frase, (chip) => {
+      const frase = host.querySelector(".en-frase"), fila = host.querySelector(".fila-fichas");
+      const huecos = Array.prototype.slice.call(host.querySelectorAll(".en-hueco"));
+      const llenos = huecos.map(() => null);       // la ficha puesta en cada hueco
+      // Huecos que aceptan sus fichas en cualquier orden ("agua y dióxido de carbono").
+      const grupoDe = (k) => (q.igual || []).filter((g) => g.indexOf(k) >= 0)[0] || [k];
+      const sirve = (op, k) => grupoDe(k).some((j) => resp[j] === op);
+      // Con varios huecos, brilla el que recibe la ficha si solo se la toca.
+      const turno = () => huecos.forEach((h, k) => h.classList.toggle("turno", varios && k === llenos.indexOf(null)));
+      turno();
+      let faltan = huecos.length, listo = false;
+      ctrl.mezclar(resp.concat(q.d || [])).forEach((op) => {
+        fichaEn(fila, op, varios ? huecos : frase, (chip, z) => {
           if (listo) return;
-          if (op === q.c) {
+          const k = varios && z ? +z.getAttribute("data-k") : llenos.indexOf(null);
+          if (llenos[k] != null) return;           // ese hueco ya tiene su ficha
+          if (sirve(op, k)) {
+            llenos[k] = op; faltan--;
+            chip.remove(); huecos[k].textContent = op; huecos[k].classList.add("ok");
+            turno();
+            if (faltan > 0) { ctrl.retro("¡Bien! Faltan " + faltan + " 👇", "bien"); return; }
             listo = true;
-            chip.remove(); hueco.textContent = op; hueco.classList.add("ok");
-            const entera = trozo[0] + op + (trozo[1] || "");
+            if (es) { ctrl.ganar(1400 + 300 * huecos.length); return; }
+            const entera = trozo.map((tr, j) => tr + (llenos[j] || "")).join("");
             hablarEn(entera); botonOir(host.querySelector(".en-tarjeta") || fila, entera);
             ctrl.ganar(1800 + 250 * entera.split(/\s+/).length);
           } else {
-            chip.classList.add("mal"); chip.dataset.fijo = "1"; chip.disabled = true;
-            frase.classList.add("rojo"); setTimeout(() => frase.classList.remove("rojo"), 450);
-            ctrl.reintento(q.pista || t.pista || "Esa no. Lee la oración con calma 👀");
+            // Una ficha que no entra en ningún hueco se aparta; la que va en OTRO hueco se queda.
+            if (resp.indexOf(op) < 0) { chip.classList.add("mal"); chip.dataset.fijo = "1"; chip.disabled = true; }
+            const donde = varios ? huecos[k] : frase;
+            donde.classList.add("rojo"); setTimeout(() => donde.classList.remove("rojo"), 450);
+            ctrl.reintento(q.pista || t.pista || (varios ? "Esa no va en ese hueco. Lee con calma 👀" : "Esa no. Lee la oración con calma 👀"));
           }
         });
       });

@@ -45,7 +45,7 @@ docs/                      ARQUITECTURA.md, ESQUEMA_CONTENIDO.md
 ```
 
 > Nota sobre `src/modos/`: "**un módulo por actividad**" es cierto **solo** para lo que NO usa el runner
-> (ver "Capa de contenido"). Las 38 actividades del runner **no tienen** un `src/modos/<modo>.js` propio:
+> (ver "Capa de contenido"). Las 39 actividades del runner **no tienen** un `src/modos/<modo>.js` propio:
 > su lógica vive de forma centralizada en `src/core/contenido.js`.
 
 ## Datos: `.json` canónico → `.js` generado

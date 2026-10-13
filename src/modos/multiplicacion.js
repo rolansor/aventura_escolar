@@ -8,6 +8,10 @@ const Multiplicacion = (function () {
     { ca: 2, cb: 2, n: "2 cifras × 2" }, { ca: 3, cb: 2, n: "3 cifras × 2" },
     { ca: 3, cb: 3, n: "3 cifras × 3" }, { ca: 4, cb: 3, n: "4 cifras × 3" }];
   const numDe = (c) => Juego.azar(Math.pow(10, c - 1), Math.pow(10, c) - 1);
+  // "Como en el examen": las cinco multiplicaciones del cuestionario del colegio y otras
+  // cinco del mismo tamaño (cuatro de 3 cifras × 2 y una de 3 × 3), todas mezcladas.
+  const EXAMEN = { examen: true, n: "Como en el examen", d: "3 cifras × 2 y × 3" };
+  const DEL_COLE = [[324, 26], [517, 43], [684, 25], [709, 38], [236, 142]];
 
   // Todos los niveles llegan a 2 y 3 cifras en el multiplicador (lo pide el segundo
   // trimestre de Quinto); el nivel del perfil solo quita lo más fácil o añade lo más largo.
@@ -15,14 +19,19 @@ const Multiplicacion = (function () {
   function init() { pint(); }
   function pint() {
     const c = elSel(); if (!c) return; c.innerHTML = "";
-    nivNivel().forEach((nv) => { const b = document.createElement("button"); b.className = "chip-categoria";
-      b.innerHTML = "✖️ " + nv.n + "<small>multiplicar</small>"; b.onclick = () => empezar(nv); c.appendChild(b); });
+    nivNivel().concat([EXAMEN]).forEach((nv) => { const b = document.createElement("button"); b.className = "chip-categoria";
+      b.innerHTML = (nv.examen ? "📝 " : "✖️ ") + nv.n + "<small>" + (nv.d || "multiplicar") + "</small>"; b.onclick = () => empezar(nv); c.appendChild(b); });
     Juego.pintarMejores(c, "mul"); // 🏆 mejores de esta actividad
   }
   function empezar(nv) {
     ultimo = nv; Juego.quitarBotonesFin($("mul-retro"));
     ac = 0; i = 0; cola = []; tInicio = Date.now(); const f = {};
-    for (let k = 0; k < TOTAL; k++) { let a, b, fi, tr = 0; do { a = numDe(nv.ca); b = numDe(nv.cb); fi = a + "x" + b; tr++; } while (f[fi] && tr < 12); f[fi] = 1; cola.push({ a: a, b: b, r: a * b }); }
+    if (nv.examen) DEL_COLE.forEach((p) => { f[p[0] + "x" + p[1]] = 1; cola.push({ a: p[0], b: p[1], r: p[0] * p[1] }); });
+    for (let k = cola.length; k < TOTAL; k++) {
+      const ca = nv.examen ? 3 : nv.ca, cb = nv.examen ? (k === TOTAL - 1 ? 3 : 2) : nv.cb;
+      let a, b, fi, tr = 0; do { a = numDe(ca); b = numDe(cb); fi = a + "x" + b; tr++; } while (f[fi] && tr < 12); f[fi] = 1; cola.push({ a: a, b: b, r: a * b });
+    }
+    if (nv.examen) cola = Juego.mezclar(cola);
     elSel().classList.add("oculto"); elJuego().classList.remove("oculto"); mostrar();
   }
   function mostrar() {

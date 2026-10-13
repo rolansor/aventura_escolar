@@ -71,6 +71,7 @@ const Menu = (function () {
     incas:      "paginas/incas.html",
     riosygente: "paginas/riosygente.html",
     vidaplantas: "paginas/vidaplantas.html",
+    reproplantas: "paginas/reproplantas.html",
     editor:     "paginas/editor.html",
     contenido:  "paginas/contenido.html"
   };

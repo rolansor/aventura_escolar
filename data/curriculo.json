@@ -23,7 +23,7 @@
           "lengua":      ["vocabulario", "clases", "sinonimos", "lectura"],
           "matematicas": ["rectas", "cuadrilateros", "tablas", "multiplicacion", "propmult"],
           "sociales":    ["incas", "riosygente"],
-          "ciencias":    ["vidaplantas", "plantas", "senala", "ambiente"],
+          "ciencias":    ["vidaplantas", "reproplantas", "invertebrados", "plantas", "senala", "ambiente"],
           "ingles":      ["regulares", "irregulares", "pasado", "presimple", "continuo"]
         }
       }

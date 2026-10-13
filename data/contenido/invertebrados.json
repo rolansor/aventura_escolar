@@ -378,7 +378,8 @@
           { "a": "Reproducción asexual", "b": "basta un solo progenitor" },
           { "a": "Fragmentación", "b": "el cuerpo se parte y cada trozo es un nuevo ser" },
           { "a": "Gemación", "b": "crece una yema o bulto que se desprende" },
-          { "a": "Huevo", "b": "de él nace el nuevo animalito" }
+          { "a": "Huevo", "b": "de él nace el nuevo animalito" },
+          { "a": "Gametos", "b": "células del papá y de la mamá que se unen" }
         ],
         [
           { "a": "Reproducción sexual", "b": "se unen una célula del macho y otra de la hembra" },
@@ -386,7 +387,8 @@
           { "a": "Fecundación interna", "b": "la unión ocurre dentro del animal" },
           { "a": "Fecundación externa", "b": "la unión ocurre fuera, en el agua" },
           { "a": "Fragmentación", "b": "el cuerpo se rompe en pedazos" },
-          { "a": "Gemación", "b": "un brote crece y se separa" }
+          { "a": "Gemación", "b": "un brote crece y se separa" },
+          { "a": "Gametos", "b": "las dos células que se juntan: una masculina y una femenina" }
         ],
         [
           { "a": "Fecundación interna", "b": "las células se unen dentro del cuerpo" },
@@ -394,7 +396,9 @@
           { "a": "Fragmentación", "b": "cada pedazo del cuerpo forma un nuevo individuo" },
           { "a": "Gemación", "b": "una yema crece en el progenitor y se independiza" },
           { "a": "Hermafrodita", "b": "tiene órganos de macho y de hembra a la vez" },
-          { "a": "Reproducción asexual", "b": "no necesita de otro ser para tener crías" }
+          { "a": "Reproducción asexual", "b": "no necesita de otro ser para tener crías" },
+          { "a": "Gametos", "b": "células reproductoras: el óvulo y el espermatozoide" },
+          { "a": "Reproducción sexual", "b": "intervienen un gameto masculino y uno femenino" }
         ]
       ]
     },
@@ -412,7 +416,10 @@
           { "t": "Todos los invertebrados viven en el mar.", "c": false, "exp": "También hay en tierra y agua dulce." },
           { "t": "Las mariposas son insectos.", "c": true, "exp": "Tienen 6 patas y alas." },
           { "t": "La lombriz de tierra vive bajo el suelo.", "c": true, "exp": "Ayuda a airear la tierra." },
-          { "t": "El pulpo tiene un caparazón duro.", "c": false, "exp": "Su cuerpo es blando, sin concha." }
+          { "t": "El pulpo tiene un caparazón duro.", "c": false, "exp": "Su cuerpo es blando, sin concha." },
+          { "t": "La hidra puede tener hijitos ella sola.", "c": true, "exp": "Le crece un brotecito que se suelta: se llama gemación." },
+          { "t": "Para la reproducción sexual hacen falta un macho y una hembra.", "c": true, "exp": "Cada uno pone una célula: los gametos." },
+          { "t": "En la reproducción asexual siempre hacen falta dos animales.", "c": false, "exp": "Basta uno solo, como la hidra." }
         ],
         [
           { "t": "Los artrópodos tienen un exoesqueleto (armadura).", "c": true, "exp": "Una coraza dura por fuera." },
@@ -424,7 +431,11 @@
           { "t": "Los caracoles se mueven muy rápido.", "c": false, "exp": "Se mueven muy lento, arrastrándose." },
           { "t": "Los ciempiés tienen muchas patas.", "c": true, "exp": "Son miriápodos." },
           { "t": "El cangrejo es un insecto.", "c": false, "exp": "Es un crustáceo." },
-          { "t": "Los artrópodos tienen huesos por dentro.", "c": false, "exp": "Tienen un exoesqueleto por fuera." }
+          { "t": "Los artrópodos tienen huesos por dentro.", "c": false, "exp": "Tienen un exoesqueleto por fuera." },
+          { "t": "En la reproducción sexual se unen un gameto masculino y uno femenino.", "c": true, "exp": "Así se reproducen muchos invertebrados." },
+          { "t": "La hidra se reproduce por gemación.", "c": true, "exp": "Le crece una yema que se desprende: es reproducción asexual." },
+          { "t": "En la reproducción asexual intervienen dos progenitores.", "c": false, "exp": "Interviene uno solo." },
+          { "t": "La gemación es una forma de reproducción sexual.", "c": false, "exp": "Es asexual: no se unen gametos." }
         ],
         [
           { "t": "La estrella de mar puede regenerar un brazo.", "c": true, "exp": "Tiene el poder de la regeneración." },
@@ -436,7 +447,10 @@
           { "t": "Las medusas son cnidarios con tentáculos.", "c": true, "exp": "Atrapan presas con células urticantes." },
           { "t": "Los equinodermos tienen simetría radial (forma de estrella).", "c": true, "exp": "Su cuerpo se reparte alrededor de un centro." },
           { "t": "Las lombrices tienen patas.", "c": false, "exp": "No tienen patas: reptan con su cuerpo." },
-          { "t": "Los cefalópodos como el pulpo son muy inteligentes.", "c": true, "exp": "Resuelven problemas y cambian de color." }
+          { "t": "Los cefalópodos como el pulpo son muy inteligentes.", "c": true, "exp": "Resuelven problemas y cambian de color." },
+          { "t": "Los gametos son las células reproductoras.", "c": true, "exp": "El masculino es el espermatozoide y el femenino, el óvulo." },
+          { "t": "En la reproducción sexual interviene un solo progenitor.", "c": false, "exp": "Intervienen dos gametos: uno masculino y uno femenino." },
+          { "t": "La gemación de la hidra necesita un óvulo y un espermatozoide.", "c": false, "exp": "No: es asexual. A la hidra le crece una yema que se separa." }
         ]
       ]
     },
@@ -454,7 +468,9 @@
           { "q": "¿Cuántas patas tiene una araña?", "c": "Ocho", "d": ["Seis", "Diez"] },
           { "q": "¿Qué es un ARTRÓPODO?", "c": "Un animal con patas articuladas", "d": ["Un pez con escamas", "Un animal con pelo"] },
           { "q": "¿Dónde vive la lombriz de tierra?", "c": "En la tierra húmeda", "d": ["En el cielo", "Dentro del fuego"] },
-          { "q": "¿Qué lleva el caracol sobre su cuerpo?", "c": "Una concha", "d": ["Plumas", "Escamas"] }
+          { "q": "¿Qué lleva el caracol sobre su cuerpo?", "c": "Una concha", "d": ["Plumas", "Escamas"] },
+          { "q": "¿Quiénes hacen falta para la reproducción sexual?", "c": "Un macho y una hembra", "d": ["Un animal solo", "Solo un pedacito del cuerpo"] },
+          { "q": "¿Cómo tiene hijitos la hidra ella sola?", "c": "Le crece un brote que se suelta", "d": ["Pone huevos con su pareja", "Nace de una semilla"] }
         ],
         [
           { "q": "¿Qué es el EXOESQUELETO?", "c": "Una armadura dura por fuera", "d": ["Un hueso por dentro", "Una pluma"] },
@@ -464,7 +480,10 @@
           { "q": "¿Qué es un CRUSTÁCEO?", "c": "Un artrópodo con caparazón (cangrejo)", "d": ["Un molusco con concha", "Un gusano plano"] },
           { "q": "¿Qué es un ARÁCNIDO?", "c": "Un invertebrado de 8 patas", "d": ["Un insecto de 6 patas", "Un crustáceo de mar"] },
           { "q": "¿Qué grupo tiene el cuerpo formado por anillos?", "c": "Los anélidos", "d": ["Los moluscos", "Los cnidarios"] },
-          { "q": "¿Por dónde respiran los insectos?", "c": "Por tráqueas", "d": ["Por pulmones", "Por branquias"] }
+          { "q": "¿Por dónde respiran los insectos?", "c": "Por tráqueas", "d": ["Por pulmones", "Por branquias"] },
+          { "q": "En la reproducción sexual de muchos invertebrados intervienen…", "c": "Gametos masculino y femenino", "d": ["Un solo progenitor", "Solo fragmentos del cuerpo", "Únicamente agua"] },
+          { "q": "¿Cuál es un ejemplo de reproducción asexual en un invertebrado?", "c": "La gemación en la hidra", "d": ["La unión de un óvulo y un espermatozoide", "La polinización de una flor", "La formación de una semilla"] },
+          { "q": "¿Qué son los GAMETOS?", "c": "Las células del macho y de la hembra que se unen", "d": ["Los pedazos en que se parte un gusano", "Las patas de un insecto"] }
         ],
         [
           { "q": "¿Qué es la reproducción ASEXUAL por gemación?", "c": "Un brote crece y se separa", "d": ["Unir un macho y una hembra", "Poner muchos huevos"] },
@@ -476,7 +495,9 @@
           { "q": "¿Qué es un CNIDARIO?", "c": "Un animal con tentáculos urticantes (medusa)", "d": ["Un molusco con concha", "Un gusano de anillos"] },
           { "q": "¿Qué es un PORÍFERO?", "c": "Una esponja que respira por poros", "d": ["Un coral con tentáculos", "Un caracol de mar"] },
           { "q": "¿Qué es la METAMORFOSIS de la mariposa?", "c": "El cambio de oruga a mariposa", "d": ["Cambiar de concha", "Poner huevos en el agua"] },
-          { "q": "¿Qué es un BIVALVO?", "c": "Un molusco con dos valvas (almeja)", "d": ["Un molusco con tentáculos", "Un molusco con concha en espiral"] }
+          { "q": "¿Qué es un BIVALVO?", "c": "Un molusco con dos valvas (almeja)", "d": ["Un molusco con tentáculos", "Un molusco con concha en espiral"] },
+          { "q": "¿Qué son los GAMETOS?", "c": "Las células reproductoras: óvulo y espermatozoide", "d": ["Las yemas que le crecen a la hidra", "Los trozos de una estrella de mar"] },
+          { "q": "¿En qué se diferencia la reproducción sexual de la asexual?", "c": "En la sexual se unen dos gametos; en la asexual basta un progenitor", "d": ["En la asexual se unen dos gametos", "En las dos hace falta una pareja"] }
         ]
       ]
     }
